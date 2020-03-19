@@ -67,7 +67,6 @@ public class Zivotinja {
 
     // Konstruktor
     public Zivotinja() {}
-
     public Zivotinja (String ime, String vrsta, String rasa, String spol, int godine, String velicina, int tezina, Byte[] slika, String opis, boolean udomljena) {
         Ime = ime;
         Vrsta = vrsta;
@@ -95,8 +94,7 @@ public class Zivotinja {
     public Byte[] getSlika() { return Slika; }
 
     // Setters
-     public void setIme(String ime) {
-        Ime = ime;
+        public void setIme(String ime) { Ime = ime;
     }
 
     public void setDodatniOpis(String dodatniOpis) {
