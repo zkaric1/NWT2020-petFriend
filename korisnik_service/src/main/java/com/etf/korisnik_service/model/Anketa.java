@@ -21,4 +21,11 @@ public class Anketa {
     public void setId(Integer id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "Anketa{" +
+                "id=" + id +
+                '}';
+    }
 }

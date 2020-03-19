@@ -41,4 +41,13 @@ public class KorisnikZivotinja {
     public void setZivotinja(Zivotinja zivotinja) {
         this.zivotinja = zivotinja;
     }
+
+    @Override
+    public String toString() {
+        return "KorisnikZivotinja{" +
+                "id=" + id +
+                ", korisnik=" + korisnik +
+                ", zivotinja=" + zivotinja +
+                '}';
+    }
 }

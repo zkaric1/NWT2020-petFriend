@@ -113,5 +113,21 @@ public class Korisnik {
     public void setUlogaList(List<Uloga> ulogaList) {
         this.ulogaList = ulogaList;
     }
+
+    @Override
+    public String toString() {
+        return "Korisnik{" +
+                "id=" + id +
+                ", imePrezime='" + imePrezime + '\'' +
+                ", datumRodjenja=" + datumRodjenja +
+                ", email='" + email + '\'' +
+                ", sifra='" + sifra + '\'' +
+                ", adresa='" + adresa + '\'' +
+                ", telefon='" + telefon + '\'' +
+                ", maticniBroj='" + maticniBroj + '\'' +
+                ", spol='" + spol + '\'' +
+                ", ulogaList=" + ulogaList +
+                '}';
+    }
 }
 

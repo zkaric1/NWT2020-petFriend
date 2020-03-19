@@ -28,4 +28,12 @@ public class Uloga {
     public void setNazivUloge(String nazivUloge) {
         this.nazivUloge = nazivUloge;
     }
+
+    @Override
+    public String toString() {
+        return "Uloga{" +
+                "id=" + id +
+                ", nazivUloge='" + nazivUloge + '\'' +
+                '}';
+    }
 }
