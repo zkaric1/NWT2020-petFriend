@@ -34,6 +34,10 @@ public class Korisnik {
         this.spol = spol;
     }
 
+    public Korisnik(String imePrezime) {
+        this.imePrezime = imePrezime;
+    }
+
     public Integer getId() {
         return id;
     }
