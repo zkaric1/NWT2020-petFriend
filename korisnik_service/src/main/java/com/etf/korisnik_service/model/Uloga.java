@@ -1,6 +1,7 @@
 package com.etf.korisnik_service.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "uloga")
@@ -9,6 +10,7 @@ public class Uloga {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String nazivUloge;
+    public Uloga() {}
 
     public Uloga(String naziv) {
         nazivUloge = naziv;

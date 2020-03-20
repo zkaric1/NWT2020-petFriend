@@ -13,6 +13,8 @@ public class KorisnikAnketa {
     @ManyToOne
     private Anketa anketa;
 
+    public KorisnikAnketa() {}
+
     public KorisnikAnketa(Korisnik korisnik, Anketa anketa) {
         this.korisnik = korisnik;
         this.anketa = anketa;

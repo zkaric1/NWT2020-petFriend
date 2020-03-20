@@ -11,6 +11,8 @@ public class Zivotinja {
     private String vrsta;
     private String spol;
 
+    public Zivotinja() {}
+
     public Zivotinja(String vrsta, String spol) {
         this.vrsta = vrsta;
         this.spol = spol;

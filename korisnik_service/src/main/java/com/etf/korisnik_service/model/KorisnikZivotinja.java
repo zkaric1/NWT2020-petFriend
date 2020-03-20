@@ -13,6 +13,9 @@ public class KorisnikZivotinja {
     @ManyToOne
     private Zivotinja zivotinja;
 
+
+    public KorisnikZivotinja() {}
+
     public KorisnikZivotinja(Korisnik korisnik, Zivotinja zivotinja) {
         this.korisnik = korisnik;
         this.zivotinja = zivotinja;

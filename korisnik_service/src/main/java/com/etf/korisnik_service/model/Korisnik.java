@@ -19,9 +19,11 @@ public class Korisnik {
     private String telefon;
     private String maticniBroj;
     private String spol;
-    @OneToMany(mappedBy = "uloga")
-    private List<Uloga> ulogaList;
+    @ManyToOne
+    @JoinColumn(name = "ulogaId", referencedColumnName = "id")
+    private Uloga ulogaId;
 
+    public Korisnik() {}
     public Korisnik(String imePrezime, Date datumRodjenja, String email, String sifra, String adresa, String telefon, String maticniBroj, String spol) {
         this.imePrezime = imePrezime;
         this.datumRodjenja = datumRodjenja;
@@ -109,14 +111,6 @@ public class Korisnik {
         this.spol = spol;
     }
 
-    public List<Uloga> getUlogaList() {
-        return ulogaList;
-    }
-
-    public void setUlogaList(List<Uloga> ulogaList) {
-        this.ulogaList = ulogaList;
-    }
-
     @Override
     public String toString() {
         return "Korisnik{" +
@@ -129,7 +123,6 @@ public class Korisnik {
                 ", telefon='" + telefon + '\'' +
                 ", maticniBroj='" + maticniBroj + '\'' +
                 ", spol='" + spol + '\'' +
-                ", ulogaList=" + ulogaList +
                 '}';
     }
 }
