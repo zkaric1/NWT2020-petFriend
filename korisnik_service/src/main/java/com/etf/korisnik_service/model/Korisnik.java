@@ -20,7 +20,7 @@ public class Korisnik {
     private String telefon;
     private String maticniBroj;
     private String spol;
-    @OneToMany(mappedBy = "ulogaId")
+    @OneToMany(mappedBy = "uloga")
     private List<Uloga> ulogaList;
 
     public Korisnik(String imePrezime, Date datumRodjenja, String email, String sifra, String adresa, String telefon, String maticniBroj, String spol) {
