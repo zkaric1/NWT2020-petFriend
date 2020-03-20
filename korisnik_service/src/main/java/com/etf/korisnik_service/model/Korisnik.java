@@ -1,6 +1,5 @@
 package com.etf.korisnik_service.model;
 
-import net.bytebuddy.matcher.StringMatcher;
 
 import javax.persistence.*;
 import java.util.Date;
