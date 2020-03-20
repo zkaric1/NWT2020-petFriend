@@ -5,7 +5,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "Zivotinja")
 public class Zivotinja {
 
     // Atributi
@@ -67,7 +66,7 @@ public class Zivotinja {
 
     // Konstruktor
     public Zivotinja() {}
-    public Zivotinja (String ime, String vrsta, String rasa, String spol, int godine, String velicina, int tezina, Byte[] slika, String opis, boolean udomljena) {
+    public Zivotinja (String ime, String vrsta, String rasa, String spol, int godine, String velicina, int tezina,  String opis, boolean udomljena, Byte[] slika) {
         Ime = ime;
         Vrsta = vrsta;
         Rasa = rasa;
@@ -76,6 +75,18 @@ public class Zivotinja {
         Velicina = velicina;
         Tezina = tezina;
         Slika = slika;
+        dodatniOpis = opis;
+        Udomljena = udomljena;
+    }
+
+    public Zivotinja (String ime, String vrsta, String rasa, String spol, int godine, String velicina, int tezina,  String opis, boolean udomljena) {
+        Ime = ime;
+        Vrsta = vrsta;
+        Rasa = rasa;
+        Spol = spol;
+        Godine = godine;
+        Velicina = velicina;
+        Tezina = tezina;
         dodatniOpis = opis;
         Udomljena = udomljena;
     }

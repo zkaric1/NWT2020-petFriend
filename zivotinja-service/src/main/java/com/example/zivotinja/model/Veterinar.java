@@ -5,7 +5,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "Veterinar")
 public class Veterinar {
 
     // Atributi
@@ -14,6 +13,7 @@ public class Veterinar {
     private int id;
 
     private String Ime;
+    private String Prezime;
     private String kontaktTelefon; // Kad je potrebno revakcinisati zivotinju (mjeseci)
     private String Adresa;
 
@@ -31,8 +31,9 @@ public class Veterinar {
 
     // Konstruktori
     public Veterinar () {}
-    public Veterinar (String ime, String telefon, String adresa) {
+    public Veterinar (String ime, String prezime, String telefon, String adresa) {
         Ime = ime;
+        Prezime = prezime;
         kontaktTelefon = telefon;
         Adresa = adresa;
     }
@@ -50,6 +51,10 @@ public class Veterinar {
         Ime = ime;
     }
 
+    public void setPrezime(String prezime) {
+        Prezime = prezime;
+    }
+
     // Getters
     public String getAdresa() {
         return Adresa;
@@ -61,5 +66,9 @@ public class Veterinar {
 
     public String getKontaktTelefon() {
         return kontaktTelefon;
+    }
+
+    public String getPrezime() {
+        return Prezime;
     }
 }
