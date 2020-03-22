@@ -34,7 +34,7 @@ public class Zivotinja {
     // Relacije
 
     // Vakcina n-n
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinTable(name = "vakcina_zivotinja",
                joinColumns = {
                     @JoinColumn(name = "zivotinjaID", referencedColumnName = "id", nullable = false, updatable = false)},
@@ -43,7 +43,7 @@ public class Zivotinja {
     private Set<Vakcina> Vakcine = new HashSet<>();
 
     // Veterinar n-n
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinTable(name = "veterinar_zivotinja",
             joinColumns = {
                     @JoinColumn(name = "zivotinjaID", referencedColumnName = "id", nullable = false, updatable = false)},
@@ -52,7 +52,7 @@ public class Zivotinja {
     private Set<Veterinar> Veterinari = new HashSet<>();
 
     // Bolest n-n
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinTable(name = "bolest_zivotinja",
             joinColumns = {
                     @JoinColumn(name = "zivotinjaID", referencedColumnName = "id", nullable = false, updatable = false)},
@@ -61,7 +61,7 @@ public class Zivotinja {
     private Set<Bolest> Bolesti = new HashSet<>();
 
     // Korisnik n-n
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinTable(name = "korisnik_zivotinja",
             joinColumns = {
                     @JoinColumn(name = "zivotinjaID", referencedColumnName = "id", nullable = false, updatable = false)},
@@ -109,42 +109,35 @@ public class Zivotinja {
     public String getDodatniOpis() { return dodatniOpis; }
     public byte[] getSlika() { return Slika; }
 
-    // Setters
-    public void setIme(String ime) { Ime = ime;
-    }
+    public Set<Bolest> getBolesti() { return Bolesti; }
+    public Set<Korisnik> getKorisnici() { return Korisnici; }
+    public Set<Vakcina> getVakcine() { return Vakcine; }
+    public Set<Veterinar> getVeterinari() { return Veterinari; }
 
+    // Setters
+    public void setIme(String ime) { Ime = ime; }
     public void setDodatniOpis(String dodatniOpis) {
         this.dodatniOpis = dodatniOpis;
     }
-
     public void setGodine(int godine) {
         Godine = godine;
     }
-
     public void setRasa(String rasa) {
         Rasa = rasa;
     }
-
-    public void setSlika( byte[] slika) {
-        Slika = slika;
-    }
-
+    public void setSlika( byte[] slika) { Slika = slika; }
     public void setSpol(String spol) {
         Spol = spol;
     }
-
     public void setTezina(int tezina) {
         Tezina = tezina;
     }
-
     public void setVelicina(String velicina) {
         Velicina = velicina;
     }
-
     public void setVrsta(String vrsta) {
         Vrsta = vrsta;
     }
-
     public void setUdomljena(boolean udomljena) {
         Udomljena = udomljena;
     }
@@ -170,7 +163,6 @@ public class Zivotinja {
 
     // Metoda za preuzimanje slike iz baze i spremanje lokalno
     public void preuzmiSliku() {
-
         byte[] slika = this.getSlika();
         try {
             FileOutputStream oStream = new FileOutputStream("C:\\Users\\belma\\Desktop\\NWT2020-petFriend\\zivotinja-service\\Slike iz baze\\test.jpg");
@@ -179,8 +171,6 @@ public class Zivotinja {
         }
         catch (Exception e) {
             e.printStackTrace();
-
         }
-
     }
 }

@@ -42,17 +42,20 @@ public class ZivotinjaServiceApplication {
             vRepo.save(new Vakcina("Hepatits", 12));
             vRepo.save(new Vakcina("Stenecak", 24));
             vRepo.save(new Vakcina("DHPP", 6));
-
+            Vakcina vak = new Vakcina("Bolest", 8);
+            vRepo.save(vak);
 
             // Kreiranje zivotinje
             Zivotinja cuko = new Zivotinja("Mini", "Pas", "Labrador", "Z", 2, "Mali pas", 10, "Spremna za Vas dom!", false);
             byte[] slika = cuko.kreirajSliku("C:\\Users\\belma\\Desktop\\NWT2020-petFriend\\zivotinja-service\\Slike\\viki.jpg");
             cuko.setSlika(slika);
+
+            // Popunjavanje medjutabele
+            cuko.getVakcine().add(vak);
+            vak.getZivotinje().add(cuko);
             zRepo.save(cuko);
             cuko.preuzmiSliku();
-
             zRepo.save(new Zivotinja("Viki", "Pas", "Labrador", "Z", 2, "Mali pas", 10, "Preslatki mali cuko", false));
-
         };
     }
 }

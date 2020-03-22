@@ -14,12 +14,12 @@ public class Vakcina {
     private int id;
 
     private String Tip;
-    private int Revekcinacija; // Kad je potrebno revakcinisati zivotinju (mjeseci)
+    private int Revakcinacija; // Kad je potrebno revakcinisati zivotinju (mjeseci)
 
     // Relacije
 
     // Zivotinja n-n
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinTable(name = "vakcina_zivotinja",
             joinColumns = {
                     @JoinColumn(name = "zivotinjaID", referencedColumnName = "id", nullable = false, updatable = false)},
@@ -31,24 +31,22 @@ public class Vakcina {
     public Vakcina () {}
     public Vakcina (String tip, int revekcinacija) {
         Tip = tip;
-        Revekcinacija = revekcinacija;
+        Revakcinacija = revekcinacija;
     }
     // Setters
     public void setRevekcinacija(int revekcinacija) {
-        Revekcinacija = revekcinacija;
+        Revakcinacija = revekcinacija;
     }
-
     public void setTip(String tip) {
         Tip = tip;
     }
 
     // Getters
     public int getRevekcinacija() {
-        return Revekcinacija;
+        return Revakcinacija;
     }
-
     public String getTip() {
         return Tip;
     }
-
+    public Set<Zivotinja> getZivotinje() { return Zivotinje; }
 }

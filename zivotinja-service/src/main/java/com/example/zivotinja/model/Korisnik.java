@@ -15,7 +15,7 @@ public class Korisnik {
     // Relacije
 
     // Zivotinja n-n
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinTable(name = "korisnik_zivotinja",
             joinColumns = {
                     @JoinColumn(name = "zivotinjaID", referencedColumnName = "id", nullable = false, updatable = false)},
@@ -24,4 +24,5 @@ public class Korisnik {
     private Set<Zivotinja> Zivotinje = new HashSet<>();
 
     public Korisnik () {}
+    public Set<Zivotinja> getZivotinje() { return Zivotinje; }
 }

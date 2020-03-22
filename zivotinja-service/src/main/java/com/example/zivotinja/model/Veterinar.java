@@ -20,7 +20,7 @@ public class Veterinar {
     // Relacije
 
     // Zivotinja n-n
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinTable(name = "veterinar_zivotinja",
             joinColumns = {
                     @JoinColumn(name = "zivotinjaID", referencedColumnName = "id", nullable = false, updatable = false)},
@@ -59,16 +59,12 @@ public class Veterinar {
     public String getAdresa() {
         return Adresa;
     }
-
+    public Set<Zivotinja> getZivotinje() { return Zivotinje; }
     public String getIme() {
         return Ime;
     }
-
     public String getKontaktTelefon() {
         return kontaktTelefon;
     }
-
-    public String getPrezime() {
-        return Prezime;
-    }
+    public String getPrezime() { return Prezime; }
 }
