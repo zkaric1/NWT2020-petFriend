@@ -1,8 +1,13 @@
 package com.example.zivotinja.model;
 
 import javax.persistence.*;
+import java.io.File;
+import java.io.FileInputStream;
 import java.util.HashSet;
 import java.util.Set;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 
 @Entity
 public class Zivotinja {
@@ -24,7 +29,7 @@ public class Zivotinja {
     private boolean Udomljena;
 
     @Lob
-    private Byte[] Slika;
+    private byte[] Slika;
 
     // Relacije
 
@@ -64,9 +69,9 @@ public class Zivotinja {
                     @JoinColumn(name = "korisnikID", referencedColumnName = "id", nullable = false, updatable = false)})
     private Set<Korisnik> Korisnici = new HashSet<>();
 
-    // Konstruktor
+    // Konstruktori
     public Zivotinja() {}
-    public Zivotinja (String ime, String vrsta, String rasa, String spol, int godine, String velicina, int tezina,  String opis, boolean udomljena, Byte[] slika) {
+    public Zivotinja (String ime, String vrsta, String rasa, String spol, int godine, String velicina, int tezina,  String opis, boolean udomljena, byte[] slika) {
         Ime = ime;
         Vrsta = vrsta;
         Rasa = rasa;
@@ -102,10 +107,10 @@ public class Zivotinja {
     public boolean isUdomljena() { return Udomljena; }
     public int getId() { return id; }
     public String getDodatniOpis() { return dodatniOpis; }
-    public Byte[] getSlika() { return Slika; }
+    public byte[] getSlika() { return Slika; }
 
     // Setters
-        public void setIme(String ime) { Ime = ime;
+    public void setIme(String ime) { Ime = ime;
     }
 
     public void setDodatniOpis(String dodatniOpis) {
@@ -120,7 +125,7 @@ public class Zivotinja {
         Rasa = rasa;
     }
 
-    public void setSlika(Byte[] slika) {
+    public void setSlika( byte[] slika) {
         Slika = slika;
     }
 
@@ -142,5 +147,40 @@ public class Zivotinja {
 
     public void setUdomljena(boolean udomljena) {
         Udomljena = udomljena;
+    }
+
+    // Metode
+
+    // Metoda za kreiranje i snimanje slike u bazu
+    public byte[] kreirajSliku (String putanja) {
+        File slika = new File (putanja);
+        byte[] bFile = new byte[ (int) slika.length()];
+        try {
+            FileInputStream iStream = new FileInputStream(slika);
+
+            // Konverzija u niz byte
+            iStream.read(bFile);
+            iStream.close();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return bFile;
+    }
+
+    // Metoda za preuzimanje slike iz baze i spremanje lokalno
+    public void preuzmiSliku() {
+
+        byte[] slika = this.getSlika();
+        try {
+            FileOutputStream oStream = new FileOutputStream("C:\\Users\\belma\\Desktop\\NWT2020-petFriend\\zivotinja-service\\Slike iz baze\\test.jpg");
+            oStream.write(slika);
+            oStream.close();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+
+        }
+
     }
 }
