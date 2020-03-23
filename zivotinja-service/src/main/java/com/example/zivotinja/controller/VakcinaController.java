@@ -1,11 +1,9 @@
 package com.example.zivotinja.controller;
 import com.example.zivotinja.model.Vakcina;
 import com.example.zivotinja.model.VakcinaException;
-import com.example.zivotinja.model.Veterinar;
 import com.example.zivotinja.repository.VakcinaRepository;
-import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
-
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -65,7 +63,7 @@ public class VakcinaController {
 
     // POST metode
     @PostMapping ("/vakcine")
-    Vakcina novaVakcina (@RequestBody Vakcina nVak) {
+    Vakcina novaVakcina (@Valid @RequestBody Vakcina nVak) {
         return vakcinaRepository.save(nVak);
     }
 }

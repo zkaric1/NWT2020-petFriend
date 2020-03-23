@@ -6,6 +6,7 @@ import com.example.zivotinja.model.ZivotinjaException;
 import com.example.zivotinja.repository.VeterinarRepository;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -63,7 +64,7 @@ public class VeterinarController {
 
     // POST metode
     @PostMapping ("/veterinari")
-    Veterinar noviVeterinar (@RequestBody Veterinar nVet) {
+    Veterinar noviVeterinar (@Valid  @RequestBody Veterinar nVet) {
         return veterinarRepository.save(nVet);
     }
 }

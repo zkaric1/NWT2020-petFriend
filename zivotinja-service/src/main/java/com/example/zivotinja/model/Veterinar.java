@@ -1,6 +1,6 @@
 package com.example.zivotinja.model;
-
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,9 +11,17 @@ public class Veterinar {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank(message = "Ime je obavezno!")
     private String Ime;
+
+    @NotBlank(message = "Prezime je obavezno!")
     private String Prezime;
+
+    @NotBlank(message = "Kontakt telefon je obavezan!")
     private String kontaktTelefon; // Kad je potrebno revakcinisati zivotinju (mjeseci)
+
+    @NotBlank(message = "Adresa je obavezna!")
     private String Adresa;
 
     // Relacije

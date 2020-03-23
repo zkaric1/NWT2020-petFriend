@@ -25,6 +25,8 @@ public class Korisnik {
 
     public Korisnik () {}
     public void setId(Long id) { this.id = id; }
+
+    // Getters
     public Long getId() { return id; }
     public Set<Zivotinja> getZivotinje() { return Zivotinje; }
 }

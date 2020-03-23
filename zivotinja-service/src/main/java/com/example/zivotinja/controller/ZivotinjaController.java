@@ -6,6 +6,8 @@ import com.example.zivotinja.repository.ZivotinjaRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -84,7 +86,7 @@ public class ZivotinjaController {
 
     // POST metode
     @PostMapping ("/zivotinje")
-    Zivotinja novaZivotinja (@RequestBody Zivotinja nZivotinja) {
+    Zivotinja novaZivotinja (@Valid @RequestBody Zivotinja nZivotinja) {
         return zivotinjaRepository.save(nZivotinja);
     }
 }

@@ -3,12 +3,15 @@ import com.example.zivotinja.assembler.BolestModelAssembler;
 import com.example.zivotinja.model.Bolest;
 import com.example.zivotinja.model.BolestException;
 import org.springframework.hateoas.EntityModel;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.example.zivotinja.repository.BolestRepository;
 import java.util.List;
 import java.util.stream.Collectors;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 import org.springframework.hateoas.CollectionModel;
+
+import javax.validation.Valid;
 
 @RestController
 public class BolestController {
@@ -82,7 +85,7 @@ public class BolestController {
 
     // POST metode
     @PostMapping ("/bolesti")
-    Bolest novaBolest (@RequestBody Bolest nBol) {
+    Bolest novaBolest (@Valid @RequestBody Bolest nBol) {
         return bolestRepository.save(nBol);
     }
 }

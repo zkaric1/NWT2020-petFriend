@@ -1,6 +1,9 @@
 package com.example.zivotinja.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,7 +14,11 @@ public class Bolest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank(message = "Ime bolesti ne moze biti prazno!")
     private String Ime;
+
+    @NotBlank(message = "Ime lijeka ne moze biti prazno!")
     private String Lijek;
 
     // Relacije

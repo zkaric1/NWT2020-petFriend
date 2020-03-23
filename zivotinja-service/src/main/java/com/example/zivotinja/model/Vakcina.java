@@ -1,9 +1,9 @@
 package com.example.zivotinja.model;
-
+import org.hibernate.validator.constraints.Range;
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.util.HashSet;
 import java.util.Set;
-
 
 @Entity
 public class Vakcina {
@@ -13,8 +13,12 @@ public class Vakcina {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Tip vakcine je obavezan!")
     private String Tip;
-    private int Revakcinacija; // Kad je potrebno revakcinisati zivotinju (mjeseci)
+
+    @NotNull(message = "Vrijednost revakcinacije je obavezan!")
+    @Range(min= 1, max = 144, message = "Revakcinacija moze biti izmedu 1 i 144 mjeseci!")
+    private Integer Revakcinacija; // Kad je potrebno revakcinisati zivotinju (mjeseci)
 
     // Relacije
 
@@ -29,12 +33,12 @@ public class Vakcina {
 
     // Konstruktori
     public Vakcina () {}
-    public Vakcina (String tip, int revakcinacija) {
+    public Vakcina (String tip, Integer revakcinacija) {
         Tip = tip;
         Revakcinacija = revakcinacija;
     }
     // Setters
-    public void setRevakcinacija(int revakcinacija) {
+    public void setRevakcinacija(Integer revakcinacija) {
         Revakcinacija = revakcinacija;
     }
     public void setTip(String tip) {
@@ -43,7 +47,7 @@ public class Vakcina {
     public void setId(Long id) { this.id = id; }
 
     // Getters
-    public int getRevakcinacija() {
+    public Integer getRevakcinacija() {
         return Revakcinacija;
     }
     public String getTip() {

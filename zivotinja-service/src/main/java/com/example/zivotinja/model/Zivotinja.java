@@ -1,12 +1,14 @@
 package com.example.zivotinja.model;
+import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.HashSet;
 import java.util.Set;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
 @Entity
@@ -17,16 +19,35 @@ public class Zivotinja {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Ime zivotinje je obavezno!")
     @Column(unique = true)
     private String Ime;
+
+    @NotBlank(message = "Vrsta zivotinje je obavezna!")
     private String Vrsta;
+
+    @NotBlank(message = "Rasa zivotinje je obavezna!")
     private String Rasa;
+
+    @NotBlank(message = "Spol zivotinje je obavezan!")
+    @Pattern(regexp = "Z|M", message = "Spol moze biti samo M ili Z!", flags = Pattern.Flag.CASE_INSENSITIVE)
     private String Spol;
+
+    @NotNull(message = "Godine zivotinje su obavezna!")
+    @Range (min = 1, max = 25, message = "Godine zivotinje ne mogu biti vece od 25 i manje od 1!")
     private int Godine;
+
+    @NotBlank(message = "Velicina zivotinje je obavezna!")
     private String Velicina;
+
+    @NotNull(message = "Tezina zivotinje je obavezna")
     private int Tezina;
+
     private String dodatniOpis;
-    private boolean Udomljena;
+
+    @NotNull(message = "Status zivotinje, da li je udomljena ili ne, je obavezno!")
+    //@Pattern(regexp = "true|false", message = "Udomljeni status moeze biti samo true ili false!", flags = Pattern.Flag.CASE_INSENSITIVE)
+    private Boolean Udomljena;
 
     @Lob
     private byte[] Slika;
@@ -70,7 +91,7 @@ public class Zivotinja {
 
     // Konstruktori
     public Zivotinja() {}
-    public Zivotinja (String ime, String vrsta, String rasa, String spol, int godine, String velicina, int tezina,  String opis, boolean udomljena, byte[] slika) {
+    public Zivotinja (String ime, String vrsta, String rasa, String spol, int godine, String velicina, int tezina,  String opis, Boolean udomljena, byte[] slika) {
         Ime = ime;
         Vrsta = vrsta;
         Rasa = rasa;
@@ -83,7 +104,7 @@ public class Zivotinja {
         Udomljena = udomljena;
     }
 
-    public Zivotinja (String ime, String vrsta, String rasa, String spol, int godine, String velicina, int tezina,  String opis, boolean udomljena) {
+    public Zivotinja (String ime, String vrsta, String rasa, String spol, int godine, String velicina, int tezina,  String opis, Boolean udomljena) {
         Ime = ime;
         Vrsta = vrsta;
         Rasa = rasa;
@@ -96,18 +117,17 @@ public class Zivotinja {
     }
 
     // Getters
-    public String getIme()  { return Ime; }
+        public String getIme()  { return Ime; }
     public String getVrsta() { return  Vrsta; }
     public String getRasa() {return Rasa; }
     public int getGodine() { return Godine; }
     public String getSpol() { return  Spol; }
     public String getVelicina() { return  Velicina; }
     public int getTezina() { return Tezina; }
-    public boolean isUdomljena() { return Udomljena; }
+    public Boolean isUdomljena() { return Udomljena; }
     public Long getId() { return id; }
     public String getDodatniOpis() { return dodatniOpis; }
     public byte[] getSlika() { return Slika; }
-
     public Set<Bolest> getBolesti() { return Bolesti; }
     public Set<Korisnik> getKorisnici() { return Korisnici; }
     public Set<Vakcina> getVakcine() { return Vakcine; }
@@ -137,7 +157,7 @@ public class Zivotinja {
     public void setVrsta(String vrsta) {
         Vrsta = vrsta;
     }
-    public void setUdomljena(boolean udomljena) {
+    public void setUdomljena(Boolean udomljena) {
         Udomljena = udomljena;
     }
     public void setId(Long id) { this.id = id; }
@@ -172,9 +192,5 @@ public class Zivotinja {
         catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public String ZivotinjaNotFoundException(Long id) {
-        return ("Could not find employee " + id);
     }
 }
