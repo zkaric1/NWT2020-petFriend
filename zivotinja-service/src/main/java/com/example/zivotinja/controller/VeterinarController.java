@@ -32,4 +32,38 @@ public class VeterinarController {
         return veterinarRepository.findById(id).orElseThrow(() -> new VeterinarException(id));
     }
 
+    // DELETE metode
+    @DeleteMapping ("/veterinari")
+    void izbrisiSveVeterinare(@RequestParam(value = "ime", required = false) String ime) {
+        if (ime != null) veterinarRepository.deleteByName(ime);
+        else veterinarRepository.deleteAll();
+    }
+
+    @DeleteMapping("/veterinari/{id}")
+    void izbrisiVeterinara(@PathVariable Long id) {
+        veterinarRepository.deleteById(id);
+    }
+
+    // PUT metode
+    @PutMapping("/veterinari/{id}")
+    Veterinar updateVeterinar(@RequestBody Veterinar noviVeterinar, @PathVariable Long id) {
+        return veterinarRepository.findById(id)
+                .map(veterinar -> {
+                    veterinar.setAdresa(noviVeterinar.getAdresa());
+                    veterinar.setIme(noviVeterinar.getIme());
+                    veterinar.setKontaktTelefon(noviVeterinar.getKontaktTelefon());
+                    veterinar.setPrezime(noviVeterinar.getPrezime());
+                    return veterinarRepository.save(veterinar);
+                })
+                .orElseGet(() -> {
+                    noviVeterinar.setId(id);
+                    return veterinarRepository.save(noviVeterinar);
+                });
+    }
+
+    // POST metode
+    @PostMapping ("/veterinari")
+    Veterinar noviVeterinar (@RequestBody Veterinar nVet) {
+        return veterinarRepository.save(nVet);
+    }
 }

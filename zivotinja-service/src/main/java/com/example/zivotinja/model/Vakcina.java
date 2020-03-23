@@ -29,13 +29,13 @@ public class Vakcina {
 
     // Konstruktori
     public Vakcina () {}
-    public Vakcina (String tip, int revekcinacija) {
+    public Vakcina (String tip, int revakcinacija) {
         Tip = tip;
-        Revakcinacija = revekcinacija;
+        Revakcinacija = revakcinacija;
     }
     // Setters
-    public void setRevekcinacija(int revekcinacija) {
-        Revakcinacija = revekcinacija;
+    public void setRevakcinacija(int revakcinacija) {
+        Revakcinacija = revakcinacija;
     }
     public void setTip(String tip) {
         Tip = tip;
@@ -43,7 +43,7 @@ public class Vakcina {
     public void setId(Long id) { this.id = id; }
 
     // Getters
-    public int getRevekcinacija() {
+    public int getRevakcinacija() {
         return Revakcinacija;
     }
     public String getTip() {
