@@ -1,5 +1,4 @@
 package com.example.zivotinja.controller;
-
 import com.example.zivotinja.ZivotinjaServiceApplication;
 import com.example.zivotinja.model.Zivotinja;
 import com.example.zivotinja.model.ZivotinjaException;
@@ -7,8 +6,9 @@ import com.example.zivotinja.repository.ZivotinjaRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
-
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class ZivotinjaController {
@@ -24,6 +24,18 @@ public class ZivotinjaController {
     @GetMapping("/zivotinje/{id}")
     public Zivotinja one(@PathVariable Long id) {
         return zivotinjaRepository.findById(id).orElseThrow(() -> new ZivotinjaException(id));
+    }
+
+    @GetMapping("zivotinje/{id}/godine")
+    public Map<String, Integer> vratiGodine(@PathVariable Long id) {
+        List<Zivotinja> ziv = zivotinjaRepository.findByAge(id);
+        HashMap<String, Integer> mapa = new HashMap<>();
+        int godine = 0;
+        for (Zivotinja ob : ziv){
+            godine = ob.getGodine();
+        }
+        mapa.put("godine", godine);
+        return mapa;
     }
 
     @GetMapping("/zivotinje")

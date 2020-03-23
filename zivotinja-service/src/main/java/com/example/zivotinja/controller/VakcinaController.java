@@ -17,7 +17,7 @@ public class VakcinaController {
     }
 
     // GET metode
-    @RequestMapping ("/vakcine")
+    @GetMapping ("/vakcine")
     List<Vakcina> dobaviVakcineTip(@RequestParam(value = "tip", required = false) String tip) {
         if (tip != null) {
             return vakcinaRepository.findByType(tip);
@@ -27,7 +27,7 @@ public class VakcinaController {
         }
     }
 
-    @RequestMapping ("/vakcine/{id}")
+    @GetMapping ("/vakcine/{id}")
     public Vakcina one (@PathVariable Long id) {
         return vakcinaRepository.findById(id).orElseThrow(() -> new VakcinaException(id));
     }

@@ -1,19 +1,28 @@
 package com.example.zivotinja.controller;
+import com.example.zivotinja.assembler.BolestModelAssembler;
 import com.example.zivotinja.model.Bolest;
 import com.example.zivotinja.model.BolestException;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.web.bind.annotation.*;
 import com.example.zivotinja.repository.BolestRepository;
 import java.util.List;
+import java.util.stream.Collectors;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
+import org.springframework.hateoas.CollectionModel;
 
 @RestController
 public class BolestController {
 
     private BolestRepository bolestRepository;
-    BolestController (BolestRepository repo) {
+    private final BolestModelAssembler assembler;
+
+    BolestController(BolestRepository repo, BolestModelAssembler assembler) {
         bolestRepository = repo;
+        this.assembler = assembler;
     }
 
-    @RequestMapping("/bolesti")
+    // Bez Hateoas
+    @GetMapping("/bolest")
     List<Bolest> dobaviBolestIme(@RequestParam(value = "ime", required = false) String ime) {
         if (ime != null) {
             return bolestRepository.findByName(ime);
@@ -23,9 +32,21 @@ public class BolestController {
         }
     }
 
-    @RequestMapping ("/bolesti/{id}")
-    public Bolest one (@PathVariable Long id) {
-        return bolestRepository.findById(id).orElseThrow(() -> new BolestException(id));
+    // Sa Hateoas
+    @GetMapping("/bolesti")
+    public CollectionModel<EntityModel<Bolest>> all() {
+        List<EntityModel<Bolest>> employees = bolestRepository.findAll().stream()
+                .map(assembler::toModel)
+                .collect(Collectors.toList());
+
+        return new CollectionModel<>(employees,
+                linkTo(methodOn(BolestController.class).all()).withSelfRel());
+    }
+
+    @GetMapping("/bolesti/{id}")
+    public EntityModel<Bolest> one(@PathVariable Long id) {
+        Bolest bolest = bolestRepository.findById(id).orElseThrow(() -> new BolestException(id));
+        return assembler.toModel(bolest);
     }
 
     // DELETE metode

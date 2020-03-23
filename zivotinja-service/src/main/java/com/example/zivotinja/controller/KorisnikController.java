@@ -14,12 +14,12 @@ public class KorisnikController {
     }
 
     // GET metode
-    @RequestMapping("/korisnici")
+    @GetMapping("/korisnici")
     List<Korisnik> all() {
         return korisnikRepository.findAll();
     }
 
-    @RequestMapping ("/korisnici/{id}")
+    @GetMapping ("/korisnici/{id}")
     public Korisnik one (@PathVariable Long id) {
         return korisnikRepository.findById(id).orElseThrow(() -> new KorisnikException(id));
     }

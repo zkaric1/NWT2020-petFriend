@@ -20,4 +20,7 @@ public interface ZivotinjaRepository extends JpaRepository<Zivotinja, Long> {
     @Query(value = "DELETE from Zivotinja where ime = :ime", nativeQuery = true)
     void deleteByName(@Param("ime") String ime);
 
+    @Query (value = "SELECT * FROM Zivotinja  WHERE id = :id", nativeQuery = true)
+    List<Zivotinja> findByAge(@Param("id") Long id);
+
 }
