@@ -74,6 +74,5 @@ public class ZivotinjaController {
     @PostMapping ("/zivotinje")
     Zivotinja novaZivotinja (@RequestBody Zivotinja nZivotinja) {
         return zivotinjaRepository.save(nZivotinja);
-
     }
 }

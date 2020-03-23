@@ -11,7 +11,7 @@ public class Vakcina {
     // Atributi
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     private String Tip;
     private int Revakcinacija; // Kad je potrebno revakcinisati zivotinju (mjeseci)
@@ -40,6 +40,7 @@ public class Vakcina {
     public void setTip(String tip) {
         Tip = tip;
     }
+    public void setId(Long id) { this.id = id; }
 
     // Getters
     public int getRevekcinacija() {
@@ -49,4 +50,5 @@ public class Vakcina {
         return Tip;
     }
     public Set<Zivotinja> getZivotinje() { return Zivotinje; }
+    public Long getId() { return id; }
 }

@@ -10,7 +10,7 @@ public class Korisnik {
     // Atributi
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     // Relacije
 
@@ -24,5 +24,7 @@ public class Korisnik {
     private Set<Zivotinja> Zivotinje = new HashSet<>();
 
     public Korisnik () {}
+    public void setId(Long id) { this.id = id; }
+    public Long getId() { return id; }
     public Set<Zivotinja> getZivotinje() { return Zivotinje; }
 }

@@ -10,7 +10,7 @@ public class Bolest {
     // Atributi
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String Ime;
     private String Lijek;
 
@@ -40,12 +40,13 @@ public class Bolest {
     public String getIme() {
         return Ime;
     }
+    public Long getId() { return id; }
 
     // Setters
     public void setLijek(String lijek) {
         Lijek = lijek;
     }
-
+    public void setId(Long id) { this.id = id; }
     public void setIme(String ime) {
         Ime = ime;
     }

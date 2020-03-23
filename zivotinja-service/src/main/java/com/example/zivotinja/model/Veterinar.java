@@ -10,8 +10,7 @@ public class Veterinar {
     // Atributi
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
+    private Long id;
     private String Ime;
     private String Prezime;
     private String kontaktTelefon; // Kad je potrebno revakcinisati zivotinju (mjeseci)
@@ -42,15 +41,13 @@ public class Veterinar {
     public void setAdresa(String adresa) {
         Adresa = adresa;
     }
-
+    public void setId(Long id) { this.id = id; }
     public void setKontaktTelefon(String kontaktTelefon) {
         this.kontaktTelefon = kontaktTelefon;
     }
-
     public void setIme(String ime) {
         Ime = ime;
     }
-
     public void setPrezime(String prezime) {
         Prezime = prezime;
     }
@@ -67,4 +64,5 @@ public class Veterinar {
         return kontaktTelefon;
     }
     public String getPrezime() { return Prezime; }
+    public Long getId() { return id; }
 }
