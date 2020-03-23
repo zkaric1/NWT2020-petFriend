@@ -15,7 +15,7 @@ public class Zivotinja {
     // Atributi
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column(unique = true)
     private String Ime;
@@ -32,7 +32,6 @@ public class Zivotinja {
     private byte[] Slika;
 
     // Relacije
-
     // Vakcina n-n
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinTable(name = "vakcina_zivotinja",
@@ -105,7 +104,7 @@ public class Zivotinja {
     public String getVelicina() { return  Velicina; }
     public int getTezina() { return Tezina; }
     public boolean isUdomljena() { return Udomljena; }
-    public int getId() { return id; }
+    public Long getId() { return id; }
     public String getDodatniOpis() { return dodatniOpis; }
     public byte[] getSlika() { return Slika; }
 
@@ -141,6 +140,7 @@ public class Zivotinja {
     public void setUdomljena(boolean udomljena) {
         Udomljena = udomljena;
     }
+    public void setId(Long id) { this.id = id; }
 
     // Metode
 
@@ -172,5 +172,9 @@ public class Zivotinja {
         catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public String ZivotinjaNotFoundException(Long id) {
+        return ("Could not find employee " + id);
     }
 }
