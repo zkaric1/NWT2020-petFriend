@@ -117,7 +117,7 @@ public class Zivotinja {
     }
 
     // Getters
-        public String getIme()  { return Ime; }
+    public String getIme()  { return Ime; }
     public String getVrsta() { return  Vrsta; }
     public String getRasa() {return Rasa; }
     public int getGodine() { return Godine; }
