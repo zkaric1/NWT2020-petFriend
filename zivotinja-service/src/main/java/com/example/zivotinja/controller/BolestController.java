@@ -2,6 +2,7 @@ package com.example.zivotinja.controller;
 import com.example.zivotinja.assembler.BolestModelAssembler;
 import com.example.zivotinja.model.Bolest;
 import com.example.zivotinja.model.BolestException;
+import com.sun.xml.bind.v2.TODO;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,8 +27,11 @@ public class BolestController {
 
     // Bez Hateoas
     @GetMapping("/bolest")
-    List<Bolest> dobaviBolestIme(@RequestParam(value = "ime", required = false) String ime) {
+    List<Bolest> dobaviBolestIme(@RequestParam(value = "ime", required = false) String ime) throws Exception{
         if (ime != null) {
+            if (bolestRepository.findByName(ime).size() == 0) {
+                throw new Exception("Ne postoji bolest sa trazenim imenom " + ime);
+            }
             return bolestRepository.findByName(ime);
         }
         else {
@@ -54,7 +58,10 @@ public class BolestController {
 
     // DELETE metode
     @DeleteMapping("/bolesti")
-    void izbrisiSveBolesti(@RequestParam(value = "ime", required = false) String ime) {
+    void izbrisiSveBolesti(@RequestParam(value = "ime", required = false) String ime) throws Exception{
+        if (bolestRepository.count() == 0) {
+            throw new Exception("Ne postoji vise bolesti u bazi podataka");
+        }
         if (ime != null) {
             bolestRepository.deleteByName(ime);
         }
@@ -64,13 +71,19 @@ public class BolestController {
     }
 
     @DeleteMapping ("bolesti/{id}")
-    void izbrisiBolest (@PathVariable Long id) {
+    void izbrisiBolest (@PathVariable Long id) throws Exception {
+        if (!bolestRepository.existsById(id)) {
+            throw new Exception("Ne postoji bolest sa id " + id);
+        }
         bolestRepository.deleteById(id);
     }
 
     // PUT metode
     @PutMapping("/bolesti/{id}")
-    Bolest updateBolest(@RequestBody Bolest novaBolest, @PathVariable Long id) {
+    Bolest updateBolest(@RequestBody Bolest novaBolest, @PathVariable Long id) throws Exception{
+        if (!bolestRepository.existsById(id)) {
+            throw new Exception ("Ne postoji bolest sa trazenim id " + id);
+        }
         return bolestRepository.findById(id)
                 .map(bolest -> {
                     bolest.setIme(novaBolest.getIme());

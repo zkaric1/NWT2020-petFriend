@@ -19,8 +19,11 @@ public class VeterinarController {
 
     // GET metode
     @GetMapping ("/veterinari")
-    public List<Veterinar> dobaviVeterinareIme (@RequestParam(value = "ime", required = false) String ime) {
+    public List<Veterinar> dobaviVeterinareIme (@RequestParam(value = "ime", required = false) String ime) throws Exception {
         if (ime != null) {
+            if (veterinarRepository.findByName(ime).size() == 0) {
+                throw new Exception ("Ne postoji veterinar sa imenom " + ime);
+            }
             return veterinarRepository.findByName(ime);
         }
         else {
@@ -35,19 +38,28 @@ public class VeterinarController {
 
     // DELETE metode
     @DeleteMapping ("/veterinari")
-    void izbrisiSveVeterinare(@RequestParam(value = "ime", required = false) String ime) {
+    void izbrisiSveVeterinare(@RequestParam(value = "ime", required = false) String ime) throws Exception{
+        if (veterinarRepository.count() == 0) {
+            throw new Exception ("Ne postoji vise veterinara u bazi podataka!");
+        }
         if (ime != null) veterinarRepository.deleteByName(ime);
         else veterinarRepository.deleteAll();
     }
 
     @DeleteMapping("/veterinari/{id}")
-    void izbrisiVeterinara(@PathVariable Long id) {
+    void izbrisiVeterinara(@PathVariable Long id) throws Exception {
+        if (!veterinarRepository.existsById(id)) {
+            throw new Exception("Ne postoji veterinar sa id " + id);
+        }
         veterinarRepository.deleteById(id);
     }
 
     // PUT metode
     @PutMapping("/veterinari/{id}")
-    Veterinar updateVeterinar(@RequestBody Veterinar noviVeterinar, @PathVariable Long id) {
+    Veterinar updateVeterinar(@RequestBody Veterinar noviVeterinar, @PathVariable Long id) throws Exception {
+        if (!veterinarRepository.existsById(id)) {
+            throw new Exception("Ne postoji veterinar sa id " + id);
+        }
         return veterinarRepository.findById(id)
                 .map(veterinar -> {
                     veterinar.setAdresa(noviVeterinar.getAdresa());

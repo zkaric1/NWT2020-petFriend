@@ -16,8 +16,11 @@ public class VakcinaController {
 
     // GET metode
     @GetMapping ("/vakcine")
-    List<Vakcina> dobaviVakcineTip(@RequestParam(value = "tip", required = false) String tip) {
+    List<Vakcina> dobaviVakcineTip(@RequestParam(value = "tip", required = false) String tip) throws Exception {
         if (tip != null) {
+            if (vakcinaRepository.findByType(tip).size() == 0) {
+                throw new Exception("Ne postoji vakcina za bolest " + tip);
+            }
             return vakcinaRepository.findByType(tip);
         }
         else {
@@ -32,7 +35,10 @@ public class VakcinaController {
 
     // DELETE metode
     @DeleteMapping ("/vakcine")
-    void izbrisiSveVakcine(@RequestParam(value = "tip", required = false) String tip) {
+    void izbrisiSveVakcine(@RequestParam(value = "tip", required = false) String tip) throws Exception {
+        if (vakcinaRepository.count() == 0) {
+            throw new Exception("Ne postoji vise vakcina u bazi podataka");
+        }
         if (tip != null) {
             vakcinaRepository.deleteByType(tip);
         }
@@ -42,13 +48,19 @@ public class VakcinaController {
     }
 
     @DeleteMapping ("vakcine/{id}")
-    void izbrisiVakcinu (@PathVariable Long id) {
+    void izbrisiVakcinu (@PathVariable Long id) throws Exception {
+        if (!vakcinaRepository.existsById(id)) {
+            throw new Exception("Ne postoji vakcina sa id " + id);
+        }
         vakcinaRepository.deleteById(id);
     }
 
     // PUT metode
     @PutMapping("/vakcine/{id}")
-    Vakcina updateVakcina(@RequestBody Vakcina novaVakcina, @PathVariable Long id) {
+    Vakcina updateVakcina(@RequestBody Vakcina novaVakcina, @PathVariable Long id) throws Exception {
+        if (!vakcinaRepository.existsById(id)) {
+            throw new Exception ("Ne postoji vakcina sa trazenim id " + id);
+        }
         return vakcinaRepository.findById(id)
                 .map(vakcina -> {
                     vakcina.setRevakcinacija(novaVakcina.getRevakcinacija());

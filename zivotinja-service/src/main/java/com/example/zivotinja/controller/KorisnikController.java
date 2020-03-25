@@ -24,6 +24,7 @@ public class KorisnikController {
         return korisnikRepository.findById(id).orElseThrow(() -> new KorisnikException(id));
     }
 
+    /*
     // DELETE metode
     @DeleteMapping("/korisnici")
     void izbrisiSveKorisnike() {
@@ -54,5 +55,7 @@ public class KorisnikController {
     Korisnik noviKorisnik (@RequestBody Korisnik nKor) {
         return korisnikRepository.save(nKor);
     }
+    */
+
 }
 

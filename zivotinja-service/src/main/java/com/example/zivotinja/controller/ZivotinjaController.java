@@ -29,7 +29,10 @@ public class ZivotinjaController {
     }
 
     @GetMapping("zivotinje/{id}/godine")
-    public Map<String, Integer> vratiGodine(@PathVariable Long id) {
+    public Map<String, Integer> vratiGodine(@PathVariable Long id) throws Exception{
+        if (!zivotinjaRepository.existsById(id)) {
+            throw new Exception("Ne postoji zivotinja sa id " + id);
+        }
         List<Zivotinja> ziv = zivotinjaRepository.findByAge(id);
         HashMap<String, Integer> mapa = new HashMap<>();
         int godine = 0;
@@ -41,8 +44,11 @@ public class ZivotinjaController {
     }
 
     @GetMapping("/zivotinje")
-    public List<Zivotinja> dobaviZivotinjaIme(@RequestParam(value = "ime", required = false) String ime) {
+    public List<Zivotinja> dobaviZivotinjaIme(@RequestParam(value = "ime", required = false) String ime) throws Exception{
         if (ime != null) {
+            if (zivotinjaRepository.findByName(ime).size() == 0) {
+                throw new Exception("Ne postoji zivotinja sa imenom " + ime);
+            }
             return zivotinjaRepository.findByName(ime);
         } else {
             return zivotinjaRepository.findAll();
@@ -51,19 +57,28 @@ public class ZivotinjaController {
 
     // DELETE metode
     @DeleteMapping("/zivotinje")
-    void izbrisiSveZivotinje(@RequestParam(value = "ime", required = false) String ime) {
+    void izbrisiSveZivotinje(@RequestParam(value = "ime", required = false) String ime) throws Exception {
+        if (zivotinjaRepository.count() == 0) {
+            throw new Exception ("Baza ne sadrzi niti jednu zivotinju!");
+        }
         if (ime != null) zivotinjaRepository.deleteByName(ime);
         else zivotinjaRepository.deleteAll();
     }
 
     @DeleteMapping("/zivotinje/{id}")
-    void izbrisiZivotinju(@PathVariable Long id) {
+    void izbrisiZivotinju(@PathVariable Long id) throws Exception {
+        if(!zivotinjaRepository.existsById(id)) {
+            throw new Exception ("Ne postoji zivotinja sa id " + id);
+        }
         zivotinjaRepository.deleteById(id);
     }
 
     // PUT metode
     @PutMapping("/zivotinje/{id}")
-    Zivotinja updateZivotinje(@RequestBody Zivotinja novaZivotinja, @PathVariable Long id) {
+    Zivotinja updateZivotinje(@RequestBody Zivotinja novaZivotinja, @PathVariable Long id) throws Exception {
+        if (!zivotinjaRepository.existsById(id)) {
+            throw new Exception ("Zivotinja sa id " + id + " ne postoji u bazi!");
+        }
         return zivotinjaRepository.findById(id)
                 .map(zivotinja -> {
                     zivotinja.setSlika(novaZivotinja.getSlika());
