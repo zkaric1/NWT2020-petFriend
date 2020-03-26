@@ -19,7 +19,7 @@ public class Korisnik {
     @Pattern(regexp = "[A-Za-z \\s-]*", message = "Nije validan unos imena i prezimena")
     private String imePrezime;
 
-    @Pattern(regexp = "^([0-2][0-9]|(3)[0-1])(\\/)(((0)[0-9])|((1)[0-2]))(\\/)\\d{4}$", message = "Datum mora biti formata dd/mm/yyyy")
+   // @Pattern(regexp = "^([0-2][0-9]|(3)[0-1])(\\/)(((0)[0-9])|((1)[0-2]))(\\/)\\d{4}$", message = "Datum mora biti formata dd/mm/yyyy")
     private Date datumRodjenja;
 
     @Pattern(regexp = "/^\\S+@\\S+\\.\\S+$/", message = "Email nije dobrog formata")
@@ -33,6 +33,7 @@ public class Korisnik {
 
     private String telefon;
 
+    @NotBlank(message = "Maticni broj je obavezan")
     private String maticniBroj;
 
     @Pattern(regexp = "^(M|Z)$", message = "Spol moze biti M ili Z")

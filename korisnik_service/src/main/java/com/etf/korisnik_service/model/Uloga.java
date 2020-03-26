@@ -20,7 +20,7 @@ public class Uloga {
     public Uloga(String naziv) {
         nazivUloge = naziv;
     }
-    
+
     public Integer getId() {
         return id;
     }
