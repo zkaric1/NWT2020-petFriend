@@ -19,7 +19,7 @@ public class KorisnikServiceApplication {
     }
 
     @Bean
-    public CommandLineRunner proba(KorisnikInterface kRepository, ZivotinjaInterface zRepository, UlogaInterface uRepository, AnketaInterface aRepository, KorisnikZivotinjaInterface kzRepository, KorisnikAnketaInterface kaRepository) {
+    public CommandLineRunner proba(KorisnikInterface kRepository, ZivotinjaInterface zRepository, UlogaInterface uRepository, KorisnikZivotinjaInterface kzRepository) {
         return (args) -> {
             //uloge
             uRepository.save(new Uloga("administrator"));
@@ -50,14 +50,6 @@ public class KorisnikServiceApplication {
             }
             log.info(" ");
 
-            //ankete
-            Anketa a1 = aRepository.save(new Anketa());
-            aRepository.save(new Anketa());
-            log.info("Sve anekte \n");
-            for(Anketa anketa: aRepository.findAll()) {
-                log.info(anketa.toString());
-            }
-
             //korisnik - zivotinja
             kzRepository.save(new KorisnikZivotinja(k1,z1));
             kzRepository.save(new KorisnikZivotinja(k2,z2));
@@ -66,13 +58,6 @@ public class KorisnikServiceApplication {
                 log.info(korisnikZivotinja.toString());
             }
 
-            //korisnik -anketa
-            kaRepository.save(new KorisnikAnketa(k1,a1));
-            kaRepository.save(new KorisnikAnketa(k2,a1));
-            log.info("Sve korisnik-anketa \n");
-            for (KorisnikAnketa korisnikAnketa: kaRepository.findAll()) {
-                log.info(korisnikAnketa.toString());
-            }
         };
     }
 

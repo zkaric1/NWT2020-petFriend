@@ -2,28 +2,48 @@ package com.etf.korisnik_service.model;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table(name = "Korinsik")
 public class Korisnik {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+
+    @NotBlank(message = "Ime i prezime su obavezni!")
+    @Pattern(regexp = "[A-Za-z \\s-]*", message = "Nije validan unos imena i prezimena")
     private String imePrezime;
+
+    @Pattern(regexp = "^([0-2][0-9]|(3)[0-1])(\\/)(((0)[0-9])|((1)[0-2]))(\\/)\\d{4}$", message = "Datum mora biti formata dd/mm/yyyy")
     private Date datumRodjenja;
+
+    @Pattern(regexp = "/^\\S+@\\S+\\.\\S+$/", message = "Email nije dobrog formata")
     private String email;
+
+    @Pattern(regexp = "[\\w\\d]{7,}", message = "Sifra mora imati minimalno 7 znakova (karaktera ili brojeva)")
     private String sifra;
+
+    @Pattern(regexp = "[A-Za-z \\s-]*", message = "Nije validan unos adrese")
     private String adresa;
+
     private String telefon;
+
     private String maticniBroj;
+
+    @Pattern(regexp = "^(M|Z)$", message = "Spol moze biti M ili Z")
     private String spol;
+
     @ManyToOne
     @JoinColumn(name = "ulogaId", referencedColumnName = "id")
     private Uloga ulogaId;
 
     public Korisnik() {}
+
     public Korisnik(String imePrezime, Date datumRodjenja, String email, String sifra, String adresa, String telefon, String maticniBroj, String spol) {
         this.imePrezime = imePrezime;
         this.datumRodjenja = datumRodjenja;
