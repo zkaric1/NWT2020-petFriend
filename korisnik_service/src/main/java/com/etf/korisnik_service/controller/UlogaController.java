@@ -72,7 +72,7 @@ public class UlogaController {
     }
 
     //Obrisi sve uloge
-    @DeleteMapping("/uloga/obrisi")
+    @DeleteMapping("/uloga/obrisi_sve")
     void obrisiSveUlog() throws Exception {
         if(ulogaRepository.count() == 0) {
             throw new Exception("Ne postoji vise uloga u bazi");

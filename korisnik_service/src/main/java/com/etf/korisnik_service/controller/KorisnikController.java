@@ -85,8 +85,6 @@ public class KorisnikController {
         return korisnici;
     }
 
-
-
     //Pronadji korisnika po imenu i prezimenu
     @GetMapping("/korisnik/ime_prezime/{imePrezime}")
     Korisnik dajKorisnikaSImenom(@PathVariable String imePrezime) throws Exception {
@@ -100,7 +98,7 @@ public class KorisnikController {
     }
 
     //Obrisi sve korisnike
-    @DeleteMapping("/korisnik/obrisi")
+    @DeleteMapping("/korisnik/obrisi_sve")
     void obrisiSveKorisnike() throws Exception {
         if (korisnikRepository.count() == 0) {
             throw new Exception("U bazi nema vise korisnika");
