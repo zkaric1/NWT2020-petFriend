@@ -8,9 +8,9 @@ public class KorisnikZivotinja {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    @ManyToOne
+    @ManyToOne (cascade = CascadeType.REMOVE)
     private Korisnik korisnik;
-    @ManyToOne
+    @ManyToOne (cascade = CascadeType.REMOVE)
     private Zivotinja zivotinja;
 
 

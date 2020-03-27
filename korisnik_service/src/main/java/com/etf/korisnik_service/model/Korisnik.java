@@ -56,9 +56,10 @@ public class Korisnik {
         this.spol = spol;
     }
 
-    public Korisnik(String imePrezime, String maticniBroj) {
+    public Korisnik(String imePrezime, String maticniBroj, Uloga uloga) {
         this.imePrezime = imePrezime;
         this.maticniBroj = maticniBroj;
+        this.ulogaId = uloga;
     }
 
     public Integer getId() {

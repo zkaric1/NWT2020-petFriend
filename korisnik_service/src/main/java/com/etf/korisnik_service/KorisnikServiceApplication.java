@@ -23,7 +23,7 @@ public class KorisnikServiceApplication {
         return (args) -> {
             //uloge
             uRepository.save(new Uloga("administrator"));
-            uRepository.save(new Uloga("korisnik"));
+            Uloga u = uRepository.save(new Uloga("korisnik"));
             uRepository.save(new Uloga("veterinar"));
             log.info("Sve uloge \n");
             for (Uloga uloga : uRepository.findAll()) {
@@ -32,10 +32,10 @@ public class KorisnikServiceApplication {
             log.info(" ");
 
             // korisnici
-            Korisnik k1 = kRepository.save(new Korisnik("ante antic","1234567899876"));
-            Korisnik k2 = kRepository.save(new Korisnik("amno amnic","93832979237937"));
-            kRepository.save(new Korisnik("zlata karic","8736263183638313"));
-            kRepository.save(new Korisnik("rasim rasic","738278236823826"));
+            Korisnik k1 = kRepository.save(new Korisnik("ante antic","1234567899876",u));
+            k1.setUlogaId(u);
+            Korisnik k2 = kRepository.save(new Korisnik("amno amnic","93832979237937",u));
+            kRepository.save(new Korisnik("zlata karic","34324343434",u));
             log.info("Svi korisnici \n");
             for (Korisnik korisnik : kRepository.findAll()) {
                 log.info(korisnik.getImePrezime());
