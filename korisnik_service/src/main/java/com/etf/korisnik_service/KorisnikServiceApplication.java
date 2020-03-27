@@ -32,8 +32,10 @@ public class KorisnikServiceApplication {
             log.info(" ");
 
             // korisnici
-            Korisnik k1 = kRepository.save(new Korisnik("ante antic"));
-            Korisnik k2 = kRepository.save(new Korisnik("amno amnic"));
+            Korisnik k1 = kRepository.save(new Korisnik("ante antic","1234567899876"));
+            Korisnik k2 = kRepository.save(new Korisnik("amno amnic","93832979237937"));
+            kRepository.save(new Korisnik("zlata karic","8736263183638313"));
+            kRepository.save(new Korisnik("rasim rasic","738278236823826"));
             log.info("Svi korisnici \n");
             for (Korisnik korisnik : kRepository.findAll()) {
                 log.info(korisnik.getImePrezime());

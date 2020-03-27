@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "Korinsik")
+@Table(name = "Korisnik")
 public class Korisnik {
 
     @Id
@@ -56,8 +56,9 @@ public class Korisnik {
         this.spol = spol;
     }
 
-    public Korisnik(String imePrezime) {
+    public Korisnik(String imePrezime, String maticniBroj) {
         this.imePrezime = imePrezime;
+        this.maticniBroj = maticniBroj;
     }
 
     public Integer getId() {
@@ -131,6 +132,15 @@ public class Korisnik {
     public void setSpol(String spol) {
         this.spol = spol;
     }
+
+    public Uloga getUlogaId() {
+        return ulogaId;
+    }
+
+    public void setUlogaId(Uloga ulogaId) {
+        this.ulogaId = ulogaId;
+    }
+
 
     @Override
     public String toString() {
