@@ -1,10 +1,8 @@
 package com.example.zivotinja.controller;
 import com.example.zivotinja.assembler.BolestModelAssembler;
 import com.example.zivotinja.model.Bolest;
-import com.example.zivotinja.model.BolestException;
-import com.sun.xml.bind.v2.TODO;
+import com.example.zivotinja.exception.BolestException;
 import org.springframework.hateoas.EntityModel;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.example.zivotinja.repository.BolestRepository;
 import java.util.List;

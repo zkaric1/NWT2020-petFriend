@@ -1,8 +1,6 @@
 package com.example.zivotinja.controller;
 import com.example.zivotinja.model.Veterinar;
-import com.example.zivotinja.model.VeterinarException;
-import com.example.zivotinja.model.Zivotinja;
-import com.example.zivotinja.model.ZivotinjaException;
+import com.example.zivotinja.exception.VeterinarException;
 import com.example.zivotinja.repository.VeterinarRepository;
 import org.springframework.web.bind.annotation.*;
 

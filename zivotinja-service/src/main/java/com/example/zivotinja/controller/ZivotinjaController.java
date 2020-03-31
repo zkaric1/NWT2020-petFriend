@@ -1,7 +1,7 @@
 package com.example.zivotinja.controller;
 import com.example.zivotinja.ZivotinjaServiceApplication;
 import com.example.zivotinja.model.Zivotinja;
-import com.example.zivotinja.model.ZivotinjaException;
+import com.example.zivotinja.exception.ZivotinjaException;
 import com.example.zivotinja.repository.ZivotinjaRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

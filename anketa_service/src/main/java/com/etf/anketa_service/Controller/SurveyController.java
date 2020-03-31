@@ -1,13 +1,13 @@
 package com.etf.anketa_service.Controller;
 
-import com.etf.anketa_service.Repository.AnketaRepository;
+import com.etf.anketa_service.Repository.SurveyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RequestMapping("anketa")
+@RequestMapping(path = "/v1/survey")
 @RestController
-public class AnketaController {
+public class SurveyController {
     @Autowired
-    private AnketaRepository anketaRepository;
+    private SurveyRepository surveyRepository;
 }
