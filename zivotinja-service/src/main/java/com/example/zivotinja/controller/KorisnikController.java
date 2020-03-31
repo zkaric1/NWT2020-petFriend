@@ -1,27 +1,27 @@
 package com.example.zivotinja.controller;
 import com.example.zivotinja.model.Korisnik;
-import com.example.zivotinja.exception.KorisnikException;
+import com.example.zivotinja.service.KorisnikService;
 import org.springframework.web.bind.annotation.*;
-import com.example.zivotinja.repository.KorisnikRepository;
 import java.util.List;
 
 @RestController
 public class KorisnikController {
 
-    private KorisnikRepository korisnikRepository;
-    KorisnikController (KorisnikRepository repo) {
-        korisnikRepository = repo;
+    private KorisnikService korisnikService;
+    KorisnikController (KorisnikService korisnikService) {
+        this.korisnikService = korisnikService;
+
     }
 
     // GET metode
     @GetMapping("/korisnici")
     List<Korisnik> all() {
-        return korisnikRepository.findAll();
+        return korisnikService.findAll();
     }
 
     @GetMapping ("/korisnici/{id}")
     public Korisnik one (@PathVariable Long id) {
-        return korisnikRepository.findById(id).orElseThrow(() -> new KorisnikException(id));
+        return korisnikService.findById(id);
     }
 
     /*
