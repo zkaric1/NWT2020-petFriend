@@ -70,7 +70,6 @@ public class UserController {
 
     //Lista svih korisnika sa odredjenom ulogom
     @GetMapping("/korisnik/uloga")
-    //TODO ne moze kontroler
     List<User> listaKorisnikaSUlogom(@RequestParam(name = "uloga") String uloga) throws Exception {
         sviKorisnici = listaKorisnika();
         List<User> korisnici = new ArrayList<>();

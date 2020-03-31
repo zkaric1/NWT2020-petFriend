@@ -2,6 +2,7 @@ package com.etf.korisnik_service.controller;
 
 import com.etf.korisnik_service.model.Role;
 import com.etf.korisnik_service.repository.RoleInterface;
+import com.etf.korisnik_service.service.CreateRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,10 +15,16 @@ public class RoleController {
     @Autowired
     private RoleInterface ulogaRepository;
 
+    private CreateRoleService createRoleService;
+
+    public RoleController(CreateRoleService createRoleService) {
+        this.createRoleService = createRoleService;
+    }
+
     //Dodavanje uloga
     @PostMapping("/uloga")
     Role dodajUlogu(@RequestBody Role role) {
-        return ulogaRepository.save(role);
+        return createRoleService.addNewRole(role);
     }
 
     //Editovanje uloge
