@@ -2,23 +2,22 @@ package com.etf.korisnik_service.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.util.List;
 
 @Entity
-@Table(name = "Uloga")
-public class Uloga {
+@Table(name = "Role")
+public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @NotBlank(message = "Naziv uloge ne moze biti prazan")
-    private String nazivUloge;
+    private String roleName;
 
-    public Uloga() {}
+    public Role() {}
 
-    public Uloga(String naziv) {
-        nazivUloge = naziv;
+    public Role(String naziv) {
+        roleName = naziv;
     }
 
     public Integer getId() {
@@ -29,19 +28,19 @@ public class Uloga {
         this.id = id;
     }
 
-    public String getNazivUloge() {
-        return nazivUloge;
+    public String getRoleName() {
+        return roleName;
     }
 
-    public void setNazivUloge(String nazivUloge) {
-        this.nazivUloge = nazivUloge;
+    public void setRoleName(String nazivUloge) {
+        this.roleName = nazivUloge;
     }
 
     @Override
     public String toString() {
-        return "Uloga{" +
+        return "Role{" +
                 "id=" + id +
-                ", nazivUloge='" + nazivUloge + '\'' +
+                ", roleName='" + roleName + '\'' +
                 '}';
     }
 }

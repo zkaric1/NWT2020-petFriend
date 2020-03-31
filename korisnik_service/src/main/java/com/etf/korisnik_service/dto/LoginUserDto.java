@@ -1,9 +1,9 @@
 package com.etf.korisnik_service.dto;
 
-public class LoginKorisnik {
+public class LoginUserDto {
 
     String email;
-    String sifra;
+    String password;
 
     public String getEmail() {
         return email;
@@ -13,11 +13,11 @@ public class LoginKorisnik {
         this.email = email;
     }
 
-    public String getSifra() {
-        return sifra;
+    public String getPassword() {
+        return password;
     }
 
-    public void setSifra(String sifra) {
-        this.sifra = sifra;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

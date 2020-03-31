@@ -1,14 +1,13 @@
 package com.etf.korisnik_service.controller;
 
-import com.etf.korisnik_service.model.KorisnikZivotinja;
-import com.etf.korisnik_service.repository.KorisnikZivotinjaInterface;
+import com.etf.korisnik_service.repository.UserAnimalInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RequestMapping("korisnik_zivotinja")
 @RestController
-public class KorisnikZivotinjaController {
+public class UserAnimalController {
     @Autowired
-    private KorisnikZivotinjaInterface korisnikZivotinjaRepository;
+    private UserAnimalInterface korisnikZivotinjaRepository;
 }

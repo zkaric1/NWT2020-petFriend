@@ -1,13 +1,13 @@
 package com.etf.korisnik_service.controller;
 
-import com.etf.korisnik_service.repository.ZivotinjaInterface;
+import com.etf.korisnik_service.repository.AnimalInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RequestMapping("zivotinja")
 @RestController
-public class ZivotinjaController {
+public class AnimalController {
     @Autowired
-    private ZivotinjaInterface zivotinjaRepository;
+    private AnimalInterface zivotinjaRepository;
 }

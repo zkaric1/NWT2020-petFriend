@@ -1,7 +1,7 @@
 package com.etf.korisnik_service.controller;
 
-import com.etf.korisnik_service.model.Uloga;
-import com.etf.korisnik_service.repository.UlogaInterface;
+import com.etf.korisnik_service.model.Role;
+import com.etf.korisnik_service.repository.RoleInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,26 +10,26 @@ import java.util.List;
 
 //@RequestMapping("uloga")
 @RestController
-public class UlogaController {
+public class RoleController {
     @Autowired
-    private UlogaInterface ulogaRepository;
+    private RoleInterface ulogaRepository;
 
     //Dodavanje uloga
     @PostMapping("/uloga")
-    Uloga dodajUlogu(@RequestBody Uloga uloga) {
-        return ulogaRepository.save(uloga);
+    Role dodajUlogu(@RequestBody Role role) {
+        return ulogaRepository.save(role);
     }
 
     //Editovanje uloge
     @PutMapping("/uloga/{id}")
-    void editujUlogu(@RequestBody Uloga novaUloga, @PathVariable Integer id) throws Exception {
+    void editujUlogu(@RequestBody Role novaRole, @PathVariable Integer id) throws Exception {
         if (!ulogaRepository.existsById(id)) {
             throw new Exception("Ne postoji uloga sa unesenim id-em");
         }
         ulogaRepository.findById(id).map(
-                uloga -> {
-                    uloga.setNazivUloge(uloga.getNazivUloge());
-                    return ulogaRepository.save(uloga);
+                role -> {
+                    role.setRoleName(role.getRoleName());
+                    return ulogaRepository.save(role);
                 }
         );
     }
@@ -45,15 +45,15 @@ public class UlogaController {
 
     //Lista svih uloga
     @GetMapping("/uloga/lista")
-    List<Uloga> listaUloga() {
-        List<Uloga> sveUloge = new ArrayList<>();
+    List<Role> listaUloga() {
+        List<Role> sveUloge = new ArrayList<>();
         ulogaRepository.findAll().forEach(sveUloge::add);
         return sveUloge;
     }
 
     //Uloga sa određenim id-em
     @GetMapping("/uloga/{id}")
-    Uloga dajUlogu(@PathVariable Integer id) throws Exception {
+    Role dajUlogu(@PathVariable Integer id) throws Exception {
         if (!ulogaRepository.existsById(id)) {
             throw new Exception("Ne postoji uloga sa unesenim id-em");
         }
@@ -61,11 +61,11 @@ public class UlogaController {
     }
 
     @GetMapping("/uloga/naziv")
-    Uloga dajUloguSaNazivom(@RequestParam(name = "naziv_uloge", required = false) String naziv) throws Exception {
-        List<Uloga> sveUloge = listaUloga();
-        for (Uloga uloga : sveUloge) {
-            if (uloga.getNazivUloge().equals(naziv)) {
-                return uloga;
+    Role dajUloguSaNazivom(@RequestParam(name = "naziv_uloge", required = false) String naziv) throws Exception {
+        List<Role> sveUloge = listaUloga();
+        for (Role role : sveUloge) {
+            if (role.getRoleName().equals(naziv)) {
+                return role;
             }
         }
         throw new Exception("Ne postoji uloga sa unesenim nazivom");
