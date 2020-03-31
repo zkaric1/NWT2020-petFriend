@@ -3,7 +3,7 @@ package com.etf.korisnik_service.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "zivotinja")
+@Table(name = "Zivotinja")
 public class Zivotinja {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

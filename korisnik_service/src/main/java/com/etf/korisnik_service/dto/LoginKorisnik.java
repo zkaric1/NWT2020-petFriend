@@ -1,4 +1,4 @@
-package com.etf.korisnik_service.model;
+package com.etf.korisnik_service.dto;
 
 public class LoginKorisnik {
 

@@ -23,7 +23,7 @@ public class UlogaController {
     //Editovanje uloge
     @PutMapping("/uloga/{id}")
     void editujUlogu(@RequestBody Uloga novaUloga, @PathVariable Integer id) throws Exception {
-        if(!ulogaRepository.existsById(id)) {
+        if (!ulogaRepository.existsById(id)) {
             throw new Exception("Ne postoji uloga sa unesenim id-em");
         }
         ulogaRepository.findById(id).map(
@@ -37,7 +37,7 @@ public class UlogaController {
     //Brisanje uloge
     @DeleteMapping("/uloga/{id}")
     void obrisiUlogu(@PathVariable Integer id) throws Exception {
-        if(!ulogaRepository.existsById(id)) {
+        if (!ulogaRepository.existsById(id)) {
             throw new Exception("Ne postoji uloga sa tim id-em");
         }
         ulogaRepository.deleteById(id);
@@ -54,27 +54,27 @@ public class UlogaController {
     //Uloga sa određenim id-em
     @GetMapping("/uloga/{id}")
     Uloga dajUlogu(@PathVariable Integer id) throws Exception {
-        if(!ulogaRepository.existsById(id)) {
+        if (!ulogaRepository.existsById(id)) {
             throw new Exception("Ne postoji uloga sa unesenim id-em");
         }
         return ulogaRepository.findById(id).get();
     }
 
     @GetMapping("/uloga/naziv")
-    Uloga dajUloguSaNazivom(@RequestParam(name = "naziv_uloge",required = false) String naziv) throws Exception {
-            List<Uloga> sveUloge = listaUloga();
-            for (Uloga uloga : sveUloge) {
-                if (uloga.getNazivUloge().equals(naziv)) {
-                    return uloga;
-                }
+    Uloga dajUloguSaNazivom(@RequestParam(name = "naziv_uloge", required = false) String naziv) throws Exception {
+        List<Uloga> sveUloge = listaUloga();
+        for (Uloga uloga : sveUloge) {
+            if (uloga.getNazivUloge().equals(naziv)) {
+                return uloga;
             }
-            throw new Exception("Ne postoji uloga sa unesenim nazivom");
+        }
+        throw new Exception("Ne postoji uloga sa unesenim nazivom");
     }
 
     //Obrisi sve uloge
     @DeleteMapping("/uloga/obrisi_sve")
     void obrisiSveUlog() throws Exception {
-        if(ulogaRepository.count() == 0) {
+        if (ulogaRepository.count() == 0) {
             throw new Exception("Ne postoji vise uloga u bazi");
         }
         ulogaRepository.deleteAll();
