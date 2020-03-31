@@ -1,6 +1,6 @@
 package com.example.zivotinja.controller;
 import com.example.zivotinja.model.Korisnik;
-import com.example.zivotinja.model.KorisnikException;
+import com.example.zivotinja.exception.KorisnikException;
 import org.springframework.web.bind.annotation.*;
 import com.example.zivotinja.repository.KorisnikRepository;
 import java.util.List;

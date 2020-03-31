@@ -1,4 +1,4 @@
-package com.example.zivotinja.model;
+package com.example.zivotinja.exception;
 
 public class ZivotinjaException extends RuntimeException {
     public ZivotinjaException(Long id) {

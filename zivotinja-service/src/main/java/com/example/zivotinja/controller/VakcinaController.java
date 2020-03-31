@@ -1,6 +1,6 @@
 package com.example.zivotinja.controller;
 import com.example.zivotinja.model.Vakcina;
-import com.example.zivotinja.model.VakcinaException;
+import com.example.zivotinja.exception.VakcinaException;
 import com.example.zivotinja.repository.VakcinaRepository;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
