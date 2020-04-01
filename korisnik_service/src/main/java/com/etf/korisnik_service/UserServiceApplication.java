@@ -32,11 +32,11 @@ public class UserServiceApplication {
             log.info(" ");
 
             // korisnici
-            User k1 = kRepository.save(new User("ante antic","1234567899876",u));
+            User k1 = kRepository.save(new User("ante antic", "1234567899876", u));
             k1.setRoleId(u);
-            User k2 = kRepository.save(new User("amno amnic","93832979237937",u));
-            kRepository.save(new User("zlata karic","34324343434",u));
-            kRepository.save(new User("marko marulic","323343432342424",u));
+            User k2 = kRepository.save(new User("amno amnic", "93832979237937", u));
+            kRepository.save(new User("zlata karic", "34324343434", u));
+            kRepository.save(new User("marko marulic", "323343432342424", u));
             log.info("Svi korisnici \n");
             for (User user : kRepository.findAll()) {
                 log.info(user.getFullName());
@@ -54,8 +54,8 @@ public class UserServiceApplication {
             log.info(" ");
 
             //korisnik - zivotinja
-            kzRepository.save(new UserAnimal(k1,z1));
-            kzRepository.save(new UserAnimal(k2,z2));
+            kzRepository.save(new UserAnimal(k1, z1));
+            kzRepository.save(new UserAnimal(k2, z2));
             log.info("Sve korisnik-zivotinja \n");
             for (UserAnimal userAnimal : kzRepository.findAll()) {
                 log.info(userAnimal.toString());

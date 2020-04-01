@@ -23,10 +23,19 @@ public class Korisnik {
                     @JoinColumn(name = "korisnikID", referencedColumnName = "id", nullable = false, updatable = false)})
     private Set<Zivotinja> Zivotinje = new HashSet<>();
 
-    public Korisnik () {}
-    public void setId(Long id) { this.id = id; }
+    public Korisnik() {
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     // Getters
-    public Long getId() { return id; }
-    public Set<Zivotinja> getZivotinje() { return Zivotinje; }
+    public Long getId() {
+        return id;
+    }
+
+    public Set<Zivotinja> getZivotinje() {
+        return Zivotinje;
+    }
 }

@@ -8,13 +8,14 @@ public class UserAnimal {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    @ManyToOne (cascade = CascadeType.REMOVE)
+    @ManyToOne(cascade = CascadeType.REMOVE)
     private User user;
-    @ManyToOne (cascade = CascadeType.REMOVE)
+    @ManyToOne(cascade = CascadeType.REMOVE)
     private Animal animal;
 
 
-    public UserAnimal() {}
+    public UserAnimal() {
+    }
 
     public UserAnimal(User user, Animal animal) {
         this.user = user;

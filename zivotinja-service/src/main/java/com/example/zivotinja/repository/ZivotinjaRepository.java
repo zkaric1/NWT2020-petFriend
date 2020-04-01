@@ -1,10 +1,12 @@
 package com.example.zivotinja.repository;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import com.example.zivotinja.model.Zivotinja;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -20,7 +22,7 @@ public interface ZivotinjaRepository extends JpaRepository<Zivotinja, Long> {
     @Query(value = "DELETE from Zivotinja where ime = :ime", nativeQuery = true)
     void deleteByName(@Param("ime") String ime);
 
-    @Query (value = "SELECT * FROM Zivotinja  WHERE id = :id", nativeQuery = true)
+    @Query(value = "SELECT * FROM Zivotinja  WHERE id = :id", nativeQuery = true)
     List<Zivotinja> findByAge(@Param("id") Long id);
 
 }

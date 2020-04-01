@@ -18,7 +18,8 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Answer_User> answers;
 
-    public User() {}
+    public User() {
+    }
 
     public User(List<Answer_User> answers) {
         this.answers = answers;
@@ -27,6 +28,7 @@ public class User {
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -34,6 +36,7 @@ public class User {
     public List<Answer_User> getUsers() {
         return answers;
     }
+
     public void setUsers(List<Answer_User> answers) {
         this.answers = answers;
     }

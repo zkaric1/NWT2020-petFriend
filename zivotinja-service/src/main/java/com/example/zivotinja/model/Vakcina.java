@@ -1,5 +1,7 @@
 package com.example.zivotinja.model;
+
 import org.hibernate.validator.constraints.Range;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.util.HashSet;
@@ -17,7 +19,7 @@ public class Vakcina {
     private String Tip;
 
     @NotNull(message = "Vrijednost revakcinacije je obavezan!")
-    @Range(min= 1, max = 144, message = "Revakcinacija moze biti izmedu 1 i 144 mjeseci!")
+    @Range(min = 1, max = 144, message = "Revakcinacija moze biti izmedu 1 i 144 mjeseci!")
     private Integer Revakcinacija; // Kad je potrebno revakcinisati zivotinju (mjeseci)
 
     // Relacije
@@ -32,27 +34,41 @@ public class Vakcina {
     private Set<Zivotinja> Zivotinje = new HashSet<>();
 
     // Konstruktori
-    public Vakcina () {}
-    public Vakcina (String tip, Integer revakcinacija) {
+    public Vakcina() {
+    }
+
+    public Vakcina(String tip, Integer revakcinacija) {
         Tip = tip;
         Revakcinacija = revakcinacija;
     }
+
     // Setters
     public void setRevakcinacija(Integer revakcinacija) {
         Revakcinacija = revakcinacija;
     }
+
     public void setTip(String tip) {
         Tip = tip;
     }
-    public void setId(Long id) { this.id = id; }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     // Getters
     public Integer getRevakcinacija() {
         return Revakcinacija;
     }
+
     public String getTip() {
         return Tip;
     }
-    public Set<Zivotinja> getZivotinje() { return Zivotinje; }
-    public Long getId() { return id; }
+
+    public Set<Zivotinja> getZivotinje() {
+        return Zivotinje;
+    }
+
+    public Long getId() {
+        return id;
+    }
 }

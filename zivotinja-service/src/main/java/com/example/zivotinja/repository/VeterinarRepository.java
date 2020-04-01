@@ -12,15 +12,15 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
-public interface VeterinarRepository  extends JpaRepository<Veterinar, Long> {
+public interface VeterinarRepository extends JpaRepository<Veterinar, Long> {
 
     @Query(value = "SELECT * FROM VETERINAR WHERE ime = :ime", nativeQuery = true)
-    List<Veterinar> findByName (@Param("ime") String ime);
+    List<Veterinar> findByName(@Param("ime") String ime);
 
     @Modifying
     @Transactional
-    @Query (value = "DELETE FROM Veterinar WHERE ime = :ime", nativeQuery = true)
-    void deleteByName (@Param("ime") String ime);
+    @Query(value = "DELETE FROM Veterinar WHERE ime = :ime", nativeQuery = true)
+    void deleteByName(@Param("ime") String ime);
 
 }
 

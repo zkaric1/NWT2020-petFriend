@@ -11,7 +11,8 @@ public class Animal {
     private String species;
     private String gender;
 
-    public Animal() {}
+    public Animal() {
+    }
 
     public Animal(String species, String gender) {
         this.species = species;

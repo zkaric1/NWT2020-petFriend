@@ -29,7 +29,8 @@ public class Survey {
     @OneToMany(mappedBy = "anketa")
     private List<Question_Survey> questionSurveyEntries;
 
-    public Survey() {}
+    public Survey() {
+    }
 
     public Survey(String opis, boolean aktivna, List<Question_Survey> questionSurveyEntries) {
         this.opis = opis;
@@ -40,6 +41,7 @@ public class Survey {
     public Long getId() {
         return this.id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -47,6 +49,7 @@ public class Survey {
     public String getOpis() {
         return this.opis;
     }
+
     public void setOpis(String opis) {
         this.opis = opis;
     }
@@ -54,6 +57,7 @@ public class Survey {
     public boolean getAktivna() {
         return this.aktivna;
     }
+
     public void setAktivna(boolean aktivna) {
         this.aktivna = aktivna;
     }
@@ -61,6 +65,7 @@ public class Survey {
     public List<Question_Survey> getQuestionSurveyEntries() {
         return questionSurveyEntries;
     }
+
     public void setQuestionSurveyEntries(List<Question_Survey> questionSurveyEntries) {
         this.questionSurveyEntries = questionSurveyEntries;
     }

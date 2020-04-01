@@ -28,7 +28,8 @@ public class Question_Survey {
     @OneToMany(mappedBy = "pitanjeAnketa")
     private List<Survey_Question_Answer> surveyQuestionAnswers;
 
-    public Question_Survey() {}
+    public Question_Survey() {
+    }
 
     public Question_Survey(Question pitanje, Survey anketa, List<Survey_Question_Answer> surveyQuestionAnswers) {
         this.pitanje = pitanje;
@@ -39,6 +40,7 @@ public class Question_Survey {
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -46,6 +48,7 @@ public class Question_Survey {
     public Question getPitanje() {
         return pitanje;
     }
+
     public void setPitanje(Question pitanje) {
         this.pitanje = pitanje;
     }
@@ -53,6 +56,7 @@ public class Question_Survey {
     public Survey getAnketa() {
         return anketa;
     }
+
     public void setAnketa(Survey anketa) {
         this.anketa = anketa;
     }
@@ -60,6 +64,7 @@ public class Question_Survey {
     public List<Survey_Question_Answer> getSurveyQuestionAnswers() {
         return surveyQuestionAnswers;
     }
+
     public void setSurveyQuestionAnswers(List<Survey_Question_Answer> surveyQuestionAnswers) {
         this.surveyQuestionAnswers = surveyQuestionAnswers;
     }

@@ -1,7 +1,9 @@
 package com.example.zivotinja.controller;
+
 import com.example.zivotinja.model.Zivotinja;
 import com.example.zivotinja.service.ZivotinjaService;
 import org.springframework.web.bind.annotation.*;
+
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;

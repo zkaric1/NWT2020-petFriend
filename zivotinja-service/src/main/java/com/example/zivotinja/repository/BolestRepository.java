@@ -1,4 +1,5 @@
 package com.example.zivotinja.repository;
+
 import com.example.zivotinja.model.Bolest;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -10,13 +11,13 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
-public interface BolestRepository extends JpaRepository<Bolest, Long>{
+public interface BolestRepository extends JpaRepository<Bolest, Long> {
 
-    @Query (value = "SELECT * FROM Bolest WHERE ime = :ime", nativeQuery = true)
+    @Query(value = "SELECT * FROM Bolest WHERE ime = :ime", nativeQuery = true)
     List<Bolest> findByName(@Param("ime") String ime);
 
     @Modifying
     @Transactional
-    @Query (value = "DELETE FROM Bolest WHERE ime = :ime", nativeQuery = true)
-    void deleteByName (@Param("ime") String ime);
+    @Query(value = "DELETE FROM Bolest WHERE ime = :ime", nativeQuery = true)
+    void deleteByName(@Param("ime") String ime);
 }

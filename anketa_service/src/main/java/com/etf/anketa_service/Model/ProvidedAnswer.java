@@ -18,7 +18,8 @@ public class ProvidedAnswer {
     @OneToMany(mappedBy = "ponudjeniOdgovor")
     private List<Survey_Question_Answer> surveyQuestionAnswers;
 
-    public ProvidedAnswer() {}
+    public ProvidedAnswer() {
+    }
 
     public ProvidedAnswer(String tekstOdgovora, List<Survey_Question_Answer> surveyQuestionAnswers) {
         this.tekstOdgovora = tekstOdgovora;
@@ -28,6 +29,7 @@ public class ProvidedAnswer {
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -35,6 +37,7 @@ public class ProvidedAnswer {
     public String getTekstOdgovora() {
         return tekstOdgovora;
     }
+
     public void setTekstOdgovora(String tekstOdgovora) {
         this.tekstOdgovora = tekstOdgovora;
     }
@@ -42,6 +45,7 @@ public class ProvidedAnswer {
     public List<Survey_Question_Answer> getSurveyQuestionAnswers() {
         return surveyQuestionAnswers;
     }
+
     public void setSurveyQuestionAnswers(List<Survey_Question_Answer> surveyQuestionAnswers) {
         this.surveyQuestionAnswers = surveyQuestionAnswers;
     }

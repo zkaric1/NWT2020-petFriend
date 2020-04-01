@@ -1,4 +1,5 @@
 package com.example.zivotinja;
+
 import org.hamcrest.Matchers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -7,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -31,7 +33,7 @@ public class VakcinaControllerTest {
 
     @org.junit.jupiter.api.Test
     public void dobaviJednuVakcinuTest() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/vakcine/{id}",4)
+        mockMvc.perform(MockMvcRequestBuilders.get("/vakcine/{id}", 4)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id", Matchers.is(4)))
@@ -41,7 +43,7 @@ public class VakcinaControllerTest {
 
     @org.junit.jupiter.api.Test
     public void obrisiPoIdVakcinuTest() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete("/vakcine/{id}",1)
+        mockMvc.perform(MockMvcRequestBuilders.delete("/vakcine/{id}", 1)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
@@ -64,7 +66,7 @@ public class VakcinaControllerTest {
 
     @org.junit.jupiter.api.Test
     public void putVakcineTest() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.put("/vakcine/{id}",2)
+        mockMvc.perform(MockMvcRequestBuilders.put("/vakcine/{id}", 2)
                 .content("tip=TestVakcine")
                 .content("revakcinacija=6"));
     }

@@ -21,7 +21,8 @@ public class Survey_Question_Answer {
     @JoinColumn(name = "odgovorKorisnika")
     private User odgovorKorisnika;
 
-    public Survey_Question_Answer() {}
+    public Survey_Question_Answer() {
+    }
 
     public Survey_Question_Answer(Question_Survey pitanjeAnketa, ProvidedAnswer ponudjeniOdgovor, User odgovorKorisnika) {
         this.pitanjeAnketa = pitanjeAnketa;
@@ -29,7 +30,10 @@ public class Survey_Question_Answer {
         this.odgovorKorisnika = odgovorKorisnika;
     }
 
-    public Long getId() { return id; }
+    public Long getId() {
+        return id;
+    }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -37,6 +41,7 @@ public class Survey_Question_Answer {
     public Question_Survey getPitanjeAnketa() {
         return pitanjeAnketa;
     }
+
     public void setPitanjeAnketa(Question_Survey pitanjeAnketa) {
         this.pitanjeAnketa = pitanjeAnketa;
     }
@@ -44,6 +49,7 @@ public class Survey_Question_Answer {
     public ProvidedAnswer getPonudjeniOdgovor() {
         return ponudjeniOdgovor;
     }
+
     public void setPonudjeniOdgovor(ProvidedAnswer ponudjeniOdgovor) {
         this.ponudjeniOdgovor = ponudjeniOdgovor;
     }
@@ -51,6 +57,7 @@ public class Survey_Question_Answer {
     public User getOdgovorKorisnika() {
         return odgovorKorisnika;
     }
+
     public void setOdgovorKorisnika(User odgovorKorisnika) {
         this.odgovorKorisnika = odgovorKorisnika;
     }

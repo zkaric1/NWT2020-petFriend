@@ -33,8 +33,10 @@ public class Bolest {
     private Set<Zivotinja> Zivotinje = new HashSet<>();
 
     // Konstruktori
-    public Bolest () {}
-    public Bolest (String ime, String lijek) {
+    public Bolest() {
+    }
+
+    public Bolest(String ime, String lijek) {
         Ime = ime;
         Lijek = lijek;
     }
@@ -43,17 +45,28 @@ public class Bolest {
     public String getLijek() {
         return Lijek;
     }
-    public Set<Zivotinja> getZivotinje() { return Zivotinje; }
+
+    public Set<Zivotinja> getZivotinje() {
+        return Zivotinje;
+    }
+
     public String getIme() {
         return Ime;
     }
-    public Long getId() { return id; }
+
+    public Long getId() {
+        return id;
+    }
 
     // Setters
     public void setLijek(String lijek) {
         Lijek = lijek;
     }
-    public void setId(Long id) { this.id = id; }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public void setIme(String ime) {
         Ime = ime;
     }

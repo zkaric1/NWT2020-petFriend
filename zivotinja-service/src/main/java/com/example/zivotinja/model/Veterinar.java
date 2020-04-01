@@ -1,4 +1,5 @@
 package com.example.zivotinja.model;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.HashSet;
@@ -37,8 +38,10 @@ public class Veterinar {
 
 
     // Konstruktori
-    public Veterinar () {}
-    public Veterinar (String ime, String prezime, String telefon, String adresa) {
+    public Veterinar() {
+    }
+
+    public Veterinar(String ime, String prezime, String telefon, String adresa) {
         Ime = ime;
         Prezime = prezime;
         kontaktTelefon = telefon;
@@ -49,13 +52,19 @@ public class Veterinar {
     public void setAdresa(String adresa) {
         Adresa = adresa;
     }
-    public void setId(Long id) { this.id = id; }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public void setKontaktTelefon(String kontaktTelefon) {
         this.kontaktTelefon = kontaktTelefon;
     }
+
     public void setIme(String ime) {
         Ime = ime;
     }
+
     public void setPrezime(String prezime) {
         Prezime = prezime;
     }
@@ -64,13 +73,24 @@ public class Veterinar {
     public String getAdresa() {
         return Adresa;
     }
-    public Set<Zivotinja> getZivotinje() { return Zivotinje; }
+
+    public Set<Zivotinja> getZivotinje() {
+        return Zivotinje;
+    }
+
     public String getIme() {
         return Ime;
     }
+
     public String getKontaktTelefon() {
         return kontaktTelefon;
     }
-    public String getPrezime() { return Prezime; }
-    public Long getId() { return id; }
+
+    public String getPrezime() {
+        return Prezime;
+    }
+
+    public Long getId() {
+        return id;
+    }
 }

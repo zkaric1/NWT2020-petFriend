@@ -1,7 +1,9 @@
 package com.example.zivotinja.controller;
+
 import com.example.zivotinja.model.Veterinar;
 import com.example.zivotinja.service.VeterinarService;
 import org.springframework.web.bind.annotation.*;
+
 import javax.validation.Valid;
 import java.util.List;
 
@@ -22,7 +24,7 @@ public class VeterinarController {
     }
 
     @GetMapping("/veterinari/{id}")
-    public Veterinar one(@PathVariable Long id) throws Exception{
+    public Veterinar one(@PathVariable Long id) throws Exception {
         return veterinarService.findById(id);
     }
 

@@ -29,7 +29,8 @@ public class Question {
     @OneToMany(mappedBy = "pitanje")
     private List<Question_Survey> questionSurveyEntries;
 
-    public Question() {}
+    public Question() {
+    }
 
     public Question(String tekst, boolean obavezno, List<Question_Survey> questionSurveyEntries) {
         this.tekstPitanja = tekst;
@@ -40,6 +41,7 @@ public class Question {
     public Long getId() {
         return this.id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -47,6 +49,7 @@ public class Question {
     public String getTekstPitanja() {
         return this.tekstPitanja;
     }
+
     public void setTekstPitanja(String tekst) {
         this.tekstPitanja = tekst;
     }
@@ -54,6 +57,7 @@ public class Question {
     public boolean getObavezno() {
         return this.obavezno;
     }
+
     public void setObavezno(boolean obavezno) {
         this.obavezno = obavezno;
     }
@@ -61,6 +65,7 @@ public class Question {
     public List<Question_Survey> getQuestionSurveyEntries() {
         return questionSurveyEntries;
     }
+
     public void setQuestionSurveyEntries(List<Question_Survey> questionSurveyEntries) {
         this.questionSurveyEntries = questionSurveyEntries;
     }

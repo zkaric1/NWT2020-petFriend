@@ -1,4 +1,5 @@
 package com.example.zivotinja.service;
+
 import com.example.zivotinja.assembler.BolestModelAssembler;
 import com.example.zivotinja.controller.BolestController;
 import com.example.zivotinja.exception.BolestException;
@@ -8,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.stream.Collectors;
+
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
@@ -80,11 +83,11 @@ public class BolestService {
                 });
     }
 
-    public Bolest post (Bolest nBol) {
+    public Bolest post(Bolest nBol) {
         return bolestRepository.save(nBol);
     }
 
-    public CollectionModel<EntityModel<Bolest>> findAllHateoas () {
+    public CollectionModel<EntityModel<Bolest>> findAllHateoas() {
         List<EntityModel<Bolest>> employees = bolestRepository.findAll().stream()
                 .map(assembler::toModel)
                 .collect(Collectors.toList());

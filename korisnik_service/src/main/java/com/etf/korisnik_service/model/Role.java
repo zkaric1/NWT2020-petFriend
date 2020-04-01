@@ -14,7 +14,8 @@ public class Role {
     @NotBlank(message = "Naziv uloge ne moze biti prazan")
     private String roleName;
 
-    public Role() {}
+    public Role() {
+    }
 
     public Role(String naziv) {
         roleName = naziv;

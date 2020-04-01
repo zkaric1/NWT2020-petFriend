@@ -1,5 +1,7 @@
 package com.example.zivotinja.service;
+
 import java.util.*;
+
 import com.example.zivotinja.exception.ZivotinjaException;
 import com.example.zivotinja.model.Zivotinja;
 import com.example.zivotinja.repository.ZivotinjaRepository;
@@ -79,7 +81,7 @@ public class ZivotinjaService {
         return zivotinjaRepository.save(zivotinja);
     }
 
-    public Map<String, Integer> getGodine (Long id) throws Exception {
+    public Map<String, Integer> getGodine(Long id) throws Exception {
         if (!zivotinjaRepository.existsById(id)) {
             throw new Exception("Ne postoji zivotinja sa id " + id);
         }

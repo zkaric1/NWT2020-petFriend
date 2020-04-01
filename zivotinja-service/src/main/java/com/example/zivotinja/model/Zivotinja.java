@@ -1,4 +1,5 @@
 package com.example.zivotinja.model;
+
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
@@ -34,7 +35,7 @@ public class Zivotinja {
     private String Spol;
 
     @NotNull(message = "Godine zivotinje su obavezna!")
-    @Range (min = 1, max = 25, message = "Godine zivotinje ne mogu biti vece od 25 i manje od 1!")
+    @Range(min = 1, max = 25, message = "Godine zivotinje ne mogu biti vece od 25 i manje od 1!")
     private int Godine;
 
     @NotBlank(message = "Velicina zivotinje je obavezna!")
@@ -56,9 +57,9 @@ public class Zivotinja {
     // Vakcina n-n
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinTable(name = "vakcina_zivotinja",
-               joinColumns = {
+            joinColumns = {
                     @JoinColumn(name = "zivotinjaID", referencedColumnName = "id", nullable = false, updatable = false)},
-               inverseJoinColumns = {
+            inverseJoinColumns = {
                     @JoinColumn(name = "vakcinaID", referencedColumnName = "id", nullable = false, updatable = false)})
     private Set<Vakcina> Vakcine = new HashSet<>();
 
@@ -90,8 +91,10 @@ public class Zivotinja {
     private Set<Korisnik> Korisnici = new HashSet<>();
 
     // Konstruktori
-    public Zivotinja() {}
-    public Zivotinja (String ime, String vrsta, String rasa, String spol, int godine, String velicina, int tezina,  String opis, Boolean udomljena, byte[] slika) {
+    public Zivotinja() {
+    }
+
+    public Zivotinja(String ime, String vrsta, String rasa, String spol, int godine, String velicina, int tezina, String opis, Boolean udomljena, byte[] slika) {
         Ime = ime;
         Vrsta = vrsta;
         Rasa = rasa;
@@ -104,7 +107,7 @@ public class Zivotinja {
         Udomljena = udomljena;
     }
 
-    public Zivotinja (String ime, String vrsta, String rasa, String spol, int godine, String velicina, int tezina,  String opis, Boolean udomljena) {
+    public Zivotinja(String ime, String vrsta, String rasa, String spol, int godine, String velicina, int tezina, String opis, Boolean udomljena) {
         Ime = ime;
         Vrsta = vrsta;
         Rasa = rasa;
@@ -117,65 +120,124 @@ public class Zivotinja {
     }
 
     // Getters
-    public String getIme()  { return Ime; }
-    public String getVrsta() { return  Vrsta; }
-    public String getRasa() {return Rasa; }
-    public int getGodine() { return Godine; }
-    public String getSpol() { return  Spol; }
-    public String getVelicina() { return  Velicina; }
-    public int getTezina() { return Tezina; }
-    public Boolean isUdomljena() { return Udomljena; }
-    public Long getId() { return id; }
-    public String getDodatniOpis() { return dodatniOpis; }
-    public byte[] getSlika() { return Slika; }
-    public Set<Bolest> getBolesti() { return Bolesti; }
-    public Set<Korisnik> getKorisnici() { return Korisnici; }
-    public Set<Vakcina> getVakcine() { return Vakcine; }
-    public Set<Veterinar> getVeterinari() { return Veterinari; }
+    public String getIme() {
+        return Ime;
+    }
+
+    public String getVrsta() {
+        return Vrsta;
+    }
+
+    public String getRasa() {
+        return Rasa;
+    }
+
+    public int getGodine() {
+        return Godine;
+    }
+
+    public String getSpol() {
+        return Spol;
+    }
+
+    public String getVelicina() {
+        return Velicina;
+    }
+
+    public int getTezina() {
+        return Tezina;
+    }
+
+    public Boolean isUdomljena() {
+        return Udomljena;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getDodatniOpis() {
+        return dodatniOpis;
+    }
+
+    public byte[] getSlika() {
+        return Slika;
+    }
+
+    public Set<Bolest> getBolesti() {
+        return Bolesti;
+    }
+
+    public Set<Korisnik> getKorisnici() {
+        return Korisnici;
+    }
+
+    public Set<Vakcina> getVakcine() {
+        return Vakcine;
+    }
+
+    public Set<Veterinar> getVeterinari() {
+        return Veterinari;
+    }
 
     // Setters
-    public void setIme(String ime) { Ime = ime; }
+    public void setIme(String ime) {
+        Ime = ime;
+    }
+
     public void setDodatniOpis(String dodatniOpis) {
         this.dodatniOpis = dodatniOpis;
     }
+
     public void setGodine(int godine) {
         Godine = godine;
     }
+
     public void setRasa(String rasa) {
         Rasa = rasa;
     }
-    public void setSlika( byte[] slika) { Slika = slika; }
+
+    public void setSlika(byte[] slika) {
+        Slika = slika;
+    }
+
     public void setSpol(String spol) {
         Spol = spol;
     }
+
     public void setTezina(int tezina) {
         Tezina = tezina;
     }
+
     public void setVelicina(String velicina) {
         Velicina = velicina;
     }
+
     public void setVrsta(String vrsta) {
         Vrsta = vrsta;
     }
+
     public void setUdomljena(Boolean udomljena) {
         Udomljena = udomljena;
     }
-    public void setId(Long id) { this.id = id; }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     // Metode
 
     // Metoda za kreiranje i snimanje slike u bazu
-    public byte[] kreirajSliku (String putanja) {
-        File slika = new File (putanja);
-        byte[] bFile = new byte[ (int) slika.length()];
+    public byte[] kreirajSliku(String putanja) {
+        File slika = new File(putanja);
+        byte[] bFile = new byte[(int) slika.length()];
         try {
             FileInputStream iStream = new FileInputStream(slika);
 
             // Konverzija u niz byte
             iStream.read(bFile);
             iStream.close();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return bFile;
@@ -188,8 +250,7 @@ public class Zivotinja {
             FileOutputStream oStream = new FileOutputStream("C:\\Users\\belma\\Desktop\\NWT2020-petFriend\\zivotinja-service\\Slike iz baze\\test.jpg");
             oStream.write(slika);
             oStream.close();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

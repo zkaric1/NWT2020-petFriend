@@ -1,5 +1,7 @@
 package com.example.zivotinja.service;
+
 import java.util.*;
+
 import com.example.zivotinja.exception.KorisnikException;
 import com.example.zivotinja.model.Korisnik;
 import com.example.zivotinja.repository.KorisnikRepository;
@@ -12,7 +14,7 @@ public class KorisnikService {
     @Autowired
     private KorisnikRepository korisnikRepository;
 
-    public  KorisnikService (KorisnikRepository korisnikRepository) {
+    public KorisnikService(KorisnikRepository korisnikRepository) {
         this.korisnikRepository = korisnikRepository;
     }
 
@@ -20,7 +22,7 @@ public class KorisnikService {
         return korisnikRepository.findAll();
     }
 
-    public Korisnik findById (Long id) {
+    public Korisnik findById(Long id) {
         return korisnikRepository.findById(id).orElseThrow(() -> new KorisnikException(id));
     }
 }

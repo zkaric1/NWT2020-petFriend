@@ -1,4 +1,5 @@
 package com.example.zivotinja.repository;
+
 import com.example.zivotinja.model.Vakcina;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -13,12 +14,12 @@ import java.util.List;
 @Repository
 public interface VakcinaRepository extends JpaRepository<Vakcina, Long> {
 
-    @Query (value = "SELECT * FROM Vakcina WHERE tip = :tip", nativeQuery = true)
-    List<Vakcina> findByType (@Param("tip") String tip);
+    @Query(value = "SELECT * FROM Vakcina WHERE tip = :tip", nativeQuery = true)
+    List<Vakcina> findByType(@Param("tip") String tip);
 
     @Modifying
     @Transactional
-    @Query (value = "DELETE FROM Vakcina WHERE tip = :tip", nativeQuery = true)
-    void deleteByType (@Param("tip") String tip);
+    @Query(value = "DELETE FROM Vakcina WHERE tip = :tip", nativeQuery = true)
+    void deleteByType(@Param("tip") String tip);
 
 }

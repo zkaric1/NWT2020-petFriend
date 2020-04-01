@@ -1,4 +1,5 @@
 package com.example.zivotinja;
+
 import org.hamcrest.Matchers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -7,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -32,7 +34,7 @@ public class ZivotinjaControllerTest {
 
     @org.junit.jupiter.api.Test
     public void dobaviJednuZivotinjuTest() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/zivotinje/{id}",2)
+        mockMvc.perform(MockMvcRequestBuilders.get("/zivotinje/{id}", 2)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id", Matchers.is(2)))
@@ -49,7 +51,7 @@ public class ZivotinjaControllerTest {
 
     @org.junit.jupiter.api.Test
     public void obrisiPoIdZivotinjuTest() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete("/zivotinje/{id}",1)
+        mockMvc.perform(MockMvcRequestBuilders.delete("/zivotinje/{id}", 1)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
@@ -79,7 +81,7 @@ public class ZivotinjaControllerTest {
 
     @org.junit.jupiter.api.Test
     public void putZivotinjeTest() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.put("/zivotinje/{id}",2)
+        mockMvc.perform(MockMvcRequestBuilders.put("/zivotinje/{id}", 2)
                 .content("ime=Miki")
                 .content("godine=5"));
     }
