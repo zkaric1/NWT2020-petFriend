@@ -1,5 +1,6 @@
 package com.example.zivotinja.exception;
 
+import net.minidev.json.JSONObject;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -17,8 +18,11 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -107,5 +111,18 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.valueOf("application/json"));
         return handleExceptionInternal(ex, bodyOfResponse, headers, HttpStatus.INTERNAL_SERVER_ERROR, request);
+    }
+
+    @ExceptionHandler({BolestException.class, KorisnikException.class, VakcinaException.class, VeterinarException.class, ZivotinjaException.class})
+    public void springHandleNotFound(HttpServletResponse response) throws IOException {
+
+        JSONObject Entity2 = new JSONObject();
+        Entity2.put("message","Object not found");
+        PrintWriter out = response.getWriter();
+        response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+        response.setCharacterEncoding("UTF-8");
+        response.setHeader("Content-Type", "application/json");
+        out.print(Entity2);
+        out.flush();
     }
 }

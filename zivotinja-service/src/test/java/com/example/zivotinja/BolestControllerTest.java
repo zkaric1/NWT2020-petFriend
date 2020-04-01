@@ -6,10 +6,13 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import static org.assertj.core.internal.bytebuddy.matcher.ElementMatchers.is;
 import static org.hamcrest.Matchers.hasSize;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -68,4 +71,53 @@ public class BolestControllerTest {
                 .content("ime=Test")
                 .content("lijek=Antibiotici"));
     }
+
+    // Testovi za greske
+    @org.junit.jupiter.api.Test
+    public void dobaviBolestPoIdNetacanParametar() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/bolesti//\\\"1\\\"")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+    }
+
+    @org.junit.jupiter.api.Test
+    public void dobaviBolestIdNePostoji() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/bolesti/96666")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.message", Matchers.is("Object not found")));
+    }
+
+    @org.junit.jupiter.api.Test
+    public void dobaviBolestPoIdGreska() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/bolesti/19")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().is4xxClientError());
+    }
+
+    /*
+    @org.junit.jupiter.api.Test
+    public void postBolest() throws Exception {
+        MvcResult temp = mockMvc.perform(MockMvcRequestBuilders.post("/bolesti?ime=\"NovaBolest\"&lijek=\"NoviLijek\""))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id", Matchers.is(5)))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.ime", Matchers.is("NovaBolest")))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.lijek", Matchers.is("NoviLijek")))
+                .andReturn();
+        // Baca error java.lang.AssertionError: No value at JSON path "$.id"
+    }*/
+
+    /*
+    @org.junit.jupiter.api.Test
+    public void postBolestParametarNedostaje() throws Exception {
+        MvcResult rez = mockMvc.perform(MockMvcRequestBuilders.post("/bolesti?ime=\"NovaBolest\""))
+                .andExpect(status().isBadRequest())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.message", Matchers.is("Ime lijeka ne moze biti prazno!")))
+                .andReturn();
+    }
+    */
+
+
+
+
+
 }
