@@ -1,14 +1,13 @@
 package com.example.zivotinja.controller;
-
 import com.example.zivotinja.model.Bolest;
+import net.minidev.json.JSONObject;
 import org.springframework.hateoas.EntityModel;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-
 import org.springframework.hateoas.CollectionModel;
 import com.example.zivotinja.service.BolestService;
-
 import javax.validation.Valid;
 
 @RestController
@@ -41,20 +40,74 @@ public class BolestController {
 
     // DELETE metode
     @DeleteMapping("/bolesti")
-    void izbrisiSveBolesti(@RequestParam(value = "ime", required = false) String ime) throws Exception {
-        if (ime != null) bolestService.deleteByName(ime);
-        else bolestService.deleteAll();
+    ResponseEntity<JSONObject> izbrisiSveBolesti(@RequestParam(value = "ime", required = false) String ime) throws Exception {
+        JSONObject temp = new JSONObject();
+        try {
+            if (ime != null) {
+                bolestService.deleteByName(ime);
+                temp.put("message", "Uspjesno obrisana bolest sa imenom: " + ime);
+                return new ResponseEntity<>(
+                        temp,
+                        HttpStatus.OK
+                );
+            }
+            else {
+                bolestService.deleteAll();
+                temp.put("message", "Uspjesno obrisane sve bolesti!");
+                return new ResponseEntity<>(
+                        temp,
+                        HttpStatus.OK
+                );
+            }
+        }
+        catch (Exception e) {
+            temp.put("message", "Greska pri brisanju bolesti!");
+            return new ResponseEntity<>(
+                    temp,
+                    HttpStatus.BAD_REQUEST
+            );
+        }
     }
 
     @DeleteMapping("bolesti/{id}")
-    void izbrisiBolest(@PathVariable Long id) throws Exception {
-        bolestService.deleteById(id);
+    ResponseEntity<JSONObject> izbrisiBolest(@PathVariable Long id) throws Exception {
+        JSONObject temp = new JSONObject();
+        try {
+            bolestService.deleteById(id);
+            temp.put("message", "Uspjesno obrisana bolest sa id " + id);
+            return new ResponseEntity<>(
+                    temp,
+                    HttpStatus.OK
+            );
+        }
+        catch (Exception e) {
+            temp.put("message", "Greska pri brisanju bolesti sa id " + id);
+            return new ResponseEntity<>(
+                    temp,
+                    HttpStatus.BAD_REQUEST
+            );
+        }
     }
 
     // PUT metode
     @PutMapping("/bolesti/{id}")
-    Bolest updateBolest(@RequestBody Bolest novaBolest, @PathVariable Long id) throws Exception {
-        return bolestService.put(novaBolest, id);
+    ResponseEntity<JSONObject> updateBolest(@RequestBody Bolest novaBolest, @PathVariable Long id) throws Exception {
+        JSONObject temp = new JSONObject();
+        try {
+            bolestService.put(novaBolest, id);
+            temp.put("message", "Uspjesno azurirana bolest sa id " + id);
+            return new ResponseEntity<>(
+                    temp,
+                    HttpStatus.OK
+            );
+        }
+        catch (Exception e) {
+            temp.put("message", "Greska pri azuriranje bolesti sa id " + id);
+            return new ResponseEntity<>(
+                    temp,
+                    HttpStatus.BAD_REQUEST
+            );
+        }
     }
 
     // POST metode

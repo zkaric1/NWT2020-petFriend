@@ -115,14 +115,13 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler({BolestException.class, KorisnikException.class, VakcinaException.class, VeterinarException.class, ZivotinjaException.class})
     public void springHandleNotFound(HttpServletResponse response) throws IOException {
-
-        JSONObject Entity2 = new JSONObject();
-        Entity2.put("message","Object not found");
+        JSONObject temp = new JSONObject();
+        temp.put("message","Object not found");
         PrintWriter out = response.getWriter();
         response.setStatus(HttpServletResponse.SC_NOT_FOUND);
         response.setCharacterEncoding("UTF-8");
         response.setHeader("Content-Type", "application/json");
-        out.print(Entity2);
+        out.print(temp);
         out.flush();
     }
 }

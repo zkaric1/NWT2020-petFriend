@@ -1,18 +1,15 @@
 package com.example.zivotinja;
-
+import com.example.zivotinja.model.Bolest;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.Matchers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-
-import static org.assertj.core.internal.bytebuddy.matcher.ElementMatchers.is;
 import static org.hamcrest.Matchers.hasSize;
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -21,6 +18,14 @@ public class BolestControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
+
+    public static String asJsonString(final Object obj) {
+        try {
+            return new ObjectMapper().writeValueAsString(obj);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @org.junit.jupiter.api.Test
     public void dobaviSveBolestiTest() throws Exception {
@@ -41,22 +46,6 @@ public class BolestControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id", Matchers.is(3)))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.lijek", Matchers.is("Injekcija")));
     }
-
-    @org.junit.jupiter.api.Test
-    public void obrisiPoId() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete("/bolesti/{id}", 1)
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
-    }
-
-    // Ovaj i prethodni test se ne mogu pokrenuti istovremeno. Moze se ili sve obrisati ili pojedinacno
-    /*
-    @org.junit.jupiter.api.Test
-    public void obrisiSveTest() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete("/bolesti")
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
-    }*/
 
     @org.junit.jupiter.api.Test
     public void postTest() throws Exception {
@@ -95,29 +84,72 @@ public class BolestControllerTest {
                 .andExpect(status().is4xxClientError());
     }
 
-    /*
+    // POST metode
     @org.junit.jupiter.api.Test
     public void postBolest() throws Exception {
-        MvcResult temp = mockMvc.perform(MockMvcRequestBuilders.post("/bolesti?ime=\"NovaBolest\"&lijek=\"NoviLijek\""))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id", Matchers.is(5)))
+        mockMvc.perform(MockMvcRequestBuilders
+                .post("/bolesti")
+                .content(asJsonString(new Bolest("NovaBolest", "NoviLijek")))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().is2xxSuccessful())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id", Matchers.is(4)))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.ime", Matchers.is("NovaBolest")))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.lijek", Matchers.is("NoviLijek")))
-                .andReturn();
-        // Baca error java.lang.AssertionError: No value at JSON path "$.id"
-    }*/
+                .andExpect(MockMvcResultMatchers.jsonPath("$.lijek", Matchers.is("NoviLijek")));
+    }
 
-    /*
     @org.junit.jupiter.api.Test
     public void postBolestParametarNedostaje() throws Exception {
-        MvcResult rez = mockMvc.perform(MockMvcRequestBuilders.post("/bolesti?ime=\"NovaBolest\""))
-                .andExpect(status().isBadRequest())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.message", Matchers.is("Ime lijeka ne moze biti prazno!")))
-                .andReturn();
+        Bolest bolest = new Bolest();
+        bolest.setIme("Corona");
+        mockMvc.perform(MockMvcRequestBuilders
+                .post("/bolesti")
+                .content(asJsonString(bolest))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
     }
-    */
 
+    // PUT metode
+    @org.junit.jupiter.api.Test
+    public void putNepostojeciId() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.put("/bolesti/6")
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                //.andExpect(MockMvcResultMatchers.jsonPath("$.message", Matchers.is("Greska pri azuriranju bolesti sa id 6")))
+                .andExpect(status().isBadRequest());
+        // Baca error BolestControllerTest.putNepostojeciId:128 No value at JSON path "$.message"
+    }
 
+    @org.junit.jupiter.api.Test
+    public void putUspjesno() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.put("/bolesti/1")
+                .content(asJsonString(new Bolest("NovaBolest", "NoviLijek")))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.message", Matchers.is("Uspjesno azurirana bolest sa id 1")));
+    }
 
+    // DELETE metode
+    @org.junit.jupiter.api.Test
+    public void deleteBolestId() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.delete("/bolesti/2"))
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.message", Matchers.is("Uspjesno obrisana bolest sa id 2")));
+    }
 
+    @org.junit.jupiter.api.Test
+    public void deleteBolestIdNepostojeci() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.delete("/bolesti/9"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.message", Matchers.is("Greska pri brisanju bolesti sa id 9")))
+                .andExpect(status().isBadRequest());
+    }
 
+    @org.junit.jupiter.api.Test
+    public void deleteSveBolesti() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.delete("/bolesti"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.message", Matchers.is("Uspjesno obrisane sve bolesti!")))
+                .andExpect(status().isOk());
+    }
 }

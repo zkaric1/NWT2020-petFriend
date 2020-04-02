@@ -2,6 +2,9 @@ package com.example.zivotinja.controller;
 
 import com.example.zivotinja.model.Vakcina;
 import com.example.zivotinja.service.VakcinaService;
+import net.minidev.json.JSONObject;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -30,20 +33,74 @@ public class VakcinaController {
 
     // DELETE metode
     @DeleteMapping("/vakcine")
-    void izbrisiSveVakcine(@RequestParam(value = "tip", required = false) String tip) throws Exception {
-        if (tip != null) vakcinaService.deleteByType(tip);
-        else vakcinaService.deleteAll();
+    ResponseEntity<JSONObject> izbrisiSveVakcine(@RequestParam(value = "tip", required = false) String tip) throws Exception {
+        JSONObject temp = new JSONObject();
+        try {
+            if (tip != null) {
+                vakcinaService.deleteByType(tip);
+                temp.put("message", "Uspjesno obrisana vakcina tipa: " + tip);
+                return new ResponseEntity<>(
+                        temp,
+                        HttpStatus.OK
+                );
+            }
+            else {
+                vakcinaService.deleteAll();
+                temp.put("message", "Uspjesno obrisane sve vakcine!");
+                return new ResponseEntity<>(
+                        temp,
+                        HttpStatus.OK
+                );
+            }
+        }
+        catch (Exception e) {
+            temp.put("message", "Greska pri brisanju vakcina/e!");
+            return new ResponseEntity<>(
+                    temp,
+                    HttpStatus.BAD_REQUEST
+            );
+        }
     }
 
     @DeleteMapping("vakcine/{id}")
-    void izbrisiVakcinu(@PathVariable Long id) throws Exception {
-        vakcinaService.deleteById(id);
+    ResponseEntity<JSONObject> izbrisiVakcinu(@PathVariable Long id) throws Exception {
+        JSONObject temp = new JSONObject();
+        try {
+            vakcinaService.deleteById(id);
+            temp.put("message", "Uspjesno obrisana vakcina sa id " + id);
+            return new ResponseEntity<>(
+                    temp,
+                    HttpStatus.OK
+            );
+        }
+        catch (Exception e) {
+            temp.put("message", "Greska pri brisanju vakcine sa id " + id);
+            return new ResponseEntity<>(
+                    temp,
+                    HttpStatus.BAD_REQUEST
+            );
+        }
     }
 
     // PUT metode
     @PutMapping("/vakcine/{id}")
-    Vakcina updateVakcina(@RequestBody Vakcina novaVakcina, @PathVariable Long id) throws Exception {
-        return vakcinaService.put(novaVakcina, id);
+    ResponseEntity<JSONObject> updateVakcina(@RequestBody Vakcina novaVakcina, @PathVariable Long id) throws Exception {
+        JSONObject temp = new JSONObject();
+        try {
+            vakcinaService.put(novaVakcina, id);
+            temp.put("message", "Uspjesno azurirana vakcina sa id " + id);
+            return new ResponseEntity<>(
+                    temp,
+                    HttpStatus.OK
+            );
+        }
+        catch (Exception e) {
+            temp.put("message", "Greska pri azuriranje vakcine sa id " + id);
+            return new ResponseEntity<>(
+                    temp,
+                    HttpStatus.BAD_REQUEST
+            );
+        }
     }
 
     // POST metode

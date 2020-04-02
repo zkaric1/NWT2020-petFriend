@@ -1,9 +1,10 @@
 package com.example.zivotinja.controller;
-
 import com.example.zivotinja.model.Veterinar;
 import com.example.zivotinja.service.VeterinarService;
+import net.minidev.json.JSONObject;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.util.List;
 
@@ -30,20 +31,74 @@ public class VeterinarController {
 
     // DELETE metode
     @DeleteMapping("/veterinari")
-    void izbrisiSveVeterinare(@RequestParam(value = "ime", required = false) String ime) throws Exception {
-        if (ime != null) veterinarService.deleteByName(ime);
-        else veterinarService.deleteAll();
+    ResponseEntity<JSONObject> izbrisiSveVeterinare(@RequestParam(value = "ime", required = false) String ime) throws Exception {
+        JSONObject temp = new JSONObject();
+        try {
+            if (ime != null) {
+                veterinarService.deleteByName(ime);
+                temp.put("message", "Uspjesno obrisan veterinar sa imenom: " + ime);
+                return new ResponseEntity<>(
+                        temp,
+                        HttpStatus.OK
+                );
+            }
+            else {
+                veterinarService.deleteAll();
+                temp.put("message", "Uspjesno obrisani svi veterinari!");
+                return new ResponseEntity<>(
+                        temp,
+                        HttpStatus.OK
+                );
+            }
+        }
+        catch (Exception e) {
+            temp.put("message", "Greska pri brisanju veterinara!");
+            return new ResponseEntity<>(
+                    temp,
+                    HttpStatus.BAD_REQUEST
+            );
+        }
     }
 
     @DeleteMapping("/veterinari/{id}")
-    void izbrisiVeterinara(@PathVariable Long id) throws Exception {
-        veterinarService.deleteById(id);
+    ResponseEntity<JSONObject> izbrisiVeterinara(@PathVariable Long id) throws Exception {
+        JSONObject temp = new JSONObject();
+        try {
+            veterinarService.deleteById(id);
+            temp.put("message", "Uspjesno obrisan veterinar sa id " + id);
+            return new ResponseEntity<>(
+                    temp,
+                    HttpStatus.OK
+            );
+        }
+        catch (Exception e) {
+            temp.put("message", "Greska pri brisanju veterinara sa id " + id);
+            return new ResponseEntity<>(
+                    temp,
+                    HttpStatus.BAD_REQUEST
+            );
+        }
     }
 
     // PUT metode
     @PutMapping("/veterinari/{id}")
-    Veterinar updateVeterinar(@RequestBody Veterinar noviVeterinar, @PathVariable Long id) throws Exception {
-        return veterinarService.put(noviVeterinar, id);
+    ResponseEntity<JSONObject> updateVeterinar(@RequestBody Veterinar noviVeterinar, @PathVariable Long id) throws Exception {
+        JSONObject temp = new JSONObject();
+        try {
+            veterinarService.put(noviVeterinar, id);
+            temp.put("message", "Uspjesno azuriran veterinar sa id " + id);
+            return new ResponseEntity<>(
+                    temp,
+                    HttpStatus.OK
+            );
+        }
+        catch (Exception e) {
+            temp.put("message", "Greska pri azuriranje veterinara sa id " + id);
+            return new ResponseEntity<>(
+                    temp,
+                    HttpStatus.BAD_REQUEST
+            );
+        }
     }
 
     // POST metode
