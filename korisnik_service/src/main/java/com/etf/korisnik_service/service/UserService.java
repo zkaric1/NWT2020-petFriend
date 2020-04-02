@@ -1,5 +1,6 @@
 package com.etf.korisnik_service.service;
 
+import com.etf.korisnik_service.exception.RoleException;
 import com.etf.korisnik_service.exception.UserException;
 import com.etf.korisnik_service.model.Role;
 import com.etf.korisnik_service.model.User;
@@ -25,15 +26,15 @@ public class UserService {
         return userRepository.findById(id).orElseThrow(() -> new UserException(id));
     }
 
-    public void deleteUserById(Integer id) throws Exception {
+    public void deleteUserById(Integer id) throws UserException {
         if (!userRepository.existsById(id)) {
-            throw new Exception("Ne postoji korisnik sa " + id + " id-em");
+            throw new UserException(id);
         }
         userRepository.deleteById(id);
     }
 
-    public void editUser(User noviUser, Integer id) throws Exception {
-        userRepository.findById(id).orElseThrow(() -> new Exception("Ne postoji korisnik sa " + id + " id-em"));
+    public void editUser(User noviUser, Integer id) throws UserException {
+        userRepository.findById(id).orElseThrow(() -> new UserException(id));
         userRepository.findById(id).map(
                 user -> {
                     user.setFullName(noviUser.getFullName());

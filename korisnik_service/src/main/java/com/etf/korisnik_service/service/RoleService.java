@@ -1,5 +1,6 @@
 package com.etf.korisnik_service.service;
 
+import com.etf.korisnik_service.exception.RoleException;
 import com.etf.korisnik_service.model.Role;
 import com.etf.korisnik_service.repository.RoleInterface;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +19,9 @@ public class RoleService {
         return roleRepository.save(role);
     }
 
-    public void editRole(Role newRole, Integer id) throws Exception {
+    public void editRole(Role newRole, Integer id) throws RoleException {
         if (!roleRepository.existsById(id)) {
-            throw new Exception("Ne postoji uloga sa unesenim id-em");
+            throw new RoleException(id);
         }
         roleRepository.findById(id).map(
                 role -> {
@@ -30,9 +31,9 @@ public class RoleService {
         );
     }
 
-    public void deleteRole(Integer id) throws Exception {
+    public void deleteRole(Integer id) throws RoleException {
         if (!roleRepository.existsById(id)) {
-            throw new Exception("Ne postoji uloga sa tim id-em");
+            throw new RoleException(id);
         }
         roleRepository.deleteById(id);
     }
@@ -43,9 +44,9 @@ public class RoleService {
         return sveUloge;
     }
 
-    public Role getById(Integer id) throws Exception {
+    public Role getById(Integer id) throws RoleException {
         if (!roleRepository.existsById(id)) {
-            throw new Exception("Ne postoji uloga sa unesenim id-em");
+            throw new RoleException(id);
         }
         return roleRepository.findById(id).get();
     }
