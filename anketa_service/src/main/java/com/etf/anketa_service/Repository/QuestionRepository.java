@@ -5,9 +5,12 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface QuestionRepository extends CrudRepository<Question, Long> {
-    public List<Question> findAll();
-    public Question getById(Long id);
+    List<Question> findAll();
+    void deleteById(Long id);
+    void deleteAll();
+    Optional<Question> findById(Long id);
 }

@@ -1,17 +1,16 @@
 package com.etf.anketa_service.Controller;
 
 import com.etf.anketa_service.DTO.QuestionDTO;
-import com.etf.anketa_service.Exception.QuestionException;
 import com.etf.anketa_service.Model.Question;
 import com.etf.anketa_service.Service.QuestionService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Swagger URL: localhost:8081/api/swagger-ui.html
+ * */
 @RequestMapping(path = "/v1/question")
 @RestController
 public class QuestionController {
@@ -33,7 +32,32 @@ public class QuestionController {
     }
 
     @GetMapping
-    public QuestionDTO getQuestion(@PathVariable Long questionId) {
+    public QuestionDTO getQuestion(@RequestParam("id") Long questionId) {
         return new QuestionDTO(questionService.fetchQuestion(questionId));
+    }
+
+    // DELETE mappings
+    @DeleteMapping("/all")
+    public void deleteAllQuestions() {
+        questionService.deleteAllQuestions();
+    }
+
+    @DeleteMapping("/deleteById")
+    public void deleteQuestionById(@RequestParam("id") Long questionId) {
+        questionService.deleteQuestionById(questionId);
+    }
+
+    // POST mappings
+    @PostMapping
+    public QuestionDTO addQuestion(@RequestBody QuestionDTO newQuestion) {
+        questionService.addQuestion(newQuestion.toEntity());
+        return newQuestion;
+    }
+
+    // PUT mappings
+    @PutMapping
+    public QuestionDTO editQuestion(@RequestParam("id") Long questionId, @RequestBody QuestionDTO newQuestion) {
+        questionService.editQuestion(questionId, newQuestion.toEntity());
+        return newQuestion;
     }
 }
