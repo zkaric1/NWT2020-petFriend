@@ -1,4 +1,4 @@
 package com.etf.anketa_service.Exception;
 
-public class SurveyException {
+public class SurveyException extends RuntimeException {
 }
