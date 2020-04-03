@@ -32,7 +32,7 @@ public class QuestionController {
     }
 
     @GetMapping
-    public QuestionDTO getQuestion(@RequestParam("id") Long questionId) {
+    public QuestionDTO getQuestion(@RequestParam("id") Long questionId) throws Exception {
         return new QuestionDTO(questionService.fetchQuestion(questionId));
     }
 
@@ -43,7 +43,7 @@ public class QuestionController {
     }
 
     @DeleteMapping("/deleteById")
-    public void deleteQuestionById(@RequestParam("id") Long questionId) {
+    public void deleteQuestionById(@RequestParam("id") Long questionId) throws Exception {
         questionService.deleteQuestionById(questionId);
     }
 
@@ -56,7 +56,7 @@ public class QuestionController {
 
     // PUT mappings
     @PutMapping
-    public QuestionDTO editQuestion(@RequestParam("id") Long questionId, @RequestBody QuestionDTO newQuestion) {
+    public QuestionDTO editQuestion(@RequestParam("id") Long questionId, @RequestBody QuestionDTO newQuestion) throws Exception {
         questionService.editQuestion(questionId, newQuestion.toEntity());
         return newQuestion;
     }
