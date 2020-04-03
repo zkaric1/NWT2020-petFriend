@@ -6,4 +6,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path = "/v1/providedAnswer")
 @RestController
 public class ProvidedAnswerController {
+
 }

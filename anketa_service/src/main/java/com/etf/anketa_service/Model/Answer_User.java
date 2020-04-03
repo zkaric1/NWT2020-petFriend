@@ -1,26 +1,34 @@
 package com.etf.anketa_service.Model;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.GenerationType;
+import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
 
 @Entity
-@Table(name = "Odgovor_Korisnika")
+@Table(name = "answer_user")
 public class Answer_User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(mappedBy = "odgovorKorisnika")
-    private Survey_Question_Answer anketaPitanjeOdgovor;
+    @OneToOne
+    @JoinColumn(name = "survey_question_answer")
+    private Survey_Question_Answer surveyQuestionAnswer;
 
     @ManyToOne
-    @JoinColumn(name = "korisnikId", nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     public Answer_User() {
     }
 
-    public Answer_User(Survey_Question_Answer anketaPitanjeOdgovor, User user) {
-        this.anketaPitanjeOdgovor = anketaPitanjeOdgovor;
+    public Answer_User(Survey_Question_Answer surveyQuestionAnswer, User user) {
+        this.surveyQuestionAnswer = surveyQuestionAnswer;
         this.user = user;
     }
 
@@ -32,12 +40,12 @@ public class Answer_User {
         this.id = id;
     }
 
-    public Survey_Question_Answer getAnketaPitanjeOdgovor() {
-        return anketaPitanjeOdgovor;
+    public Survey_Question_Answer getSurveyQuestionAnswer() {
+        return surveyQuestionAnswer;
     }
 
-    public void setAnketaPitanjeOdgovor(Survey_Question_Answer anketaPitanjeOdgovor) {
-        this.anketaPitanjeOdgovor = anketaPitanjeOdgovor;
+    public void setSurveyQuestionAnswer(Survey_Question_Answer surveyQuestionAnswer) {
+        this.surveyQuestionAnswer = surveyQuestionAnswer;
     }
 
     public User getUser() {

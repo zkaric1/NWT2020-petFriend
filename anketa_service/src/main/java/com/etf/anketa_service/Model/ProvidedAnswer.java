@@ -1,11 +1,17 @@
 package com.etf.anketa_service.Model;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.GenerationType;
+import javax.persistence.Column;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
-@Table(name = "PonudjeniOdgovor")
+@Table(name = "provided_answer")
 public class ProvidedAnswer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,16 +19,16 @@ public class ProvidedAnswer {
 
     @Column
     @NotNull(message = "Tekst odgovora je obavezan!")
-    private String tekstOdgovora;
+    private String answerText;
 
-    @OneToMany(mappedBy = "ponudjeniOdgovor")
+    @OneToMany(mappedBy = "providedAnswer")
     private List<Survey_Question_Answer> surveyQuestionAnswers;
 
     public ProvidedAnswer() {
     }
 
-    public ProvidedAnswer(String tekstOdgovora, List<Survey_Question_Answer> surveyQuestionAnswers) {
-        this.tekstOdgovora = tekstOdgovora;
+    public ProvidedAnswer(String answerText, List<Survey_Question_Answer> surveyQuestionAnswers) {
+        this.answerText = answerText;
         this.surveyQuestionAnswers = surveyQuestionAnswers;
     }
 
@@ -34,12 +40,12 @@ public class ProvidedAnswer {
         this.id = id;
     }
 
-    public String getTekstOdgovora() {
-        return tekstOdgovora;
+    public String getAnswerText() {
+        return answerText;
     }
 
-    public void setTekstOdgovora(String tekstOdgovora) {
-        this.tekstOdgovora = tekstOdgovora;
+    public void setAnswerText(String answerText) {
+        this.answerText = answerText;
     }
 
     public List<Survey_Question_Answer> getSurveyQuestionAnswers() {

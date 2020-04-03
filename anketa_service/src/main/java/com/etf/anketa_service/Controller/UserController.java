@@ -7,8 +7,4 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path = "/v1/user")
 @RestController
 public class UserController {
-    @GetMapping
-    public String getString() {
-        return "hi";
-    }
 }

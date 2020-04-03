@@ -12,7 +12,7 @@ import javax.persistence.Table;
 import java.util.List;
 
 @Entity
-@Table(name = "Anketa")
+@Table(name = "survey")
 public class Survey {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,21 +20,21 @@ public class Survey {
 
     @Column(unique = true)
     @NotNull(message = "Obavezno je unijeti opis ankete!")
-    private String opis;
+    private String description;
 
     @Column
     @NotNull(message = "Obavezno je unijeti da li je anketa aktivna!")
-    private boolean aktivna;
+    private boolean active;
 
-    @OneToMany(mappedBy = "anketa")
+    @OneToMany(mappedBy = "survey")
     private List<Question_Survey> questionSurveyEntries;
 
     public Survey() {
     }
 
-    public Survey(String opis, boolean aktivna, List<Question_Survey> questionSurveyEntries) {
-        this.opis = opis;
-        this.aktivna = aktivna;
+    public Survey(String description, boolean active, List<Question_Survey> questionSurveyEntries) {
+        this.description = description;
+        this.active = active;
         this.questionSurveyEntries = questionSurveyEntries;
     }
 
@@ -46,20 +46,20 @@ public class Survey {
         this.id = id;
     }
 
-    public String getOpis() {
-        return this.opis;
+    public String getDescription() {
+        return this.description;
     }
 
-    public void setOpis(String opis) {
-        this.opis = opis;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public boolean getAktivna() {
-        return this.aktivna;
+    public boolean getActive() {
+        return this.active;
     }
 
-    public void setAktivna(boolean aktivna) {
-        this.aktivna = aktivna;
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     public List<Question_Survey> getQuestionSurveyEntries() {

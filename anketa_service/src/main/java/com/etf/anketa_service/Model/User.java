@@ -9,7 +9,7 @@ import javax.persistence.OneToMany;
 import java.util.List;
 
 @Entity
-@Table(name = "Korisnik")
+@Table(name = "user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

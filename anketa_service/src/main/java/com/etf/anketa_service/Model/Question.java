@@ -12,7 +12,7 @@ import javax.persistence.Table;
 import java.util.List;
 
 @Entity
-@Table(name = "Pitanje")
+@Table(name = "question")
 public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,21 +20,21 @@ public class Question {
 
     @Column(unique = true)
     @NotNull
-    private String tekstPitanja;
+    private String questionText;
 
     @Column
     @NotNull
-    private boolean obavezno;
+    private boolean mandatory;
 
-    @OneToMany(mappedBy = "pitanje")
+    @OneToMany(mappedBy = "question")
     private List<Question_Survey> questionSurveyEntries;
 
     public Question() {
     }
 
-    public Question(String tekst, boolean obavezno, List<Question_Survey> questionSurveyEntries) {
-        this.tekstPitanja = tekst;
-        this.obavezno = obavezno;
+    public Question(String questionText, boolean mandatory, List<Question_Survey> questionSurveyEntries) {
+        this.questionText = questionText;
+        this.mandatory = mandatory;
         this.questionSurveyEntries = questionSurveyEntries;
     }
 
@@ -46,20 +46,20 @@ public class Question {
         this.id = id;
     }
 
-    public String getTekstPitanja() {
-        return this.tekstPitanja;
+    public String getQuestionText() {
+        return this.questionText;
     }
 
-    public void setTekstPitanja(String tekst) {
-        this.tekstPitanja = tekst;
+    public void setQuestionText(String questionText) {
+        this.questionText = questionText;
     }
 
-    public boolean getObavezno() {
-        return this.obavezno;
+    public boolean getMandatory() {
+        return this.mandatory;
     }
 
-    public void setObavezno(boolean obavezno) {
-        this.obavezno = obavezno;
+    public void setMandatory(boolean mandatory) {
+        this.mandatory = mandatory;
     }
 
     public List<Question_Survey> getQuestionSurveyEntries() {

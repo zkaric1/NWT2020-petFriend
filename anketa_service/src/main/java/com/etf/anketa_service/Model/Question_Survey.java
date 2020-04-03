@@ -11,29 +11,29 @@ import javax.persistence.Table;
 import java.util.List;
 
 @Entity
-@Table(name = "Pitanje_Anketa")
+@Table(name = "question_survey")
 public class Question_Survey {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "pitanjeId", nullable = false)
-    private Question pitanje;
+    @JoinColumn(name = "question_id", nullable = false)
+    private Question question;
 
     @ManyToOne
-    @JoinColumn(name = "anketaId", nullable = false)
-    private Survey anketa;
+    @JoinColumn(name = "survey_id", nullable = false)
+    private Survey survey;
 
-    @OneToMany(mappedBy = "pitanjeAnketa")
+    @OneToMany(mappedBy = "questionSurvey")
     private List<Survey_Question_Answer> surveyQuestionAnswers;
 
     public Question_Survey() {
     }
 
-    public Question_Survey(Question pitanje, Survey anketa, List<Survey_Question_Answer> surveyQuestionAnswers) {
-        this.pitanje = pitanje;
-        this.anketa = anketa;
+    public Question_Survey(Question question, Survey survey, List<Survey_Question_Answer> surveyQuestionAnswers) {
+        this.question = question;
+        this.survey = survey;
         this.surveyQuestionAnswers = surveyQuestionAnswers;
     }
 
@@ -45,20 +45,20 @@ public class Question_Survey {
         this.id = id;
     }
 
-    public Question getPitanje() {
-        return pitanje;
+    public Question getQuestion() {
+        return question;
     }
 
-    public void setPitanje(Question pitanje) {
-        this.pitanje = pitanje;
+    public void setQuestion(Question question) {
+        this.question = question;
     }
 
-    public Survey getAnketa() {
-        return anketa;
+    public Survey getSurvey() {
+        return survey;
     }
 
-    public void setAnketa(Survey anketa) {
-        this.anketa = anketa;
+    public void setSurvey(Survey survey) {
+        this.survey = survey;
     }
 
     public List<Survey_Question_Answer> getSurveyQuestionAnswers() {
