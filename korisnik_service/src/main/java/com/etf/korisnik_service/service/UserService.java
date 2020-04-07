@@ -1,5 +1,8 @@
 package com.etf.korisnik_service.service;
 
+import com.etf.korisnik_service.dto.LoginResponseDto;
+import com.etf.korisnik_service.dto.LoginUserDto;
+import com.etf.korisnik_service.exception.LoginException;
 import com.etf.korisnik_service.exception.RoleException;
 import com.etf.korisnik_service.exception.UserException;
 import com.etf.korisnik_service.model.Role;
@@ -8,8 +11,11 @@ import com.etf.korisnik_service.repository.UserInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Service
 public class UserService {
@@ -18,9 +24,18 @@ public class UserService {
     private UserInterface userRepository;
     private List<User> sviKorisnici;
 
-    public User addUser(User noviUser) {
+    public User addUser(User noviUser) throws NoSuchAlgorithmException {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String hashPassword = passwordEncoder.encode(noviUser.getPassword());
+        noviUser.setPassword(hashPassword);
         return userRepository.save(noviUser);
     }
+
+    public LoginResponseDto loginUser(LoginUserDto user) throws LoginException {
+        return null;
+    }
+
+    private String generateToken() {return null;}
 
     public User getUserById(Integer id) throws UserException {
         return userRepository.findById(id).orElseThrow(() -> new UserException(id));

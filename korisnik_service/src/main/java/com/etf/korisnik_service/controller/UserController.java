@@ -1,5 +1,8 @@
 package com.etf.korisnik_service.controller;
 
+import com.etf.korisnik_service.dto.LoginResponseDto;
+import com.etf.korisnik_service.dto.LoginUserDto;
+import com.etf.korisnik_service.exception.LoginException;
 import com.etf.korisnik_service.model.User;
 import com.etf.korisnik_service.exception.UserException;
 import com.etf.korisnik_service.repository.UserInterface;
@@ -8,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,12 +28,14 @@ public class UserController {
 
     //Registracija korisnika POST
     @PostMapping("/korisnik")
-    User dodajKorisnika(@Valid @RequestBody User noviUser) {
+    User dodajKorisnika(@Valid @RequestBody User noviUser) throws NoSuchAlgorithmException {
         return userService.addUser(noviUser);
     }
 
-    //Prijava
-
+    //Prijava AUTH
+    LoginResponseDto login(LoginUserDto user) throws LoginException {
+        return userService.loginUser(user);
+    }
 
     //Korisnik s id-em
     @GetMapping("/korisnik/{id}")
