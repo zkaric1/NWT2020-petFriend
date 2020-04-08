@@ -13,8 +13,7 @@ import java.util.List;
 public class RoleService {
     @Autowired
     private RoleInterface roleRepository;
-
-
+    
     public Role addNewRole(Role role) {
         return roleRepository.save(role);
     }
