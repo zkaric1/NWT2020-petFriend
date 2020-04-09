@@ -1,19 +1,26 @@
 package com.example.zivotinja;
-
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import com.example.zivotinja.repository.*;
 import com.example.zivotinja.model.*;
+import org.springframework.web.client.RestTemplate;
 
 @EnableDiscoveryClient
 @SpringBootApplication
 public class ZivotinjaServiceApplication {
     private static final Logger log = LoggerFactory.getLogger(ZivotinjaServiceApplication.class);
+
+    @Bean
+    @LoadBalanced
+    public RestTemplate getRestTemplate() {
+        return new RestTemplate();
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(ZivotinjaServiceApplication.class, args);
@@ -51,9 +58,19 @@ public class ZivotinjaServiceApplication {
             byte[] slika = cuko.kreirajSliku("C:\\Users\\belma\\Desktop\\NWT2020-petFriend\\zivotinja-service\\Slike\\viki.jpg");
             cuko.setSlika(slika);
 
+
+            Korisnik kor = new Korisnik();
+            kRepo.save(kor);
+            Korisnik korA = new Korisnik();
+            kRepo.save(korA);
+
+
             // Popunjavanje medjutabele
             cuko.getVakcine().add(vak);
-            vak.getZivotinje().add(cuko);
+            //vak.getZivotinje().add(cuko);
+            //cuko.getKorisnici().add(kor);
+            //kor.getZivotinje().add(cuko);
+            cuko.setKorisnikId(kor);
             zRepo.save(cuko);
             cuko.preuzmiSliku();
             zRepo.save(new Zivotinja("Viki", "Pas", "Labrador", "Z", 2, "Mali pas", 10, "Preslatki mali cuko", false));

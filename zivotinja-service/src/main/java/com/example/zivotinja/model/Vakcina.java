@@ -1,5 +1,7 @@
 package com.example.zivotinja.model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
@@ -25,13 +27,15 @@ public class Vakcina {
     // Relacije
 
     // Zivotinja n-n
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    @JoinTable(name = "vakcina_zivotinja",
-            joinColumns = {
-                    @JoinColumn(name = "zivotinjaID", referencedColumnName = "id", nullable = false, updatable = false)},
-            inverseJoinColumns = {
-                    @JoinColumn(name = "vakcinaID", referencedColumnName = "id", nullable = false, updatable = false)})
-    private Set<Zivotinja> Zivotinje = new HashSet<>();
+    @ManyToMany(mappedBy = "Vakcine")
+    private Set<Zivotinja> Zivotinje;
+
+    @PreRemove
+    private void removeGroupsFromUsers() {
+        for (Zivotinja u : Zivotinje) {
+            u.getVakcine().remove(this);
+        }
+    }
 
     // Konstruktori
     public Vakcina() {

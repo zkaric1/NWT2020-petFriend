@@ -1,5 +1,7 @@
 package com.example.zivotinja.model;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
@@ -55,6 +57,7 @@ public class Zivotinja {
 
     // Relacije
     // Vakcina n-n
+
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinTable(name = "vakcina_zivotinja",
             joinColumns = {
@@ -82,13 +85,9 @@ public class Zivotinja {
     private Set<Bolest> Bolesti = new HashSet<>();
 
     // Korisnik n-n
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    @JoinTable(name = "korisnik_zivotinja",
-            joinColumns = {
-                    @JoinColumn(name = "zivotinjaID", referencedColumnName = "id", nullable = false, updatable = false)},
-            inverseJoinColumns = {
-                    @JoinColumn(name = "korisnikID", referencedColumnName = "id", nullable = false, updatable = false)})
-    private Set<Korisnik> Korisnici = new HashSet<>();
+    @ManyToOne
+    @JoinColumn (name = "korisnikID", nullable = true)
+    private Korisnik korisnikId;
 
     // Konstruktori
     public Zivotinja() {
@@ -152,6 +151,10 @@ public class Zivotinja {
         return Udomljena;
     }
 
+    public Korisnik getKorisnikId () {
+        return korisnikId;
+    }
+
     public Long getId() {
         return id;
     }
@@ -168,9 +171,9 @@ public class Zivotinja {
         return Bolesti;
     }
 
-    public Set<Korisnik> getKorisnici() {
+   /* public Set<Korisnik> getKorisnici() {
         return Korisnici;
-    }
+    }*/
 
     public Set<Vakcina> getVakcine() {
         return Vakcine;
@@ -225,6 +228,10 @@ public class Zivotinja {
         this.id = id;
     }
 
+    public void setKorisnikId (Korisnik Id) {
+        korisnikId = Id;
+    }
+
     // Metode
 
     // Metoda za kreiranje i snimanje slike u bazu
@@ -242,6 +249,8 @@ public class Zivotinja {
         }
         return bFile;
     }
+
+
 
     // Metoda za preuzimanje slike iz baze i spremanje lokalno
     public void preuzmiSliku() {

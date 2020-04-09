@@ -1,21 +1,40 @@
 package com.example.zivotinja.controller;
+
+import com.example.zivotinja.model.Korisnik;
 import com.example.zivotinja.model.Zivotinja;
+import com.example.zivotinja.service.KorisnikService;
 import com.example.zivotinja.service.ZivotinjaService;
+import com.netflix.discovery.EurekaClient;
 import net.minidev.json.JSONObject;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
+
 import javax.validation.Valid;
+import javax.validation.constraints.Max;
 import java.util.List;
 import java.util.Map;
+
+import com.netflix.appinfo.InstanceInfo;
+import com.netflix.discovery.shared.Application;
 
 @RestController
 public class ZivotinjaController {
 
     private ZivotinjaService zivotinjaService;
+    private KorisnikService korisnikService;
 
-    ZivotinjaController(ZivotinjaService zivotinjaService) {
+    @Autowired
+    private RestTemplate restTemplate;
+
+    private EurekaClient eurekaClient;
+
+    ZivotinjaController(ZivotinjaService zivotinjaService, KorisnikService korisnikService) {
         this.zivotinjaService = zivotinjaService;
+        this.korisnikService = korisnikService;
     }
 
     // GET metode
@@ -48,8 +67,7 @@ public class ZivotinjaController {
                         temp,
                         HttpStatus.OK
                 );
-            }
-            else {
+            } else {
                 zivotinjaService.deleteAll();
                 temp.put("message", "Uspjesno obrisane sve zivotinje!");
                 return new ResponseEntity<>(
@@ -57,8 +75,7 @@ public class ZivotinjaController {
                         HttpStatus.OK
                 );
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             temp.put("message", "Greska pri brisanju zivotinja/e!");
             return new ResponseEntity<>(
                     temp,
@@ -77,8 +94,7 @@ public class ZivotinjaController {
                     temp,
                     HttpStatus.OK
             );
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             temp.put("message", "Greska pri brisanju zivotinje sa id " + id);
             return new ResponseEntity<>(
                     temp,
@@ -98,8 +114,7 @@ public class ZivotinjaController {
                     temp,
                     HttpStatus.OK
             );
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             temp.put("message", "Greska pri azuriranju zivotinje sa id " + id);
             return new ResponseEntity<>(
                     temp,
@@ -112,5 +127,27 @@ public class ZivotinjaController {
     @PostMapping("/zivotinje")
     Zivotinja novaZivotinja(@Valid @RequestBody Zivotinja nZivotinja) {
         return zivotinjaService.post(nZivotinja);
+    }
+
+
+    @RequestMapping(value = "/proba", produces = "application/xml", method = RequestMethod.GET)
+    public ResponseEntity<String> getStudents() {
+        String response = restTemplate.exchange("http://korisnikService/korisnik/lista",
+                HttpMethod.GET, null, String.class).getBody();
+        return new ResponseEntity<>(
+                response,
+                HttpStatus.OK
+        );
+    }
+
+
+    // Za komunikaciju izmedu mikroservisa KORISNIK i ZIVOTINJA (kada udomi)
+    @PutMapping("udomljena/{idKorisnika}/{idZivotinje}")
+    void udomiZivotinja(@PathVariable Long idKorisnika, @PathVariable Long idZivotinje) throws Exception {
+        Zivotinja novaZivotinja = zivotinjaService.findById(idZivotinje);
+        novaZivotinja.setUdomljena(true);
+        Korisnik korisnik = korisnikService.findById(idKorisnika);
+        novaZivotinja.setKorisnikId(korisnik);
+        zivotinjaService.put(novaZivotinja, idZivotinje);
     }
 }

@@ -25,4 +25,6 @@ public interface ZivotinjaRepository extends JpaRepository<Zivotinja, Long> {
     @Query(value = "SELECT * FROM Zivotinja  WHERE id = :id", nativeQuery = true)
     List<Zivotinja> findByAge(@Param("id") Long id);
 
+
+
 }

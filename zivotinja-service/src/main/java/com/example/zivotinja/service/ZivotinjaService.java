@@ -69,6 +69,7 @@ public class ZivotinjaService {
                     zivotinja.setUdomljena(novaZivotinja.isUdomljena());
                     zivotinja.setVelicina(novaZivotinja.getVelicina());
                     zivotinja.setVrsta(novaZivotinja.getVrsta());
+                    zivotinja.setKorisnikId(novaZivotinja.getKorisnikId());
                     return zivotinjaRepository.save(zivotinja);
                 })
                 .orElseGet(() -> {

@@ -13,7 +13,6 @@ public class KorisnikController {
 
     KorisnikController(KorisnikService korisnikService) {
         this.korisnikService = korisnikService;
-
     }
 
     // GET metode
@@ -27,38 +26,9 @@ public class KorisnikController {
         return korisnikService.findById(id);
     }
 
-    /*
-    // DELETE metode
-    @DeleteMapping("/korisnici")
-    void izbrisiSveKorisnike() {
-        korisnikRepository.deleteAll();
+    @DeleteMapping ("/korisnici/{id}")
+    void obrisiKorisnika (@PathVariable Long id) throws Exception{
+        korisnikService.deleteById(id);
     }
-
-    @DeleteMapping ("korisnici/{id}")
-    void izbrisiKorisnika (@PathVariable Long id) {
-        korisnikRepository.deleteById(id);
-    }
-
-    // PUT metode
-    @PutMapping("/korisnici/{id}")
-    Korisnik updateKorisnika(@RequestBody Korisnik noviKorisnik, @PathVariable Long id) {
-        return korisnikRepository.findById(id)
-                .map(korisnik -> {
-                    korisnik.setId(noviKorisnik.getId());
-                    return korisnikRepository.save(korisnik);
-                })
-                .orElseGet(() -> {
-                    noviKorisnik.setId(id);
-                    return korisnikRepository.save(noviKorisnik);
-                });
-    }
-
-    // POST metode
-    @PostMapping ("/korisnici")
-    Korisnik noviKorisnik (@RequestBody Korisnik nKor) {
-        return korisnikRepository.save(nKor);
-    }
-    */
-
 }
 

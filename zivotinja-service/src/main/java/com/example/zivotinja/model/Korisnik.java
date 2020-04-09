@@ -3,6 +3,7 @@ package com.example.zivotinja.model;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.*;
 
 @Entity
 public class Korisnik {
@@ -15,13 +16,8 @@ public class Korisnik {
     // Relacije
 
     // Zivotinja n-n
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    @JoinTable(name = "korisnik_zivotinja",
-            joinColumns = {
-                    @JoinColumn(name = "zivotinjaID", referencedColumnName = "id", nullable = false, updatable = false)},
-            inverseJoinColumns = {
-                    @JoinColumn(name = "korisnikID", referencedColumnName = "id", nullable = false, updatable = false)})
-    private Set<Zivotinja> Zivotinje = new HashSet<>();
+    @OneToMany(mappedBy = "korisnikId")
+    private List<Zivotinja> zivotinje;
 
     public Korisnik() {
     }
@@ -35,7 +31,7 @@ public class Korisnik {
         return id;
     }
 
-    public Set<Zivotinja> getZivotinje() {
-        return Zivotinje;
+    public List<Zivotinja> getZivotinje() {
+        return zivotinje;
     }
 }
