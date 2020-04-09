@@ -5,6 +5,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "Animal")
 public class Animal {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
