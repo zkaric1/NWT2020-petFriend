@@ -1,11 +1,9 @@
 package com.example.zivotinja.service;
-
 import com.example.zivotinja.exception.VakcinaException;
 import com.example.zivotinja.model.Vakcina;
 import com.example.zivotinja.repository.VakcinaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.*;
 
 @Service

@@ -1,5 +1,7 @@
 package com.example.zivotinja;
 import com.example.zivotinja.model.Bolest;
+import com.example.zivotinja.model.Zivotinja;
+import com.example.zivotinja.repository.ZivotinjaRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.Matchers;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,9 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
+
+import java.util.Optional;
+
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -18,6 +23,8 @@ public class BolestControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
+
+    private ZivotinjaRepository zivotinja;
 
     public static String asJsonString(final Object obj) {
         try {
@@ -151,5 +158,20 @@ public class BolestControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.delete("/bolesti"))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.message", Matchers.is("Uspjesno obrisane sve bolesti!")))
                 .andExpect(status().isOk());
+    }
+
+    // Novi test za udomljavanje zivotinje
+    @org.junit.jupiter.api.Test
+    public void udomljavanjeZivotinjeTest() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.put("/udomljena/2/2"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.message", Matchers.is("Zivotinja sa id 2 je udomljena od strane korisnika sa id 2")))
+                .andExpect (status().isOk());
+    }
+
+    @org.junit.jupiter.api.Test
+    public void udomljavanjeZivotinjeGreskaTest() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.put("/udomljena/2/8"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.message", Matchers.is("Greska pri udomljavanju zivotinje!")))
+                .andExpect (status().isBadRequest());
     }
 }

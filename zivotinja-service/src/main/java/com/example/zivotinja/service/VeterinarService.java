@@ -1,7 +1,6 @@
 package com.example.zivotinja.service;
 
 import java.util.*;
-
 import com.example.zivotinja.exception.VeterinarException;
 import com.example.zivotinja.model.Veterinar;
 import com.example.zivotinja.repository.VeterinarRepository;

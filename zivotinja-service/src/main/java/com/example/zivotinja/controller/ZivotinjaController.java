@@ -133,7 +133,7 @@ public class ZivotinjaController {
     }
 
 
-    // KOmunikacija između MS Zivotinja i MS Korisnik
+    // Komunikacija između MS Zivotinja i MS Korisnik
     @RequestMapping(value = "/vratiKorisnike", produces = "application/xml", method = RequestMethod.GET)
     public ResponseEntity<String> getStudents() {
         String response = restTemplate.exchange("http://korisnikService/korisnik/lista",
@@ -146,11 +146,26 @@ public class ZivotinjaController {
 
     // Za komunikaciju izmedu mikroservisa KORISNIK i ZIVOTINJA (kada udomi)
     @PutMapping("udomljena/{idKorisnika}/{idZivotinje}")
-    void udomiZivotinja(@PathVariable Long idKorisnika, @PathVariable Long idZivotinje) throws Exception {
-        Zivotinja novaZivotinja = zivotinjaService.findById(idZivotinje);
-        novaZivotinja.setUdomljena(true);
-        Korisnik korisnik = korisnikService.findById(idKorisnika);
-        novaZivotinja.setKorisnikId(korisnik);
-        zivotinjaService.put(novaZivotinja, idZivotinje);
+    ResponseEntity<JSONObject> udomiZivotinja(@PathVariable Long idKorisnika, @PathVariable Long idZivotinje) throws Exception {
+        JSONObject temp = new JSONObject();
+        try {
+            Zivotinja novaZivotinja = zivotinjaService.findById(idZivotinje);
+            novaZivotinja.setUdomljena(true);
+            Korisnik korisnik = korisnikService.findById(idKorisnika);
+            novaZivotinja.setKorisnikId(korisnik);
+            zivotinjaService.put(novaZivotinja, idZivotinje);
+            temp.put("message", "Zivotinja sa id " + idZivotinje + " je udomljena od strane korisnika sa id " + idKorisnika);
+            return new ResponseEntity<>(
+                    temp,
+                    HttpStatus.OK
+            );
+
+        } catch (Exception e) {
+            temp.put("message", "Greska pri udomljavanju zivotinje!");
+            return new ResponseEntity<>(
+                    temp,
+                    HttpStatus.BAD_REQUEST
+            );
+        }
     }
 }

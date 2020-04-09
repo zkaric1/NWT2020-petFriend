@@ -23,6 +23,9 @@ public interface KorisnikRepository extends JpaRepository<Korisnik, Long> {
     @Query (value = "SELECT COUNT (zivotinjaID) FROM vakcina_zivotinja WHERE zivotinjaID = :id", nativeQuery = true)
     Integer getZivotinja (@Param ("id") Long id);
 
+    @Query (value = "SELECT COUNT (korisnikID) FROM vakcina_zivotinja WHERE korisnikID = :id", nativeQuery = true)
+    Integer getKorinik (@Param ("id") Long id);
+
     @Modifying
     @Transactional
     @Query(value = "DELETE FROM vakcina_zivotinja WHERE zivotinjaID = :id", nativeQuery = true)

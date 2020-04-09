@@ -1,10 +1,7 @@
 package com.example.zivotinja.service;
-
 import java.util.*;
-
 import com.example.zivotinja.exception.KorisnikException;
 import com.example.zivotinja.model.Korisnik;
-import com.example.zivotinja.model.Zivotinja;
 import com.example.zivotinja.repository.KorisnikRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,11 +24,11 @@ public class KorisnikService {
         return korisnikRepository.findById(id).orElseThrow(() -> new KorisnikException(id));
     }
 
-    public void deleteById (Long id) throws Exception{
-        Integer brojZivotinja= korisnikRepository.getZivotinja(id);
+    public void deleteById (Long id) throws Exception {
+        Integer brojZivotinja = korisnikRepository.getZivotinja(id);
         if (brojZivotinja != 0) korisnikRepository.deleteMedjuTabela(id);
+        //Integer brojKorisnika = korisnikRepository.getKorinik(id);
         korisnikRepository.deleteZivotinjaById(id);
         korisnikRepository.deleteById(id);
-
     }
 }
