@@ -53,17 +53,16 @@ public class ZivotinjaServiceApplication {
             Vakcina vak = new Vakcina("Bolest", 8);
             vRepo.save(vak);
 
-            // Kreiranje zivotinje
-            Zivotinja cuko = new Zivotinja("Mini", "Pas", "Labrador", "Z", 2, "Mali pas", 10, "Spremna za Vas dom!", false);
-            byte[] slika = cuko.kreirajSliku("C:\\Users\\belma\\Desktop\\NWT2020-petFriend\\zivotinja-service\\Slike\\viki.jpg");
-            cuko.setSlika(slika);
-
-
+            // Kreiranje korisnika
             Korisnik kor = new Korisnik();
             kRepo.save(kor);
             Korisnik korA = new Korisnik();
             kRepo.save(korA);
 
+            // Kreiranje zivotinje
+            Zivotinja cuko = new Zivotinja("Mini", "Pas", "Labrador", "Z", 2, "Mali pas", 10, "Spremna za Vas dom!", false);
+            byte[] slika = cuko.kreirajSliku("C:\\Users\\belma\\Desktop\\NWT2020-petFriend\\zivotinja-service\\Slike\\viki.jpg");
+            cuko.setSlika(slika);
 
             // Popunjavanje medjutabele
             cuko.getVakcine().add(vak);

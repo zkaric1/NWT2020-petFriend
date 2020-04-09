@@ -1,11 +1,12 @@
 package com.example.zivotinja.model;
-
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.*;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Korisnik {
 
     // Atributi
@@ -17,21 +18,25 @@ public class Korisnik {
 
     // Zivotinja n-n
     @OneToMany(mappedBy = "korisnikId")
-    private List<Zivotinja> zivotinje;
+    private Set<Zivotinja> zivotinje = new HashSet<>();
 
     public Korisnik() {
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    // Getters
+    // GETTERS
     public Long getId() {
         return id;
     }
 
-    public List<Zivotinja> getZivotinje() {
+    public Set<Zivotinja> getZivotinje() {
         return zivotinje;
+    }
+
+    // SETTERS
+    public void setId(Long id) {
+        this.id = id;
+    }
+    public void setZivotinje (Set<Zivotinja> listZivotinja) {
+        zivotinje = listZivotinja;
     }
 }

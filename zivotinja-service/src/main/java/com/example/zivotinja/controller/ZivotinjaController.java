@@ -15,11 +15,14 @@ import org.springframework.web.client.RestTemplate;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Max;
+import javax.ws.rs.Produces;
 import java.util.List;
 import java.util.Map;
 
 import com.netflix.appinfo.InstanceInfo;
 import com.netflix.discovery.shared.Application;
+
+import static org.springframework.http.MediaType.APPLICATION_JSON;
 
 @RestController
 public class ZivotinjaController {
@@ -130,7 +133,8 @@ public class ZivotinjaController {
     }
 
 
-    @RequestMapping(value = "/proba", produces = "application/xml", method = RequestMethod.GET)
+    // KOmunikacija između MS Zivotinja i MS Korisnik
+    @RequestMapping(value = "/vratiKorisnike", produces = "application/xml", method = RequestMethod.GET)
     public ResponseEntity<String> getStudents() {
         String response = restTemplate.exchange("http://korisnikService/korisnik/lista",
                 HttpMethod.GET, null, String.class).getBody();
@@ -139,7 +143,6 @@ public class ZivotinjaController {
                 HttpStatus.OK
         );
     }
-
 
     // Za komunikaciju izmedu mikroservisa KORISNIK i ZIVOTINJA (kada udomi)
     @PutMapping("udomljena/{idKorisnika}/{idZivotinje}")

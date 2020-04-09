@@ -1,5 +1,7 @@
 package com.example.zivotinja;
+import com.example.zivotinja.model.Korisnik;
 import com.example.zivotinja.model.Zivotinja;
+import com.example.zivotinja.service.KorisnikService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.Matchers;
 import org.springframework.beans.factory.annotation.Autowired;

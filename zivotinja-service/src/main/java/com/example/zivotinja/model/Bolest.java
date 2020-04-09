@@ -70,4 +70,5 @@ public class Bolest {
     public void setIme(String ime) {
         Ime = ime;
     }
+    public void setZivotinje (Set<Zivotinja> zivotinje) { Zivotinje = zivotinje; }
 }

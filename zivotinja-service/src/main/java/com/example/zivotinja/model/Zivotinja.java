@@ -1,9 +1,6 @@
 package com.example.zivotinja.model;
-
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
+import com.fasterxml.jackson.annotation.*;
 import org.hibernate.validator.constraints.Range;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -15,6 +12,7 @@ import java.util.Set;
 import java.io.FileOutputStream;
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Zivotinja {
 
     // Atributi
@@ -84,7 +82,7 @@ public class Zivotinja {
                     @JoinColumn(name = "bolestID", referencedColumnName = "id", nullable = false, updatable = false)})
     private Set<Bolest> Bolesti = new HashSet<>();
 
-    // Korisnik n-n
+    // Korisnik 1-N
     @ManyToOne
     @JoinColumn (name = "korisnikID", nullable = true)
     private Korisnik korisnikId;
@@ -171,10 +169,6 @@ public class Zivotinja {
         return Bolesti;
     }
 
-   /* public Set<Korisnik> getKorisnici() {
-        return Korisnici;
-    }*/
-
     public Set<Vakcina> getVakcine() {
         return Vakcine;
     }
@@ -249,8 +243,6 @@ public class Zivotinja {
         }
         return bFile;
     }
-
-
 
     // Metoda za preuzimanje slike iz baze i spremanje lokalno
     public void preuzmiSliku() {

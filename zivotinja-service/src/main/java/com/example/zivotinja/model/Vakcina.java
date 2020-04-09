@@ -1,9 +1,6 @@
 package com.example.zivotinja.model;
-
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.hibernate.validator.constraints.Range;
-
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.util.HashSet;
@@ -28,14 +25,8 @@ public class Vakcina {
 
     // Zivotinja n-n
     @ManyToMany(mappedBy = "Vakcine")
-    private Set<Zivotinja> Zivotinje;
-
-    @PreRemove
-    private void removeGroupsFromUsers() {
-        for (Zivotinja u : Zivotinje) {
-            u.getVakcine().remove(this);
-        }
-    }
+    @JsonBackReference
+    private Set<Zivotinja> Zivotinje = new HashSet<>();
 
     // Konstruktori
     public Vakcina() {
@@ -57,6 +48,10 @@ public class Vakcina {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public void setZivotinje (Set<Zivotinja> zivotinja) {
+        Zivotinje = zivotinja;
     }
 
     // Getters
