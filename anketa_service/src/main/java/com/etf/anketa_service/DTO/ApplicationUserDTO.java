@@ -1,4 +1,4 @@
 package com.etf.anketa_service.DTO;
 
-public class QuestionDTO {
+public class ApplicationUserDTO {
 }

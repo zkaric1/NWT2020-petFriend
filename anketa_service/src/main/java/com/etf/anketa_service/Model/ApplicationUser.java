@@ -1,27 +1,27 @@
 package com.etf.anketa_service.Model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.List;
 
 @Entity
-@Table(name = "user")
-public class User {
+@Table(name = "application_user", schema = "public")
+public class ApplicationUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "user")
-    private List<Answer_User> answers;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+    private List<Answer> answers;
 
-    public User() {
-    }
+    public ApplicationUser() {}
 
-    public User(List<Answer_User> answers) {
+    public ApplicationUser(List<Answer> answers) {
         this.answers = answers;
     }
 
@@ -33,11 +33,11 @@ public class User {
         this.id = id;
     }
 
-    public List<Answer_User> getUsers() {
+    public List<Answer> getAnswers() {
         return answers;
     }
 
-    public void setUsers(List<Answer_User> answers) {
+    public void setAnswers(List<Answer> answers) {
         this.answers = answers;
     }
 }

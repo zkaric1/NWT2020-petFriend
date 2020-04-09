@@ -1,45 +1,51 @@
 package com.etf.anketa_service.Model;
 
-import javax.validation.constraints.NotNull;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
-@Table(name = "survey")
+@Table(name = "survey", schema = "public")
 public class Survey {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(unique = true)
-    @NotNull(message = "Obavezno je unijeti opis ankete!")
+    @NotNull(message = "Obavezno je unijeti opis za anketu!")
     private String description;
 
     @Column
-    @NotNull(message = "Obavezno je unijeti da li je anketa aktivna!")
+    @NotNull(message = "Obavezno je unijeti podatke o aktivnosti za anketu!")
     private boolean active;
 
-    @OneToMany(mappedBy = "survey")
-    private List<Question_Survey> questionSurveyEntries;
+    @OneToMany(mappedBy = "survey", cascade = CascadeType.REMOVE)
+    private List<Question> surveyQuestions;
 
-    public Survey() {
-    }
+    @ManyToOne
+    @JoinColumn(name = "animal_id", nullable = false)
+    private Animal animal;
 
-    public Survey(String description, boolean active, List<Question_Survey> questionSurveyEntries) {
+    public Survey() {}
+
+    public Survey(String description, boolean active, List<Question> surveyQuestions, Animal animal) {
         this.description = description;
         this.active = active;
-        this.questionSurveyEntries = questionSurveyEntries;
+        this.surveyQuestions = surveyQuestions;
+        this.animal = animal;
     }
 
     public Long getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(Long id) {
@@ -47,26 +53,48 @@ public class Survey {
     }
 
     public String getDescription() {
-        return this.description;
+        return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
     }
 
-    public boolean getActive() {
-        return this.active;
+    public boolean isActive() {
+        return active;
     }
 
     public void setActive(boolean active) {
         this.active = active;
     }
 
-    public List<Question_Survey> getQuestionSurveyEntries() {
-        return questionSurveyEntries;
+    public List<Question> getSurveyQuestions() {
+        return surveyQuestions;
     }
 
-    public void setQuestionSurveyEntries(List<Question_Survey> questionSurveyEntries) {
-        this.questionSurveyEntries = questionSurveyEntries;
+    public void setSurveyQuestions(List<Question> surveyQuestions) {
+        this.surveyQuestions = surveyQuestions;
+    }
+
+    public Animal getAnimal() {
+        return animal;
+    }
+
+    public void setAnimal(Animal animal) {
+        this.animal = animal;
+    }
+
+    @Override
+    public String toString() {
+        String print = "Survey{" +
+                       "id=" + id +
+                       ", description='" + description + '\'' +
+                       ", active=" + active +
+                       ", animal=" + animal;
+        if(getSurveyQuestions() != null) {
+            print += ", surveyQuestions=" + surveyQuestions;
+        }
+        print += '}';
+        return print;
     }
 }

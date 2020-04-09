@@ -1,5 +1,11 @@
 package com.etf.anketa_service.Exception;
 
+import com.etf.anketa_service.Model.Animal;
+import com.etf.anketa_service.Model.Answer;
+import com.etf.anketa_service.Model.ApplicationUser;
+import com.etf.anketa_service.Model.PossibleAnswer;
+import com.etf.anketa_service.Model.Question;
+import com.etf.anketa_service.Model.Survey;
 import net.minidev.json.JSONObject;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -107,7 +113,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         return handleExceptionInternal(ex, bodyOfResponse, headers, HttpStatus.INTERNAL_SERVER_ERROR, request);
     }
 
-    @ExceptionHandler({ProvidedAnswerException.class, QuestionException.class, SurveyException.class})
+    @ExceptionHandler({AnimalException.class, AnswerException.class, ApplicationUserException.class, PossibleAnswerException.class, QuestionException.class, SurveyException.class})
     public void springHandleNotFound(HttpServletResponse response) throws IOException {
         JSONObject temp = new JSONObject();
         temp.put("message","Object not found");
