@@ -1,8 +1,11 @@
 package com.etf.korisnik_service.service;
 
+import com.etf.korisnik_service.dto.RoleEditDto;
 import com.etf.korisnik_service.exception.RoleException;
 import com.etf.korisnik_service.model.Role;
-import com.etf.korisnik_service.repository.RoleInterface;
+import com.etf.korisnik_service.model.User;
+import com.etf.korisnik_service.repository.RoleRepository;
+import com.etf.korisnik_service.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,20 +14,23 @@ import java.util.List;
 
 @Service
 public class RoleService {
+
     @Autowired
-    private RoleInterface roleRepository;
-    
+    private RoleRepository roleRepository;
+    @Autowired
+    private UserRepository userRepository;
+
     public Role addNewRole(Role role) {
         return roleRepository.save(role);
     }
 
-    public void editRole(Role newRole, Integer id) throws RoleException {
+    public void editRole(RoleEditDto newRole, Integer id) throws RoleException {
         if (!roleRepository.existsById(id)) {
             throw new RoleException(id);
         }
         roleRepository.findById(id).map(
                 role -> {
-                    role.setRoleName(newRole.getRoleName());
+                    role.setRoleName(newRole.getNewRoleName());
                     return roleRepository.save(role);
                 }
         );
@@ -34,6 +40,7 @@ public class RoleService {
         if (!roleRepository.existsById(id)) {
             throw new RoleException(id);
         }
+        deleteDependencies(id);
         roleRepository.deleteById(id);
     }
 
@@ -64,7 +71,16 @@ public class RoleService {
         if (roleRepository.count() == 0) {
             throw new Exception("Ne postoji vise uloga u bazi");
         }
+        deleteDependencies(-1);
         roleRepository.deleteAll();
     }
 
+    private void deleteDependencies(Integer roleId) {
+        userRepository.findAll().forEach( user -> {
+            if(user.getRole().getId() == roleId || roleId == -1) {
+                user.setRole(null);
+                userRepository.save(user);
+            }
+        });
+    }
 }

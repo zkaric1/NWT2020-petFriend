@@ -21,7 +21,7 @@ public class UserServiceApplication {
     }
 
     @Bean
-    public CommandLineRunner proba(UserInterface kRepository, AnimalInterface zRepository, RoleInterface uRepository, UserAnimalInterface kzRepository) {
+    public CommandLineRunner proba(UserRepository kRepository, AnimalRepository zRepository, RoleRepository uRepository, UserAnimalRepository kzRepository) {
         return (args) -> {
             //uloge
             uRepository.save(new Role("administrator"));
@@ -35,7 +35,7 @@ public class UserServiceApplication {
 
             // korisnici
             User k1 = kRepository.save(new User("ante antic", "1234567899876", u));
-            k1.setRoleId(u);
+            k1.setRole(u);
             User k2 = kRepository.save(new User("amno amnic", "93832979237937", u));
             kRepository.save(new User("zlata karic", "34324343434", u));
             kRepository.save(new User("marko marulic", "323343432342424", u));

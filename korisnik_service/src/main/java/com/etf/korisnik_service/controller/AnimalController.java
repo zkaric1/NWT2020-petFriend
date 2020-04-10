@@ -1,6 +1,6 @@
 package com.etf.korisnik_service.controller;
 
-import com.etf.korisnik_service.repository.AnimalInterface;
+import com.etf.korisnik_service.repository.AnimalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,5 +9,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AnimalController {
     @Autowired
-    private AnimalInterface zivotinjaRepository;
+    private AnimalRepository zivotinjaRepository;
 }

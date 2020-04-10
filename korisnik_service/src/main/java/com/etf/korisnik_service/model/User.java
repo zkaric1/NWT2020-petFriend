@@ -40,7 +40,7 @@ public class User {
 
     @ManyToOne
     @JoinColumn(name = "roleId", referencedColumnName = "id")
-    private Role roleId;
+    private Role role;
 
     public User() {
     }
@@ -59,7 +59,7 @@ public class User {
     public User(String fullName, String jmbg, Role role) {
         this.fullName = fullName;
         this.jmbg = jmbg;
-        this.roleId = role;
+        this.role = role;
     }
 
     public Integer getId() {
@@ -134,12 +134,12 @@ public class User {
         this.gender = spol;
     }
 
-    public Role getRoleId() {
-        return roleId;
+    public Role getRole() {
+        return role;
     }
 
-    public void setRoleId(Role roleId) {
-        this.roleId = roleId;
+    public void setRole(Role roleId) {
+        this.role = roleId;
     }
 
     @Override
@@ -154,7 +154,7 @@ public class User {
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", jmbg='" + jmbg + '\'' +
                 ", gender='" + gender + '\'' +
-                ", roleId=" + roleId +
+                ", roleId=" + role +
                 '}';
     }
 }

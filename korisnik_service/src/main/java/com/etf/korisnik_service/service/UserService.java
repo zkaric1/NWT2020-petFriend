@@ -3,15 +3,16 @@ package com.etf.korisnik_service.service;
 import com.etf.korisnik_service.dto.LoginResponseDto;
 import com.etf.korisnik_service.dto.LoginUserDto;
 import com.etf.korisnik_service.exception.LoginException;
-import com.etf.korisnik_service.exception.RoleException;
 import com.etf.korisnik_service.exception.UserException;
 import com.etf.korisnik_service.model.Role;
 import com.etf.korisnik_service.model.User;
-import com.etf.korisnik_service.repository.UserInterface;
+import com.etf.korisnik_service.model.UserAnimal;
+import com.etf.korisnik_service.repository.RoleRepository;
+import com.etf.korisnik_service.repository.UserAnimalRepository;
+import com.etf.korisnik_service.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,14 +22,23 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class UserService {
 
     @Autowired
-    private UserInterface userRepository;
+    private UserRepository userRepository;
+    @Autowired
+    private UserAnimalRepository userAnimalRepository;
+    @Autowired
+    private RoleService roleService;
+
     private List<User> sviKorisnici;
 
-    public User addUser(User noviUser) throws NoSuchAlgorithmException {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String hashPassword = passwordEncoder.encode(noviUser.getPassword());
-        noviUser.setPassword(hashPassword);
+    public User addUser(User noviUser) {
+        noviUser.setPassword(hashPassword(noviUser.getPassword()));
         return userRepository.save(noviUser);
+    }
+
+    private String hashPassword(String password) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String hashPassword = passwordEncoder.encode(password);
+        return hashPassword;
     }
 
     public LoginResponseDto loginUser(LoginUserDto user) throws LoginException {
@@ -45,6 +55,7 @@ public class UserService {
         if (!userRepository.existsById(id)) {
             throw new UserException(id);
         }
+        deleteDependecies(id);
         userRepository.deleteById(id);
     }
 
@@ -61,6 +72,37 @@ public class UserService {
         );
     }
 
+    public void resetPassword(Integer userId, String newPassword) throws UserException {
+        if(!userRepository.existsById(userId)) {
+            throw new UserException(userId);
+        }
+        userRepository.findById(userId).map(user -> {
+            user.setPassword(hashPassword(newPassword));
+            return userRepository.save(user);
+        });
+    }
+
+    public void resetEmail(Integer userId, String newEmail) throws UserException {
+        if(!userRepository.existsById(userId)) {
+            throw new UserException(userId);
+        }
+        userRepository.findById(userId).map(user -> {
+            user.setEmail(newEmail);
+            return userRepository.save(user);
+        });
+    }
+
+    public void changeRole(Integer userId, String roleName) throws Exception {
+        Role newRole = roleService.getByName(roleName);
+        if(!userRepository.existsById(userId)) {
+            throw new UserException(userId);
+        }
+        userRepository.findById(userId).map(user -> {
+            user.setRole(newRole);
+            return userRepository.save(user);
+        });
+    }
+
     public List<User> getListOfUsers() throws Exception {
         if (userRepository.count() == 0) {
             throw new Exception("Nema korisnika u bazi");
@@ -74,7 +116,7 @@ public class UserService {
         sviKorisnici = getListOfUsers();
         List<User> korisnici = new ArrayList<>();
         for (User user : sviKorisnici) {
-            if (user.getRoleId() != null && user.getRoleId().getRoleName().equals(uloga)) {
+            if (user.getRole() != null && user.getRole().getRoleName().equals(uloga)) {
                 korisnici.add(user);
             }
         }
@@ -98,7 +140,22 @@ public class UserService {
         if (userRepository.count() == 0) {
             throw new Exception("U bazi nema vise korisnika");
         }
+        deleteDependecies(-1);
         userRepository.deleteAll();
+    }
+
+    private void deleteDependecies(Integer userId) {
+        List<UserAnimal> userAnimalsList = new ArrayList<>();
+        userAnimalRepository.findAll().forEach(userAnimalsList::add);
+        for (UserAnimal userAnimal: userAnimalsList) {
+            if(userId == -1) {
+                userAnimalRepository.deleteAll();
+                return;
+            }
+            else if(userAnimal.getUser().getId() == userId) {
+                userAnimalRepository.deleteById(userAnimal.getId());
+            }
+        }
     }
 
 }
