@@ -2,6 +2,7 @@ package com.etf.anketa_service;
 
 import com.etf.anketa_service.Model.Survey;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.hamcrest.Matchers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -46,5 +47,41 @@ public class SurveyControllerTests {
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$", hasSize(2)));
+    }
+
+    @org.junit.jupiter.api.Test
+    public void getSpecifiedSurvey() throws Exception {
+        int id = 1;
+        mockMvc.perform(MockMvcRequestBuilders.get("/v1/survey/getById")
+                .param("id", String.valueOf(id))
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+    }
+
+    @org.junit.jupiter.api.Test
+    public void failGettingSpecifiedSurvey() throws Exception {
+        int id = -5;
+        mockMvc.perform(MockMvcRequestBuilders.get("/v1/survey/getById")
+                .param("id", String.valueOf(id))
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().is4xxClientError());
+    }
+
+    @org.junit.jupiter.api.Test
+    public void getSurveysByActiveStatus() throws Exception {
+        boolean status = false;
+        mockMvc.perform(MockMvcRequestBuilders.get("/v1/survey/getByActiveStatus")
+                .param("active", String.valueOf(status))
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$", hasSize(1)));
+    }
+
+    @org.junit.jupiter.api.Test
+    public void deleteAllSurveys() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.delete("/v1/survey")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.message", Matchers.is("Uspjesno obrisane ankete!")));
     }
 }
