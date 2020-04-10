@@ -14,42 +14,41 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class AnimalControllerTests {
+public class ApplicationUserControllerTests {
     @Autowired
     private MockMvc mockMvc;
 
     @org.junit.jupiter.api.Test
-    public void getAllAnimals() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/v1/animal/all")
+    public void getAllUsers() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/v1/applicationUser/all")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$", hasSize(2)));
     }
 
     @org.junit.jupiter.api.Test
-    public void getSpecifiedAnimal() throws Exception {
+    public void getSpecifiedUser() throws Exception {
         int id = 1;
-        mockMvc.perform(MockMvcRequestBuilders.get("/v1/animal")
+        mockMvc.perform(MockMvcRequestBuilders.get("/v1/applicationUser")
                 .param("id", String.valueOf(id))
                 .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.surveyIds", hasSize(1)));
+                .andExpect(status().isOk());
     }
 
     @org.junit.jupiter.api.Test
-    public void deleteSpecifiedAnimal() throws Exception {
+    public void deleteSpecifiedUser() throws Exception {
         int id = 1;
-        mockMvc.perform(MockMvcRequestBuilders.delete("/v1/animal/deleteById")
+        mockMvc.perform(MockMvcRequestBuilders.delete("/v1/applicationUser/deleteById")
                 .param("id", String.valueOf(id))
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.message", Matchers.is("Uspjesno obrisana zivotinja!")));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.message", Matchers.is("Uspjesno obrisan korisnik!")));
     }
 
     @org.junit.jupiter.api.Test
-    public void failDeletingSpecifiedAnimal() throws Exception {
+    public void failDeletingSpecifiedUser() throws Exception {
         int id = -5;
-        mockMvc.perform(MockMvcRequestBuilders.delete("/v1/animal/deleteById")
+        mockMvc.perform(MockMvcRequestBuilders.delete("/v1/applicationUser/deleteById")
                 .param("id", String.valueOf(id))
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());

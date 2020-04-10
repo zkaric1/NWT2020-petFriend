@@ -1,11 +1,5 @@
 package com.etf.anketa_service.Exception;
 
-import com.etf.anketa_service.Model.Animal;
-import com.etf.anketa_service.Model.Answer;
-import com.etf.anketa_service.Model.ApplicationUser;
-import com.etf.anketa_service.Model.PossibleAnswer;
-import com.etf.anketa_service.Model.Question;
-import com.etf.anketa_service.Model.Survey;
 import net.minidev.json.JSONObject;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
