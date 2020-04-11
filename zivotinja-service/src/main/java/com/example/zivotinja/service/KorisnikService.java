@@ -27,7 +27,6 @@ public class KorisnikService {
     public void deleteById (Long id) throws Exception {
         Integer brojZivotinja = korisnikRepository.getZivotinja(id);
         if (brojZivotinja != 0) korisnikRepository.deleteMedjuTabela(id);
-        //Integer brojKorisnika = korisnikRepository.getKorinik(id);
         korisnikRepository.deleteZivotinjaById(id);
         korisnikRepository.deleteById(id);
     }

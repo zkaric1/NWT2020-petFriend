@@ -1,6 +1,8 @@
 package com.example.zivotinja.model;
+
 import com.fasterxml.jackson.annotation.*;
 import org.hibernate.validator.constraints.Range;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -84,8 +86,12 @@ public class Zivotinja {
 
     // Korisnik 1-N
     @ManyToOne
-    @JoinColumn (name = "korisnikID", nullable = true)
+    @JoinColumn(name = "korisnikID", nullable = true)
     private Korisnik korisnikId;
+
+    // Anketa n-1
+    @OneToMany(mappedBy = "zivotinjaID")
+    private Set<Anketa> ankete = new HashSet<>();
 
     // Konstruktori
     public Zivotinja() {
@@ -149,7 +155,7 @@ public class Zivotinja {
         return Udomljena;
     }
 
-    public Korisnik getKorisnikId () {
+    public Korisnik getKorisnikId() {
         return korisnikId;
     }
 
@@ -177,9 +183,17 @@ public class Zivotinja {
         return Veterinari;
     }
 
+    public Set<Anketa> getAnkete() {
+        return ankete;
+    }
+
     // Setters
     public void setIme(String ime) {
         Ime = ime;
+    }
+
+    public void setAnkete(Set<Anketa> ankete) {
+        this.ankete = ankete;
     }
 
     public void setDodatniOpis(String dodatniOpis) {
@@ -222,7 +236,7 @@ public class Zivotinja {
         this.id = id;
     }
 
-    public void setKorisnikId (Korisnik Id) {
+    public void setKorisnikId(Korisnik Id) {
         korisnikId = Id;
     }
 
