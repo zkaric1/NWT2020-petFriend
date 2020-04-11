@@ -11,6 +11,8 @@ public class Anketa {
     @JoinColumn (name = "zivotinjaID", nullable = true)
     private Zivotinja zivotinjaID;
 
+    public Anketa() {}
+
     // GETTERS
     public Long getId() {
         return id;

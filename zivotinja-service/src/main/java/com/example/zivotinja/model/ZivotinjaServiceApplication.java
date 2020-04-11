@@ -27,7 +27,7 @@ public class ZivotinjaServiceApplication {
     }
 
     @Bean
-    public CommandLineRunner demo(ZivotinjaRepository zRepo, BolestRepository bRepo, KorisnikRepository kRepo, VakcinaRepository vRepo, VeterinarRepository vetRepo) {
+    public CommandLineRunner demo(AnketaRepository aRepo, ZivotinjaRepository zRepo, BolestRepository bRepo, KorisnikRepository kRepo, VakcinaRepository vRepo, VeterinarRepository vetRepo) {
         return (args) -> {
 
             // Kreiranje bolesti
@@ -64,13 +64,17 @@ public class ZivotinjaServiceApplication {
             byte[] slika = cuko.kreirajSliku("C:\\Users\\belma\\Desktop\\NWT2020-petFriend\\zivotinja-service\\Slike\\viki.jpg");
             cuko.setSlika(slika);
 
+            // Kreiranje ankete
+            Anketa anketa = new Anketa();
+            anketa.setZivotinjaID(cuko);
+
+
             // Popunjavanje medjutabele
             cuko.getVakcine().add(vak);
-            //vak.getZivotinje().add(cuko);
-            //cuko.getKorisnici().add(kor);
-            //kor.getZivotinje().add(cuko);
+
             cuko.setKorisnikId(kor);
             zRepo.save(cuko);
+            aRepo.save(anketa);
             cuko.preuzmiSliku();
             zRepo.save(new Zivotinja("Viki", "Pas", "Labrador", "Z", 2, "Mali pas", 10, "Preslatki mali cuko", false));
         };
