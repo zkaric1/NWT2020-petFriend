@@ -14,23 +14,24 @@ public class Korisnik {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private Boolean brisati;
+
     // Relacije
 
     // Zivotinja n-n
     @OneToMany(mappedBy = "korisnikId")
     private Set<Zivotinja> zivotinje = new HashSet<>();
 
-    public Korisnik() {
-    }
+    public Korisnik() {}
 
     // GETTERS
     public Long getId() {
         return id;
     }
-
     public Set<Zivotinja> getZivotinje() {
         return zivotinje;
     }
+    public Boolean getBrisati() { return brisati; }
 
     // SETTERS
     public void setId(Long id) {
@@ -39,4 +40,5 @@ public class Korisnik {
     public void setZivotinje (Set<Zivotinja> listZivotinja) {
         zivotinje = listZivotinja;
     }
+    public void setBrisati(Boolean brisati) { this.brisati = brisati; }
 }
