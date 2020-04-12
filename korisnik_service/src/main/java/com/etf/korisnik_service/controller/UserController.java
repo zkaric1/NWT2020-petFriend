@@ -1,9 +1,6 @@
 package com.etf.korisnik_service.controller;
 
-import com.etf.korisnik_service.DTO.LoginResponseDTO;
-import com.etf.korisnik_service.DTO.LoginUserDTO;
-import com.etf.korisnik_service.DTO.UserPasswordDTO;
-import com.etf.korisnik_service.DTO.config.RequestDTO;
+import com.etf.korisnik_service.DTO.*;
 import com.etf.korisnik_service.exception.LoginException;
 import com.etf.korisnik_service.model.User;
 import com.etf.korisnik_service.service.UserService;
@@ -33,7 +30,7 @@ public class UserController {
     }
 
     //Prijava
-    LoginResponseDTO login(LoginUserDTO user) throws LoginException {
+    HashMap<String, String> login(LoginUserDTO user) throws LoginException {
         return userService.loginUser(user);
     }
 
@@ -52,7 +49,7 @@ public class UserController {
     //Editovanje korisnika PUT
     @PutMapping("/korisnik")
     User editujKorisnika(@RequestBody User noviUser) throws Exception {
-        return userService.editUser(noviUser,noviUser.getId());
+        return userService.editUser(noviUser);
     }
 
     //Lista svih korisnika
@@ -81,17 +78,17 @@ public class UserController {
 
     //Promijeni sifru
     @PutMapping("/korisnik/sifra")
-    HashMap<String,String> resetPassword(@RequestBody UserPasswordDTO user) {
-        return userService.resetPassword(user.convertToEntity());
+    HashMap<String,String> resetPassword(@RequestBody @Valid UserPasswordDTO user) {
+        return userService.resetPassword(user);
     }
 
     @PutMapping("/korisnik/promijeni_ulogu")
-    User promijeniUloguKodKorisnika(@RequestBody User editedUser) throws Exception {
-        return userService.changeRole(editedUser.getId(),editedUser.getRole().getRoleName());
+    User promijeniUloguKodKorisnika(@RequestBody UserRoleDTO editedUser) throws Exception {
+        return userService.changeRole(editedUser);
     }
 
     @PutMapping("/korisnik/promijeni_email")
-    HashMap<String,String> promijeniEmail(@RequestParam Integer userId,@RequestParam String noviEmail) throws Exception {
-        return userService.resetEmail(userId,noviEmail);
+    HashMap<String,String> promijeniEmail(@RequestBody @Valid UserEmailDTO userEmail) throws Exception {
+        return userService.resetEmail(userEmail);
     }
 }

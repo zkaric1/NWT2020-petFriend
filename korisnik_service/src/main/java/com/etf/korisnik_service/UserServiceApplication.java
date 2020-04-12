@@ -57,6 +57,7 @@ public class UserServiceApplication {
 
             //korisnik - zivotinja
             kzRepository.save(new UserAnimal(k1, z1));
+            kzRepository.save(new UserAnimal(k1,z2));
             kzRepository.save(new UserAnimal(k2, z2));
             log.info("Sve korisnik-zivotinja \n");
             for (UserAnimal userAnimal : kzRepository.findAll()) {

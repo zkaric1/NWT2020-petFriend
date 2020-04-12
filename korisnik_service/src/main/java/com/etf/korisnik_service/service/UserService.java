@@ -1,8 +1,6 @@
 package com.etf.korisnik_service.service;
 
-import com.etf.korisnik_service.DTO.LoginResponseDTO;
-import com.etf.korisnik_service.DTO.LoginUserDTO;
-import com.etf.korisnik_service.DTO.ResponseMessageDTO;
+import com.etf.korisnik_service.DTO.*;
 import com.etf.korisnik_service.exception.LoginException;
 import com.etf.korisnik_service.exception.UserException;
 import com.etf.korisnik_service.model.Role;
@@ -41,8 +39,16 @@ public class UserService {
         return hashPassword;
     }
 
-    public LoginResponseDTO loginUser(LoginUserDTO user) throws LoginException {
-        return null;
+    public HashMap<String,String> loginUser(LoginUserDTO user) throws LoginException {
+        User userWithEmail = userRepository.findByEmail(user.getEmail());
+
+        if(userWithEmail == null) {
+            throw new LoginException("Korisnik s emailom "+user.getEmail()+" ne postoji");
+        }
+        else if(!userWithEmail.getPassword().equals(hashPassword(user.getPassword()))) {
+            throw new LoginException("Pogresna sifra!");
+        }
+        return new ResponseMessageDTO("Uspjesno ste prijavljeni na sistem").getHashMap();
     }
 
     private String generateToken() {return null;}
@@ -55,14 +61,14 @@ public class UserService {
         if (!userRepository.existsById(id)) {
             throw new UserException(id);
         }
-        deleteDependecies(id);
-        userRepository.deleteById(id);
-        return new ResponseMessageDTO("Uspjesno orbisan korisnik sa id-em "+id).getHashMap();
+        deleteDependencies(id);
+            userRepository.deleteById(id);
+        return new ResponseMessageDTO("Uspjesno obrisan korisnik sa id-em "+id).getHashMap();
     }
 
-    public User editUser(User noviUser, Integer id) throws UserException {
-        userRepository.findById(id).orElseThrow(() -> new UserException(id));
-        userRepository.findById(id).map(
+    public User editUser(User noviUser) throws UserException {
+        userRepository.findById(noviUser.getId()).orElseThrow(() -> new UserException(noviUser.getId()));
+        userRepository.findById(noviUser.getId()).map(
                 user -> {
                     user.setFullName(noviUser.getFullName());
                     user.setAddress(noviUser.getAddress());
@@ -71,10 +77,10 @@ public class UserService {
                     return userRepository.save(user);
                 }
         );
-        return userRepository.findById(id).get();
+        return userRepository.findById(noviUser.getId()).get();
     }
 
-    public HashMap<String,String> resetPassword(User user) throws UserException {
+    public HashMap<String,String> resetPassword(UserPasswordDTO user) throws UserException {
         if(!userRepository.existsById(user.getId())) {
             throw new UserException(user.getId());
         }
@@ -85,28 +91,28 @@ public class UserService {
         return new ResponseMessageDTO("Uspjesno promijenjena sifra").getHashMap();
     }
 
-    public HashMap<String,String> resetEmail(Integer userId, String newEmail) throws UserException {
-        if(!userRepository.existsById(userId)) {
-            throw new UserException(userId);
+    public HashMap<String,String> resetEmail(UserEmailDTO user) throws UserException {
+        if(!userRepository.existsById(user.getId())) {
+            throw new UserException(user.getId());
         }
-        userRepository.findById(userId).map(user -> {
-            user.setEmail(newEmail);
-            return userRepository.save(user);
+        userRepository.findById(user.getId()).map(_user -> {
+            _user.setEmail(user.getEmail());
+            return userRepository.save(_user);
         });
         return new ResponseMessageDTO("Uspjesno promijenjen email").getHashMap();
     }
 
-    public User changeRole(Integer userId, String roleName) throws Exception {
-        Role newRole = roleService.getByName(roleName);
-        if(!userRepository.existsById(userId)) {
-            throw new UserException(userId);
+    public User changeRole(UserRoleDTO userRoleDto) throws Exception {
+        Role newRole = roleService.getByName(userRoleDto.getRoleName());
+        if(!userRepository.existsById(userRoleDto.getUserId())) {
+            throw new UserException(userRoleDto.getUserId());
         }
-        userRepository.findById(userId).map(user -> {
+        userRepository.findById(userRoleDto.getUserId()).map(user -> {
             user.setRole(newRole);
             return userRepository.save(user);
         });
 
-        return userRepository.findById(userId).get();
+        return userRepository.findById(userRoleDto.getUserId()).get();
     }
 
     public List<User> getListOfUsers() throws Exception {
@@ -139,19 +145,19 @@ public class UserService {
                 return user;
             }
         }
-        throw new Exception("Nema korisnika sa tom ulogom");
+        throw new Exception("Nema korisnika "+imePrezime);
     }
 
     public HashMap<String,String> deleteAllUsers()  throws Exception {
         if (userRepository.count() == 0) {
             throw new Exception("U bazi nema vise korisnika");
         }
-        deleteDependecies(-1);
+        deleteDependencies(-1);
         userRepository.deleteAll();
         return new ResponseMessageDTO("Uspjesno obrisani korisnici").getHashMap();
     }
 
-    private void deleteDependecies(Integer userId) {
+    private void deleteDependencies(Integer userId) {
         List<UserAnimal> userAnimalsList = new ArrayList<>();
         userAnimalRepository.findAll().forEach(userAnimalsList::add);
         for (UserAnimal userAnimal: userAnimalsList) {

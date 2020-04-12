@@ -5,6 +5,7 @@ import com.etf.korisnik_service.service.RoleService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class RoleController {
     //Dodavanje uloga
     @PostMapping("/uloga")
     @ResponseStatus(HttpStatus.CREATED)
-    Role dodajUlogu(@RequestBody Role role) {
+    Role dodajUlogu(@RequestBody @Valid Role role) {
         return roleService.addNewRole(role);
     }
 

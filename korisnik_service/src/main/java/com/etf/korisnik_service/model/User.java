@@ -1,6 +1,8 @@
 package com.etf.korisnik_service.model;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
@@ -19,9 +21,10 @@ public class User {
     private String fullName;
 
     // @Pattern(regexp = "^([0-2][0-9]|(3)[0-1])(\\/)(((0)[0-9])|((1)[0-2]))(\\/)\\d{4}$", message = "Datum mora biti formata dd/mm/yyyy")
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date dateOfBirth;
 
-    @Pattern(regexp = "/^\\S+@\\S+\\.\\S+$/", message = "Email nije dobrog formata")
+    @Pattern(regexp = "^(.+)@(.+)$", message = "Email nije dobrog formata")
     private String email;
 
    // @Pattern(regexp = "[\\w\\d]{7,}", message = "Sifra mora imati minimalno 7 znakova (karaktera ili brojeva)")

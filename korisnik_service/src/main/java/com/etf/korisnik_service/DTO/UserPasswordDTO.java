@@ -1,6 +1,5 @@
 package com.etf.korisnik_service.DTO;
 
-import com.etf.korisnik_service.DTO.config.DTO;
 import com.etf.korisnik_service.model.User;
 
 import javax.validation.constraints.NotBlank;
@@ -36,11 +35,5 @@ public class UserPasswordDTO {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public User convertToEntity() {
-        User user = new User(" ",null," ",password," "," "," "," ");
-        user.setId(id);
-        return user;
     }
 }
