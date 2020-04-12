@@ -23,6 +23,9 @@ public class Korisnik {
     private Set<Zivotinja> zivotinje = new HashSet<>();
 
     public Korisnik() {}
+    public Korisnik (Boolean brisati) {
+        this.brisati = brisati;
+    }
 
     // GETTERS
     public Long getId() {

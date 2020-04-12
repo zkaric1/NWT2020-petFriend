@@ -49,7 +49,6 @@ public class Zivotinja {
     private String dodatniOpis;
 
     @NotNull(message = "Status zivotinje, da li je udomljena ili ne, je obavezno!")
-    //@Pattern(regexp = "true|false", message = "Udomljeni status moeze biti samo true ili false!", flags = Pattern.Flag.CASE_INSENSITIVE)
     private Boolean Udomljena;
 
     @Lob

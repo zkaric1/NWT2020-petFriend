@@ -54,9 +54,9 @@ public class ZivotinjaServiceApplication {
             vRepo.save(vak);
 
             // Kreiranje korisnika
-            Korisnik kor = new Korisnik();
+            Korisnik kor = new Korisnik(false);
             kRepo.save(kor);
-            Korisnik korA = new Korisnik();
+            Korisnik korA = new Korisnik(false);
             kRepo.save(korA);
 
             // Kreiranje zivotinje
