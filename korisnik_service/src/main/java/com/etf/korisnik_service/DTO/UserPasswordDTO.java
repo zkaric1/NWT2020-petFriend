@@ -1,16 +1,15 @@
-package com.etf.korisnik_service.dto;
+package com.etf.korisnik_service.DTO;
 
+import com.etf.korisnik_service.DTO.config.DTO;
 import com.etf.korisnik_service.model.User;
-import org.modelmapper.ModelMapper;
 
-import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-public class UserPasswordDto {
+public class UserPasswordDTO {
+
     @NotNull
-    @Id
     Integer id;
 
     @NotNull
@@ -18,7 +17,8 @@ public class UserPasswordDto {
     @Pattern(regexp = "[\\w\\d]{7,}", message = "Sifra mora imati minimalno 7 znakova (karaktera ili brojeva)")
     String password;
 
-    public UserPasswordDto(@NotNull Integer id, @NotNull @NotBlank String password) {
+    public UserPasswordDTO(@NotNull Integer id, @NotNull @NotBlank String password) {
+        this.id = id;
         this.password = password;
     }
 
@@ -39,7 +39,8 @@ public class UserPasswordDto {
     }
 
     public User convertToEntity() {
-        ModelMapper modelMapper = new ModelMapper();
-        return modelMapper.map(this,User.class);
+        User user = new User(" ",null," ",password," "," "," "," ");
+        user.setId(id);
+        return user;
     }
 }

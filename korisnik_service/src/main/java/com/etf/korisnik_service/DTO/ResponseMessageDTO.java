@@ -1,11 +1,11 @@
-package com.etf.korisnik_service.dto;
+package com.etf.korisnik_service.DTO;
 
 import java.util.HashMap;
 
-public class MessageDto {
+public class ResponseMessageDTO {
     String message;
 
-    public MessageDto(String message) {
+    public ResponseMessageDTO(String message) {
         this.message = message;
     }
 

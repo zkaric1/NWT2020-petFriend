@@ -24,7 +24,7 @@ public class User {
     @Pattern(regexp = "/^\\S+@\\S+\\.\\S+$/", message = "Email nije dobrog formata")
     private String email;
 
-    @Pattern(regexp = "[\\w\\d]{7,}", message = "Sifra mora imati minimalno 7 znakova (karaktera ili brojeva)")
+   // @Pattern(regexp = "[\\w\\d]{7,}", message = "Sifra mora imati minimalno 7 znakova (karaktera ili brojeva)")
     private String password;
 
     @Pattern(regexp = "[A-Za-z \\s-]*", message = "Nije validan unos adrese")

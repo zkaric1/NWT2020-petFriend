@@ -1,11 +1,11 @@
-package com.etf.korisnik_service.dto;
+package com.etf.korisnik_service.DTO;
 
-public class LoginResponseDto {
+public class LoginResponseDTO {
 
     Integer id;
     String token;
 
-    public LoginResponseDto(Integer id, String token) {
+    public LoginResponseDTO(Integer id, String token) {
         this.id = id;
         this.token = token;
     }

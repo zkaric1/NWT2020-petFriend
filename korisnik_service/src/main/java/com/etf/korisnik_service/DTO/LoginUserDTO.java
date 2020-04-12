@@ -1,11 +1,11 @@
-package com.etf.korisnik_service.dto;
+package com.etf.korisnik_service.DTO;
 
-public class LoginUserDto {
+public class LoginUserDTO {
 
     String email;
     String password;
 
-    public LoginUserDto(String email, String password) {
+    public LoginUserDTO(String email, String password) {
         this.email = email;
         this.password = password;
     }

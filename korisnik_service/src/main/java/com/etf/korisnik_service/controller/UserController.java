@@ -1,14 +1,12 @@
 package com.etf.korisnik_service.controller;
 
-import com.etf.korisnik_service.dto.LoginResponseDto;
-import com.etf.korisnik_service.dto.LoginUserDto;
-import com.etf.korisnik_service.dto.MessageDto;
-import com.etf.korisnik_service.dto.UserPasswordDto;
+import com.etf.korisnik_service.DTO.LoginResponseDTO;
+import com.etf.korisnik_service.DTO.LoginUserDTO;
+import com.etf.korisnik_service.DTO.UserPasswordDTO;
+import com.etf.korisnik_service.DTO.config.RequestDTO;
 import com.etf.korisnik_service.exception.LoginException;
 import com.etf.korisnik_service.model.User;
-import com.etf.korisnik_service.repository.UserRepository;
 import com.etf.korisnik_service.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,7 +33,7 @@ public class UserController {
     }
 
     //Prijava
-    LoginResponseDto login(LoginUserDto user) throws LoginException {
+    LoginResponseDTO login(LoginUserDTO user) throws LoginException {
         return userService.loginUser(user);
     }
 
@@ -82,9 +80,9 @@ public class UserController {
     }
 
     //Promijeni sifru
-    @PutMapping("/korisnik/sifra/{id}")
-    HashMap<String,String> resetPassword(@RequestBody UserPasswordDto user, @PathVariable Integer id) {
-        return userService.resetPassword(id,user.convertToEntity().getPassword());
+    @PutMapping("/korisnik/sifra")
+    HashMap<String,String> resetPassword(@RequestBody UserPasswordDTO user) {
+        return userService.resetPassword(user.convertToEntity());
     }
 
     @PutMapping("/korisnik/promijeni_ulogu")

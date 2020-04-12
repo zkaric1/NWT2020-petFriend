@@ -1,4 +1,4 @@
-package com.etf.korisnik_service;
+package com.etf.korisnik_service.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

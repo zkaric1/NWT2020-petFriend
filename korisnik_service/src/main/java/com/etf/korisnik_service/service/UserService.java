@@ -1,8 +1,8 @@
 package com.etf.korisnik_service.service;
 
-import com.etf.korisnik_service.dto.LoginResponseDto;
-import com.etf.korisnik_service.dto.LoginUserDto;
-import com.etf.korisnik_service.dto.MessageDto;
+import com.etf.korisnik_service.DTO.LoginResponseDTO;
+import com.etf.korisnik_service.DTO.LoginUserDTO;
+import com.etf.korisnik_service.DTO.ResponseMessageDTO;
 import com.etf.korisnik_service.exception.LoginException;
 import com.etf.korisnik_service.exception.UserException;
 import com.etf.korisnik_service.model.Role;
@@ -41,7 +41,7 @@ public class UserService {
         return hashPassword;
     }
 
-    public LoginResponseDto loginUser(LoginUserDto user) throws LoginException {
+    public LoginResponseDTO loginUser(LoginUserDTO user) throws LoginException {
         return null;
     }
 
@@ -57,7 +57,7 @@ public class UserService {
         }
         deleteDependecies(id);
         userRepository.deleteById(id);
-        return new MessageDto("Uspjesno orbisan korisnik sa id-em "+id).getHashMap();
+        return new ResponseMessageDTO("Uspjesno orbisan korisnik sa id-em "+id).getHashMap();
     }
 
     public User editUser(User noviUser, Integer id) throws UserException {
@@ -74,15 +74,15 @@ public class UserService {
         return userRepository.findById(id).get();
     }
 
-    public HashMap<String,String> resetPassword(Integer userId, String newPassword) throws UserException {
-        if(!userRepository.existsById(userId)) {
-            throw new UserException(userId);
+    public HashMap<String,String> resetPassword(User user) throws UserException {
+        if(!userRepository.existsById(user.getId())) {
+            throw new UserException(user.getId());
         }
-        userRepository.findById(userId).map(user -> {
-            user.setPassword(hashPassword(newPassword));
-            return userRepository.save(user);
+        userRepository.findById(user.getId()).map(_user -> {
+            _user.setPassword(hashPassword(user.getPassword()));
+            return userRepository.save(_user);
         });
-        return new MessageDto("Uspjesno promijenjena sifra").getHashMap();
+        return new ResponseMessageDTO("Uspjesno promijenjena sifra").getHashMap();
     }
 
     public HashMap<String,String> resetEmail(Integer userId, String newEmail) throws UserException {
@@ -93,7 +93,7 @@ public class UserService {
             user.setEmail(newEmail);
             return userRepository.save(user);
         });
-        return new MessageDto("Uspjesno promijenjen email").getHashMap();
+        return new ResponseMessageDTO("Uspjesno promijenjen email").getHashMap();
     }
 
     public User changeRole(Integer userId, String roleName) throws Exception {
@@ -148,7 +148,7 @@ public class UserService {
         }
         deleteDependecies(-1);
         userRepository.deleteAll();
-        return new MessageDto("Uspjesno obrisani korisnici").getHashMap();
+        return new ResponseMessageDTO("Uspjesno obrisani korisnici").getHashMap();
     }
 
     private void deleteDependecies(Integer userId) {

@@ -1,6 +1,6 @@
 package com.etf.korisnik_service.service;
 
-import com.etf.korisnik_service.dto.MessageDto;
+import com.etf.korisnik_service.DTO.ResponseMessageDTO;
 import com.etf.korisnik_service.exception.RoleException;
 import com.etf.korisnik_service.model.Role;
 import com.etf.korisnik_service.repository.RoleRepository;
@@ -43,7 +43,7 @@ public class RoleService {
         }
         deleteDependencies(id);
         roleRepository.deleteById(id);
-        return new MessageDto("Uspjesno obrisana uloga sa id-em "+id).getHashMap();
+        return new ResponseMessageDTO("Uspjesno obrisana uloga sa id-em "+id).getHashMap();
     }
 
     public List<Role> getAllRoles() {
@@ -75,7 +75,7 @@ public class RoleService {
         }
         deleteDependencies(-1);
         roleRepository.deleteAll();
-        return new MessageDto("Uspjesno obrisane sve uloge").getHashMap();
+        return new ResponseMessageDTO("Uspjesno obrisane sve uloge").getHashMap();
     }
 
     private void deleteDependencies(Integer roleId) {
