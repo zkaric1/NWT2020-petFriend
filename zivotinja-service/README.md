@@ -26,3 +26,6 @@ Da bi se projekat uspješno pokrenuo, potrebno se navigirati u root direktorij (
 ## Pokretanje testova
 Da bi se testovi uspješno pokrenuli, potrebno se navigirati u root direktorij testova (folder test) i unijeti komandu mvn test `-Dtest=ime fajla sa testovima (npr. mvn test -Dtest=BolestControllerTest)`
 
+## Pristupanje swaggeru
+Nakon što se projekat pokrene, omogućen je pregleda svih API servisa pomoću Swagger-a na sljedećem linku: http://localhost:8080/swagger-ui.html
+
