@@ -2,19 +2,19 @@ package com.etf.korisnik_service.service;
 
 import com.etf.korisnik_service.dto.LoginResponseDto;
 import com.etf.korisnik_service.dto.LoginUserDto;
+import com.etf.korisnik_service.dto.MessageDto;
 import com.etf.korisnik_service.exception.LoginException;
 import com.etf.korisnik_service.exception.UserException;
 import com.etf.korisnik_service.model.Role;
 import com.etf.korisnik_service.model.User;
 import com.etf.korisnik_service.model.UserAnimal;
-import com.etf.korisnik_service.repository.RoleRepository;
 import com.etf.korisnik_service.repository.UserAnimalRepository;
 import com.etf.korisnik_service.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -51,15 +51,16 @@ public class UserService {
         return userRepository.findById(id).orElseThrow(() -> new UserException(id));
     }
 
-    public void deleteUserById(Integer id) throws UserException {
+    public HashMap<String,String> deleteUserById(Integer id) throws UserException {
         if (!userRepository.existsById(id)) {
             throw new UserException(id);
         }
         deleteDependecies(id);
         userRepository.deleteById(id);
+        return new MessageDto("Uspjesno orbisan korisnik sa id-em "+id).getHashMap();
     }
 
-    public void editUser(User noviUser, Integer id) throws UserException {
+    public User editUser(User noviUser, Integer id) throws UserException {
         userRepository.findById(id).orElseThrow(() -> new UserException(id));
         userRepository.findById(id).map(
                 user -> {
@@ -70,9 +71,10 @@ public class UserService {
                     return userRepository.save(user);
                 }
         );
+        return userRepository.findById(id).get();
     }
 
-    public void resetPassword(Integer userId, String newPassword) throws UserException {
+    public HashMap<String,String> resetPassword(Integer userId, String newPassword) throws UserException {
         if(!userRepository.existsById(userId)) {
             throw new UserException(userId);
         }
@@ -80,9 +82,10 @@ public class UserService {
             user.setPassword(hashPassword(newPassword));
             return userRepository.save(user);
         });
+        return new MessageDto("Uspjesno promijenjena sifra").getHashMap();
     }
 
-    public void resetEmail(Integer userId, String newEmail) throws UserException {
+    public HashMap<String,String> resetEmail(Integer userId, String newEmail) throws UserException {
         if(!userRepository.existsById(userId)) {
             throw new UserException(userId);
         }
@@ -90,9 +93,10 @@ public class UserService {
             user.setEmail(newEmail);
             return userRepository.save(user);
         });
+        return new MessageDto("Uspjesno promijenjen email").getHashMap();
     }
 
-    public void changeRole(Integer userId, String roleName) throws Exception {
+    public User changeRole(Integer userId, String roleName) throws Exception {
         Role newRole = roleService.getByName(roleName);
         if(!userRepository.existsById(userId)) {
             throw new UserException(userId);
@@ -101,6 +105,8 @@ public class UserService {
             user.setRole(newRole);
             return userRepository.save(user);
         });
+
+        return userRepository.findById(userId).get();
     }
 
     public List<User> getListOfUsers() throws Exception {
@@ -136,12 +142,13 @@ public class UserService {
         throw new Exception("Nema korisnika sa tom ulogom");
     }
 
-    public void deleteAllUsers()  throws Exception {
+    public HashMap<String,String> deleteAllUsers()  throws Exception {
         if (userRepository.count() == 0) {
             throw new Exception("U bazi nema vise korisnika");
         }
         deleteDependecies(-1);
         userRepository.deleteAll();
+        return new MessageDto("Uspjesno obrisani korisnici").getHashMap();
     }
 
     private void deleteDependecies(Integer userId) {

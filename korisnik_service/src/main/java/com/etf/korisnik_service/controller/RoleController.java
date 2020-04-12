@@ -1,10 +1,11 @@
 package com.etf.korisnik_service.controller;
 
-import com.etf.korisnik_service.dto.RoleEditDto;
 import com.etf.korisnik_service.model.Role;
 import com.etf.korisnik_service.service.RoleService;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -18,20 +19,21 @@ public class RoleController {
 
     //Dodavanje uloga
     @PostMapping("/uloga")
+    @ResponseStatus(HttpStatus.CREATED)
     Role dodajUlogu(@RequestBody Role role) {
         return roleService.addNewRole(role);
     }
 
     //Editovanje uloge
-    @PutMapping("/uloga/{id}")
-    void editujUlogu(@RequestBody RoleEditDto novaRole, @PathVariable Integer id) throws Exception {
-        roleService.editRole(novaRole,id);
+    @PutMapping("/uloga")
+    Role editujUlogu(@RequestBody Role novaRole) throws Exception {
+        return roleService.editRole(novaRole,novaRole.getId());
     }
 
     //Brisanje uloge
     @DeleteMapping("/uloga/{id}")
-    void obrisiUlogu(@PathVariable Integer id) throws Exception {
-        roleService.deleteRole(id);
+    HashMap<String,String> obrisiUlogu(@PathVariable Integer id) throws Exception {
+        return roleService.deleteRole(id);
     }
 
     //Lista svih uloga
@@ -53,7 +55,7 @@ public class RoleController {
 
     //Obrisi sve uloge
     @DeleteMapping("/uloga/obrisi_sve")
-    void obrisiSveUlog() throws Exception {
-        roleService.deleteAllRoles();
+    HashMap<String,String> obrisiSveUlog() throws Exception {
+        return roleService.deleteAllRoles();
     }
 }

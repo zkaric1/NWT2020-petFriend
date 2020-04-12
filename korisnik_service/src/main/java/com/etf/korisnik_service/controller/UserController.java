@@ -2,16 +2,19 @@ package com.etf.korisnik_service.controller;
 
 import com.etf.korisnik_service.dto.LoginResponseDto;
 import com.etf.korisnik_service.dto.LoginUserDto;
+import com.etf.korisnik_service.dto.MessageDto;
 import com.etf.korisnik_service.dto.UserPasswordDto;
 import com.etf.korisnik_service.exception.LoginException;
 import com.etf.korisnik_service.model.User;
 import com.etf.korisnik_service.repository.UserRepository;
 import com.etf.korisnik_service.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -19,17 +22,19 @@ public class UserController {
 
     private UserService userService;
 
+
     public UserController(UserService userService) {
         this.userService = userService;
     }
 
     //Registracija korisnika POST
     @PostMapping("/korisnik")
+    @ResponseStatus(HttpStatus.CREATED)
     User dodajKorisnika(@Valid @RequestBody User noviUser) throws NoSuchAlgorithmException {
         return userService.addUser(noviUser);
     }
 
-    //Prijava AUTH
+    //Prijava
     LoginResponseDto login(LoginUserDto user) throws LoginException {
         return userService.loginUser(user);
     }
@@ -42,15 +47,14 @@ public class UserController {
 
     //Brisanje korisnika DELETE
     @DeleteMapping("/korisnik/{id}")
-    //TODO obrisat veze
-    void obrisiKorsnika(@PathVariable Integer id) throws Exception {
-        userService.deleteUserById(id);
+    HashMap<String,String> obrisiKorsnika(@PathVariable Integer id) throws Exception {
+        return userService.deleteUserById(id);
     }
 
     //Editovanje korisnika PUT
-    @PutMapping("/korisnik/{id}")
-    void editujKorisnika(@RequestBody User noviUser, @PathVariable Integer id) throws Exception {
-        userService.editUser(noviUser,id);
+    @PutMapping("/korisnik")
+    User editujKorisnika(@RequestBody User noviUser) throws Exception {
+        return userService.editUser(noviUser,noviUser.getId());
     }
 
     //Lista svih korisnika
@@ -73,13 +77,23 @@ public class UserController {
 
     //Obrisi sve korisnike
     @DeleteMapping("/korisnik/obrisi_sve")
-    void obrisiSveKorisnike() throws Exception {
-        userService.deleteAllUsers();
+    HashMap<String, String> obrisiSveKorisnike() throws Exception {
+        return userService.deleteAllUsers();
     }
 
     //Promijeni sifru
-    @PutMapping("korisnik/sifra/{id}")
-    void resetPassword(@RequestBody UserPasswordDto user, @PathVariable Integer id) {
-        userService.resetPassword(id,user.getNewPassword());
+    @PutMapping("/korisnik/sifra/{id}")
+    HashMap<String,String> resetPassword(@RequestBody UserPasswordDto user, @PathVariable Integer id) {
+        return userService.resetPassword(id,user.convertToEntity().getPassword());
+    }
+
+    @PutMapping("/korisnik/promijeni_ulogu")
+    User promijeniUloguKodKorisnika(@RequestBody User editedUser) throws Exception {
+        return userService.changeRole(editedUser.getId(),editedUser.getRole().getRoleName());
+    }
+
+    @PutMapping("/korisnik/promijeni_email")
+    HashMap<String,String> promijeniEmail(@RequestParam Integer userId,@RequestParam String noviEmail) throws Exception {
+        return userService.resetEmail(userId,noviEmail);
     }
 }

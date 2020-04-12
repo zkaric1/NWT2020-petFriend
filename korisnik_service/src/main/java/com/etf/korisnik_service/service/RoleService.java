@@ -1,15 +1,15 @@
 package com.etf.korisnik_service.service;
 
-import com.etf.korisnik_service.dto.RoleEditDto;
+import com.etf.korisnik_service.dto.MessageDto;
 import com.etf.korisnik_service.exception.RoleException;
 import com.etf.korisnik_service.model.Role;
-import com.etf.korisnik_service.model.User;
 import com.etf.korisnik_service.repository.RoleRepository;
 import com.etf.korisnik_service.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -24,24 +24,26 @@ public class RoleService {
         return roleRepository.save(role);
     }
 
-    public void editRole(RoleEditDto newRole, Integer id) throws RoleException {
+    public Role editRole(Role newRole, Integer id) throws RoleException {
         if (!roleRepository.existsById(id)) {
             throw new RoleException(id);
         }
         roleRepository.findById(id).map(
                 role -> {
-                    role.setRoleName(newRole.getNewRoleName());
+                    role.setRoleName(newRole.getRoleName());
                     return roleRepository.save(role);
                 }
         );
+        return roleRepository.findById(id).get();
     }
 
-    public void deleteRole(Integer id) throws RoleException {
+    public HashMap<String,String> deleteRole(Integer id) throws RoleException {
         if (!roleRepository.existsById(id)) {
             throw new RoleException(id);
         }
         deleteDependencies(id);
         roleRepository.deleteById(id);
+        return new MessageDto("Uspjesno obrisana uloga sa id-em "+id).getHashMap();
     }
 
     public List<Role> getAllRoles() {
@@ -67,12 +69,13 @@ public class RoleService {
         throw new Exception("Ne postoji uloga sa unesenim nazivom");
     }
 
-    public void deleteAllRoles() throws Exception {
+    public HashMap<String,String> deleteAllRoles() throws Exception {
         if (roleRepository.count() == 0) {
             throw new Exception("Ne postoji vise uloga u bazi");
         }
         deleteDependencies(-1);
         roleRepository.deleteAll();
+        return new MessageDto("Uspjesno obrisane sve uloge").getHashMap();
     }
 
     private void deleteDependencies(Integer roleId) {
