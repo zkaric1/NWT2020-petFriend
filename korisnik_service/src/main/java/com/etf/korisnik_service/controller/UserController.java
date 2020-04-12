@@ -30,7 +30,8 @@ public class UserController {
     }
 
     //Prijava
-    HashMap<String, String> login(LoginUserDTO user) throws LoginException {
+    @PostMapping("/korisnik/prijava")
+    HashMap<String, String> login(@RequestBody @Valid LoginUserDTO user) throws LoginException {
         return userService.loginUser(user);
     }
 

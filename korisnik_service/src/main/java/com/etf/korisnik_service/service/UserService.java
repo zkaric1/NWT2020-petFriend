@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Service
@@ -27,6 +28,7 @@ public class UserService {
     private RoleService roleService;
 
     private List<User> sviKorisnici;
+    private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     public User addUser(User noviUser) {
         noviUser.setPassword(hashPassword(noviUser.getPassword()));
@@ -34,36 +36,36 @@ public class UserService {
     }
 
     private String hashPassword(String password) {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String hashPassword = passwordEncoder.encode(password);
         return hashPassword;
     }
 
-    public HashMap<String,String> loginUser(LoginUserDTO user) throws LoginException {
+    private boolean matchPasswords(String plainText, String hashPassword) {
+        return passwordEncoder.matches(plainText, hashPassword);
+    }
+
+    public HashMap<String, String> loginUser(LoginUserDTO user) throws LoginException {
         User userWithEmail = userRepository.findByEmail(user.getEmail());
 
-        if(userWithEmail == null) {
-            throw new LoginException("Korisnik s emailom "+user.getEmail()+" ne postoji");
-        }
-        else if(!userWithEmail.getPassword().equals(hashPassword(user.getPassword()))) {
+        if (userWithEmail == null) {
+            throw new LoginException("Korisnik s emailom " + user.getEmail() + " ne postoji");
+        } else if (!matchPasswords(user.getPassword(), userWithEmail.getPassword())) {
             throw new LoginException("Pogresna sifra!");
         }
         return new ResponseMessageDTO("Uspjesno ste prijavljeni na sistem").getHashMap();
     }
 
-    private String generateToken() {return null;}
-
     public User getUserById(Integer id) throws UserException {
         return userRepository.findById(id).orElseThrow(() -> new UserException(id));
     }
 
-    public HashMap<String,String> deleteUserById(Integer id) throws UserException {
+    public HashMap<String, String> deleteUserById(Integer id) throws UserException {
         if (!userRepository.existsById(id)) {
             throw new UserException(id);
         }
         deleteDependencies(id);
-            userRepository.deleteById(id);
-        return new ResponseMessageDTO("Uspjesno obrisan korisnik sa id-em "+id).getHashMap();
+        userRepository.deleteById(id);
+        return new ResponseMessageDTO("Uspjesno obrisan korisnik sa id-em " + id).getHashMap();
     }
 
     public User editUser(User noviUser) throws UserException {
@@ -80,8 +82,8 @@ public class UserService {
         return userRepository.findById(noviUser.getId()).get();
     }
 
-    public HashMap<String,String> resetPassword(UserPasswordDTO user) throws UserException {
-        if(!userRepository.existsById(user.getId())) {
+    public HashMap<String, String> resetPassword(UserPasswordDTO user) throws UserException {
+        if (!userRepository.existsById(user.getId())) {
             throw new UserException(user.getId());
         }
         userRepository.findById(user.getId()).map(_user -> {
@@ -91,8 +93,8 @@ public class UserService {
         return new ResponseMessageDTO("Uspjesno promijenjena sifra").getHashMap();
     }
 
-    public HashMap<String,String> resetEmail(UserEmailDTO user) throws UserException {
-        if(!userRepository.existsById(user.getId())) {
+    public HashMap<String, String> resetEmail(UserEmailDTO user) throws UserException {
+        if (!userRepository.existsById(user.getId())) {
             throw new UserException(user.getId());
         }
         userRepository.findById(user.getId()).map(_user -> {
@@ -104,7 +106,7 @@ public class UserService {
 
     public User changeRole(UserRoleDTO userRoleDto) throws Exception {
         Role newRole = roleService.getByName(userRoleDto.getRoleName());
-        if(!userRepository.existsById(userRoleDto.getUserId())) {
+        if (!userRepository.existsById(userRoleDto.getUserId())) {
             throw new UserException(userRoleDto.getUserId());
         }
         userRepository.findById(userRoleDto.getUserId()).map(user -> {
@@ -145,10 +147,10 @@ public class UserService {
                 return user;
             }
         }
-        throw new Exception("Nema korisnika "+imePrezime);
+        throw new Exception("Nema korisnika " + imePrezime);
     }
 
-    public HashMap<String,String> deleteAllUsers()  throws Exception {
+    public HashMap<String, String> deleteAllUsers() throws Exception {
         if (userRepository.count() == 0) {
             throw new Exception("U bazi nema vise korisnika");
         }
@@ -160,12 +162,11 @@ public class UserService {
     private void deleteDependencies(Integer userId) {
         List<UserAnimal> userAnimalsList = new ArrayList<>();
         userAnimalRepository.findAll().forEach(userAnimalsList::add);
-        for (UserAnimal userAnimal: userAnimalsList) {
-            if(userId == -1) {
+        for (UserAnimal userAnimal : userAnimalsList) {
+            if (userId == -1) {
                 userAnimalRepository.deleteAll();
                 return;
-            }
-            else if(userAnimal.getUser().getId() == userId) {
+            } else if (userAnimal.getUser().getId() == userId) {
                 userAnimalRepository.deleteById(userAnimal.getId());
             }
         }

@@ -2,6 +2,7 @@ package com.etf.korisnik_service.model;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -21,13 +22,13 @@ public class User {
     private String fullName;
 
     // @Pattern(regexp = "^([0-2][0-9]|(3)[0-1])(\\/)(((0)[0-9])|((1)[0-2]))(\\/)\\d{4}$", message = "Datum mora biti formata dd/mm/yyyy")
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date dateOfBirth;
 
     @Pattern(regexp = "^(.+)@(.+)$", message = "Email nije dobrog formata")
     private String email;
 
-   // @Pattern(regexp = "[\\w\\d]{7,}", message = "Sifra mora imati minimalno 7 znakova (karaktera ili brojeva)")
+    // @Pattern(regexp = "[\\w\\d]{7,}", message = "Sifra mora imati minimalno 7 znakova (karaktera ili brojeva)")
     private String password;
 
     @Pattern(regexp = "[A-Za-z \\s-]*", message = "Nije validan unos adrese")
@@ -105,6 +106,10 @@ public class User {
         this.password = sifra;
     }
 
+    public void setHashPassword(String sifra) {
+        this.password = hashPassword(sifra);
+    }
+
     public String getAddress() {
         return address;
     }
@@ -143,6 +148,12 @@ public class User {
 
     public void setRole(Role roleId) {
         this.role = roleId;
+    }
+
+    private String hashPassword(String password) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String hashPassword = passwordEncoder.encode(password);
+        return hashPassword;
     }
 
     @Override

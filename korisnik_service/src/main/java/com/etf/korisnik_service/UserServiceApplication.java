@@ -37,7 +37,10 @@ public class UserServiceApplication {
             User k1 = kRepository.save(new User("ante antic", "1234567899876", u));
             k1.setRole(u);
             User k2 = kRepository.save(new User("amno amnic", "93832979237937", u));
-            kRepository.save(new User("zlata karic", "34324343434", u));
+            User newUser = new User("zlata karic", "34324343434", u);
+            newUser.setEmail("zkaric1@etf.unsa.ba");
+            newUser.setHashPassword("novasifra");
+            kRepository.save(newUser);
             kRepository.save(new User("marko marulic", "323343432342424", u));
             log.info("Svi korisnici \n");
             for (User user : kRepository.findAll()) {
