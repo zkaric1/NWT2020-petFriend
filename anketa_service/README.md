@@ -31,7 +31,7 @@ Svi mikroservisi i Eureka moraju biti pokrenuti u isto vrijeme da bi se mogla os
 Da bi se projekat uspješno pokrenuo, potrebno se navigirati u root direktorij (folder `anketa_service`, gdje se može naći `pom.xml` file) i unijeti komandu `mvn spring-boot:run`
 
 ## Pokretanje testova
-Da bi se testovi uspješno pokrenuli, potrebno se navigirati u root direktorij testova (folder `anketa_service`, gdje se može naći `pom.xml` file) i unijeti komandu `mvn test -Dtest=ime fajla sa testovima` (npr. mvn test -Dtest=AnimalControllerTests).
+Da bi se testovi uspješno pokrenuli, potrebno se navigirati u root direktorij testova (folder `anketa_service`, gdje se može naći `pom.xml` file) i unijeti komandu `mvn test -Dtest=ime fajla sa testovima#ime testne funkcije` (npr. mvn test -Dtest=AnimalControllerTests#getAllAnimals).
 
 ## Pristupanje swaggeru
 Nakon što se projekat pokrene, omogućen je pregled i testiranje svih API servisa pomoću Swagger-a na sljedećem linku: http://localhost:8081/api/swagger-ui.html
