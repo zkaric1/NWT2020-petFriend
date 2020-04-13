@@ -9,13 +9,15 @@ public class Animal {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    private Integer animalId;
+    private String name;
     private String species;
     private String gender;
 
     public Animal() {
     }
 
-    public Animal(String species, String gender) {
+    public Animal(Integer animalId, String name, String species, String gender) {
         this.species = species;
         this.gender = gender;
     }
@@ -26,6 +28,22 @@ public class Animal {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getAnimalId() {
+        return animalId;
+    }
+
+    public void setAnimalId(Integer animalId) {
+        this.animalId = animalId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getSpecies() {

@@ -1,7 +1,5 @@
 package com.etf.korisnik_service.DTO;
 
-import com.etf.korisnik_service.model.User;
-
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;

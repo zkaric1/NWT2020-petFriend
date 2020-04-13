@@ -10,7 +10,7 @@ public class UserAnimal {
     private Integer id;
     @ManyToOne(cascade = CascadeType.MERGE)
     private User user;
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.MERGE) //@OneToOne?
     private Animal animal;
 
 

@@ -46,6 +46,9 @@ public class User {
     @JoinColumn(name = "roleId", referencedColumnName = "id")
     private Role role;
 
+    @Column(name = "softDelete")
+    private Boolean softDelete = false;
+
     public User() {
     }
 
@@ -148,6 +151,14 @@ public class User {
 
     public void setRole(Role roleId) {
         this.role = roleId;
+    }
+
+    public Boolean getSoftDelete() {
+        return softDelete;
+    }
+
+    public void setSoftDelete(Boolean softDelete) {
+        this.softDelete = softDelete;
     }
 
     private String hashPassword(String password) {

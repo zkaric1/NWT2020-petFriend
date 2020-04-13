@@ -1,13 +1,39 @@
 package com.etf.korisnik_service.controller;
 
+import com.etf.korisnik_service.model.Animal;
+import com.etf.korisnik_service.model.UserAnimal;
 import com.etf.korisnik_service.repository.UserAnimalRepository;
+import com.etf.korisnik_service.service.AnimalService;
+import com.etf.korisnik_service.service.UserAnimalService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
-@RequestMapping("korisnik_zivotinja")
 @RestController
 public class UserAnimalController {
+
     @Autowired
-    private UserAnimalRepository korisnikZivotinjaRepository;
+    private RestTemplate restTemplate;
+
+    private AnimalService animalService;
+
+    private UserAnimalService userAnimalService;
+
+    public UserAnimalController(UserAnimalService userAnimalService) {
+        this.userAnimalService = userAnimalService;
+    }
+
+    @GetMapping("/user_animal/dajZivotinju/{idKorisnika}")
+    public String dajZivotinjuOdKorisnika(@PathVariable Integer idKorisnika) throws Exception {
+        String response = restTemplate.exchange("http://zivotinjaService/zivotinje", //a/korisnik"
+                HttpMethod.GET, null,String.class).getBody();
+        return response;
+//        return new ResponseEntity<>(
+//                response,
+//                HttpStatus.OK
+//        );
+    }
 }

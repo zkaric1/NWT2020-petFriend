@@ -9,6 +9,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.client.RestTemplate;
 
 @EnableDiscoveryClient
 @SpringBootApplication
@@ -21,7 +22,12 @@ public class UserServiceApplication {
     }
 
     @Bean
-    public CommandLineRunner proba(UserRepository kRepository, AnimalRepository zRepository, RoleRepository uRepository, UserAnimalRepository kzRepository) {
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
+
+    @Bean
+    public CommandLineRunner addDataToDatabase(UserRepository kRepository, AnimalRepository zRepository, RoleRepository uRepository, UserAnimalRepository kzRepository, SurveyRepository surveyRepository, UserSurveyRepository userSurveyRepository) {
         return (args) -> {
             //uloge
             uRepository.save(new Role("administrator"));
@@ -50,8 +56,8 @@ public class UserServiceApplication {
             log.info(" ");
 
             //zivotinje
-            Animal z1 = zRepository.save(new Animal("macka", "Z"));
-            Animal z2 = zRepository.save(new Animal("pas", "M"));
+            Animal z1 = zRepository.save(new Animal(1,"mica","macka", "Z"));
+            Animal z2 = zRepository.save(new Animal(2,"laki","pas", "M"));
             log.info("Sve zivotinje \n");
             for (Animal animal : zRepository.findAll()) {
                 log.info(animal.toString());

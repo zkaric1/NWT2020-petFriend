@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.client.RestTemplate;
 
 @Service
 public class UserService {
@@ -26,7 +27,8 @@ public class UserService {
     private UserAnimalRepository userAnimalRepository;
     @Autowired
     private RoleService roleService;
-
+    @Autowired
+    RestTemplate restTemplate;
     private List<User> sviKorisnici;
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
@@ -157,6 +159,19 @@ public class UserService {
         deleteDependencies(-1);
         userRepository.deleteAll();
         return new ResponseMessageDTO("Uspjesno obrisani korisnici").getHashMap();
+    }
+
+    public void deleteAnimalAndSurvey(Integer userId) throws Exception {
+        if(!userRepository.existsById(userId)) {
+            throw new UserException(userId);
+        }
+        userRepository.findById(userId).map(user -> {
+            user.setSoftDelete(true);
+            return userRepository.save(user);
+        });
+
+        //restTemplate.exchange("http") zivotinja i anketa
+
     }
 
     private void deleteDependencies(Integer userId) {
