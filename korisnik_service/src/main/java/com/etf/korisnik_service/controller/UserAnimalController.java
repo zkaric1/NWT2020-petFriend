@@ -26,7 +26,7 @@ public class UserAnimalController {
         this.userAnimalService = userAnimalService;
     }
 
-    @GetMapping("/user_animal/dajZivotinju/{idKorisnika}")
+    @GetMapping(value = "/user_animal/dajZivotinju/{idKorisnika}", produces = "application/xml")
     public String dajZivotinjuOdKorisnika(@PathVariable Integer idKorisnika) throws Exception {
         String response = restTemplate.exchange("http://zivotinjaService/zivotinje", //a/korisnik"
                 HttpMethod.GET, null,String.class).getBody();
