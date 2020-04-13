@@ -6,5 +6,5 @@ Repozitorij za projekat iz NWT u 2019/2020 akademskoj godini.
 
 ## Services
 * Anketa service
-* Zivotinja service 
+* Životinja service 
 * Korisnik service
