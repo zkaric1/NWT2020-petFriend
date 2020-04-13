@@ -44,7 +44,6 @@ public class UserControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().is2xxSuccessful())
-                .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.message", Matchers.is("Uspjesno ste prijavljeni na sistem")));
     }
 
@@ -176,7 +175,7 @@ public class UserControllerTest {
 
     @org.junit.jupiter.api.Test
     public void changePassword() throws Exception {
-        UserPasswordDTO userPasswordDTO = new UserPasswordDTO(6,"veterinar");
+        UserPasswordDTO userPasswordDTO = new UserPasswordDTO(7,"veterinar");
         mockMvc.perform(MockMvcRequestBuilders.put("/korisnik/sifra")
                 .content(asJsonString(userPasswordDTO))
                 .contentType(MediaType.APPLICATION_JSON)
@@ -220,10 +219,10 @@ public class UserControllerTest {
 
     @org.junit.jupiter.api.Test
     public void deleteUser() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete("/korisnik/{id}",6)
+        mockMvc.perform(MockMvcRequestBuilders.delete("/korisnik/{id}",4)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().is2xxSuccessful())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.message", Matchers.is("Uspjesno obrisan korisnik sa id-em 6")));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.message", Matchers.is("Uspjesno obrisan korisnik sa id-em 4")));
     }
 
     @org.junit.jupiter.api.Test
