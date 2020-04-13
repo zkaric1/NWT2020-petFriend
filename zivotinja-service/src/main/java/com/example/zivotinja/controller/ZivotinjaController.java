@@ -135,7 +135,7 @@ public class ZivotinjaController {
 
     // Komunikacija između MS Zivotinja i MS Korisnik
     @RequestMapping(value = "/vratiKorisnike", produces = "application/xml", method = RequestMethod.GET)
-    public ResponseEntity<String> getStudents() {
+    public ResponseEntity<String> getKorisnike() {
         String response = restTemplate.exchange("http://korisnikService/korisnik/lista",
                 HttpMethod.GET, null, String.class).getBody();
         return new ResponseEntity<>(
@@ -146,7 +146,7 @@ public class ZivotinjaController {
 
     // Za komunikaciju izmedu mikroservisa KORISNIK i ZIVOTINJA (kada udomi)
     @PutMapping("udomljena/{idKorisnika}/{idZivotinje}")
-    ResponseEntity<JSONObject> udomiZivotinja(@PathVariable Long idKorisnika, @PathVariable Long idZivotinje) throws Exception {
+    public ResponseEntity<JSONObject> udomiZivotinja(@PathVariable Long idKorisnika, @PathVariable Long idZivotinje) throws Exception {
         JSONObject temp = new JSONObject();
         try {
             Zivotinja novaZivotinja = zivotinjaService.findById(idZivotinje);
@@ -167,5 +167,10 @@ public class ZivotinjaController {
                     HttpStatus.BAD_REQUEST
             );
         }
+    }
+
+    @GetMapping ("/zivotinje/korisnik/{idKorisnika}")
+    public List<Zivotinja> dajZivotinjeKorisnika (@PathVariable Long idKorisnika) throws  Exception {
+        return zivotinjaService.zivotinjeKorisnika (idKorisnika);
     }
 }

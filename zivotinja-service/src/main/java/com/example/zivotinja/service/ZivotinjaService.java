@@ -94,4 +94,11 @@ public class ZivotinjaService {
         mapa.put("godine", godine);
         return mapa;
     }
+
+    public List<Zivotinja> zivotinjeKorisnika (Long id) throws Exception{
+        if (zivotinjaRepository.existsByKorisnikId(id) == 0) {
+            throw new Exception("Korisnik sa id "+ id + " nije udomio niti jednu zivotinju!");
+        }
+        return zivotinjaRepository.zivotinjeKorisnika (id);
+    }
 }

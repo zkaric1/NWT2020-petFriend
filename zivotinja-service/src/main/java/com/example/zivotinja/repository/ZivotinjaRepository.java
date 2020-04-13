@@ -14,6 +14,9 @@ import java.util.List;
 @Repository
 public interface ZivotinjaRepository extends JpaRepository<Zivotinja, Long> {
 
+    @Query (value = "SELECT COUNT (korisnikId) FROM Zivotinja WHERE korisnikId = :id", nativeQuery = true)
+    Integer existsByKorisnikId(Long id);
+
     @Query(value = "SELECT * from Zivotinja where ime = :ime", nativeQuery = true)
     List<Zivotinja> findByName(@Param("ime") String ime);
 
@@ -24,4 +27,7 @@ public interface ZivotinjaRepository extends JpaRepository<Zivotinja, Long> {
 
     @Query(value = "SELECT * FROM Zivotinja  WHERE id = :id", nativeQuery = true)
     List<Zivotinja> findByAge(@Param("id") Long id);
+
+    @Query(value = "SELECT * FROM Zivotinja WHERE korisnikId = :id", nativeQuery = true)
+    List<Zivotinja> zivotinjeKorisnika (@Param ("id") Long id);
 }

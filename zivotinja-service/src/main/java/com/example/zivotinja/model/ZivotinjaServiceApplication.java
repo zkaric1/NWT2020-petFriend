@@ -73,6 +73,7 @@ public class ZivotinjaServiceApplication {
             cuko.getVakcine().add(vak);
 
             cuko.setKorisnikId(kor);
+            cuko.setUdomljena(true);
             zRepo.save(cuko);
             aRepo.save(anketa);
             cuko.preuzmiSliku();
