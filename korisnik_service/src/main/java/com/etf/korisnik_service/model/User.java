@@ -2,6 +2,7 @@ package com.etf.korisnik_service.model;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.github.underscore.lodash.U;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
@@ -61,6 +62,10 @@ public class User {
         this.phoneNumber = phoneNumber;
         this.jmbg = jmbg;
         this.gender = gender;
+    }
+
+    public static User getDummyUser() {
+        return new User("maja majic",new Date(1997,1,23),"maja@gmail.com","maja123","Velika Aleja","062062062","727323722272828","Z");
     }
 
     public User(String fullName, String jmbg, Role role) {

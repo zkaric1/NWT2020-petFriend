@@ -1,5 +1,7 @@
 package com.etf.korisnik_service;
 
+import com.etf.korisnik_service.model.Role;
+import com.etf.korisnik_service.model.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.Matcher;
 import org.hamcrest.Matchers;
@@ -36,5 +38,60 @@ public class RoleControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$",hasSize(3)))
                 .andExpect(MockMvcResultMatchers.jsonPath("$[0].roleName", Matchers.is("administrator")));
+    }
+
+    @org.junit.jupiter.api.Test
+    public void addRole() throws Exception {
+        Role role = new Role("mesar");
+        mockMvc.perform(MockMvcRequestBuilders.post("/uloga")
+                .content(asJsonString(role))
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isCreated());
+    }
+
+    @org.junit.jupiter.api.Test
+    public void addRoleFailed() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/uloga")
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().is4xxClientError());
+    }
+
+    @org.junit.jupiter.api.Test
+    public void editRole() throws Exception {
+        Role role = new Role("mesar1");
+        role.setId(1);
+        mockMvc.perform(MockMvcRequestBuilders.put("/uloga")
+                .content(asJsonString(role))
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().is2xxSuccessful());
+    }
+
+    @org.junit.jupiter.api.Test
+    public void editRoleFailed() throws Exception {
+        Role role = new Role("mesar1");
+        mockMvc.perform(MockMvcRequestBuilders.put("/uloga")
+                .content(asJsonString(role))
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().is5xxServerError());
+    }
+
+    @org.junit.jupiter.api.Test
+    public void getRoleWithId() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/uloga/{id}", 1)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().is2xxSuccessful());
+    }
+
+    @org.junit.jupiter.api.Test
+    public void getRoleWithIdFailed() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/uloga/{id}", 551)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().is4xxClientError())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.message", Matchers.is("Object not found")));
+
     }
 }
