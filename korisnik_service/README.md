@@ -27,7 +27,7 @@ Svi mikroservisi i Eureka moraju biti pokrenuti u isto vrijeme da bi se mogla os
 Da bi se projekat uspješno pokrenuo, u root direktorij mikroservisa potrebno je unijeti komandu mvn `spring-boot:run`
 
 ## Pokretanje testova
-Da bi se testovi uspješno pokrenuli, potrebno se navigirati u root direktorij testova (folder test) i unijeti komandu mvn test `-Dtest=ime fajla sa testovima (npr. mvn test -Dtest=UserControllerTest)`
+Da bi se testovi uspješno pokrenuli, potrebno se navigirati u root direktorij korisnik_service i unijeti komandu mvn test `-Dtest=ime fajla sa testovima (npr. mvn test -Dtest=UserControllerTest)`
 Iz nepoznatog razloga nsakon pokretanja testova time sto pokrenete citav file neki testovi ce pasti, kako bi i oni prosli morate ih pokrenuti individualno.
 ## Pristupanje swaggeru
  Swagger na sljedećem linku: http://localhost:8082/swagger-ui.html
