@@ -1,11 +1,11 @@
 ## Preduslovi za pokretanje projekta
 Da bi se projekt uspješno pokrenuo potrebno je imati instaliranu verziju `Java 1.8`. Baza koja se trenutno koristi je `H2 Database Engine`. Postavke za bazu su sljedeće.
 ```
-server.port=<server>
-spring.application.name=<ime mikro servisa>
+server.port=8080
+spring.application.name=zivotinjaService
 spring.h2.console.enabled=true
-spring.datasource.username=<username za bazu>
-spring.datasource.password=<password za bazu>
+spring.datasource.username=mace
+spring.datasource.password=cuke
 eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka
 
 ```
