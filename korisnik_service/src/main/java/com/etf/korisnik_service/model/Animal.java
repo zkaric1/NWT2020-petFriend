@@ -18,6 +18,8 @@ public class Animal {
     }
 
     public Animal(Integer animalId, String name, String species, String gender) {
+        this.animalId = animalId;
+        this.name = name;
         this.species = species;
         this.gender = gender;
     }
@@ -62,11 +64,12 @@ public class Animal {
         this.gender = spol;
     }
 
-
     @Override
     public String toString() {
         return "Animal{" +
                 "id=" + id +
+                ", animalId=" + animalId +
+                ", name='" + name + '\'' +
                 ", species='" + species + '\'' +
                 ", gender='" + gender + '\'' +
                 '}';

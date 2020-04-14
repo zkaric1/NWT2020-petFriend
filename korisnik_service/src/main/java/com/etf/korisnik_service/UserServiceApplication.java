@@ -60,9 +60,9 @@ public class UserServiceApplication {
             //zivotinje
             Animal z1 = animalRepository.save(new Animal(1,"mica","macka", "Z"));
             Animal z2 = animalRepository.save(new Animal(2,"laki","pas", "M"));
-            Animal z3 = animalRepository.save(new Animal(1,"mica1","macka", "Z"));
-            Animal z4 = animalRepository.save(new Animal(1,"mica2","macka", "Z"));
-            Animal z5 = animalRepository.save(new Animal(1,"mica3","macka", "Z"));
+            Animal z3 = animalRepository.save(new Animal(3,"mica1","macka", "Z"));
+            Animal z4 = animalRepository.save(new Animal(4,"mica2","macka", "Z"));
+            Animal z5 = animalRepository.save(new Animal(5,"mica3","macka", "Z"));
             log.info("Sve zivotinje \n");
             for (Animal animal : animalRepository.findAll()) {
                 log.info(animal.toString());
