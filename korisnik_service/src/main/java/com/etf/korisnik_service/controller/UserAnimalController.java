@@ -46,7 +46,7 @@ public class UserAnimalController {
         return response;
     }
 
-    @GetMapping(value = "user_animal/sveZivotinje",produces ="application/xml")
+    @GetMapping(value = "/user_animal/sveZivotinje",produces ="application/xml")
     public String dajSveZivotinje() throws Exception {
         String response = restTemplate.exchange("http://zivotinjaService/zivotinje",
                 HttpMethod.GET, null,String.class).getBody();
@@ -55,14 +55,6 @@ public class UserAnimalController {
 
     @PutMapping(value = "/udomljena/{idKorisnika}/{idZivotinje}",produces = "application/json")
     public HashMap<String,String> udomljenaZivotinja(@PathVariable Integer idKorisnika, @PathVariable Integer idZivotinje) throws Exception {
-        User user =userService.getUserById(idKorisnika);
-        if(user == null) {
-            throw new Exception("Ne postoji korisnik sa id-em "+idKorisnika);
-        }
-        Animal animal = new Animal();
-        animal.setAnimalId(idZivotinje);
-        animalService.sacuvajZivotinju(animal);
-        userAnimalService.spasiPodatke(user,animal);
-        return new ResponseMessageDTO("Uspjesno udomljena zivotinja").getHashMap();
+        return userAnimalService.udomljenaZivotinja(idKorisnika,idZivotinje);
     }
 }
