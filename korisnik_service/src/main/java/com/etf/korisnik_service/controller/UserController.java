@@ -4,6 +4,7 @@ import com.etf.korisnik_service.DTO.*;
 import com.etf.korisnik_service.exception.LoginException;
 import com.etf.korisnik_service.model.User;
 import com.etf.korisnik_service.service.UserService;
+import io.swagger.models.auth.In;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -90,5 +91,15 @@ public class UserController {
     @PutMapping("/korisnik/promijeni_email")
     HashMap<String,String> promijeniEmail(@RequestBody @Valid UserEmailDTO userEmail) throws Exception {
         return userService.resetEmail(userEmail);
+    }
+
+    @DeleteMapping("/korisnik/system/{userId}")
+    void obrisiAnektuIZivotinju(@PathVariable Integer userId) throws Exception {
+        userService.deleteAnimalAndSurvey(userId);
+    }
+
+    @GetMapping("/korisnik/softDelete/{userId}")
+    Boolean provjeriSoftDelete(@PathVariable Integer userId) throws Exception {
+        return userService.checkSoftDelete(userId);
     }
 }

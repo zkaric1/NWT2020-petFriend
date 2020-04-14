@@ -9,6 +9,8 @@ import com.etf.korisnik_service.model.UserAnimal;
 import com.etf.korisnik_service.repository.UserAnimalRepository;
 import com.etf.korisnik_service.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -165,13 +167,25 @@ public class UserService {
         if(!userRepository.existsById(userId)) {
             throw new UserException(userId);
         }
-        userRepository.findById(userId).map(user -> {
-            user.setSoftDelete(true);
-            return userRepository.save(user);
-        });
 
-        //restTemplate.exchange("http") zivotinja i anketa
+        HttpStatus responseZivotinja = restTemplate.exchange("http://zivotinjaService/korisnici/flag/"+userId, //a/korisnik"
+                HttpMethod.GET, null,String.class).getStatusCode();
+        HttpStatus responseAnketa = restTemplate.exchange("http://zivotinjaService/zivotinje/korisnik/", //a/korisnik"
+                HttpMethod.GET, null,String.class).getStatusCode();
 
+        if(responseZivotinja.is2xxSuccessful() && responseAnketa.is2xxSuccessful()) {
+            userRepository.findById(userId).map(user -> {
+                user.setSoftDelete(true);
+                return userRepository.save(user);
+            });
+        }
+    }
+
+    public Boolean checkSoftDelete(Integer userId) throws Exception {
+        if(!userRepository.existsById(userId)) {
+            throw new UserException(userId);
+        }
+        return userRepository.findById(userId).get().getSoftDelete();
     }
 
     private void deleteDependencies(Integer userId) {
