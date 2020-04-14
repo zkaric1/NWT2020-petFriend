@@ -43,9 +43,6 @@ public class UserAnimalController {
     public String dajZivotinjuOdKorisnika(@PathVariable Integer idKorisnika) throws Exception {
         String response = restTemplate.exchange("http://zivotinjaService/zivotinje/korisnik/"+idKorisnika, //a/korisnik"
                 HttpMethod.GET, null,String.class).getBody();
-        JSONObject jsonArray = XML.toJSONObject(response); //U.xmlToJson(response);
-
-        JSONObject json = new JSONObject(jsonArray);
         return response;
     }
 
