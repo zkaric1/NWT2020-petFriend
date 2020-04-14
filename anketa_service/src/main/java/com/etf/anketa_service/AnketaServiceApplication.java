@@ -82,11 +82,15 @@ public class AnketaServiceApplication {
             applicationUserRepository.save(user_1);
             ApplicationUser user_2 = new ApplicationUser();
             applicationUserRepository.save(user_2);
+            ApplicationUser user_3 = new ApplicationUser();
+            applicationUserRepository.save(user_3);
+            ApplicationUser user_4 = new ApplicationUser();
+            applicationUserRepository.save(user_4);
 
             // Kreiranje odgovora na pitanja za korisnike
-            Answer answer_1 = new Answer(possibleAnswer_1, user_1);
+            Answer answer_1 = new Answer(possibleAnswer_1, user_4);
             answerRepository.save(answer_1);
-            Answer answer_2 = new Answer(possibleAnswer_4, user_1);
+            Answer answer_2 = new Answer(possibleAnswer_4, user_4);
             answerRepository.save(answer_2);
 
             Answer answer_3 = new Answer(possibleAnswer_2, user_2);
