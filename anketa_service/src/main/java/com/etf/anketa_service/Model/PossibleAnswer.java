@@ -37,15 +37,15 @@ public class PossibleAnswer {
     private Question question;
 
     @OneToMany(mappedBy = "possibleAnswer", cascade = CascadeType.REMOVE)
-    private List<Answer> givenAnswer;
+    private List<Answer> givenAnswers;
 
     public PossibleAnswer() {}
 
-    public PossibleAnswer(String answer, Long points, Question question, List<Answer> givenAnswer) {
+    public PossibleAnswer(String answer, Long points, Question question, List<Answer> givenAnswers) {
         this.answer = answer;
         this.points = points;
         this.question = question;
-        this.givenAnswer = givenAnswer;
+        this.givenAnswers = givenAnswers;
     }
 
     public Long getId() {
@@ -80,11 +80,11 @@ public class PossibleAnswer {
         this.question = question;
     }
 
-    public List<Answer> getGivenAnswer() {
-        return givenAnswer;
+    public List<Answer> getGivenAnswers() {
+        return givenAnswers;
     }
 
-    public void setGivenAnswer(List<Answer> givenAnswer) {
-        this.givenAnswer = givenAnswer;
+    public void setGivenAnswers(List<Answer> givenAnswers) {
+        this.givenAnswers = givenAnswers;
     }
 }

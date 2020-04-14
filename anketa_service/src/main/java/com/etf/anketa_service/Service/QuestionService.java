@@ -2,7 +2,6 @@ package com.etf.anketa_service.Service;
 
 import com.etf.anketa_service.Exception.QuestionException;
 import com.etf.anketa_service.Model.Question;
-import com.etf.anketa_service.Model.Survey;
 import com.etf.anketa_service.Repository.QuestionRepository;
 import net.minidev.json.JSONObject;
 import org.springframework.http.HttpStatus;

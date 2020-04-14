@@ -56,7 +56,7 @@ public class AnketaServiceApplication {
             questionRepository.save(question_1);
             Question question_2 = new Question("Da li imate djece?", true, null, testSurvey_1);
             questionRepository.save(question_2);
-            Question question_3 = new Question("Da li namjeravate udomiti jos zivotinja u buducnosti?", false, null, testSurvey_1);
+            Question question_3 = new Question("Da li namjeravate udomiti jos zivotinja u buducnosti?", false, null, testSurvey_2);
             questionRepository.save(question_3);
 
             // Kreiranje ponudjenih odgovora
