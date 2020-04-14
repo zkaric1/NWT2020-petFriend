@@ -22,14 +22,19 @@ public class ApplicationUserController {
         this.applicationUserService = applicationUserService;
     }
 
-    @GetMapping(path = "/all")
+    @GetMapping(path = "/getAll")
     List<ApplicationUser> getAllUsers() {
         return applicationUserService.getAll();
     }
 
-    @GetMapping
+    @GetMapping(path = "/getById")
     ApplicationUser getSpecifiedUser(@RequestParam(name = "id", required = true) Long applicationUserId) {
         return applicationUserService.findById(applicationUserId);
+    }
+
+    @GetMapping(path = "/getPointsForSurvey")
+    Long getPointsForSurvey(@RequestParam(name = "id", required = true) Long applicationUserId, @RequestParam(name = "surveyId", required = true) Long surveyId) {
+        return applicationUserService.getPointsForSurvey(applicationUserId, surveyId);
     }
 
     @DeleteMapping(path = "/deleteById")

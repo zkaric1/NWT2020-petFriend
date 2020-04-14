@@ -24,7 +24,7 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true)
+    @Column
     @NotNull(message = "Obavezno je zadati tekst pitanja!")
     private String questionText;
 

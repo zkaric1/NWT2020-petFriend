@@ -24,12 +24,12 @@ public class AnimalController {
         this.animalService = animalService;
     }
 
-    @GetMapping(path = "/all")
+    @GetMapping(path = "/getAll")
     List<Animal> getAllAnimals() {
         return animalService.getAll();
     }
 
-    @GetMapping
+    @GetMapping(path = "/getById")
     Animal getSpecifiedAnimal(@RequestParam(name = "id", required = true) Long animalId) {
         return animalService.findById(animalId);
     }

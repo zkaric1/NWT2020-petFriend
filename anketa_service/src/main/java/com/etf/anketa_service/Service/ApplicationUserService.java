@@ -19,6 +19,10 @@ public class ApplicationUserService {
         return applicationUserRepository.findAll();
     }
 
+    public Long getPointsForSurvey(Long applicationUserId, Long surveyId) {
+        return applicationUserRepository.getPointsForSpecifiedSurvey(applicationUserId, surveyId);
+    }
+
     public ApplicationUser findById(Long id) {
         return applicationUserRepository.findById(id).orElseThrow(() -> new ApplicationUserException(id));
     }

@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SurveyService {
@@ -39,5 +40,34 @@ public class SurveyService {
         JSONObject returnValue = new JSONObject();
         returnValue.put("message", "Uspjesno obrisane ankete!");
         return new ResponseEntity<>(returnValue, HttpStatus.OK);
+    }
+
+    public ResponseEntity<JSONObject> deleteSpecifiedSurvey(Long surveyId) {
+        JSONObject returnValue = new JSONObject();
+        try {
+            surveyRepository.deleteById(surveyId);
+            returnValue.put("message", "Uspjesno obrisana anketa!");
+            return new ResponseEntity<>(returnValue, HttpStatus.OK);
+        }
+        catch(Exception err) {
+            returnValue.put("message", err.getMessage());
+            return new ResponseEntity<>(returnValue, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    public Survey putSurvey(Survey newSurvey, Long idSurvey) {
+        Optional<Survey> toEdit = surveyRepository.findById(idSurvey);
+        if(!toEdit.isPresent()) {
+            surveyRepository.save(newSurvey);
+            return newSurvey;
+        }
+        else {
+            toEdit.get().setSurveyQuestions(newSurvey.getSurveyQuestions());
+            toEdit.get().setActive(newSurvey.isActive());
+            toEdit.get().setAnimal(newSurvey.getAnimal());
+            toEdit.get().setDescription(newSurvey.getDescription());
+            surveyRepository.save(toEdit.get());
+            return toEdit.get();
+        }
     }
 }

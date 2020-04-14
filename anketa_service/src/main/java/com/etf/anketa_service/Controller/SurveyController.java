@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,7 +25,7 @@ public class SurveyController {
         this.surveyService = surveyService;
     }
 
-    @GetMapping
+    @GetMapping(path = "/getAll")
     List<Survey> getAllSurveys() {
         return surveyService.getAllSurveys();
     }
@@ -39,13 +40,23 @@ public class SurveyController {
         return surveyService.getByActiveStatus(active);
     }
 
-    @DeleteMapping
+    @DeleteMapping(path = "/deleteAll")
     ResponseEntity<JSONObject> deleteAllSurveys() {
         return surveyService.deleteAll();
+    }
+
+    @DeleteMapping(path = "/deleteById")
+    ResponseEntity<JSONObject> deleteSpecifiedSurvey(@RequestParam(name = "id", required = true) Long id) {
+        return surveyService.deleteSpecifiedSurvey(id);
     }
 
     @PostMapping
     Survey addSurvey(@Valid @RequestBody Survey survey) {
         return surveyService.addSurvey(survey);
+    }
+
+    @PutMapping
+    Survey editSurvey(@Valid @RequestBody Survey newSurvey, @RequestParam(name = "id", required = true) Long surveyId) {
+        return surveyService.putSurvey(newSurvey, surveyId);
     }
 }

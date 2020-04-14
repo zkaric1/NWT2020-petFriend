@@ -84,4 +84,23 @@ public class SurveyControllerTests {
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.message", Matchers.is("Uspjesno obrisane ankete!")));
     }
+
+    @org.junit.jupiter.api.Test
+    public void deleteSpecifiedSurvey() throws Exception {
+        int id = 1;
+        mockMvc.perform(MockMvcRequestBuilders.delete("/v1/survey/deleteById")
+                .param("id", String.valueOf(id))
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.message", Matchers.is("Uspjesno obrisana anketa!")));
+    }
+
+    @org.junit.jupiter.api.Test
+    public void failDeletingSpecifiedSurvey() throws Exception {
+        int id = -5;
+        mockMvc.perform(MockMvcRequestBuilders.delete("/v1/survey/deleteById")
+                .param("id", String.valueOf(id))
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+    }
 }
