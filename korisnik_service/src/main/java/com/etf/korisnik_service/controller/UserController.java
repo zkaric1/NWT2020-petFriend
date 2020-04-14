@@ -102,4 +102,9 @@ public class UserController {
     Boolean provjeriSoftDelete(@PathVariable Integer userId) throws Exception {
         return userService.checkSoftDelete(userId);
     }
+
+    @DeleteMapping("/korisnik/softDelete/oobrisi_sve")
+    void obrisiSveSaSoftDelete() {
+        userService.deleteAllWithSoftDelete();
+    }
 }

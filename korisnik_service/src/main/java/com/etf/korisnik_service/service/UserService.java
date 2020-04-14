@@ -168,9 +168,9 @@ public class UserService {
             throw new UserException(userId);
         }
 
-        HttpStatus responseZivotinja = restTemplate.exchange("http://zivotinjaService/korisnici/flag/"+userId, //a/korisnik"
+        HttpStatus responseZivotinja = restTemplate.exchange("http://zivotinjaService/korisnici/flag/"+userId,
                 HttpMethod.GET, null,String.class).getStatusCode();
-        HttpStatus responseAnketa = restTemplate.exchange("http://zivotinjaService/zivotinje/korisnik/", //a/korisnik"
+        HttpStatus responseAnketa = restTemplate.exchange("http://anketaService/v1/applicationUser/deleteById?id="+userId,
                 HttpMethod.GET, null,String.class).getStatusCode();
 
         if(responseZivotinja.is2xxSuccessful() && responseAnketa.is2xxSuccessful()) {
@@ -186,6 +186,10 @@ public class UserService {
             throw new UserException(userId);
         }
         return userRepository.findById(userId).get().getSoftDelete();
+    }
+
+    public void deleteAllWithSoftDelete() {
+        userRepository.deleteAllBySoftDelete(true);
     }
 
     private void deleteDependencies(Integer userId) {
