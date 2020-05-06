@@ -1,29 +1,31 @@
 syntax = "proto3";
 import "google/protobuf/timestamp.proto";
 
-service action{
-  rpc logAction(Request)  returns (APIResponse);
+option java_package = "com.example.systemevents";
+service SystemEvents{
+  rpc logAction(Request)  returns (Response);
 }
 
 message Request{
-  google.protobuf.Timestamp timestamp = 1;
-  string serviceName = 2 ;
-  int64 userId = 3 ;
-  enum ActionType {
-      CREATE = 0;
-      DELETE = 1;
-      GET = 2;
-      UPDATE = 3;
+  enum tipAkcije {
+    CREATE = 0;
+    DELETE = 1;
+    GET = 2;
+    UPDATE = 3;
   }
-  ActionType actionType = 4;
-  string resourceName = 5;
+
+  google.protobuf.Timestamp timeStampAkcije = 1;
+  string nazivMikroservisa = 2 ;
+  string Korisnik = 3 ;
+  tipAkcije Akcija = 4;
+  string nazivResursa = 5;
 }
 
-message APIResponse{
-  enum ResponseType {
-    SUCCESS = 0;
-    ERROR = 1;
+message Response{
+  enum tipOdgovora {
+    USPJESNO = 0;
+    GRESKA = 1;
   }
-  string responseMessage = 1;
-  ResponseType responseType = 2;
+  string porukaOdgovora = 1;
+  tipOdgovora Odgovor= 2;
 }
