@@ -15,7 +15,7 @@ public class SystemEventsApplication {
         SpringApplication.run(SystemEventsApplication.class, args);
         Server server = ServerBuilder.forPort(8083).addService(new SystemEventsService()).build();
         server.start();
-        System.out.println("gRPC running on port 8083 successfully!\n");
+        System.out.println("gRPC server runing on port " + server.getPort());
         server.awaitTermination();
     }
 }
