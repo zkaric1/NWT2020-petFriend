@@ -2,7 +2,6 @@ package com.example.systemevents;
 import com.example.systemevents.PetFriend.Request;
 import com.example.systemevents.PetFriend.Response;
 import io.grpc.stub.StreamObserver;
-import org.apache.ibatis.mapping.Environment;
 
 public class SystemEventsService extends SystemEventsGrpc.SystemEventsImplBase {
 
