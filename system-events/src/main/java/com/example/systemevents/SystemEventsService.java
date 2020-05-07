@@ -4,10 +4,11 @@ import com.example.systemevents.PetFriend.Response;
 import io.grpc.stub.StreamObserver;
 
 public class SystemEventsService extends SystemEventsGrpc.SystemEventsImplBase {
-    public void start(Request request, StreamObserver<Response> responseObserver) {
+    @Override
+    public void logAction(Request request, StreamObserver<Response> responseObserver) {
         String Odgovor = new StringBuilder()
                 .append("Servis, ")
-                .append(request.getTimeStampAkcije())
+                .append("Vrijeme " + request.getTimeStampAkcije() + "")
                 .append(request.getNazivMikroservisa())
                 .append(request.getAkcija())
                 .append(request.getNazivResursa())
