@@ -1,4 +1,4 @@
-package com.example.systemevents;
+package com.etf.systemevents;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
 import static io.grpc.stub.ClientCalls.asyncUnaryCall;
@@ -10,8 +10,8 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 /**
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.15.0)",
-    comments = "Source: petFriend.proto")
+        value = "by gRPC proto compiler (version 1.15.0)",
+        comments = "Source: petFriend.proto")
 public final class SystemEventsGrpc {
 
   private SystemEventsGrpc() {}
@@ -19,36 +19,36 @@ public final class SystemEventsGrpc {
   public static final String SERVICE_NAME = "SystemEvents";
 
   // Static method descriptors that strictly reflect the proto.
-  private static volatile io.grpc.MethodDescriptor<com.example.systemevents.PetFriend.Request,
-      com.example.systemevents.PetFriend.Response> getLogActionMethod;
+  private static volatile io.grpc.MethodDescriptor<com.etf.systemevents.PetFriend.Request,
+          com.etf.systemevents.PetFriend.Response> getLogActionMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "logAction",
-      requestType = com.example.systemevents.PetFriend.Request.class,
-      responseType = com.example.systemevents.PetFriend.Response.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<com.example.systemevents.PetFriend.Request,
-      com.example.systemevents.PetFriend.Response> getLogActionMethod() {
-    io.grpc.MethodDescriptor<com.example.systemevents.PetFriend.Request, com.example.systemevents.PetFriend.Response> getLogActionMethod;
+          fullMethodName = SERVICE_NAME + '/' + "logAction",
+          requestType = com.etf.systemevents.PetFriend.Request.class,
+          responseType = com.etf.systemevents.PetFriend.Response.class,
+          methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.etf.systemevents.PetFriend.Request,
+          com.etf.systemevents.PetFriend.Response> getLogActionMethod() {
+    io.grpc.MethodDescriptor<com.etf.systemevents.PetFriend.Request, com.etf.systemevents.PetFriend.Response> getLogActionMethod;
     if ((getLogActionMethod = SystemEventsGrpc.getLogActionMethod) == null) {
       synchronized (SystemEventsGrpc.class) {
         if ((getLogActionMethod = SystemEventsGrpc.getLogActionMethod) == null) {
-          SystemEventsGrpc.getLogActionMethod = getLogActionMethod = 
-              io.grpc.MethodDescriptor.<com.example.systemevents.PetFriend.Request, com.example.systemevents.PetFriend.Response>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(
-                  "SystemEvents", "logAction"))
-              .setSampledToLocalTracing(true)
-              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.example.systemevents.PetFriend.Request.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  com.example.systemevents.PetFriend.Response.getDefaultInstance()))
-                  .setSchemaDescriptor(new SystemEventsMethodDescriptorSupplier("logAction"))
-                  .build();
-          }
+          SystemEventsGrpc.getLogActionMethod = getLogActionMethod =
+                  io.grpc.MethodDescriptor.<com.etf.systemevents.PetFriend.Request, com.etf.systemevents.PetFriend.Response>newBuilder()
+                          .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+                          .setFullMethodName(generateFullMethodName(
+                                  "SystemEvents", "logAction"))
+                          .setSampledToLocalTracing(true)
+                          .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                                  com.etf.systemevents.PetFriend.Request.getDefaultInstance()))
+                          .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                                  com.etf.systemevents.PetFriend.Response.getDefaultInstance()))
+                          .setSchemaDescriptor(new SystemEventsMethodDescriptorSupplier("logAction"))
+                          .build();
         }
-     }
-     return getLogActionMethod;
+      }
+    }
+    return getLogActionMethod;
   }
 
   /**
@@ -62,7 +62,7 @@ public final class SystemEventsGrpc {
    * Creates a new blocking-style stub that supports unary and streaming output calls on the service
    */
   public static SystemEventsBlockingStub newBlockingStub(
-      io.grpc.Channel channel) {
+          io.grpc.Channel channel) {
     return new SystemEventsBlockingStub(channel);
   }
 
@@ -70,7 +70,7 @@ public final class SystemEventsGrpc {
    * Creates a new ListenableFuture-style stub that supports unary calls on the service
    */
   public static SystemEventsFutureStub newFutureStub(
-      io.grpc.Channel channel) {
+          io.grpc.Channel channel) {
     return new SystemEventsFutureStub(channel);
   }
 
@@ -80,21 +80,21 @@ public final class SystemEventsGrpc {
 
     /**
      */
-    public void logAction(com.example.systemevents.PetFriend.Request request,
-        io.grpc.stub.StreamObserver<com.example.systemevents.PetFriend.Response> responseObserver) {
+    public void logAction(com.etf.systemevents.PetFriend.Request request,
+                          io.grpc.stub.StreamObserver<com.etf.systemevents.PetFriend.Response> responseObserver) {
       asyncUnimplementedUnaryCall(getLogActionMethod(), responseObserver);
     }
 
     @Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
-          .addMethod(
-            getLogActionMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                com.example.systemevents.PetFriend.Request,
-                com.example.systemevents.PetFriend.Response>(
-                  this, METHODID_LOG_ACTION)))
-          .build();
+              .addMethod(
+                      getLogActionMethod(),
+                      asyncUnaryCall(
+                              new MethodHandlers<
+                                      com.etf.systemevents.PetFriend.Request,
+                                      com.etf.systemevents.PetFriend.Response>(
+                                      this, METHODID_LOG_ACTION)))
+              .build();
     }
   }
 
@@ -106,22 +106,22 @@ public final class SystemEventsGrpc {
     }
 
     private SystemEventsStub(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+                             io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @Override
     protected SystemEventsStub build(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+                                     io.grpc.CallOptions callOptions) {
       return new SystemEventsStub(channel, callOptions);
     }
 
     /**
      */
-    public void logAction(com.example.systemevents.PetFriend.Request request,
-        io.grpc.stub.StreamObserver<com.example.systemevents.PetFriend.Response> responseObserver) {
+    public void logAction(com.etf.systemevents.PetFriend.Request request,
+                          io.grpc.stub.StreamObserver<com.etf.systemevents.PetFriend.Response> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(getLogActionMethod(), getCallOptions()), request, responseObserver);
+              getChannel().newCall(getLogActionMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -133,21 +133,21 @@ public final class SystemEventsGrpc {
     }
 
     private SystemEventsBlockingStub(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+                                     io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @Override
     protected SystemEventsBlockingStub build(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+                                             io.grpc.CallOptions callOptions) {
       return new SystemEventsBlockingStub(channel, callOptions);
     }
 
     /**
      */
-    public com.example.systemevents.PetFriend.Response logAction(com.example.systemevents.PetFriend.Request request) {
+    public com.etf.systemevents.PetFriend.Response logAction(com.etf.systemevents.PetFriend.Request request) {
       return blockingUnaryCall(
-          getChannel(), getLogActionMethod(), getCallOptions(), request);
+              getChannel(), getLogActionMethod(), getCallOptions(), request);
     }
   }
 
@@ -159,32 +159,32 @@ public final class SystemEventsGrpc {
     }
 
     private SystemEventsFutureStub(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+                                   io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @Override
     protected SystemEventsFutureStub build(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+                                           io.grpc.CallOptions callOptions) {
       return new SystemEventsFutureStub(channel, callOptions);
     }
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<com.example.systemevents.PetFriend.Response> logAction(
-        com.example.systemevents.PetFriend.Request request) {
+    public com.google.common.util.concurrent.ListenableFuture<com.etf.systemevents.PetFriend.Response> logAction(
+            com.etf.systemevents.PetFriend.Request request) {
       return futureUnaryCall(
-          getChannel().newCall(getLogActionMethod(), getCallOptions()), request);
+              getChannel().newCall(getLogActionMethod(), getCallOptions()), request);
     }
   }
 
   private static final int METHODID_LOG_ACTION = 0;
 
   private static final class MethodHandlers<Req, Resp> implements
-      io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
-      io.grpc.stub.ServerCalls.ServerStreamingMethod<Req, Resp>,
-      io.grpc.stub.ServerCalls.ClientStreamingMethod<Req, Resp>,
-      io.grpc.stub.ServerCalls.BidiStreamingMethod<Req, Resp> {
+          io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
+          io.grpc.stub.ServerCalls.ServerStreamingMethod<Req, Resp>,
+          io.grpc.stub.ServerCalls.ClientStreamingMethod<Req, Resp>,
+          io.grpc.stub.ServerCalls.BidiStreamingMethod<Req, Resp> {
     private final SystemEventsImplBase serviceImpl;
     private final int methodId;
 
@@ -198,8 +198,8 @@ public final class SystemEventsGrpc {
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
         case METHODID_LOG_ACTION:
-          serviceImpl.logAction((com.example.systemevents.PetFriend.Request) request,
-              (io.grpc.stub.StreamObserver<com.example.systemevents.PetFriend.Response>) responseObserver);
+          serviceImpl.logAction((com.etf.systemevents.PetFriend.Request) request,
+                  (io.grpc.stub.StreamObserver<com.etf.systemevents.PetFriend.Response>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -209,7 +209,7 @@ public final class SystemEventsGrpc {
     @Override
     @SuppressWarnings("unchecked")
     public io.grpc.stub.StreamObserver<Req> invoke(
-        io.grpc.stub.StreamObserver<Resp> responseObserver) {
+            io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
         default:
           throw new AssertionError();
@@ -218,12 +218,12 @@ public final class SystemEventsGrpc {
   }
 
   private static abstract class SystemEventsBaseDescriptorSupplier
-      implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
+          implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
     SystemEventsBaseDescriptorSupplier() {}
 
     @Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
-      return com.example.systemevents.PetFriend.getDescriptor();
+      return com.etf.systemevents.PetFriend.getDescriptor();
     }
 
     @Override
@@ -233,13 +233,13 @@ public final class SystemEventsGrpc {
   }
 
   private static final class SystemEventsFileDescriptorSupplier
-      extends SystemEventsBaseDescriptorSupplier {
+          extends SystemEventsBaseDescriptorSupplier {
     SystemEventsFileDescriptorSupplier() {}
   }
 
   private static final class SystemEventsMethodDescriptorSupplier
-      extends SystemEventsBaseDescriptorSupplier
-      implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
+          extends SystemEventsBaseDescriptorSupplier
+          implements io.grpc.protobuf.ProtoMethodDescriptorSupplier {
     private final String methodName;
 
     SystemEventsMethodDescriptorSupplier(String methodName) {
@@ -261,9 +261,9 @@ public final class SystemEventsGrpc {
         result = serviceDescriptor;
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
-              .setSchemaDescriptor(new SystemEventsFileDescriptorSupplier())
-              .addMethod(getLogActionMethod())
-              .build();
+                  .setSchemaDescriptor(new SystemEventsFileDescriptorSupplier())
+                  .addMethod(getLogActionMethod())
+                  .build();
         }
       }
     }

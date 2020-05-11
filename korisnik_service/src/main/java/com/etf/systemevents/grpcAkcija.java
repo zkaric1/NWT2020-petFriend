@@ -1,4 +1,4 @@
-package com.example.systemevents;
+package com.etf.systemevents;
 
 import java.util.Date;
 

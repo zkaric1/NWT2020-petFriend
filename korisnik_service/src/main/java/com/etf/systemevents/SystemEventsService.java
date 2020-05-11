@@ -1,6 +1,6 @@
-package com.example.systemevents;
-import com.example.systemevents.PetFriend.Request;
-import com.example.systemevents.PetFriend.Response;
+package com.etf.systemevents;
+import com.etf.systemevents.PetFriend.Request;
+import com.etf.systemevents.PetFriend.Response;
 import io.grpc.stub.StreamObserver;
 
 public class SystemEventsService extends SystemEventsGrpc.SystemEventsImplBase {
