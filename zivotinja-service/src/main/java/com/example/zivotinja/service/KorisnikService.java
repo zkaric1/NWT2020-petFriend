@@ -1,9 +1,7 @@
 package com.example.zivotinja.service;
 import java.util.*;
 import com.example.zivotinja.exception.KorisnikException;
-import com.example.zivotinja.model.Bolest;
 import com.example.zivotinja.model.Korisnik;
-import com.example.zivotinja.model.Zivotinja;
 import com.example.zivotinja.repository.KorisnikRepository;
 import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;

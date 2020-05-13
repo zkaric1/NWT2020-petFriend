@@ -17,6 +17,38 @@
     <properties>
         <java.version>1.8</java.version>
     </properties>
+    <repositories>
+        <repository>
+            <id>eventuate-tram-rc</id>
+            <url>https://dl.bintray.com/eventuateio-oss/eventuate-maven-rc</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>eventuate-tram-release</id>
+            <url>https://dl.bintray.com/eventuateio-oss/eventuate-maven-release</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>eventuate-tram-snapshot</id>
+            <url>https://snapshots.repositories.eventuate.io/repository</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 
     <dependencies>
         <dependency>
@@ -112,6 +144,11 @@
             <groupId>com.google.protobuf</groupId>
             <artifactId>protobuf-java</artifactId>
             <version>3.6.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.networknt</groupId>
+            <artifactId>eventuate-event</artifactId>
+            <version>2.0.11</version>
         </dependency>
 
 
