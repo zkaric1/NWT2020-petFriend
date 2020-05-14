@@ -23,14 +23,14 @@ public class UserController {
     }
 
     //Registracija korisnika POST
-    @PostMapping("/korisnik")
+    @PostMapping("/oauth/korisnik")
     @ResponseStatus(HttpStatus.CREATED)
     User dodajKorisnika(@Valid @RequestBody User noviUser) throws NoSuchAlgorithmException {
         return userService.addUser(noviUser);
     }
 
     //Prijava
-    @PostMapping("/korisnik/prijava")
+    @PostMapping("/oauth/korisnik/prijava")
     HashMap<String, String> login(@RequestBody @Valid LoginUserDTO user) throws LoginException {
         return userService.loginUser(user);
     }
