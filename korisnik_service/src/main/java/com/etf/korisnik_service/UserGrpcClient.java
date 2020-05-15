@@ -20,6 +20,7 @@ public class UserGrpcClient {
         PetFriend.Request zahtjev = PetFriend.Request.newBuilder()
                 .setTimeStampAkcije(vrijeme)
                 .setNazivMikroservisa("Korisnik MS")
+                .setKorisnik("Zlata")
                 .setNazivResursa("Korisnik")
                 .build();
 
