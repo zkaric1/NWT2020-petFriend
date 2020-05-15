@@ -34,7 +34,7 @@ public final class PetFriend {
     /**
      * <code>string nazivMikroservisa = 2;</code>
      */
-    String getNazivMikroservisa();
+    java.lang.String getNazivMikroservisa();
     /**
      * <code>string nazivMikroservisa = 2;</code>
      */
@@ -44,7 +44,7 @@ public final class PetFriend {
     /**
      * <code>string Korisnik = 3;</code>
      */
-    String getKorisnik();
+    java.lang.String getKorisnik();
     /**
      * <code>string Korisnik = 3;</code>
      */
@@ -63,7 +63,7 @@ public final class PetFriend {
     /**
      * <code>string nazivResursa = 5;</code>
      */
-    String getNazivResursa();
+    java.lang.String getNazivResursa();
     /**
      * <code>string nazivResursa = 5;</code>
      */
@@ -89,7 +89,7 @@ public final class PetFriend {
       nazivResursa_ = "";
     }
 
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -100,7 +100,7 @@ public final class PetFriend {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new NullPointerException();
+        throw new java.lang.NullPointerException();
       }
       int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
@@ -127,13 +127,13 @@ public final class PetFriend {
               break;
             }
             case 18: {
-              String s = input.readStringRequireUtf8();
+              java.lang.String s = input.readStringRequireUtf8();
 
               nazivMikroservisa_ = s;
               break;
             }
             case 26: {
-              String s = input.readStringRequireUtf8();
+              java.lang.String s = input.readStringRequireUtf8();
 
               korisnik_ = s;
               break;
@@ -145,7 +145,7 @@ public final class PetFriend {
               break;
             }
             case 42: {
-              String s = input.readStringRequireUtf8();
+              java.lang.String s = input.readStringRequireUtf8();
 
               nazivResursa_ = s;
               break;
@@ -171,13 +171,13 @@ public final class PetFriend {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return internal_static_Request_descriptor;
+      return com.example.systemevents.PetFriend.internal_static_Request_descriptor;
     }
 
-    @Override
-    protected FieldAccessorTable
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return internal_static_Request_fieldAccessorTable
+      return com.example.systemevents.PetFriend.internal_static_Request_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               com.example.systemevents.PetFriend.Request.class, com.example.systemevents.PetFriend.Request.Builder.class);
     }
@@ -226,7 +226,7 @@ public final class PetFriend {
 
       public final int getNumber() {
         if (this == UNRECOGNIZED) {
-          throw new IllegalArgumentException(
+          throw new java.lang.IllegalArgumentException(
               "Can't get the number of an unknown enum value.");
         }
         return value;
@@ -235,7 +235,7 @@ public final class PetFriend {
       /**
        * @deprecated Use {@link #forNumber(int)} instead.
        */
-      @Deprecated
+      @java.lang.Deprecated
       public static tipAkcije valueOf(int value) {
         return forNumber(value);
       }
@@ -280,7 +280,7 @@ public final class PetFriend {
       public static tipAkcije valueOf(
           com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
-          throw new IllegalArgumentException(
+          throw new java.lang.IllegalArgumentException(
             "EnumValueDescriptor is not for this type.");
         }
         if (desc.getIndex() == -1) {
@@ -320,18 +320,18 @@ public final class PetFriend {
     }
 
     public static final int NAZIVMIKROSERVISA_FIELD_NUMBER = 2;
-    private volatile Object nazivMikroservisa_;
+    private volatile java.lang.Object nazivMikroservisa_;
     /**
      * <code>string nazivMikroservisa = 2;</code>
      */
-    public String getNazivMikroservisa() {
-      Object ref = nazivMikroservisa_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getNazivMikroservisa() {
+      java.lang.Object ref = nazivMikroservisa_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
+        com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         nazivMikroservisa_ = s;
         return s;
       }
@@ -341,11 +341,11 @@ public final class PetFriend {
      */
     public com.google.protobuf.ByteString
         getNazivMikroservisaBytes() {
-      Object ref = nazivMikroservisa_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
+      java.lang.Object ref = nazivMikroservisa_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         nazivMikroservisa_ = b;
         return b;
       } else {
@@ -354,18 +354,18 @@ public final class PetFriend {
     }
 
     public static final int KORISNIK_FIELD_NUMBER = 3;
-    private volatile Object korisnik_;
+    private volatile java.lang.Object korisnik_;
     /**
      * <code>string Korisnik = 3;</code>
      */
-    public String getKorisnik() {
-      Object ref = korisnik_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getKorisnik() {
+      java.lang.Object ref = korisnik_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
+        com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         korisnik_ = s;
         return s;
       }
@@ -375,11 +375,11 @@ public final class PetFriend {
      */
     public com.google.protobuf.ByteString
         getKorisnikBytes() {
-      Object ref = korisnik_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
+      java.lang.Object ref = korisnik_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         korisnik_ = b;
         return b;
       } else {
@@ -405,18 +405,18 @@ public final class PetFriend {
     }
 
     public static final int NAZIVRESURSA_FIELD_NUMBER = 5;
-    private volatile Object nazivResursa_;
+    private volatile java.lang.Object nazivResursa_;
     /**
      * <code>string nazivResursa = 5;</code>
      */
-    public String getNazivResursa() {
-      Object ref = nazivResursa_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getNazivResursa() {
+      java.lang.Object ref = nazivResursa_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
+        com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         nazivResursa_ = s;
         return s;
       }
@@ -426,11 +426,11 @@ public final class PetFriend {
      */
     public com.google.protobuf.ByteString
         getNazivResursaBytes() {
-      Object ref = nazivResursa_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
+      java.lang.Object ref = nazivResursa_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         nazivResursa_ = b;
         return b;
       } else {
@@ -439,7 +439,7 @@ public final class PetFriend {
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
+    @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -449,7 +449,7 @@ public final class PetFriend {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (timeStampAkcije_ != null) {
@@ -470,7 +470,7 @@ public final class PetFriend {
       unknownFields.writeTo(output);
     }
 
-    @Override
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -498,8 +498,8 @@ public final class PetFriend {
       return size;
     }
 
-    @Override
-    public boolean equals(final Object obj) {
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
        return true;
       }
@@ -525,7 +525,7 @@ public final class PetFriend {
       return result;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -619,7 +619,7 @@ public final class PetFriend {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
+    @java.lang.Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
@@ -627,15 +627,15 @@ public final class PetFriend {
     public static Builder newBuilder(com.example.systemevents.PetFriend.Request prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
+    @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -648,13 +648,13 @@ public final class PetFriend {
         com.example.systemevents.PetFriend.RequestOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return internal_static_Request_descriptor;
+        return com.example.systemevents.PetFriend.internal_static_Request_descriptor;
       }
 
-      @Override
-      protected FieldAccessorTable
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return internal_static_Request_fieldAccessorTable
+        return com.example.systemevents.PetFriend.internal_static_Request_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                 com.example.systemevents.PetFriend.Request.class, com.example.systemevents.PetFriend.Request.Builder.class);
       }
@@ -665,7 +665,7 @@ public final class PetFriend {
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -674,7 +674,7 @@ public final class PetFriend {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @Override
+      @java.lang.Override
       public Builder clear() {
         super.clear();
         if (timeStampAkcijeBuilder_ == null) {
@@ -694,18 +694,18 @@ public final class PetFriend {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return internal_static_Request_descriptor;
+        return com.example.systemevents.PetFriend.internal_static_Request_descriptor;
       }
 
-      @Override
+      @java.lang.Override
       public com.example.systemevents.PetFriend.Request getDefaultInstanceForType() {
-        return getDefaultInstance();
+        return com.example.systemevents.PetFriend.Request.getDefaultInstance();
       }
 
-      @Override
+      @java.lang.Override
       public com.example.systemevents.PetFriend.Request build() {
         com.example.systemevents.PetFriend.Request result = buildPartial();
         if (!result.isInitialized()) {
@@ -714,7 +714,7 @@ public final class PetFriend {
         return result;
       }
 
-      @Override
+      @java.lang.Override
       public com.example.systemevents.PetFriend.Request buildPartial() {
         com.example.systemevents.PetFriend.Request result = new com.example.systemevents.PetFriend.Request(this);
         if (timeStampAkcijeBuilder_ == null) {
@@ -730,39 +730,39 @@ public final class PetFriend {
         return result;
       }
 
-      @Override
+      @java.lang.Override
       public Builder clone() {
         return (Builder) super.clone();
       }
-      @Override
+      @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return (Builder) super.clearField(field);
       }
-      @Override
+      @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return (Builder) super.clearOneof(oneof);
       }
-      @Override
+      @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
-      @Override
+      @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.example.systemevents.PetFriend.Request) {
           return mergeFrom((com.example.systemevents.PetFriend.Request)other);
@@ -773,7 +773,7 @@ public final class PetFriend {
       }
 
       public Builder mergeFrom(com.example.systemevents.PetFriend.Request other) {
-        if (other == getDefaultInstance()) return this;
+        if (other == com.example.systemevents.PetFriend.Request.getDefaultInstance()) return this;
         if (other.hasTimeStampAkcije()) {
           mergeTimeStampAkcije(other.getTimeStampAkcije());
         }
@@ -797,12 +797,12 @@ public final class PetFriend {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -906,7 +906,7 @@ public final class PetFriend {
        * <code>.google.protobuf.Timestamp timeStampAkcije = 1;</code>
        */
       public com.google.protobuf.Timestamp.Builder getTimeStampAkcijeBuilder() {
-
+        
         onChanged();
         return getTimeStampAkcijeFieldBuilder().getBuilder();
       }
@@ -925,7 +925,7 @@ public final class PetFriend {
        * <code>.google.protobuf.Timestamp timeStampAkcije = 1;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder>
+          com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
           getTimeStampAkcijeFieldBuilder() {
         if (timeStampAkcijeBuilder_ == null) {
           timeStampAkcijeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -938,20 +938,20 @@ public final class PetFriend {
         return timeStampAkcijeBuilder_;
       }
 
-      private Object nazivMikroservisa_ = "";
+      private java.lang.Object nazivMikroservisa_ = "";
       /**
        * <code>string nazivMikroservisa = 2;</code>
        */
-      public String getNazivMikroservisa() {
-        Object ref = nazivMikroservisa_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getNazivMikroservisa() {
+        java.lang.Object ref = nazivMikroservisa_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           nazivMikroservisa_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -959,11 +959,11 @@ public final class PetFriend {
        */
       public com.google.protobuf.ByteString
           getNazivMikroservisaBytes() {
-        Object ref = nazivMikroservisa_;
+        java.lang.Object ref = nazivMikroservisa_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
+          com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           nazivMikroservisa_ = b;
           return b;
         } else {
@@ -974,11 +974,11 @@ public final class PetFriend {
        * <code>string nazivMikroservisa = 2;</code>
        */
       public Builder setNazivMikroservisa(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-
+  
         nazivMikroservisa_ = value;
         onChanged();
         return this;
@@ -987,7 +987,7 @@ public final class PetFriend {
        * <code>string nazivMikroservisa = 2;</code>
        */
       public Builder clearNazivMikroservisa() {
-
+        
         nazivMikroservisa_ = getDefaultInstance().getNazivMikroservisa();
         onChanged();
         return this;
@@ -1001,26 +1001,26 @@ public final class PetFriend {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-
+        
         nazivMikroservisa_ = value;
         onChanged();
         return this;
       }
 
-      private Object korisnik_ = "";
+      private java.lang.Object korisnik_ = "";
       /**
        * <code>string Korisnik = 3;</code>
        */
-      public String getKorisnik() {
-        Object ref = korisnik_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getKorisnik() {
+        java.lang.Object ref = korisnik_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           korisnik_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -1028,11 +1028,11 @@ public final class PetFriend {
        */
       public com.google.protobuf.ByteString
           getKorisnikBytes() {
-        Object ref = korisnik_;
+        java.lang.Object ref = korisnik_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
+          com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           korisnik_ = b;
           return b;
         } else {
@@ -1043,11 +1043,11 @@ public final class PetFriend {
        * <code>string Korisnik = 3;</code>
        */
       public Builder setKorisnik(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-
+  
         korisnik_ = value;
         onChanged();
         return this;
@@ -1056,7 +1056,7 @@ public final class PetFriend {
        * <code>string Korisnik = 3;</code>
        */
       public Builder clearKorisnik() {
-
+        
         korisnik_ = getDefaultInstance().getKorisnik();
         onChanged();
         return this;
@@ -1070,7 +1070,7 @@ public final class PetFriend {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-
+        
         korisnik_ = value;
         onChanged();
         return this;
@@ -1106,7 +1106,7 @@ public final class PetFriend {
         if (value == null) {
           throw new NullPointerException();
         }
-
+        
         akcija_ = value.getNumber();
         onChanged();
         return this;
@@ -1115,26 +1115,26 @@ public final class PetFriend {
        * <code>.Request.tipAkcije Akcija = 4;</code>
        */
       public Builder clearAkcija() {
-
+        
         akcija_ = 0;
         onChanged();
         return this;
       }
 
-      private Object nazivResursa_ = "";
+      private java.lang.Object nazivResursa_ = "";
       /**
        * <code>string nazivResursa = 5;</code>
        */
-      public String getNazivResursa() {
-        Object ref = nazivResursa_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getNazivResursa() {
+        java.lang.Object ref = nazivResursa_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           nazivResursa_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -1142,11 +1142,11 @@ public final class PetFriend {
        */
       public com.google.protobuf.ByteString
           getNazivResursaBytes() {
-        Object ref = nazivResursa_;
+        java.lang.Object ref = nazivResursa_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
+          com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           nazivResursa_ = b;
           return b;
         } else {
@@ -1157,11 +1157,11 @@ public final class PetFriend {
        * <code>string nazivResursa = 5;</code>
        */
       public Builder setNazivResursa(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-
+  
         nazivResursa_ = value;
         onChanged();
         return this;
@@ -1170,7 +1170,7 @@ public final class PetFriend {
        * <code>string nazivResursa = 5;</code>
        */
       public Builder clearNazivResursa() {
-
+        
         nazivResursa_ = getDefaultInstance().getNazivResursa();
         onChanged();
         return this;
@@ -1184,18 +1184,18 @@ public final class PetFriend {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-
+        
         nazivResursa_ = value;
         onChanged();
         return this;
       }
-      @Override
+      @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFieldsProto3(unknownFields);
       }
 
-      @Override
+      @java.lang.Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -1217,7 +1217,7 @@ public final class PetFriend {
 
     private static final com.google.protobuf.Parser<Request>
         PARSER = new com.google.protobuf.AbstractParser<Request>() {
-      @Override
+      @java.lang.Override
       public Request parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1230,12 +1230,12 @@ public final class PetFriend {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<Request> getParserForType() {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public com.example.systemevents.PetFriend.Request getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
@@ -1249,7 +1249,7 @@ public final class PetFriend {
     /**
      * <code>string porukaOdgovora = 1;</code>
      */
-    String getPorukaOdgovora();
+    java.lang.String getPorukaOdgovora();
     /**
      * <code>string porukaOdgovora = 1;</code>
      */
@@ -1282,7 +1282,7 @@ public final class PetFriend {
       odgovor_ = 0;
     }
 
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -1293,7 +1293,7 @@ public final class PetFriend {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new NullPointerException();
+        throw new java.lang.NullPointerException();
       }
       int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
@@ -1307,7 +1307,7 @@ public final class PetFriend {
               done = true;
               break;
             case 10: {
-              String s = input.readStringRequireUtf8();
+              java.lang.String s = input.readStringRequireUtf8();
 
               porukaOdgovora_ = s;
               break;
@@ -1339,13 +1339,13 @@ public final class PetFriend {
     }
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return internal_static_Response_descriptor;
+      return com.example.systemevents.PetFriend.internal_static_Response_descriptor;
     }
 
-    @Override
-    protected FieldAccessorTable
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return internal_static_Response_fieldAccessorTable
+      return com.example.systemevents.PetFriend.internal_static_Response_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               com.example.systemevents.PetFriend.Response.class, com.example.systemevents.PetFriend.Response.Builder.class);
     }
@@ -1378,7 +1378,7 @@ public final class PetFriend {
 
       public final int getNumber() {
         if (this == UNRECOGNIZED) {
-          throw new IllegalArgumentException(
+          throw new java.lang.IllegalArgumentException(
               "Can't get the number of an unknown enum value.");
         }
         return value;
@@ -1387,7 +1387,7 @@ public final class PetFriend {
       /**
        * @deprecated Use {@link #forNumber(int)} instead.
        */
-      @Deprecated
+      @java.lang.Deprecated
       public static tipOdgovora valueOf(int value) {
         return forNumber(value);
       }
@@ -1430,7 +1430,7 @@ public final class PetFriend {
       public static tipOdgovora valueOf(
           com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
-          throw new IllegalArgumentException(
+          throw new java.lang.IllegalArgumentException(
             "EnumValueDescriptor is not for this type.");
         }
         if (desc.getIndex() == -1) {
@@ -1449,18 +1449,18 @@ public final class PetFriend {
     }
 
     public static final int PORUKAODGOVORA_FIELD_NUMBER = 1;
-    private volatile Object porukaOdgovora_;
+    private volatile java.lang.Object porukaOdgovora_;
     /**
      * <code>string porukaOdgovora = 1;</code>
      */
-    public String getPorukaOdgovora() {
-      Object ref = porukaOdgovora_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getPorukaOdgovora() {
+      java.lang.Object ref = porukaOdgovora_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
+        com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         porukaOdgovora_ = s;
         return s;
       }
@@ -1470,11 +1470,11 @@ public final class PetFriend {
      */
     public com.google.protobuf.ByteString
         getPorukaOdgovoraBytes() {
-      Object ref = porukaOdgovora_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
+      java.lang.Object ref = porukaOdgovora_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         porukaOdgovora_ = b;
         return b;
       } else {
@@ -1500,7 +1500,7 @@ public final class PetFriend {
     }
 
     private byte memoizedIsInitialized = -1;
-    @Override
+    @java.lang.Override
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized == 1) return true;
@@ -1510,7 +1510,7 @@ public final class PetFriend {
       return true;
     }
 
-    @Override
+    @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
       if (!getPorukaOdgovoraBytes().isEmpty()) {
@@ -1522,7 +1522,7 @@ public final class PetFriend {
       unknownFields.writeTo(output);
     }
 
-    @Override
+    @java.lang.Override
     public int getSerializedSize() {
       int size = memoizedSize;
       if (size != -1) return size;
@@ -1540,8 +1540,8 @@ public final class PetFriend {
       return size;
     }
 
-    @Override
-    public boolean equals(final Object obj) {
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
        return true;
       }
@@ -1558,7 +1558,7 @@ public final class PetFriend {
       return result;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -1644,7 +1644,7 @@ public final class PetFriend {
           .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
-    @Override
+    @java.lang.Override
     public Builder newBuilderForType() { return newBuilder(); }
     public static Builder newBuilder() {
       return DEFAULT_INSTANCE.toBuilder();
@@ -1652,15 +1652,15 @@ public final class PetFriend {
     public static Builder newBuilder(com.example.systemevents.PetFriend.Response prototype) {
       return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
     }
-    @Override
+    @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -1673,13 +1673,13 @@ public final class PetFriend {
         com.example.systemevents.PetFriend.ResponseOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
           getDescriptor() {
-        return internal_static_Response_descriptor;
+        return com.example.systemevents.PetFriend.internal_static_Response_descriptor;
       }
 
-      @Override
-      protected FieldAccessorTable
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
-        return internal_static_Response_fieldAccessorTable
+        return com.example.systemevents.PetFriend.internal_static_Response_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
                 com.example.systemevents.PetFriend.Response.class, com.example.systemevents.PetFriend.Response.Builder.class);
       }
@@ -1690,7 +1690,7 @@ public final class PetFriend {
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -1699,7 +1699,7 @@ public final class PetFriend {
                 .alwaysUseFieldBuilders) {
         }
       }
-      @Override
+      @java.lang.Override
       public Builder clear() {
         super.clear();
         porukaOdgovora_ = "";
@@ -1709,18 +1709,18 @@ public final class PetFriend {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
           getDescriptorForType() {
-        return internal_static_Response_descriptor;
+        return com.example.systemevents.PetFriend.internal_static_Response_descriptor;
       }
 
-      @Override
+      @java.lang.Override
       public com.example.systemevents.PetFriend.Response getDefaultInstanceForType() {
-        return getDefaultInstance();
+        return com.example.systemevents.PetFriend.Response.getDefaultInstance();
       }
 
-      @Override
+      @java.lang.Override
       public com.example.systemevents.PetFriend.Response build() {
         com.example.systemevents.PetFriend.Response result = buildPartial();
         if (!result.isInitialized()) {
@@ -1729,7 +1729,7 @@ public final class PetFriend {
         return result;
       }
 
-      @Override
+      @java.lang.Override
       public com.example.systemevents.PetFriend.Response buildPartial() {
         com.example.systemevents.PetFriend.Response result = new com.example.systemevents.PetFriend.Response(this);
         result.porukaOdgovora_ = porukaOdgovora_;
@@ -1738,39 +1738,39 @@ public final class PetFriend {
         return result;
       }
 
-      @Override
+      @java.lang.Override
       public Builder clone() {
         return (Builder) super.clone();
       }
-      @Override
+      @java.lang.Override
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder clearField(
           com.google.protobuf.Descriptors.FieldDescriptor field) {
         return (Builder) super.clearField(field);
       }
-      @Override
+      @java.lang.Override
       public Builder clearOneof(
           com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return (Builder) super.clearOneof(oneof);
       }
-      @Override
+      @java.lang.Override
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
-      @Override
+      @java.lang.Override
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(com.google.protobuf.Message other) {
         if (other instanceof com.example.systemevents.PetFriend.Response) {
           return mergeFrom((com.example.systemevents.PetFriend.Response)other);
@@ -1781,7 +1781,7 @@ public final class PetFriend {
       }
 
       public Builder mergeFrom(com.example.systemevents.PetFriend.Response other) {
-        if (other == getDefaultInstance()) return this;
+        if (other == com.example.systemevents.PetFriend.Response.getDefaultInstance()) return this;
         if (!other.getPorukaOdgovora().isEmpty()) {
           porukaOdgovora_ = other.porukaOdgovora_;
           onChanged();
@@ -1794,12 +1794,12 @@ public final class PetFriend {
         return this;
       }
 
-      @Override
+      @java.lang.Override
       public final boolean isInitialized() {
         return true;
       }
 
-      @Override
+      @java.lang.Override
       public Builder mergeFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1818,20 +1818,20 @@ public final class PetFriend {
         return this;
       }
 
-      private Object porukaOdgovora_ = "";
+      private java.lang.Object porukaOdgovora_ = "";
       /**
        * <code>string porukaOdgovora = 1;</code>
        */
-      public String getPorukaOdgovora() {
-        Object ref = porukaOdgovora_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getPorukaOdgovora() {
+        java.lang.Object ref = porukaOdgovora_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           porukaOdgovora_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -1839,11 +1839,11 @@ public final class PetFriend {
        */
       public com.google.protobuf.ByteString
           getPorukaOdgovoraBytes() {
-        Object ref = porukaOdgovora_;
+        java.lang.Object ref = porukaOdgovora_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
+          com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           porukaOdgovora_ = b;
           return b;
         } else {
@@ -1854,11 +1854,11 @@ public final class PetFriend {
        * <code>string porukaOdgovora = 1;</code>
        */
       public Builder setPorukaOdgovora(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-
+  
         porukaOdgovora_ = value;
         onChanged();
         return this;
@@ -1867,7 +1867,7 @@ public final class PetFriend {
        * <code>string porukaOdgovora = 1;</code>
        */
       public Builder clearPorukaOdgovora() {
-
+        
         porukaOdgovora_ = getDefaultInstance().getPorukaOdgovora();
         onChanged();
         return this;
@@ -1881,7 +1881,7 @@ public final class PetFriend {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-
+        
         porukaOdgovora_ = value;
         onChanged();
         return this;
@@ -1917,7 +1917,7 @@ public final class PetFriend {
         if (value == null) {
           throw new NullPointerException();
         }
-
+        
         odgovor_ = value.getNumber();
         onChanged();
         return this;
@@ -1926,18 +1926,18 @@ public final class PetFriend {
        * <code>.Response.tipOdgovora Odgovor = 2;</code>
        */
       public Builder clearOdgovor() {
-
+        
         odgovor_ = 0;
         onChanged();
         return this;
       }
-      @Override
+      @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFieldsProto3(unknownFields);
       }
 
-      @Override
+      @java.lang.Override
       public final Builder mergeUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
@@ -1959,7 +1959,7 @@ public final class PetFriend {
 
     private static final com.google.protobuf.Parser<Response>
         PARSER = new com.google.protobuf.AbstractParser<Response>() {
-      @Override
+      @java.lang.Override
       public Response parsePartialFrom(
           com.google.protobuf.CodedInputStream input,
           com.google.protobuf.ExtensionRegistryLite extensionRegistry)
@@ -1972,12 +1972,12 @@ public final class PetFriend {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<Response> getParserForType() {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public com.example.systemevents.PetFriend.Response getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
@@ -1986,12 +1986,12 @@ public final class PetFriend {
 
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_Request_descriptor;
-  private static final
+  private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_Request_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_Response_descriptor;
-  private static final
+  private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_Response_fieldAccessorTable;
 
@@ -2002,7 +2002,7 @@ public final class PetFriend {
   private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
-    String[] descriptorData = {
+    java.lang.String[] descriptorData = {
       "\n\017petFriend.proto\032\037google/protobuf/times" +
       "tamp.proto\"\337\001\n\007Request\0223\n\017timeStampAkcij" +
       "e\030\001 \001(\0132\032.google.protobuf.Timestamp\022\031\n\021n" +
@@ -2034,13 +2034,13 @@ public final class PetFriend {
     internal_static_Request_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Request_descriptor,
-        new String[] { "TimeStampAkcije", "NazivMikroservisa", "Korisnik", "Akcija", "NazivResursa", });
+        new java.lang.String[] { "TimeStampAkcije", "NazivMikroservisa", "Korisnik", "Akcija", "NazivResursa", });
     internal_static_Response_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_Response_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Response_descriptor,
-        new String[] { "PorukaOdgovora", "Odgovor", });
+        new java.lang.String[] { "PorukaOdgovora", "Odgovor", });
     com.google.protobuf.TimestampProto.getDescriptor();
   }
 

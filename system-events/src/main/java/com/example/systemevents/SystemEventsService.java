@@ -1,15 +1,15 @@
 package com.example.systemevents;
+import com.example.baza.database.Action;
 import com.example.systemevents.PetFriend.Request;
 import com.example.systemevents.PetFriend.Response;
-import com.example.systemevents.database.Action;
-import com.example.systemevents.database.ActionRepository;
+import com.example.baza.database.ActionRepository;
 import io.grpc.stub.StreamObserver;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class SystemEventsService extends SystemEventsGrpc.SystemEventsImplBase {
 
     @Autowired
-    private ActionRepository actionRepository;
+   private ActionRepository actionRepository;
 
     @Override
     public void logAction(Request request, StreamObserver<Response> responseObserver) {

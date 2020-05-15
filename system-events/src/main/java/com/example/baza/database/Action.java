@@ -1,7 +1,6 @@
-package com.example.systemevents.database;
+package com.example.baza.database;
 
 import com.example.systemevents.PetFriend;
-import com.example.systemevents.grpcAkcija;
 
 import javax.persistence.*;
 

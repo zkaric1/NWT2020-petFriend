@@ -1,10 +1,18 @@
 package com.example.systemevents;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
+import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
 import static io.grpc.stub.ClientCalls.asyncUnaryCall;
+import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
 import static io.grpc.stub.ClientCalls.blockingUnaryCall;
 import static io.grpc.stub.ClientCalls.futureUnaryCall;
+import static io.grpc.stub.ServerCalls.asyncBidiStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
 import static io.grpc.stub.ServerCalls.asyncUnaryCall;
+import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
 import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
@@ -85,7 +93,7 @@ public final class SystemEventsGrpc {
       asyncUnimplementedUnaryCall(getLogActionMethod(), responseObserver);
     }
 
-    @Override public final io.grpc.ServerServiceDefinition bindService() {
+    @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
             getLogActionMethod(),
@@ -110,7 +118,7 @@ public final class SystemEventsGrpc {
       super(channel, callOptions);
     }
 
-    @Override
+    @java.lang.Override
     protected SystemEventsStub build(io.grpc.Channel channel,
         io.grpc.CallOptions callOptions) {
       return new SystemEventsStub(channel, callOptions);
@@ -137,7 +145,7 @@ public final class SystemEventsGrpc {
       super(channel, callOptions);
     }
 
-    @Override
+    @java.lang.Override
     protected SystemEventsBlockingStub build(io.grpc.Channel channel,
         io.grpc.CallOptions callOptions) {
       return new SystemEventsBlockingStub(channel, callOptions);
@@ -163,7 +171,7 @@ public final class SystemEventsGrpc {
       super(channel, callOptions);
     }
 
-    @Override
+    @java.lang.Override
     protected SystemEventsFutureStub build(io.grpc.Channel channel,
         io.grpc.CallOptions callOptions) {
       return new SystemEventsFutureStub(channel, callOptions);
@@ -193,8 +201,8 @@ public final class SystemEventsGrpc {
       this.methodId = methodId;
     }
 
-    @Override
-    @SuppressWarnings("unchecked")
+    @java.lang.Override
+    @java.lang.SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
         case METHODID_LOG_ACTION:
@@ -206,8 +214,8 @@ public final class SystemEventsGrpc {
       }
     }
 
-    @Override
-    @SuppressWarnings("unchecked")
+    @java.lang.Override
+    @java.lang.SuppressWarnings("unchecked")
     public io.grpc.stub.StreamObserver<Req> invoke(
         io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
@@ -221,12 +229,12 @@ public final class SystemEventsGrpc {
       implements io.grpc.protobuf.ProtoFileDescriptorSupplier, io.grpc.protobuf.ProtoServiceDescriptorSupplier {
     SystemEventsBaseDescriptorSupplier() {}
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
       return com.example.systemevents.PetFriend.getDescriptor();
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Descriptors.ServiceDescriptor getServiceDescriptor() {
       return getFileDescriptor().findServiceByName("SystemEvents");
     }
@@ -246,7 +254,7 @@ public final class SystemEventsGrpc {
       this.methodName = methodName;
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Descriptors.MethodDescriptor getMethodDescriptor() {
       return getServiceDescriptor().findMethodByName(methodName);
     }
