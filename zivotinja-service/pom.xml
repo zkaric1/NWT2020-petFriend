@@ -17,39 +17,6 @@
     <properties>
         <java.version>1.8</java.version>
     </properties>
-    <repositories>
-        <repository>
-            <id>eventuate-tram-rc</id>
-            <url>https://dl.bintray.com/eventuateio-oss/eventuate-maven-rc</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>eventuate-tram-release</id>
-            <url>https://dl.bintray.com/eventuateio-oss/eventuate-maven-release</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>eventuate-tram-snapshot</id>
-            <url>https://snapshots.repositories.eventuate.io/repository</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -129,6 +96,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
+
         <dependency>
             <groupId>com.jayway.jsonpath</groupId>
             <artifactId>json-path</artifactId>

@@ -1,9 +1,12 @@
 package com.example.zivotinja.service;
 import java.util.*;
+
+import com.example.zivotinja.RabbitMQ.ConfigurationRabbitMQ;
 import com.example.zivotinja.exception.KorisnikException;
 import com.example.zivotinja.model.Korisnik;
 import com.example.zivotinja.repository.KorisnikRepository;
 import net.minidev.json.JSONObject;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +17,12 @@ public class KorisnikService {
 
     @Autowired
     private KorisnikRepository korisnikRepository;
+
+    private String EXCHANGE_NAME = "korisnik-exchange";
+    private String ROUTING_KEY = "korisnik";
+
+    @Autowired
+    private AmqpTemplate amqpTemplate;
 
     public KorisnikService(KorisnikRepository korisnikRepository) {
         this.korisnikRepository = korisnikRepository;
@@ -28,10 +37,16 @@ public class KorisnikService {
     }
 
     public void deleteById (Long id) throws Exception {
-        Integer brojZivotinja = korisnikRepository.getZivotinja(id);
+        /*Integer brojZivotinja = korisnikRepository.getZivotinja(id);
+        Integer brojAnketa = korisnikRepository.getAnketa(id);
         if (brojZivotinja != 0) korisnikRepository.deleteMedjuTabela(id);
+        if (brojAnketa != 0) korisnikRepository.deleteAnketa(id);
+        String idObrisanog = "B" + id;
+        amqpTemplate.convertAndSend(EXCHANGE_NAME, ROUTING_KEY, idObrisanog);
         korisnikRepository.deleteZivotinjaById(id);
-        korisnikRepository.deleteById(id);
+        korisnikRepository.deleteById(id);*/
+        System.out.println("ID u servisu " + id);
+        amqpTemplate.convertAndSend(ConfigurationRabbitMQ.EXCHANGE_NAME, ConfigurationRabbitMQ.ROUTING_KEY, id.toString());
     }
 
     public Boolean findFlag (long id) {
