@@ -1,7 +1,7 @@
 package com.example.zivotinja.service;
 import java.util.*;
 
-import com.example.zivotinja.RabbitMQ.ConfigurationRabbitMQ;
+import com.example.zivotinja.model.ConfigurationRabbitMQ;
 import com.example.zivotinja.exception.KorisnikException;
 import com.example.zivotinja.model.Korisnik;
 import com.example.zivotinja.repository.KorisnikRepository;
@@ -46,7 +46,7 @@ public class KorisnikService {
         korisnikRepository.deleteZivotinjaById(id);
         korisnikRepository.deleteById(id);*/
         System.out.println("ID u servisu " + id);
-        amqpTemplate.convertAndSend(ConfigurationRabbitMQ.EXCHANGE_NAME, ConfigurationRabbitMQ.ROUTING_KEY, id.toString());
+      //  amqpTemplate.convertAndSend(ConfigurationRabbitMQ.EXCHANGE_NAME, ConfigurationRabbitMQ.ROUTING_KEY, id.toString());
     }
 
     public Boolean findFlag (long id) {

@@ -1,4 +1,4 @@
-package com.example.zivotinja.RabbitMQ;
+package com.example.zivotinja.model;
 
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -40,21 +40,14 @@ public class ConfigurationRabbitMQ {
     public Receiver receiver() {
         return new Receiver();
     }
-
 /*
-    @Bean
-    MessageListenerAdapter listenerAdapter(Receiver receiver) {
-        return new MessageListenerAdapter(receiver, "receiveMessage");
-    }*/
-
-
     @Bean
     public AmqpTemplate amqpTemplate(ConnectionFactory connectionFactory) {
         final RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
         rabbitTemplate.setMessageConverter(jsonMessageConverter());
         return rabbitTemplate;
     }
-/*
+
     @Bean
     SimpleMessageListenerContainer container(ConnectionFactory connectionFactory, MessageListenerAdapter listenerAdapter) {
         SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();

@@ -1,5 +1,6 @@
-package com.example.zivotinja.RabbitMQ;
+package com.example.zivotinja.model;
 
+import com.example.zivotinja.model.ConfigurationRabbitMQ;
 import com.example.zivotinja.repository.KorisnikRepository;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
@@ -20,6 +21,7 @@ public class Receiver {
 
     @RabbitHandler
     public void receive(String id) {
+        /*
         System.out.println(" [x] Received '" + id + "'");
         Integer brojZivotinja = korisnikRepository.getZivotinja(Long.parseLong(id));
         Integer brojAnketa = korisnikRepository.getAnketa(Long.parseLong(id));
@@ -27,6 +29,6 @@ public class Receiver {
         if (brojAnketa != 0) korisnikRepository.deleteAnketa(Long.parseLong(id));
         korisnikRepository.deleteZivotinjaById(Long.parseLong(id));
         korisnikRepository.deleteById(Long.parseLong(id));
-        amqpTemplate.convertAndSend(ConfigurationRabbitMQ.EXCHANGE_NAME, ConfigurationRabbitMQ.ROUTING_KEY, id);
+        amqpTemplate.convertAndSend(ConfigurationRabbitMQ.EXCHANGE_NAME, ConfigurationRabbitMQ.ROUTING_KEY, id);*/
     }
 }
