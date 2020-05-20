@@ -28,14 +28,6 @@ export class KreirajZivotinju extends Component {
         }
     }
 
-   /* componentWillMount() {
-        axios.get("http://localhost:8080/zivotinje").then(res => {
-            const Zivotinje = res.data
-            this.setState(
-                    { Zivotinje })
-        })
-    }*/
-
     handleChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
@@ -156,7 +148,7 @@ export class KreirajZivotinju extends Component {
                       name="tezina"
                     />
                   </div>
-                  <div className="slika">
+                  <div className="slikaA">
                     <label htmlFor="slika">Slika</label>
                     <input type="file"
                       onChange={e => this.handleChangeSlika(e)}
