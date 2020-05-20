@@ -10,6 +10,8 @@ import org.springframework.context.annotation.Bean;
 import com.example.zivotinja.repository.*;
 import com.example.zivotinja.model.*;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @EnableDiscoveryClient
 @SpringBootApplication
@@ -21,6 +23,16 @@ public class ZivotinjaServiceApplication {
     public RestTemplate getRestTemplate() {
         return new RestTemplate();
     }
+/*
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/zivotinje").allowedOrigins("http://localhost:8080");
+            }
+        };
+    }*/
 
     public static void main(String[] args) {
         SpringApplication.run(ZivotinjaServiceApplication.class, args);
