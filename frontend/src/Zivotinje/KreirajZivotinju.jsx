@@ -1,31 +1,83 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import Select from 'react-select';
 
 export class KreirajZivotinju extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            Korisnici : [
-                {Tema: "", Host: "", Vrijeme: "", Tip_Edukacije: "", Vještina: "", obrisati: false}
+            Zivotinje: [],
+            spol: [
+                { value: 'M', label: 'Muško'},
+                { value: 'Z', label: 'Žensko'}
             ],
-            Zivotinje: []
+            velicina: [
+                { value: 'Mali rast', label: 'Mali rast'},
+                { value: 'Srednji rast', label: 'Srednji rast'},
+                { value: 'Veliki rast', label: 'Veliki rast'},
+            ],
+            Ime:'',
+            vrsta:'',
+            rasa:'',
+            odabraniSpol:'',
+            godine:'',
+            tezina:'',
+            odabranaVelicina:'',
+            slika:null,
+            opis:''
         }
     }
 
-    componentWillMount() {
+   /* componentWillMount() {
         axios.get("http://localhost:8080/zivotinje").then(res => {
             const Zivotinje = res.data
             this.setState(
-                    { Zivotinje }
-                )
+                    { Zivotinje })
+        })
+    }*/
+
+    handleChange = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value
         })
     }
 
-    headerTabele() {
-        let header = Object.keys(this.state.Korisnici[0])
-        return header.map((key, index) => {
-           return <th key={index}>{key.toUpperCase()}</th>
+    handleChangeSpol = (selectedOption) => {
+        if (selectedOption) {
+            this.setState({odabraniSpol:selectedOption.value});           
+        }
+    }
+
+    handleChangeVelicina = (selectedOption) => {
+        if (selectedOption) {
+            this.setState({odabranaVelicina:selectedOption.value});
+        }
+    }
+
+    handleChangeSlika = event=>{
+        this.setState({
+          slika: event.target.files[0]
         })
+    }
+
+    KreirajZivotinju = () => {   
+        const data = new FormData() 
+        data.append('image', this.state.slika)
+        axios.post('http://localhost:8080/zivotinje', {
+            ime: this.state.Ime,
+            vrsta: this.state.vrsta,
+            rasa: this.state.rasa,
+            godine: Number(this.state.godine),
+            udomljena: false,
+           // slika: data,
+            spol: this.state.odabraniSpol,
+            velicina: this.state.odabranaVelicina,
+            dodatniOpis: this.state.opis,
+            tezina: Number(this.state.tezina)
+        }).then(response=> {
+            console.log(response)
+        })
+        alert("Životinja je uspješno kreirana!")
     }
 
     render() {
@@ -33,93 +85,96 @@ export class KreirajZivotinju extends Component {
             <div className="wrapper">
               <div className="form-wrapper">
                 <h1>Kreiraj životinju</h1>
-                <form onSubmit={this.handleSubmit} noValidate>
+                <form>
                   <div className="Ime">
                     <label htmlFor="Ime">Ime</label>
                     <input 
                       placeholder="Ime"
+                      value={this.state.Ime}
+                      onChange={e => this.handleChange(e)}
                       type="text"
-                      name="Ime"
-                      noValidate
-                    />
-                   
+                      name="Ime"             
+                    />                  
                   </div>
                   <div className="vrsta">
                     <label htmlFor="vrsta">Vrsta životinje</label>
                     <input                  
                       placeholder="Vrsta životinje"
+                      value={this.state.vrsta}
+                      onChange={e => this.handleChange(e)}
                       type="text"
-                      name="vrsta"
-                      noValidate              
-                    />
-                   
+                      name="vrsta"             
+                    />         
                   </div>
                   <div className="rasa">
                     <label htmlFor="rasa">Rasa</label>
                     <input                  
                       placeholder="Rasa"
                       type="text"
+                      value={this.state.rasa}
+                      onChange={e => this.handleChange(e)}
                       name="rasa"
-                      noValidate
                     />
                   </div>
                   <div className="godine">
                     <label htmlFor="godine">Godine</label>
                     <input  
                       placeholder="Godine"
+                      value={this.state.godine}
+                      onChange={e => this.handleChange(e)}
                       type="text"
-                      name="godine"
-                      noValidate     
+                      name="godine"  
                     />
                   </div>
                   <div className="spol">
                     <label htmlFor="spol">Spol</label>
-                    <input  
-                      placeholder="Spol"
-                      type="text"
-                      name="spol"
-                      noValidate                   
-                    />
+                    <Select
+                        options={this.state.spol}
+                        onChange={(e) => {
+                            this.handleChangeSpol(e);
+                        }}
+                        name="spol"
+                    />                  
                   </div>
                   <div className="velicina">
                     <label htmlFor="velicina">Veličina</label>
-                    <input  
-                      placeholder="Veličina"
-                      type="text"
-                      name="velicine"
-                      noValidate                     
+                    <Select
+                        options={this.state.velicina}
+                        onChange={(e) => {
+                            this.handleChangeVelicina(e);
+                        }}
+                        name="velicina"
                     />
                   </div>
                   <div className="tezina">
                     <label htmlFor="tezina">Težina</label>
                     <input  
                       placeholder="Težina"
+                      value={this.state.tezina}
+                      onChange={e => this.handleChange(e)}
                       type="text"
                       name="tezina"
-                      noValidate
                     />
                   </div>
                   <div className="slika">
                     <label htmlFor="slika">Slika</label>
-                    <input  
-                      placeholder="Slika"
-                      type="text"
-                      name="slika"
-                      noValidate                   
-                    />
+                    <input type="file"
+                      onChange={e => this.handleChangeSlika(e)}
+                      name="slika"           
+                    /> 
                   </div>
                   <div className="opis">
                     <label htmlFor="opis">Dodatni opis</label>
                     <textarea
                       placeholder="Opis"
+                      value={this.state.opis}
+                      onChange={e => this.handleChange(e)}
                       type="text"
-                      name="opis"
-                      noValidate                
+                      name="opis"              
                     />
                   </div>
                   <div className="kreiraj">
-                    <button type="submit">Kreiraj životinju</button>
-                    
+                    <button type="submit" onClick={this.KreirajZivotinju}>Kreiraj životinju</button>                    
                   </div>
                 </form>
               </div>
