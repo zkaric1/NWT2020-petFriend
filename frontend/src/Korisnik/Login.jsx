@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+import loginSlika from "./login.png"
 import "./style.scss";
+import axios from 'axios'
 
 export class Login extends Component {
     constructor(props) {
@@ -11,11 +13,11 @@ export class Login extends Component {
     }
 
     setEmail = (value) => {
-        this.state.email = value
+        this.setState.email = value
     }
 
     setPassword = (value) => {
-        this.state.password = value
+        this.setState.password = value
     }
 
     validateForm = () => {
@@ -28,14 +30,14 @@ export class Login extends Component {
 
     render() {
         return (
-            <div className="userDiv"> 
-                <img src="login.png" alt="backgroound"></img>
-            <form  className="loginForma" onSubmit={this.handleSubmit}>
-                <label>Prijavi se</label>
-                <input className="loginInput" name="email" type="text" placeholder="Email" />
-                <input  className="loginInput" name="password" type="password" placeholder="Sifra"/>
-                <button className="loginButton"  type="submit"> Login</button>
-            </form>
+            <div className="userDiv">
+                <form className="loginForma" onSubmit={this.handleSubmit}>
+                    <label>Prijavi se</label>
+                    <input className="loginInput" type="text" value={this.state.email} onChange={e => this.setEmail(e)} placeholder="Email" />
+                    <input className="loginInput" type="password" value={this.state.password} onChange={e => this.setPassword(e)} placeholder="Sifra" />
+                    <button className="loginButton" disabled={!this.validateForm()} type="submit"> Login</button>
+                </form>
+                <img src={loginSlika} alt="slika" />
             </div>
         )
     }
