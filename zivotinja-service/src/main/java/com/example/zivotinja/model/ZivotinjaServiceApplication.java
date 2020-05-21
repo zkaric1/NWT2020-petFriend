@@ -89,7 +89,14 @@ public class ZivotinjaServiceApplication {
             zRepo.save(cuko);
             aRepo.save(anketa);
             cuko.preuzmiSliku();
-            zRepo.save(new Zivotinja("Viki", "Pas", "Labrador", "Z", 2, "Mali pas", 10, "Preslatki mali cuko", false));
+            cuko = new Zivotinja("Rex", "Pas", "Njemački ovčar", "M", 1, "Veliki pas", 6, "Najbolji pas kojeg ćete ikad imati!", false);
+            slika = cuko.kreirajSliku("C:\\Users\\belma\\Desktop\\ETF\\NWT2020-petFriend\\zivotinja-service\\Slike\\rex.jpg");
+            cuko.setSlika(slika);
+            zRepo.save(cuko);
+            Zivotinja maca = (new Zivotinja("Viki", "Mačka", "Ruska plava", "Z", 2, "Mali rast", 3, "Preslatka mala maca", false));
+            slika = maca.kreirajSliku("C:\\Users\\belma\\Desktop\\ETF\\NWT2020-petFriend\\zivotinja-service\\Slike\\mini.jpg");
+            maca.setSlika(slika);
+            zRepo.save(maca);
         };
     }
 }
