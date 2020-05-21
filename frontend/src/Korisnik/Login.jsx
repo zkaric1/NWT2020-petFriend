@@ -13,15 +13,32 @@ export class Login extends Component {
     }
 
     setEmail = (value) => {
-        this.setState.email = value
+        this.setState({
+            [this.state.email]: value
+        })
     }
 
     setPassword = (value) => {
-        this.setState.password = value
+        this.setState({
+            [this.state.password]: value
+        })
     }
 
     validateForm = () => {
-        return this.state.email.length > 0 && this.state.password.length > 0;
+        console.log(this.state.email);
+
+        this.valid = this.state.email.length > 0 && this.state.password.length > 0;
+        return this.valid
+    }
+
+    userLogin = () => {
+        if (!this.validateForm()) alert("Unesite vrijednosti")
+        else {
+            axios.post('http://localhost:8082/oauth/korisnik/prijava', {
+                email: this.state.email,
+                password: this.state.password,
+            })
+        }
     }
 
     handleSubmit = (event) => {
@@ -31,11 +48,22 @@ export class Login extends Component {
     render() {
         return (
             <div className="userDiv">
-                <form className="loginForma" onSubmit={this.handleSubmit}>
+                <form className="loginForma">
                     <label>Prijavi se</label>
-                    <input className="loginInput" type="text" value={this.state.email} onChange={e => this.setEmail(e)} placeholder="Email" />
-                    <input className="loginInput" type="password" value={this.state.password} onChange={e => this.setPassword(e)} placeholder="Sifra" />
-                    <button className="loginButton" disabled={!this.validateForm()} type="submit"> Login</button>
+                    <input 
+                        className="loginInput" 
+                        type="text" 
+                        onChange={e => this.setEmail(e)} 
+                        placeholder="Email" />
+                    <input 
+                        className="loginInput" 
+                        type="password" 
+                        onChange={e => this.setPassword(e)} 
+                        placeholder="Sifra" />
+                    <button 
+                        className="loginButton" 
+                        onClick={this.userLogin} 
+                        type="submit"> Login</button>
                 </form>
                 <img src={loginSlika} alt="slika" />
             </div>
