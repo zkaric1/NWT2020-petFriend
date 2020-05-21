@@ -64,45 +64,9 @@
     font-size: 0.75em;
     display: relative;
   }
-  
-  .Ime,
-  .rasa,
-  .spol,
-  .tezina,
-  .opis {
-    margin-right: 1%;
-  }
-  
-  .vrsta,
-  .godine,
-  .velicina,
-  .slikaA {
-    margin-left: 1%;
-  }
 
-  .slika {
-    margin-left: 1%;
-    width:49%;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 15px;
-  }
-
-  .Ime,
-  .vrsta,
-  .rasa,
-  .godine,
-  .spol,
-  .velicina,
-  .tezina,
-  .slikaA {
-    width:49%;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 15px;
-  }
-
-  .opis {
+  .tip,
+  .revakcinacija {
     width:100%;
     display: flex;
     flex-direction: column;
@@ -136,63 +100,4 @@
     border: 2px solid #519e8a;
   }
 
-  .zivotinje {
-    display: flex;
-    flex-wrap: wrap;
-  }
   
-  .zivotinja {
-    box-sizing: border-box;
-    background: white;
-    position: relative;
-    border-radius: 5px;
-    padding: 20px;
-    margin: 10px;
-    width: 47%;
-    color: white;
-    flex-basis: width;
-    background-color: #21798d;
-  }
-
-  .zivotinja h3 {
-    font-size: 1rem;
-    opacity: 0.7;
-  }
-  
-  .zivotinja h2 {
-    margin-bottom: 30px;
-    font-size: 1.5rem;
-  }
-
-  .detalji {
-    text-align: left;
-  }
-
-  .App {
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
-  }
-  
-  .App > h1 {
-    margin-bottom: 5px;
-  }
-  
-  .App > h2 {
-    margin-top: 5px;
-    opacity: 0.7;
-    font-size: 1.2rem;
-    margin-bottom: 30px;
-  }
-
-  .slika {
-    position: absolute;
-    top: 26%;
-    right: 2%;
-    width: 250px;
-    height: 250px;
-    img {
-      height: 100%;
-      width: 100%;
-    }
-  }
-

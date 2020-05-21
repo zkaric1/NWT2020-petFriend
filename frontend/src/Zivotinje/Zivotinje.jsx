@@ -39,10 +39,9 @@ export class Zivotinje  extends Component {
                                 <p> Dodatni opis: {zivotinja.dodatniOpis}</p>
                                 <p> Udomljena: {udomljenaTemp}</p>
                             </div>
-                            <div className="slika">
+                            <div className="slika">                              
                                 <img src={`data:image/jpeg;base64,${zivotinja.slika}`} />
                             </div>
-
                         </div>
                         );
                     })}
