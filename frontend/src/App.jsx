@@ -6,6 +6,7 @@ import { KreirajVeterinara } from './Veterinari/index'
 import { KreirajBolest } from './Bolesti/index'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 import { KnowledgeNavbar } from "./Navigation/index"
+import {Login} from "./Korisnik/Login"
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/kreiraj-vakcinu" component={KreirajVakcinu} />
         <Route path="/kreiraj-veterinara" component={KreirajVeterinara} />
         <Route path="/kreiraj-bolest" component={KreirajBolest} />
+        <Route path="/login" component={Login}/>
       </div>
     </Router>
   );
