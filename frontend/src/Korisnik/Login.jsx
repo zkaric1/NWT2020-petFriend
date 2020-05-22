@@ -8,61 +8,93 @@ export class Login extends Component {
         super(props)
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            errors: {
+                email: '',
+                password: ''
+            }
         }
     }
 
-    setEmail = (value) => {
-        this.setState({
-            [this.state.email]: value
+    validateForm = (errors) => {
+        let valid = true;
+        Object.values(errors).forEach(
+            // if we have an error string set valid to false
+            (val) => val.length > 0 && (valid = false)
+        );
+        return valid;
+    }
+
+    handleChange = (event) => {
+        const validEmailRegex =
+            RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
+        event.preventDefault();
+        const { name, value } = event.target;
+        let errors = this.state.errors;
+
+        switch (name) {
+            case 'email':
+                errors.email =
+                    validEmailRegex.test(value)
+                        ? ''
+                        : 'Email is not valid!';
+                break;
+            case 'password':
+                errors.password =
+                    value.length < 8
+                        ? 'Password must be 8 characters long!'
+                        : '';
+                break;
+            default:
+                break;
+        }
+
+        this.setState({ errors, [name]: value }, () => {
+            console.log(errors)
         })
     }
 
-    setPassword = (value) => {
-        this.setState({
-            [this.state.password]: value
-        })
-    }
-
-    validateForm = () => {
-        console.log(this.state.email);
-
-        this.valid = this.state.email.length > 0 && this.state.password.length > 0;
-        return this.valid
-    }
-
-    userLogin = () => {
-        if (!this.validateForm()) alert("Unesite vrijednosti")
+    userLogin = (event) => {
+        event.preventDefault();
+        if (!this.validateForm(this.state.errors)) alert("Unesite vrijednosti")
         else {
             axios.post('http://localhost:8082/oauth/korisnik/prijava', {
                 email: this.state.email,
                 password: this.state.password,
+
             })
         }
     }
 
-    handleSubmit = (event) => {
-        event.preventDefault();
-    }
-
     render() {
+        const { errors } = this.state
         return (
             <div className="userDiv">
                 <form className="loginForma">
                     <label>Prijavi se</label>
-                    <input 
-                        className="loginInput" 
-                        type="text" 
-                        onChange={e => this.setEmail(e)} 
-                        placeholder="Email" />
-                    <input 
-                        className="loginInput" 
-                        type="password" 
-                        onChange={e => this.setPassword(e)} 
-                        placeholder="Sifra" />
-                    <button 
-                        className="loginButton" 
-                        onClick={this.userLogin} 
+                    <div className="inputGroup">
+                        <input
+                            className="loginInput"
+                            type="email"
+                            onChange={e => this.handleChange(e)}
+                            placeholder="Email"
+                            name="email" />
+                        {errors.email.length > 0 &&
+                            <span className='error'>{errors.email}</span>}
+                    </div>
+                    <div className="inputGroup">
+                        <input
+                            className="loginInput"
+                            type="password"
+                            onChange={e => this.handleChange(e)}
+                            placeholder="Sifra"
+                            name="password" />
+                        {errors.password.length > 0 &&
+                            <span className='error'>{errors.password}</span>}
+                    </div>
+                    <button
+                        className="loginButton"
+                        onClick={e => this.userLogin(e)}
                         type="submit"> Login</button>
                 </form>
                 <img src={loginSlika} alt="slika" />
