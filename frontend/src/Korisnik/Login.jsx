@@ -95,7 +95,8 @@ export class Login extends Component {
                     <button
                         className="loginButton"
                         onClick={e => this.userLogin(e)}
-                        type="submit"> Login</button>
+                        type="submit"> Login
+                        </button>
                 </form>
                 <img src={loginSlika} alt="slika" />
             </div>
