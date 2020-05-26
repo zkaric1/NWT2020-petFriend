@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import Select from 'react-select';
+import FileBase64 from 'react-file-base64';
 
 export class KreirajZivotinju extends Component {
     constructor(props) {
@@ -46,30 +47,28 @@ export class KreirajZivotinju extends Component {
         }
     }
 
-    handleChangeSlika = event=>{
-        this.setState({
-          slika: event.target.files[0]
-        })
+    KreirajZivotinju = () => {  
+      var tempSlika =''
+      tempSlika = this.state.slika[0].base64.substring(23, this.state.slika[0].base64.length)
+      axios.post('http://localhost:8080/zivotinje', {
+        ime: this.state.Ime,
+        vrsta: this.state.vrsta,
+        rasa: this.state.rasa,
+        godine: Number(this.state.godine),
+        udomljena: false,
+        slika: tempSlika,
+        spol: this.state.odabraniSpol,
+        velicina: this.state.odabranaVelicina,
+        dodatniOpis: this.state.opis,
+        tezina: Number(this.state.tezina)
+      }).catch(err => {
+        console.log(err.response.data.message)
+      })
+      alert("Životinja je uspješno kreirana!")
     }
 
-    KreirajZivotinju = () => {   
-        const data = new FormData() 
-        data.append('image', this.state.slika)
-        axios.post('http://localhost:8080/zivotinje', {
-            ime: this.state.Ime,
-            vrsta: this.state.vrsta,
-            rasa: this.state.rasa,
-            godine: Number(this.state.godine),
-            udomljena: false,
-           // slika: data,
-            spol: this.state.odabraniSpol,
-            velicina: this.state.odabranaVelicina,
-            dodatniOpis: this.state.opis,
-            tezina: Number(this.state.tezina)
-        }).then(response=> {
-            console.log(response)
-        })
-        alert("Životinja je uspješno kreirana!")
+    getFiles(files){
+      this.setState({ slika: files })
     }
 
     render() {
@@ -150,10 +149,9 @@ export class KreirajZivotinju extends Component {
                   </div>
                   <div className="slikaA">
                     <label htmlFor="slika">Slika</label>
-                    <input type="file"
-                      onChange={e => this.handleChangeSlika(e)}
-                      name="slika"           
-                    /> 
+                    <FileBase64
+                      multiple={ true }
+                      onDone={ this.getFiles.bind(this) } />
                   </div>
                   <div className="opis">
                     <label htmlFor="opis">Dodatni opis</label>
@@ -164,9 +162,9 @@ export class KreirajZivotinju extends Component {
                       type="text"
                       name="opis"              
                     />
-                  </div>
+                  </div>      
                   <div className="kreiraj">
-                    <button type="submit" onClick={this.KreirajZivotinju}>Kreiraj životinju</button>                    
+                    <button type="button" onClick={this.KreirajZivotinju}>Kreiraj životinju</button>                    
                   </div>
                 </form>
               </div>
