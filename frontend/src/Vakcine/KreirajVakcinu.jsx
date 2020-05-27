@@ -71,14 +71,14 @@ export class KreirajVakcinu extends Component {
                     />                  
                   </div>
                   <div className="revakcinacija">
-                    <label htmlFor="revakcinacija">Period revakcinacije</label>
+                    <label htmlFor="revakcinacija">Period revakcinacije (mjeseci)</label>
                     <input     
                       className={shouldMarkError("revakcinacija") ? "error" : ""}               
                       placeholder="Revakcinacija"
                       value={this.state.revakcinacija}
                       onChange={e => this.handleChange(e)}
                       onBlur={this.handleBlur("revakcinacija")}
-                      type="text"
+                      type="number"
                       name="revakcinacija"             
                     />         
                   </div>

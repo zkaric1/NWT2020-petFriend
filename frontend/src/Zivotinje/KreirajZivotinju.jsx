@@ -160,13 +160,13 @@ export class KreirajZivotinju extends Component {
                   </div>
                   <div className="godine">
                     <label htmlFor="godine">Godine</label>
-                    <input 
+                    <input
                       className={shouldMarkError("godine") ? "error" : ""}  
                       placeholder="Godine"
                       onBlur={this.handleBlur("godine")}
                       value={this.state.godine}
                       onChange={e => this.handleChange(e)}
-                      type="text"
+                      type="number"
                       name="godine"  
                     />
                   </div>
@@ -202,7 +202,7 @@ export class KreirajZivotinju extends Component {
                       placeholder="Težina"
                       value={this.state.tezina}
                       onChange={e => this.handleChange(e)}
-                      type="text"
+                      type="number"
                       name="tezina"
                     />
                   </div>
