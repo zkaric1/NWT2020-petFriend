@@ -1,12 +1,23 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
+function validacija(ime, lijek) {
+  return {
+    ime: ime.length === 0,
+    lijek: lijek.length === 0,
+  };
+}
+
 export class KreirajBolest extends Component {
     constructor(props) {
         super(props)
         this.state = {
             ime:'',
-            lijek:''
+            lijek:'',
+            touched: {
+              ime: false,
+              lijek: false,
+            }
         }
     }
 
@@ -16,15 +27,31 @@ export class KreirajBolest extends Component {
         })
     }
 
+    handleBlur = field => evt => {
+      this.setState({
+        touched: { ...this.state.touched, [field]: true }
+      });
+    };
+
     kreirajVakcinu = () => {   
         axios.post('http://localhost:8080/bolesti', {
             ime: this.state.ime,
             lijek: this.state.lijek,
+        }).then(response => {
+          if (response.status === 200)  alert("Bolest je uspješno kreirana!")
+        }).catch(err => {
+          alert(err.response.data.errors)
         })
-        alert("Bolest je uspješno kreirana!")
     }
 
     render() {
+      const errors = validacija(this.state.ime, this.state.lijek);
+      const isDisabled = Object.keys(errors).some(x => errors[x]);
+      const shouldMarkError = field => {
+      const hasError = errors[field];
+      const shouldShow = this.state.touched[field];
+      return hasError ? shouldShow : false;
+      };
         return (
             <div className="wrapper">
               <div className="form-wrapper">
@@ -34,6 +61,8 @@ export class KreirajBolest extends Component {
                     <label htmlFor="ime">Ime bolesti</label>
                     <input 
                       placeholder="Ime"
+                      className={shouldMarkError("ime") ? "error" : ""}
+                      onBlur={this.handleBlur("ime")}  
                       value={this.state.ime}
                       onChange={e => this.handleChange(e)}
                       type="text"
@@ -42,7 +71,9 @@ export class KreirajBolest extends Component {
                   </div>
                   <div className="lijek">
                     <label htmlFor="lijek">Lijek</label>
-                    <input                  
+                    <input
+                      className={shouldMarkError("lijek") ? "error" : ""}
+                      onBlur={this.handleBlur("lijek")}                  
                       placeholder="Lijek"
                       value={this.state.lijek}
                       onChange={e => this.handleChange(e)}
@@ -51,7 +82,7 @@ export class KreirajBolest extends Component {
                     />         
                   </div>
                   <div className="kreiraj">
-                    <button type="submit" onClick={this.kreirajVakcinu}>Kreiraj bolest</button>                    
+                    <button type="button" disabled={isDisabled} onClick={this.kreirajVakcinu}>Kreiraj bolest</button>                    
                   </div>
                 </form>
               </div>
