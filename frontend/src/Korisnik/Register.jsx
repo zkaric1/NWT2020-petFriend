@@ -7,6 +7,11 @@ export class Register extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            uloge: [],
+            spol: [
+                { value: 'M', label: 'Muško' },
+                { value: 'Z', label: 'Žensko' }
+            ],
             fullName: '',
             dateOfBirth: '',
             email: '',
@@ -32,6 +37,21 @@ export class Register extends Component {
         return valid;
     }
 
+    componentDidMount() {
+        axios.get('http://localhost:8082/uloga/lista').then(
+            res => {
+                const uloge = res.data
+                this.setState({ uloge })
+            }
+        )
+    }
+
+    handleChangeSpol = (selectedOption) => {
+        if (selectedOption) {
+            this.setState({ gender: selectedOption.target.value });
+        }
+    }
+
     handleChange = (event) => {
         const validEmailRegex =
             RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
@@ -40,22 +60,22 @@ export class Register extends Component {
         let errors = this.state.errors;
 
         switch (name) {
-              case 'fullName': 
-                errors.fullName = 
-                  value.length < 5
-                    ? 'Full Name must be 5 characters long!'
-                    : '';
+            case 'fullName':
+                errors.fullName =
+                    value.length < 5
+                        ? 'Ime i prezime mora imati vise od 5 slova!'
+                        : '';
                 break;
             case 'email':
                 errors.email =
                     validEmailRegex.test(value)
                         ? ''
-                        : 'Email is not valid!';
+                        : 'Email format nije validan!';
                 break;
             case 'password':
                 errors.password =
                     value.length < 8
-                        ? 'Password must be 8 characters long!'
+                        ? 'Sifra mora imati najmanje 8 karaktera!'
                         : '';
                 break;
             default:
@@ -80,7 +100,6 @@ export class Register extends Component {
                 jmbg: this.state.jmbg,
                 gender: this.state.gender,
                 role: this.state.role
-
             })
         }
     }
@@ -89,8 +108,8 @@ export class Register extends Component {
         const { errors } = this.state
         return (
             <div className="userDiv">
-                <form className="loginForma">
-                    <label>Prijavi se</label>
+                <form className="registerForma">
+                    <label>Registruj se</label>
                     <div className="inputGroup">
                         <input
                             className="loginInput"
@@ -100,6 +119,14 @@ export class Register extends Component {
                             name="fullName" />
                         {errors.email.length > 0 &&
                             <span className='error'>{errors.fullName}</span>}
+                    </div>
+                    <div className="inputGroup">
+                        <input
+                            className="loginInput"
+                            type="date"
+                            onChange={e => this.handleChange(e)}
+                            placeholder="Datum rodjenja"
+                            name="dateOfBirth" />
                     </div>
                     <div className="inputGroup">
                         <input
@@ -121,12 +148,51 @@ export class Register extends Component {
                         {errors.password.length > 0 &&
                             <span className='error'>{errors.password}</span>}
                     </div>
+                    <div className="inputGroup">
+                        <input
+                            className="loginInput"
+                            type="text"
+                            onChange={e => this.handleChange(e)}
+                            placeholder="Adresa"
+                            name="address" />
+                        {errors.password.length > 0 &&
+                            <span className='error'>{errors.address}</span>}
+                    </div>
+                    <div className="inputGroup">
+                        <input
+                            className="loginInput"
+                            type="text"
+                            onChange={e => this.handleChange(e)}
+                            placeholder="JMBG"
+                            name="jmbg" />
+                        {errors.password.length > 0 &&
+                            <span className='error'>{errors.jmbg}</span>}
+                    </div>
+                    <div className="selectWrapper">
+                        <select className="selectBox"
+                            onChange={(e) => {
+                                this.handleChangeSpol(e);
+                            }}
+                            value={this.state.gender}
+                            name="gender">
+                            {this.state.spol.map(spol => <option key={spol.value} value={spol.value}>{spol.label}</option>)}
+                        </select>
+                    </div>
+                    <div className="selectWrapper">
+                        <select className="selectBox"
+                            onChange={(e) => {
+                                this.handleChangeUloga(e);
+                            }}
+                            value={this.state.role}
+                            name="role">
+                            {this.state.uloge.map(uloga => <option key={uloga.id} value={uloga.id}>{uloga.name}</option>)}
+                        </select>
+                    </div>
                     <button
                         className="loginButton"
                         onClick={e => this.userLogin(e)}
-                        type="submit"> Login</button>
+                        type="submit"> Registruj</button>
                 </form>
-                <img src={loginSlika} alt="slika" />
             </div>
         )
     }

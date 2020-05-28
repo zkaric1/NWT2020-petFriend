@@ -27,8 +27,9 @@ export class KnowledgeNavbar extends Component {
                     <Link to="/login">
                         <li>Prijavi se</li>
                     </Link>
-                    <Link to="/register">
-                        <li>Registruj se</li>
+                
+                    <Link to="/userProfile">
+                        <li>Profil</li>
                     </Link>
                 </ul>
             </nav>

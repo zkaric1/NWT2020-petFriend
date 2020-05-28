@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import loginSlika from "./login.png"
 import "./style.scss";
 import axios from 'axios'
+import { Link, useHistory } from "react-router-dom"
 
 export class Login extends Component {
     constructor(props) {
@@ -37,12 +38,12 @@ export class Login extends Component {
                 errors.email =
                     validEmailRegex.test(value)
                         ? ''
-                        : 'Email is not valid!';
+                        : 'Email format nije validan';
                 break;
             case 'password':
                 errors.password =
                     value.length < 8
-                        ? 'Password must be 8 characters long!'
+                        ? 'Sifra mora imati najmanje 8 karaktera!'
                         : '';
                 break;
             default:
@@ -95,10 +96,19 @@ export class Login extends Component {
                     <button
                         className="loginButton"
                         onClick={e => this.userLogin(e)}
-                        type="submit"> Login
+                        type="submit"> Prijava
                         </button>
                 </form>
-                <img src={loginSlika} alt="slika" />
+                <div className="goToRegisterDiv">
+                    <label>Nemate racun?</label>
+                <Link className="linkRegister" to="/register">
+                        <li>Registruj se</li>
+                    </Link>
+                </div>
+                <img
+                    className="loginImg"
+                    src={loginSlika}
+                    alt="slika" />
             </div>
         )
     }
