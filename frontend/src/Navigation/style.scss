@@ -3,6 +3,11 @@
   color: #ffffff;
   list-style: none;
   display: flex;
+  .navbar-brand--active {
+    background-color: white;
+    font-weight: bold;
+    font-size: 2em;
+  }
 }
 
 ul {
@@ -19,7 +24,6 @@ li, .dropbtn {
   padding: 14px 16px;
   text-decoration: none;
 }
-
 
 li:hover, .dropdown:hover .dropbtn {
   background-color: rgb(143, 141, 34);
