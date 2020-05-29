@@ -1,7 +1,7 @@
 package com.etf.anketa_service;
 
-import com.etf.system.PetFriend;
-import com.etf.system.SystemEventsGrpc;
+import com.etf.systemevents.PetFriend;
+import com.etf.systemevents.SystemEventsGrpc;
 import com.google.protobuf.Timestamp;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;

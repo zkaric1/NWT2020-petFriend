@@ -1,17 +1,17 @@
 package com.etf.anketa_service;
 
-import com.etf.anketa_service.Model.Animal;
-import com.etf.anketa_service.Model.Answer;
-import com.etf.anketa_service.Model.ApplicationUser;
-import com.etf.anketa_service.Model.PossibleAnswer;
-import com.etf.anketa_service.Model.Question;
-import com.etf.anketa_service.Model.Survey;
-import com.etf.anketa_service.Repository.AnimalRepository;
-import com.etf.anketa_service.Repository.AnswerRepository;
-import com.etf.anketa_service.Repository.ApplicationUserRepository;
-import com.etf.anketa_service.Repository.PossibleAnswerRepository;
-import com.etf.anketa_service.Repository.QuestionRepository;
-import com.etf.anketa_service.Repository.SurveyRepository;
+import com.etf.anketa_service.model.Animal;
+import com.etf.anketa_service.model.Answer;
+import com.etf.anketa_service.model.ApplicationUser;
+import com.etf.anketa_service.model.PossibleAnswer;
+import com.etf.anketa_service.model.Question;
+import com.etf.anketa_service.model.Survey;
+import com.etf.anketa_service.repository.AnimalRepository;
+import com.etf.anketa_service.repository.AnswerRepository;
+import com.etf.anketa_service.repository.ApplicationUserRepository;
+import com.etf.anketa_service.repository.PossibleAnswerRepository;
+import com.etf.anketa_service.repository.QuestionRepository;
+import com.etf.anketa_service.repository.SurveyRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -25,7 +25,6 @@ import java.util.ArrayList;
 @EnableDiscoveryClient
 @SpringBootApplication
 public class AnketaServiceApplication {
-
     @Bean
     @LoadBalanced
     public RestTemplate getRestTemplate() {
