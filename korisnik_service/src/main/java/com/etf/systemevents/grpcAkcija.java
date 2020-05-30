@@ -5,13 +5,13 @@ import java.util.Date;
 public class grpcAkcija {
 
     // Enum tipovi
-     enum tipAkcije {
+    public enum tipAkcije {
         CREATE,
         DELETE,
         GET,
         UPDATE
     }
-     enum tipOdgovora {
+     public enum tipOdgovora {
         USPJESNO,
         GRESKA
     };

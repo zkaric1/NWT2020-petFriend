@@ -1,12 +1,19 @@
 package com.etf.systemevents;
-import com.etf.systemevents.PetFriend.Request;
+
 import com.etf.systemevents.PetFriend.Response;
 import io.grpc.stub.StreamObserver;
 
 public class SystemEventsService extends SystemEventsGrpc.SystemEventsImplBase {
 
+
+   private final ActionRepository actionRepository;
+
+   public SystemEventsService(ActionRepository actionRepository) {
+       this.actionRepository = actionRepository;
+   }
+
     @Override
-    public void logAction(Request request, StreamObserver<Response> responseObserver) {
+    public void logAction(PetFriend.Request request, StreamObserver<Response> responseObserver) {
         StringBuilder Odgovor = new StringBuilder()
                 .append("Vrijeme:" + request.getTimeStampAkcije())
                 .append("Naziv mikroservisa: " + request.getNazivMikroservisa())
@@ -16,9 +23,12 @@ public class SystemEventsService extends SystemEventsGrpc.SystemEventsImplBase {
                 .append("Naziv resursa: " + request.getNazivResursa())
                 .append("\n");
 
-        Response response = Response.newBuilder()
+        PetFriend.Response response = Response.newBuilder()
                 .setPorukaOdgovora(Odgovor.toString())
                 .build();
+
+        Action zapis = new Action(request.getNazivMikroservisa(),request.getKorisnik(),request.getAkcija(),response.getPorukaOdgovora());
+        actionRepository.save(zapis);
 
         responseObserver.onNext(response);
         responseObserver.onCompleted();

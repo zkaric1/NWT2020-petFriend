@@ -1,0 +1,3 @@
+auth0:
+  issuer: https://your-domain.eu.auth0.com/
+  apiAudience: http://your-audience

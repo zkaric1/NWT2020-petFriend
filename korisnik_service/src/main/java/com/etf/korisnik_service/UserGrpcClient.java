@@ -5,6 +5,7 @@ import com.etf.systemevents.SystemEventsGrpc;
 import com.google.protobuf.Timestamp;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
+import org.springframework.context.annotation.Configuration;
 
 import java.time.Instant;
 

@@ -24,7 +24,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.client.RestTemplate;
 
 @Service
-public class UserService implements UserDetailsService {
+public class UserService  {
 
     @Autowired
     private UserRepository userRepository;
@@ -208,9 +208,9 @@ public class UserService implements UserDetailsService {
         }
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(s);
-        return new org.springframework.security.core.userdetails.User(user.getEmail(),user.getPassword(),null);
-    }
+//    @Override
+//    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+//        User user = userRepository.findByEmail(s);
+//        return new org.springframework.security.core.userdetails.User(user.getEmail(),user.getPassword(),null);
+//    }
 }
