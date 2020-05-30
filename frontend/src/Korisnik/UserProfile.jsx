@@ -41,7 +41,9 @@ export class UserProfile extends Component {
                         <li className="linkProfile">Promijeni sifru</li>
                     </Link>
                 </div>
+                <div className="backgrDiv">
                 <div className="profileWrapper">
+    
 
                     <div className="profileDiv">
                         <div className="userProfileLabelGroup">
@@ -69,6 +71,7 @@ export class UserProfile extends Component {
                             <label>Musko</label>
                         </div>
                     </div>
+                </div>
                 </div>
             </div>
         )
