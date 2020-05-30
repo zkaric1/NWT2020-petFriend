@@ -11,6 +11,8 @@ import java.io.IOException;
 public class SystemEventsApplication {
 
     private static final Logger log = LoggerFactory.getLogger(SystemEventsApplication.class);
+
+
     public static void main(String[] args) throws IOException, InterruptedException {
         SpringApplication.run(SystemEventsApplication.class, args);
         Server server = ServerBuilder.forPort(8083).addService(new SystemEventsService()).build();
