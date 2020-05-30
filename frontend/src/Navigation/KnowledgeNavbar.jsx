@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import 'react-dropdown/style.css';
 import "react-datepicker/dist/react-datepicker.css";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import { NavLink } from 'react-router-dom';
 
 export class KnowledgeNavbar extends Component {
 
@@ -10,19 +11,19 @@ export class KnowledgeNavbar extends Component {
             <nav className="navbar">
                 <ul>
                     <Link to="/zivotinje">
-                        <li>Životinje</li>
+                        <li className="link-wrapper" activeClassName="active">Životinje</li>
                     </Link>
                     <Link to="/kreiraj-zivotinju">
-                        <li>Kreiraj životinju</li>
+                        <li className="link-wrapper" activeClassName="active">Kreiraj životinju</li>
                     </Link>
                     <Link to="/kreiraj-vakcinu">
-                        <li>Kreiraj vakcinu</li>
+                        <li className="link-wrapper" activeClassName="active">Kreiraj vakcinu</li>
                     </Link>
                     <Link to="/kreiraj-veterinara">
-                        <li>Kreiraj veterinara</li>
+                        <li className="link-wrapper" activeClassName="active">Kreiraj veterinara</li>
                     </Link>  
                     <Link to="/kreiraj-bolest">
-                        <li>Kreiraj bolest</li>
+                        <li className="link-wrapper" activeClassName="active">Kreiraj bolest</li>
                     </Link>
                     <Link to="/login">
                         <li>Prijavi se</li>

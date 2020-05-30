@@ -1,7 +1,7 @@
 package com.etf.anketa_service.DTO;
 
-import com.etf.anketa_service.Model.Animal;
-import com.etf.anketa_service.Model.Survey;
+import com.etf.anketa_service.model.Animal;
+import com.etf.anketa_service.model.Survey;
 
 import java.util.ArrayList;
 import java.util.List;

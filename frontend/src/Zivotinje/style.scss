@@ -6,9 +6,9 @@
     justify-content: center;
     align-items: center;
     background-color: #21798d;
-}
-
-.form-wrapper {
+  }
+  
+  .form-wrapper {
     width: 400px;
     display: flex;
     flex-direction: column;
@@ -16,106 +16,105 @@
     border-radius: 10px;
     box-shadow: 0px 10px 50px #555;
     background-color: #ffffff;
-}
-
-form {
+  }
+  
+  form {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-}
-
-h1 {
+  }
+  
+  h1 {
     text-align: center;
     width: 100%;
     color: #111;
     font-weight: lighter;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-}
-
-label {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  }
+  
+  label {
     font-size: 0.8em;
     margin-bottom: 0.25em;
     color: #222;
     font-weight: lighter;
-}
-
-input,
-textarea {
+  }
+  
+  input,
+  textarea   {
     padding: 10px 10px;
     border-radius: 5px;
     outline: none;
     border: 1px solid #cfcfcf;
-}
-
-input::placeholder,
-textarea::placeholder {
+  }
+  
+  input::placeholder,
+  textarea::placeholder {
     font-size: 1.2em;
     font-weight: lighter;
     color: #999;
-}
-
-input.error {
+  }
+  
+  input.error {
     border: 1px solid red;
-}
+  }
 
-.errorMessage {
-    color: red;
-    font-size: 0.75em;
-    display: relative;
-}
+  .error { 
+    border: 1px solid red; 
+  }
 
-.Ime,
-.rasa,
-.spol,
-.tezina,
-.opis {
+  .Ime,
+  .rasa,
+  .spol,
+  .tezina,
+  .opis {
     margin-right: 1%;
-}
-
-.vrsta,
-.godine,
-.velicina,
-.slikaA {
+  }
+  
+  .vrsta,
+  .godine,
+  .velicina,
+  .slikaA {
     margin-left: 1%;
-}
+  }
 
-.slika {
+  .slika {
     margin-left: 1%;
-    width: 49%;
+    width:49%;
     display: flex;
     flex-direction: column;
     margin-bottom: 15px;
-}
+  }
 
-.Ime,
-.vrsta,
-.rasa,
-.godine,
-.spol,
-.velicina,
-.tezina,
-.slikaA {
-    width: 49%;
+  .Ime,
+  .vrsta,
+  .rasa,
+  .godine,
+  .spol,
+  .velicina,
+  .tezina,
+  .slikaA {
+    width:49%;
     display: flex;
     flex-direction: column;
     margin-bottom: 15px;
-}
+  }
 
-.opis {
-    width: 100%;
+  .opis {
+    width:100%;
     display: flex;
     flex-direction: column;
     margin-bottom: 15px;
-}
-
-.kreiraj {
+  }
+  
+  .kreirajZivotinju {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.kreiraj button {
+  }
+  
+  .kreirajZivotinju button {
     background-color: #21798d;
     color: #fff;
     border: 2px solid #fff;
@@ -127,21 +126,20 @@ input.error {
     font-weight: lighter;
     letter-spacing: 1px;
     margin-bottom: 0.25em;
-}
+  }
+  
+  .kreirajZivotinju button:hover {
+    color: white;
+    background-color: #154f5c;
+    border: 2px solid white;
+  }
 
-.kreiraj button:hover {
-    color: #519e8a;
-    background-color: #fff;
-    border: 2px solid #519e8a;
-}
-
-.zivotinje {
-    background-color: white;
+  .zivotinje {
     display: flex;
     flex-wrap: wrap;
-}
-
-.zivotinja {
+  }
+  
+  .zivotinja {
     box-sizing: border-box;
     background: white;
     position: relative;
@@ -152,46 +150,56 @@ input.error {
     color: white;
     flex-basis: width;
     background-color: #21798d;
-}
+  }
 
-.zivotinja h3 {
+  .zivotinja h3 {
     font-size: 1rem;
     opacity: 0.7;
-}
-
-.zivotinja h2 {
+  }
+  
+  .zivotinja h2 {
     margin-bottom: 30px;
     font-size: 1.5rem;
-}
+  }
 
-.detalji {
+  .detalji {
     text-align: left;
-}
+  }
 
-.App {
+  .App {
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
-}
-
-.App>h1 {
+  }
+  
+  .App > h1 {
     margin-bottom: 5px;
-}
-
-.App>h2 {
+  }
+  
+  .App > h2 {
     margin-top: 5px;
     opacity: 0.7;
     font-size: 1.2rem;
     margin-bottom: 30px;
-}
+  }
 
-.slika {
+  .slika {
     position: absolute;
     top: 26%;
     right: 2%;
     width: 250px;
     height: 250px;
     img {
-        height: 100%;
-        width: 100%;
+      height: 100%;
+      width: 100%;
     }
-}
+  }
+  form button:disabled {
+    background-color: #858683;
+    color: white;
+  }
+
+  form button:disabled:hover {
+    background-color: #858683;
+    color: white;
+  }
+

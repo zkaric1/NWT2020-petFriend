@@ -1,6 +1,21 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import Select from 'react-select';
+import FileBase64 from 'react-file-base64';
+
+function validacija(Ime, vrsta, rasa, odabraniSpol, godine, tezina, odabranaVelicina, slika, opis) {
+  return {
+    Ime: Ime.length === 0,
+    vrsta: vrsta.length === 0,
+    rasa: rasa.length === 0,     
+    odabraniSpol:odabraniSpol.length === 0,
+    godine: godine.length === 0,
+    tezina: tezina.length === 0,
+    odabranaVelicina: odabranaVelicina.length === 0,
+    slika: slika === null,
+    opis: opis.length === 0
+  };
+}
 
 export class KreirajZivotinju extends Component {
     constructor(props) {
@@ -16,6 +31,20 @@ export class KreirajZivotinju extends Component {
                 { value: 'Srednji rast', label: 'Srednji rast'},
                 { value: 'Veliki rast', label: 'Veliki rast'},
             ],
+
+            // Za validaciju
+            touched: {
+              Ime: false,
+              vrsta: false,
+              rasa: false,
+              odabraniSpol: false,
+              godine: false,
+              tezina: false,
+              odabranaVelicina: false,
+              slika: false,
+              opis: false
+            },
+
             Ime:'',
             vrsta:'',
             rasa:'',
@@ -46,34 +75,49 @@ export class KreirajZivotinju extends Component {
         }
     }
 
-    handleChangeSlika = event=>{
-        this.setState({
-          slika: event.target.files[0]
-        })
+    handleBlur = field => evt => {
+      this.setState({
+        touched: { ...this.state.touched, [field]: true }
+      });
+    };
+
+    KreirajZivotinju = () => {  
+      var tempSlika =''
+      tempSlika = this.state.slika[0].base64.substring(23, this.state.slika[0].base64.length)
+      axios.post('http://localhost:8080/zivotinje', {
+        ime: this.state.Ime,
+        vrsta: this.state.vrsta,
+        rasa: this.state.rasa,
+        godine: Number(this.state.godine),
+        udomljena: false,
+        slika: tempSlika,
+        spol: this.state.odabraniSpol,
+        velicina: this.state.odabranaVelicina,
+        dodatniOpis: this.state.opis,
+        tezina: Number(this.state.tezina)
+      }).then(response => {
+        if (response.status === 200) alert("Životinja je uspješno kreirana!")
+      }).catch(err => {
+        alert(err.response.data.errors)
+      })
     }
 
-    KreirajZivotinju = () => {   
-        const data = new FormData() 
-        data.append('image', this.state.slika)
-        axios.post('http://localhost:8080/zivotinje', {
-            ime: this.state.Ime,
-            vrsta: this.state.vrsta,
-            rasa: this.state.rasa,
-            godine: Number(this.state.godine),
-            udomljena: false,
-           // slika: data,
-            spol: this.state.odabraniSpol,
-            velicina: this.state.odabranaVelicina,
-            dodatniOpis: this.state.opis,
-            tezina: Number(this.state.tezina)
-        }).then(response=> {
-            console.log(response)
-        })
-        alert("Životinja je uspješno kreirana!")
+    getFiles(files){
+      this.setState({ slika: files })
     }
 
     render() {
-        return (
+      const errors = validacija(this.state.Ime, this.state.vrsta, this.state.rasa, this.state.odabraniSpol, 
+                                this.state.godine, this.state.tezina, this.state.odabranaVelicina,
+                                this.state.slika, this.state.opis);
+      const isDisabled = Object.keys(errors).some(x => errors[x]);
+      const shouldMarkError = field => {
+        const hasError = errors[field];
+        const shouldShow = this.state.touched[field];
+        return hasError ? shouldShow : false;
+      };
+
+      return (
             <div className="wrapper">
               <div className="form-wrapper">
                 <h1>Kreiraj životinju</h1>
@@ -81,8 +125,10 @@ export class KreirajZivotinju extends Component {
                   <div className="Ime">
                     <label htmlFor="Ime">Ime</label>
                     <input 
+                      className={shouldMarkError("Ime") ? "error" : ""}  
                       placeholder="Ime"
                       value={this.state.Ime}
+                      onBlur={this.handleBlur("Ime")}
                       onChange={e => this.handleChange(e)}
                       type="text"
                       name="Ime"             
@@ -90,19 +136,23 @@ export class KreirajZivotinju extends Component {
                   </div>
                   <div className="vrsta">
                     <label htmlFor="vrsta">Vrsta životinje</label>
-                    <input                  
+                    <input    
+                      className={shouldMarkError("vrsta") ? "error" : ""}                
                       placeholder="Vrsta životinje"
                       value={this.state.vrsta}
                       onChange={e => this.handleChange(e)}
+                      onBlur={this.handleBlur("vrsta")}
                       type="text"
                       name="vrsta"             
                     />         
                   </div>
                   <div className="rasa">
                     <label htmlFor="rasa">Rasa</label>
-                    <input                  
+                    <input
+                      className={shouldMarkError("rasa") ? "error" : ""}                
                       placeholder="Rasa"
                       type="text"
+                      onBlur={this.handleBlur("rasa")}
                       value={this.state.rasa}
                       onChange={e => this.handleChange(e)}
                       name="rasa"
@@ -110,17 +160,21 @@ export class KreirajZivotinju extends Component {
                   </div>
                   <div className="godine">
                     <label htmlFor="godine">Godine</label>
-                    <input  
+                    <input
+                      className={shouldMarkError("godine") ? "error" : ""}  
                       placeholder="Godine"
+                      onBlur={this.handleBlur("godine")}
                       value={this.state.godine}
                       onChange={e => this.handleChange(e)}
-                      type="text"
+                      type="number"
                       name="godine"  
                     />
                   </div>
                   <div className="spol">
                     <label htmlFor="spol">Spol</label>
                     <Select
+                        onBlur={this.handleBlur("spol")}
+                        className={shouldMarkError("odabraniSpol") ? "error" : ""}  
                         options={this.state.spol}
                         onChange={(e) => {
                             this.handleChangeSpol(e);
@@ -131,6 +185,8 @@ export class KreirajZivotinju extends Component {
                   <div className="velicina">
                     <label htmlFor="velicina">Veličina</label>
                     <Select
+                        onBlur={this.handleBlur("velicina")}
+                        className={shouldMarkError("odabranaVelicina") ? "error" : ""}  
                         options={this.state.velicina}
                         onChange={(e) => {
                             this.handleChangeVelicina(e);
@@ -140,33 +196,38 @@ export class KreirajZivotinju extends Component {
                   </div>
                   <div className="tezina">
                     <label htmlFor="tezina">Težina</label>
-                    <input  
+                    <input
+                      onBlur={this.handleBlur("tezina")}  
+                      className={shouldMarkError("tezina") ? "error" : ""}  
                       placeholder="Težina"
                       value={this.state.tezina}
                       onChange={e => this.handleChange(e)}
-                      type="text"
+                      type="number"
                       name="tezina"
                     />
                   </div>
                   <div className="slikaA">
                     <label htmlFor="slika">Slika</label>
-                    <input type="file"
-                      onChange={e => this.handleChangeSlika(e)}
-                      name="slika"           
-                    /> 
+                    <FileBase64
+                      onBlur={this.handleBlur("slika")}
+                      className={shouldMarkError("slika") ? "error" : ""}  
+                      multiple={ true }
+                      onDone={ this.getFiles.bind(this) } />
                   </div>
                   <div className="opis">
                     <label htmlFor="opis">Dodatni opis</label>
                     <textarea
+                      onBlur={this.handleBlur("opis")}
+                      className={shouldMarkError("opis") ? "error" : ""}  
                       placeholder="Opis"
                       value={this.state.opis}
                       onChange={e => this.handleChange(e)}
                       type="text"
                       name="opis"              
                     />
-                  </div>
-                  <div className="kreiraj">
-                    <button type="submit" onClick={this.KreirajZivotinju}>Kreiraj životinju</button>                    
+                  </div>      
+                  <div className="kreirajZivotinju">
+                    <button type="button" disabled={isDisabled} onClick={this.KreirajZivotinju}>Kreiraj životinju</button>                    
                   </div>
                 </form>
               </div>

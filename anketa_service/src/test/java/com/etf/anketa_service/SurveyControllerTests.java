@@ -1,6 +1,6 @@
 package com.etf.anketa_service;
 
-import com.etf.anketa_service.Model.Survey;
+import com.etf.anketa_service.model.Survey;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.Matchers;
 import org.springframework.beans.factory.annotation.Autowired;

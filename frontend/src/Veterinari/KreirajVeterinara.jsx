@@ -1,6 +1,15 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
+function validacija(ime, prezime, adresa, telefon) {
+  return {
+    ime: ime.length === 0,
+    prezime: prezime.length === 0,
+    adresa: adresa.length === 0,
+    telefon: telefon.length === 0
+  };
+}
+
 export class KreirajVeterinara extends Component {
     constructor(props) {
         super(props)
@@ -8,7 +17,13 @@ export class KreirajVeterinara extends Component {
             ime:'',
             prezime:'',
             adresa:'',
-            telefon:''
+            telefon:'',
+            touched: {
+              ime: false,
+              prezime: false,
+              adresa: false,
+              telefon: false,
+            }
         }
     }
 
@@ -18,17 +33,33 @@ export class KreirajVeterinara extends Component {
         })
     }
 
+    handleBlur = field => evt => {
+      this.setState({
+        touched: { ...this.state.touched, [field]: true }
+      });
+    };
+
     kreirajVeterinara = () => {   
         axios.post('http://localhost:8080/veterinari', {
             ime: this.state.ime,
             prezime: this.state.prezime,
             adresa: this.state.adresa,
             kontaktTelefon: this.state.telefon,
+        }).then(response => {
+          if (response.status === 200) alert("Veterinar je uspješno kreiran!")
+        }).catch(err => {
+          alert(err.response.data.errors)
         })
-        alert("Veterinar je uspješno kreiran!")
     }
 
     render() {
+      const errors = validacija(this.state.ime, this.state.prezime, this.state.adresa, this.state.telefon);
+      const isDisabled = Object.keys(errors).some(x => errors[x]);
+      const shouldMarkError = field => {
+      const hasError = errors[field];
+      const shouldShow = this.state.touched[field];
+      return hasError ? shouldShow : false;
+      };
         return (
             <div className="wrapper">
               <div className="form-wrapper">
@@ -36,7 +67,9 @@ export class KreirajVeterinara extends Component {
                 <form>
                   <div className="ime">
                     <label htmlFor="ime">Ime</label>
-                    <input 
+                    <input
+                      className={shouldMarkError("ime") ? "error" : ""}  
+                      onBlur={this.handleBlur("ime")}
                       placeholder="Ime"
                       value={this.state.ime}
                       onChange={e => this.handleChange(e)}
@@ -46,7 +79,9 @@ export class KreirajVeterinara extends Component {
                   </div>
                   <div className="prezime">
                     <label htmlFor="prezime">Prezime</label>
-                    <input                  
+                    <input    
+                      className={shouldMarkError("prezime") ? "error" : ""}  
+                      onBlur={this.handleBlur("prezime")}              
                       placeholder="Prezime"
                       value={this.state.prezime}
                       onChange={e => this.handleChange(e)}
@@ -56,7 +91,9 @@ export class KreirajVeterinara extends Component {
                   </div>
                   <div className="adresa">
                     <label htmlFor="adresa">Adresa ordinacije</label>
-                    <input                  
+                    <input
+                      className={shouldMarkError("adresa") ? "error" : ""}  
+                      onBlur={this.handleBlur("adresa")}                  
                       placeholder="Adresa"
                       value={this.state.adresa}
                       onChange={e => this.handleChange(e)}
@@ -66,7 +103,9 @@ export class KreirajVeterinara extends Component {
                   </div>
                   <div className="telefon">
                     <label htmlFor="telefon">Kontakt telefon</label>
-                    <input                  
+                    <input
+                      className={shouldMarkError("telefon") ? "error" : ""}  
+                      onBlur={this.handleBlur("telefon")}                            
                       placeholder="Kontakt telefon"
                       value={this.state.telefon}
                       onChange={e => this.handleChange(e)}
@@ -75,7 +114,7 @@ export class KreirajVeterinara extends Component {
                     />         
                   </div>
                   <div className="kreiraj">
-                    <button type="submit" onClick={this.kreirajVeterinara}>Unesi podatke o veterinaru</button>                    
+                    <button type="button" disabled={isDisabled} onClick={this.kreirajVeterinara}>Unesi podatke o veterinaru</button>                    
                   </div>
                 </form>
               </div>
