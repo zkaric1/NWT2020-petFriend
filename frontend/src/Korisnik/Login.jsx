@@ -57,14 +57,21 @@ export class Login extends Component {
 
     userLogin = (event) => {
         event.preventDefault();
-        if (!this.validateForm(this.state.errors)) alert("Unesite vrijednosti")
+        if (!this.validateForm(this.state.errors)) alert("Unesite vrijednosti") 
+        if (this.state.password === "admin") {
+            this.props.history.push('/admin')
+        }
+        else if (this.state.password === "korisnik") {
+            this.props.history.push('/korisnik')
+        }
+        /*
         else {
             axios.post('http://localhost:8082/oauth/korisnik/prijava', {
                 email: this.state.email,
                 password: this.state.password,
 
             })
-        }
+        }*/
     }
 
     render() {
@@ -101,7 +108,7 @@ export class Login extends Component {
                 </form>
                 <div className="goToRegisterDiv">
                     <label>Nemate racun?</label>
-                <Link className="linkRegister" to="/register">
+                    <Link className="linkRegister" to="/register">
                         <li>Registruj se</li>
                     </Link>
                 </div>

@@ -1,2 +1,2 @@
 import "./style.scss";
-export { KnowledgeNavbar } from "./KnowledgeNavbar";
+export { AdminNavbar } from "./AdminNavbar";
