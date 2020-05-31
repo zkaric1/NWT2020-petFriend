@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 
+toast.configure()
 function validacija(ime, prezime, adresa, telefon) {
   return {
     ime: ime.length === 0,
@@ -46,9 +49,9 @@ export class KreirajVeterinara extends Component {
             adresa: this.state.adresa,
             kontaktTelefon: this.state.telefon,
         }).then(response => {
-          if (response.status === 200) alert("Veterinar je uspješno kreiran!")
+          if (response.status === 200 || response.status === 201) toast.success('Veterinar uspješno kreiran', {position: toast.POSITION.TOP_RIGHT})
         }).catch(err => {
-          alert(err.response.data.errors)
+          toast.error(err.response.data.errors.toString(), {position: toast.POSITION.TOP_RIGHT})
         })
     }
 

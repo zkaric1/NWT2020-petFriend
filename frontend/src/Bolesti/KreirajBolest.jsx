@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 
+toast.configure()
 function validacija(ime, lijek) {
   return {
     ime: ime.length === 0,
@@ -38,9 +41,9 @@ export class KreirajBolest extends Component {
             ime: this.state.ime,
             lijek: this.state.lijek,
         }).then(response => {
-          if (response.status === 200)  alert("Bolest je uspješno kreirana!")
+          if (response.status === 200 || response.status === 201) toast.success('Bolest uspješno kreirana', {position: toast.POSITION.TOP_RIGHT})
         }).catch(err => {
-          alert(err.response.data.errors)
+          toast.error(err.response.data.errors.toString(), {position: toast.POSITION.TOP_RIGHT})
         })
     }
 

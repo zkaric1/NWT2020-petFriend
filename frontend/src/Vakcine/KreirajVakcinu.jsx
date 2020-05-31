@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
+
+toast.configure()
 
 function validacija(tip, revakcinacija) {
   return {
@@ -32,9 +36,9 @@ export class KreirajVakcinu extends Component {
             tip: this.state.tip,
             revakcinacija: Number(this.state.revakcinacija),
         }).then(response => {
-          if (response.status === 200) alert("Vakcina je uspješno kreirana!")
+          if (response.status === 200 || response.status === 201) toast.success('Vakcina uspješno kreirana', {position: toast.POSITION.TOP_RIGHT})
         }).catch(err => {
-          alert(err.response.data.errors)
+          toast.error(err.response.data.errors.toString(), {position: toast.POSITION.TOP_RIGHT})
         })
     }
 

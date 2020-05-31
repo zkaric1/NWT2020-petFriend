@@ -2,7 +2,10 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import Select from 'react-select';
 import FileBase64 from 'react-file-base64';
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 
+toast.configure()
 function validacija(Ime, vrsta, rasa, odabraniSpol, godine, tezina, odabranaVelicina, slika, opis) {
   return {
     Ime: Ime.length === 0,
@@ -96,9 +99,9 @@ export class KreirajZivotinju extends Component {
         dodatniOpis: this.state.opis,
         tezina: Number(this.state.tezina)
       }).then(response => {
-        if (response.status === 200) alert("Životinja je uspješno kreirana!")
+        if (response.status === 200 || response.status === 201) toast.success('Životinja uspješno kreirana', {position: toast.POSITION.TOP_RIGHT})
       }).catch(err => {
-        alert(err.response.data.errors)
+        toast.error(err.response.data.errors.toString(), {position: toast.POSITION.TOP_RIGHT})
       })
     }
 
