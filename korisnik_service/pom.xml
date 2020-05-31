@@ -140,8 +140,12 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.etf.korisnik_service.UserServiceApplication</mainClass>
+                </configuration>
             </plugin>
         </plugins>
+        <finalName>korisnik_service</finalName>
     </build>
 
 </project>
