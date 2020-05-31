@@ -1,0 +1,15 @@
+version: '3'
+services:
+  discovery:
+    image: eureka-docker
+    ports:
+      - 8761:8761
+  zivotinja:
+    image: zivotinja-service-docker
+    ports:
+    - 8090:8080
+    depends_on:
+      - discovery
+    environment:
+      - JAVA_OPTS=
+        -DEUREKA_SERVER=http://discovery:8761/eureka
