@@ -18,7 +18,8 @@ public class ZivotinjaGrpcClient {
         PetFriend.Request zahtjev = PetFriend.Request.newBuilder()
                 .setTimeStampAkcije(vrijeme)
                 .setNazivMikroservisa("Zivotinja MS")
-                .setNazivResursa("Proba")
+                .setKorisnik("Alma")
+                .setNazivResursa("Zivotinja")
                 .build();
 
         PetFriend.Response odgovor = blockStub.logAction(zahtjev);

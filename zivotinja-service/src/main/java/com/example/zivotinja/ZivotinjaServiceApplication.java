@@ -16,26 +16,17 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableDiscoveryClient
 @SpringBootApplication
 public class ZivotinjaServiceApplication {
+    public static void main(String[] args) {
+        System.out.print("Pokrenuta APP");
+        SpringApplication.run(ZivotinjaServiceApplication.class, args);
+    }
     private static final Logger log = LoggerFactory.getLogger(ZivotinjaServiceApplication.class);
+
 
     @Bean
     @LoadBalanced
     public RestTemplate getRestTemplate() {
         return new RestTemplate();
-    }
-/*
-    @Bean
-    public WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/zivotinje").allowedOrigins("http://localhost:8080");
-            }
-        };
-    }*/
-
-    public static void main(String[] args) {
-        SpringApplication.run(ZivotinjaServiceApplication.class, args);
     }
 
     @Bean
@@ -89,11 +80,11 @@ public class ZivotinjaServiceApplication {
             zRepo.save(cuko);
             aRepo.save(anketa);
             cuko.preuzmiSliku();
-            cuko = new Zivotinja("Rex", "Pas", "Njemački ovčar", "M", 1, "Veliki pas", 6, "Najbolji pas kojeg ćete ikad imati!", false);
+            cuko = new Zivotinja("Rex", "Pas", "Njemacki ovcar", "M", 1, "Veliki pas", 6, "Najbolji pas kojeg cete ikad imati!", false);
             slika = cuko.kreirajSliku("C:\\Users\\belma\\Desktop\\ETF\\NWT2020-petFriend\\zivotinja-service\\Slike\\rex.jpg");
             cuko.setSlika(slika);
             zRepo.save(cuko);
-            Zivotinja maca = (new Zivotinja("Viki", "Mačka", "Ruska plava", "Z", 2, "Mali rast", 3, "Preslatka mala maca", false));
+            Zivotinja maca = (new Zivotinja("Viki", "Macka", "Ruska plava", "Z", 2, "Mali rast", 3, "Preslatka mala maca", false));
             slika = maca.kreirajSliku("C:\\Users\\belma\\Desktop\\ETF\\NWT2020-petFriend\\zivotinja-service\\Slike\\mini.jpg");
             maca.setSlika(slika);
             zRepo.save(maca);

@@ -6,17 +6,17 @@ package com.example.systemevents;
 public final class PetFriend {
   private PetFriend() {}
   public static void registerAllExtensions(
-      com.google.protobuf.ExtensionRegistryLite registry) {
+          com.google.protobuf.ExtensionRegistryLite registry) {
   }
 
   public static void registerAllExtensions(
-      com.google.protobuf.ExtensionRegistry registry) {
+          com.google.protobuf.ExtensionRegistry registry) {
     registerAllExtensions(
-        (com.google.protobuf.ExtensionRegistryLite) registry);
+            (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   public interface RequestOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Request)
-      com.google.protobuf.MessageOrBuilder {
+          // @@protoc_insertion_point(interface_extends:Request)
+          com.google.protobuf.MessageOrBuilder {
 
     /**
      * <code>.google.protobuf.Timestamp timeStampAkcije = 1;</code>
@@ -39,7 +39,7 @@ public final class PetFriend {
      * <code>string nazivMikroservisa = 2;</code>
      */
     com.google.protobuf.ByteString
-        getNazivMikroservisaBytes();
+    getNazivMikroservisaBytes();
 
     /**
      * <code>string Korisnik = 3;</code>
@@ -49,7 +49,7 @@ public final class PetFriend {
      * <code>string Korisnik = 3;</code>
      */
     com.google.protobuf.ByteString
-        getKorisnikBytes();
+    getKorisnikBytes();
 
     /**
      * <code>.Request.tipAkcije Akcija = 4;</code>
@@ -68,16 +68,16 @@ public final class PetFriend {
      * <code>string nazivResursa = 5;</code>
      */
     com.google.protobuf.ByteString
-        getNazivResursaBytes();
+    getNazivResursaBytes();
   }
   /**
    * Protobuf type {@code Request}
    */
   public  static final class Request extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:Request)
-      RequestOrBuilder {
-  private static final long serialVersionUID = 0L;
+          com.google.protobuf.GeneratedMessageV3 implements
+          // @@protoc_insertion_point(message_implements:Request)
+          RequestOrBuilder {
+    private static final long serialVersionUID = 0L;
     // Use Request.newBuilder() to construct.
     private Request(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -95,16 +95,16 @@ public final class PetFriend {
       return this.unknownFields;
     }
     private Request(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
       int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
+              com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -152,7 +152,7 @@ public final class PetFriend {
             }
             default: {
               if (!parseUnknownFieldProto3(
-                  input, unknownFields, extensionRegistry, tag)) {
+                      input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -163,30 +163,30 @@ public final class PetFriend {
         throw e.setUnfinishedMessage(this);
       } catch (java.io.IOException e) {
         throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+                e).setUnfinishedMessage(this);
       } finally {
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
     public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
+    getDescriptor() {
       return com.example.systemevents.PetFriend.internal_static_Request_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
+    internalGetFieldAccessorTable() {
       return com.example.systemevents.PetFriend.internal_static_Request_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.example.systemevents.PetFriend.Request.class, com.example.systemevents.PetFriend.Request.Builder.class);
+              .ensureFieldAccessorsInitialized(
+                      com.example.systemevents.PetFriend.Request.class, com.example.systemevents.PetFriend.Request.Builder.class);
     }
 
     /**
      * Protobuf enum {@code Request.tipAkcije}
      */
     public enum tipAkcije
-        implements com.google.protobuf.ProtocolMessageEnum {
+            implements com.google.protobuf.ProtocolMessageEnum {
       /**
        * <code>CREATE = 0;</code>
        */
@@ -227,7 +227,7 @@ public final class PetFriend {
       public final int getNumber() {
         if (this == UNRECOGNIZED) {
           throw new java.lang.IllegalArgumentException(
-              "Can't get the number of an unknown enum value.");
+                  "Can't get the number of an unknown enum value.");
         }
         return value;
       }
@@ -251,37 +251,37 @@ public final class PetFriend {
       }
 
       public static com.google.protobuf.Internal.EnumLiteMap<tipAkcije>
-          internalGetValueMap() {
+      internalGetValueMap() {
         return internalValueMap;
       }
       private static final com.google.protobuf.Internal.EnumLiteMap<
-          tipAkcije> internalValueMap =
-            new com.google.protobuf.Internal.EnumLiteMap<tipAkcije>() {
-              public tipAkcije findValueByNumber(int number) {
-                return tipAkcije.forNumber(number);
-              }
-            };
+              tipAkcije> internalValueMap =
+              new com.google.protobuf.Internal.EnumLiteMap<tipAkcije>() {
+                public tipAkcije findValueByNumber(int number) {
+                  return tipAkcije.forNumber(number);
+                }
+              };
 
       public final com.google.protobuf.Descriptors.EnumValueDescriptor
-          getValueDescriptor() {
+      getValueDescriptor() {
         return getDescriptor().getValues().get(ordinal());
       }
       public final com.google.protobuf.Descriptors.EnumDescriptor
-          getDescriptorForType() {
+      getDescriptorForType() {
         return getDescriptor();
       }
       public static final com.google.protobuf.Descriptors.EnumDescriptor
-          getDescriptor() {
+      getDescriptor() {
         return com.example.systemevents.PetFriend.Request.getDescriptor().getEnumTypes().get(0);
       }
 
       private static final tipAkcije[] VALUES = values();
 
       public static tipAkcije valueOf(
-          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+              com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
           throw new java.lang.IllegalArgumentException(
-            "EnumValueDescriptor is not for this type.");
+                  "EnumValueDescriptor is not for this type.");
         }
         if (desc.getIndex() == -1) {
           return UNRECOGNIZED;
@@ -329,8 +329,8 @@ public final class PetFriend {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
+        com.google.protobuf.ByteString bs =
+                (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         nazivMikroservisa_ = s;
         return s;
@@ -340,12 +340,12 @@ public final class PetFriend {
      * <code>string nazivMikroservisa = 2;</code>
      */
     public com.google.protobuf.ByteString
-        getNazivMikroservisaBytes() {
+    getNazivMikroservisaBytes() {
       java.lang.Object ref = nazivMikroservisa_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
+        com.google.protobuf.ByteString b =
+                com.google.protobuf.ByteString.copyFromUtf8(
+                        (java.lang.String) ref);
         nazivMikroservisa_ = b;
         return b;
       } else {
@@ -363,8 +363,8 @@ public final class PetFriend {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
+        com.google.protobuf.ByteString bs =
+                (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         korisnik_ = s;
         return s;
@@ -374,12 +374,12 @@ public final class PetFriend {
      * <code>string Korisnik = 3;</code>
      */
     public com.google.protobuf.ByteString
-        getKorisnikBytes() {
+    getKorisnikBytes() {
       java.lang.Object ref = korisnik_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
+        com.google.protobuf.ByteString b =
+                com.google.protobuf.ByteString.copyFromUtf8(
+                        (java.lang.String) ref);
         korisnik_ = b;
         return b;
       } else {
@@ -414,8 +414,8 @@ public final class PetFriend {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
+        com.google.protobuf.ByteString bs =
+                (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         nazivResursa_ = s;
         return s;
@@ -425,12 +425,12 @@ public final class PetFriend {
      * <code>string nazivResursa = 5;</code>
      */
     public com.google.protobuf.ByteString
-        getNazivResursaBytes() {
+    getNazivResursaBytes() {
       java.lang.Object ref = nazivResursa_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
+        com.google.protobuf.ByteString b =
+                com.google.protobuf.ByteString.copyFromUtf8(
+                        (java.lang.String) ref);
         nazivResursa_ = b;
         return b;
       } else {
@@ -451,7 +451,7 @@ public final class PetFriend {
 
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
+            throws java.io.IOException {
       if (timeStampAkcije_ != null) {
         output.writeMessage(1, getTimeStampAkcije());
       }
@@ -478,7 +478,7 @@ public final class PetFriend {
       size = 0;
       if (timeStampAkcije_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, getTimeStampAkcije());
+                .computeMessageSize(1, getTimeStampAkcije());
       }
       if (!getNazivMikroservisaBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, nazivMikroservisa_);
@@ -488,7 +488,7 @@ public final class PetFriend {
       }
       if (akcija_ != com.example.systemevents.PetFriend.Request.tipAkcije.CREATE.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(4, akcija_);
+                .computeEnumSize(4, akcija_);
       }
       if (!getNazivResursaBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, nazivResursa_);
@@ -501,7 +501,7 @@ public final class PetFriend {
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
-       return true;
+        return true;
       }
       if (!(obj instanceof com.example.systemevents.PetFriend.Request)) {
         return super.equals(obj);
@@ -512,15 +512,15 @@ public final class PetFriend {
       result = result && (hasTimeStampAkcije() == other.hasTimeStampAkcije());
       if (hasTimeStampAkcije()) {
         result = result && getTimeStampAkcije()
-            .equals(other.getTimeStampAkcije());
+                .equals(other.getTimeStampAkcije());
       }
       result = result && getNazivMikroservisa()
-          .equals(other.getNazivMikroservisa());
+              .equals(other.getNazivMikroservisa());
       result = result && getKorisnik()
-          .equals(other.getKorisnik());
+              .equals(other.getKorisnik());
       result = result && akcija_ == other.akcija_;
       result = result && getNazivResursa()
-          .equals(other.getNazivResursa());
+              .equals(other.getNazivResursa());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -550,73 +550,73 @@ public final class PetFriend {
     }
 
     public static com.example.systemevents.PetFriend.Request parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+            java.nio.ByteBuffer data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
     public static com.example.systemevents.PetFriend.Request parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+            java.nio.ByteBuffer data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
     public static com.example.systemevents.PetFriend.Request parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+            com.google.protobuf.ByteString data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
     public static com.example.systemevents.PetFriend.Request parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+            com.google.protobuf.ByteString data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
     public static com.example.systemevents.PetFriend.Request parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+            throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
     public static com.example.systemevents.PetFriend.Request parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+            byte[] data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
     public static com.example.systemevents.PetFriend.Request parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
+            throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+              .parseWithIOException(PARSER, input);
     }
     public static com.example.systemevents.PetFriend.Request parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+              .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static com.example.systemevents.PetFriend.Request parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
+            throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+              .parseDelimitedWithIOException(PARSER, input);
     }
     public static com.example.systemevents.PetFriend.Request parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+              .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static com.example.systemevents.PetFriend.Request parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
+            com.google.protobuf.CodedInputStream input)
+            throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+              .parseWithIOException(PARSER, input);
     }
     public static com.example.systemevents.PetFriend.Request parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+              .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
     @java.lang.Override
@@ -630,12 +630,12 @@ public final class PetFriend {
     @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
+              ? new Builder() : new Builder().mergeFrom(this);
     }
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -643,20 +643,20 @@ public final class PetFriend {
      * Protobuf type {@code Request}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Request)
-        com.example.systemevents.PetFriend.RequestOrBuilder {
+            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+            // @@protoc_insertion_point(builder_implements:Request)
+            com.example.systemevents.PetFriend.RequestOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
+      getDescriptor() {
         return com.example.systemevents.PetFriend.internal_static_Request_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
+      internalGetFieldAccessorTable() {
         return com.example.systemevents.PetFriend.internal_static_Request_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.example.systemevents.PetFriend.Request.class, com.example.systemevents.PetFriend.Request.Builder.class);
+                .ensureFieldAccessorsInitialized(
+                        com.example.systemevents.PetFriend.Request.class, com.example.systemevents.PetFriend.Request.Builder.class);
       }
 
       // Construct using com.example.systemevents.PetFriend.Request.newBuilder()
@@ -665,7 +665,7 @@ public final class PetFriend {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+              com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -696,7 +696,7 @@ public final class PetFriend {
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
+      getDescriptorForType() {
         return com.example.systemevents.PetFriend.internal_static_Request_descriptor;
       }
 
@@ -736,30 +736,30 @@ public final class PetFriend {
       }
       @java.lang.Override
       public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
+              com.google.protobuf.Descriptors.FieldDescriptor field) {
         return (Builder) super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+              com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return (Builder) super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       @java.lang.Override
@@ -804,9 +804,9 @@ public final class PetFriend {
 
       @java.lang.Override
       public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
+              com.google.protobuf.CodedInputStream input,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws java.io.IOException {
         com.example.systemevents.PetFriend.Request parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
@@ -823,7 +823,7 @@ public final class PetFriend {
 
       private com.google.protobuf.Timestamp timeStampAkcije_ = null;
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> timeStampAkcijeBuilder_;
+              com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> timeStampAkcijeBuilder_;
       /**
        * <code>.google.protobuf.Timestamp timeStampAkcije = 1;</code>
        */
@@ -860,7 +860,7 @@ public final class PetFriend {
        * <code>.google.protobuf.Timestamp timeStampAkcije = 1;</code>
        */
       public Builder setTimeStampAkcije(
-          com.google.protobuf.Timestamp.Builder builderForValue) {
+              com.google.protobuf.Timestamp.Builder builderForValue) {
         if (timeStampAkcijeBuilder_ == null) {
           timeStampAkcije_ = builderForValue.build();
           onChanged();
@@ -877,7 +877,7 @@ public final class PetFriend {
         if (timeStampAkcijeBuilder_ == null) {
           if (timeStampAkcije_ != null) {
             timeStampAkcije_ =
-              com.google.protobuf.Timestamp.newBuilder(timeStampAkcije_).mergeFrom(value).buildPartial();
+                    com.google.protobuf.Timestamp.newBuilder(timeStampAkcije_).mergeFrom(value).buildPartial();
           } else {
             timeStampAkcije_ = value;
           }
@@ -906,7 +906,7 @@ public final class PetFriend {
        * <code>.google.protobuf.Timestamp timeStampAkcije = 1;</code>
        */
       public com.google.protobuf.Timestamp.Builder getTimeStampAkcijeBuilder() {
-        
+
         onChanged();
         return getTimeStampAkcijeFieldBuilder().getBuilder();
       }
@@ -918,18 +918,18 @@ public final class PetFriend {
           return timeStampAkcijeBuilder_.getMessageOrBuilder();
         } else {
           return timeStampAkcije_ == null ?
-              com.google.protobuf.Timestamp.getDefaultInstance() : timeStampAkcije_;
+                  com.google.protobuf.Timestamp.getDefaultInstance() : timeStampAkcije_;
         }
       }
       /**
        * <code>.google.protobuf.Timestamp timeStampAkcije = 1;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
-          getTimeStampAkcijeFieldBuilder() {
+              com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder>
+      getTimeStampAkcijeFieldBuilder() {
         if (timeStampAkcijeBuilder_ == null) {
           timeStampAkcijeBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder>(
+                  com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder>(
                   getTimeStampAkcije(),
                   getParentForChildren(),
                   isClean());
@@ -946,7 +946,7 @@ public final class PetFriend {
         java.lang.Object ref = nazivMikroservisa_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
+                  (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
           nazivMikroservisa_ = s;
           return s;
@@ -958,12 +958,12 @@ public final class PetFriend {
        * <code>string nazivMikroservisa = 2;</code>
        */
       public com.google.protobuf.ByteString
-          getNazivMikroservisaBytes() {
+      getNazivMikroservisaBytes() {
         java.lang.Object ref = nazivMikroservisa_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
           nazivMikroservisa_ = b;
           return b;
         } else {
@@ -974,11 +974,11 @@ public final class PetFriend {
        * <code>string nazivMikroservisa = 2;</code>
        */
       public Builder setNazivMikroservisa(
-          java.lang.String value) {
+              java.lang.String value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  
+          throw new NullPointerException();
+        }
+
         nazivMikroservisa_ = value;
         onChanged();
         return this;
@@ -987,7 +987,7 @@ public final class PetFriend {
        * <code>string nazivMikroservisa = 2;</code>
        */
       public Builder clearNazivMikroservisa() {
-        
+
         nazivMikroservisa_ = getDefaultInstance().getNazivMikroservisa();
         onChanged();
         return this;
@@ -996,12 +996,12 @@ public final class PetFriend {
        * <code>string nazivMikroservisa = 2;</code>
        */
       public Builder setNazivMikroservisaBytes(
-          com.google.protobuf.ByteString value) {
+              com.google.protobuf.ByteString value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+          throw new NullPointerException();
+        }
+        checkByteStringIsUtf8(value);
+
         nazivMikroservisa_ = value;
         onChanged();
         return this;
@@ -1015,7 +1015,7 @@ public final class PetFriend {
         java.lang.Object ref = korisnik_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
+                  (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
           korisnik_ = s;
           return s;
@@ -1027,12 +1027,12 @@ public final class PetFriend {
        * <code>string Korisnik = 3;</code>
        */
       public com.google.protobuf.ByteString
-          getKorisnikBytes() {
+      getKorisnikBytes() {
         java.lang.Object ref = korisnik_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
           korisnik_ = b;
           return b;
         } else {
@@ -1043,11 +1043,11 @@ public final class PetFriend {
        * <code>string Korisnik = 3;</code>
        */
       public Builder setKorisnik(
-          java.lang.String value) {
+              java.lang.String value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  
+          throw new NullPointerException();
+        }
+
         korisnik_ = value;
         onChanged();
         return this;
@@ -1056,7 +1056,7 @@ public final class PetFriend {
        * <code>string Korisnik = 3;</code>
        */
       public Builder clearKorisnik() {
-        
+
         korisnik_ = getDefaultInstance().getKorisnik();
         onChanged();
         return this;
@@ -1065,12 +1065,12 @@ public final class PetFriend {
        * <code>string Korisnik = 3;</code>
        */
       public Builder setKorisnikBytes(
-          com.google.protobuf.ByteString value) {
+              com.google.protobuf.ByteString value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+          throw new NullPointerException();
+        }
+        checkByteStringIsUtf8(value);
+
         korisnik_ = value;
         onChanged();
         return this;
@@ -1106,7 +1106,7 @@ public final class PetFriend {
         if (value == null) {
           throw new NullPointerException();
         }
-        
+
         akcija_ = value.getNumber();
         onChanged();
         return this;
@@ -1115,7 +1115,7 @@ public final class PetFriend {
        * <code>.Request.tipAkcije Akcija = 4;</code>
        */
       public Builder clearAkcija() {
-        
+
         akcija_ = 0;
         onChanged();
         return this;
@@ -1129,7 +1129,7 @@ public final class PetFriend {
         java.lang.Object ref = nazivResursa_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
+                  (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
           nazivResursa_ = s;
           return s;
@@ -1141,12 +1141,12 @@ public final class PetFriend {
        * <code>string nazivResursa = 5;</code>
        */
       public com.google.protobuf.ByteString
-          getNazivResursaBytes() {
+      getNazivResursaBytes() {
         java.lang.Object ref = nazivResursa_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
           nazivResursa_ = b;
           return b;
         } else {
@@ -1157,11 +1157,11 @@ public final class PetFriend {
        * <code>string nazivResursa = 5;</code>
        */
       public Builder setNazivResursa(
-          java.lang.String value) {
+              java.lang.String value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  
+          throw new NullPointerException();
+        }
+
         nazivResursa_ = value;
         onChanged();
         return this;
@@ -1170,7 +1170,7 @@ public final class PetFriend {
        * <code>string nazivResursa = 5;</code>
        */
       public Builder clearNazivResursa() {
-        
+
         nazivResursa_ = getDefaultInstance().getNazivResursa();
         onChanged();
         return this;
@@ -1179,25 +1179,25 @@ public final class PetFriend {
        * <code>string nazivResursa = 5;</code>
        */
       public Builder setNazivResursaBytes(
-          com.google.protobuf.ByteString value) {
+              com.google.protobuf.ByteString value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+          throw new NullPointerException();
+        }
+        checkByteStringIsUtf8(value);
+
         nazivResursa_ = value;
         onChanged();
         return this;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
+              final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFieldsProto3(unknownFields);
       }
 
       @java.lang.Override
       public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
+              final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
 
@@ -1216,12 +1216,12 @@ public final class PetFriend {
     }
 
     private static final com.google.protobuf.Parser<Request>
-        PARSER = new com.google.protobuf.AbstractParser<Request>() {
+            PARSER = new com.google.protobuf.AbstractParser<Request>() {
       @java.lang.Override
       public Request parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
+              com.google.protobuf.CodedInputStream input,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws com.google.protobuf.InvalidProtocolBufferException {
         return new Request(input, extensionRegistry);
       }
     };
@@ -1243,8 +1243,8 @@ public final class PetFriend {
   }
 
   public interface ResponseOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:Response)
-      com.google.protobuf.MessageOrBuilder {
+          // @@protoc_insertion_point(interface_extends:Response)
+          com.google.protobuf.MessageOrBuilder {
 
     /**
      * <code>string porukaOdgovora = 1;</code>
@@ -1254,7 +1254,7 @@ public final class PetFriend {
      * <code>string porukaOdgovora = 1;</code>
      */
     com.google.protobuf.ByteString
-        getPorukaOdgovoraBytes();
+    getPorukaOdgovoraBytes();
 
     /**
      * <code>.Response.tipOdgovora Odgovor = 2;</code>
@@ -1269,10 +1269,10 @@ public final class PetFriend {
    * Protobuf type {@code Response}
    */
   public  static final class Response extends
-      com.google.protobuf.GeneratedMessageV3 implements
-      // @@protoc_insertion_point(message_implements:Response)
-      ResponseOrBuilder {
-  private static final long serialVersionUID = 0L;
+          com.google.protobuf.GeneratedMessageV3 implements
+          // @@protoc_insertion_point(message_implements:Response)
+          ResponseOrBuilder {
+    private static final long serialVersionUID = 0L;
     // Use Response.newBuilder() to construct.
     private Response(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
       super(builder);
@@ -1288,16 +1288,16 @@ public final class PetFriend {
       return this.unknownFields;
     }
     private Response(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
         throw new java.lang.NullPointerException();
       }
       int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
+              com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -1320,7 +1320,7 @@ public final class PetFriend {
             }
             default: {
               if (!parseUnknownFieldProto3(
-                  input, unknownFields, extensionRegistry, tag)) {
+                      input, unknownFields, extensionRegistry, tag)) {
                 done = true;
               }
               break;
@@ -1331,30 +1331,30 @@ public final class PetFriend {
         throw e.setUnfinishedMessage(this);
       } catch (java.io.IOException e) {
         throw new com.google.protobuf.InvalidProtocolBufferException(
-            e).setUnfinishedMessage(this);
+                e).setUnfinishedMessage(this);
       } finally {
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
     public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
+    getDescriptor() {
       return com.example.systemevents.PetFriend.internal_static_Response_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-        internalGetFieldAccessorTable() {
+    internalGetFieldAccessorTable() {
       return com.example.systemevents.PetFriend.internal_static_Response_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              com.example.systemevents.PetFriend.Response.class, com.example.systemevents.PetFriend.Response.Builder.class);
+              .ensureFieldAccessorsInitialized(
+                      com.example.systemevents.PetFriend.Response.class, com.example.systemevents.PetFriend.Response.Builder.class);
     }
 
     /**
      * Protobuf enum {@code Response.tipOdgovora}
      */
     public enum tipOdgovora
-        implements com.google.protobuf.ProtocolMessageEnum {
+            implements com.google.protobuf.ProtocolMessageEnum {
       /**
        * <code>USPJESNO = 0;</code>
        */
@@ -1379,7 +1379,7 @@ public final class PetFriend {
       public final int getNumber() {
         if (this == UNRECOGNIZED) {
           throw new java.lang.IllegalArgumentException(
-              "Can't get the number of an unknown enum value.");
+                  "Can't get the number of an unknown enum value.");
         }
         return value;
       }
@@ -1401,37 +1401,37 @@ public final class PetFriend {
       }
 
       public static com.google.protobuf.Internal.EnumLiteMap<tipOdgovora>
-          internalGetValueMap() {
+      internalGetValueMap() {
         return internalValueMap;
       }
       private static final com.google.protobuf.Internal.EnumLiteMap<
-          tipOdgovora> internalValueMap =
-            new com.google.protobuf.Internal.EnumLiteMap<tipOdgovora>() {
-              public tipOdgovora findValueByNumber(int number) {
-                return tipOdgovora.forNumber(number);
-              }
-            };
+              tipOdgovora> internalValueMap =
+              new com.google.protobuf.Internal.EnumLiteMap<tipOdgovora>() {
+                public tipOdgovora findValueByNumber(int number) {
+                  return tipOdgovora.forNumber(number);
+                }
+              };
 
       public final com.google.protobuf.Descriptors.EnumValueDescriptor
-          getValueDescriptor() {
+      getValueDescriptor() {
         return getDescriptor().getValues().get(ordinal());
       }
       public final com.google.protobuf.Descriptors.EnumDescriptor
-          getDescriptorForType() {
+      getDescriptorForType() {
         return getDescriptor();
       }
       public static final com.google.protobuf.Descriptors.EnumDescriptor
-          getDescriptor() {
+      getDescriptor() {
         return com.example.systemevents.PetFriend.Response.getDescriptor().getEnumTypes().get(0);
       }
 
       private static final tipOdgovora[] VALUES = values();
 
       public static tipOdgovora valueOf(
-          com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+              com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
           throw new java.lang.IllegalArgumentException(
-            "EnumValueDescriptor is not for this type.");
+                  "EnumValueDescriptor is not for this type.");
         }
         if (desc.getIndex() == -1) {
           return UNRECOGNIZED;
@@ -1458,8 +1458,8 @@ public final class PetFriend {
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
+        com.google.protobuf.ByteString bs =
+                (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
         porukaOdgovora_ = s;
         return s;
@@ -1469,12 +1469,12 @@ public final class PetFriend {
      * <code>string porukaOdgovora = 1;</code>
      */
     public com.google.protobuf.ByteString
-        getPorukaOdgovoraBytes() {
+    getPorukaOdgovoraBytes() {
       java.lang.Object ref = porukaOdgovora_;
       if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
+        com.google.protobuf.ByteString b =
+                com.google.protobuf.ByteString.copyFromUtf8(
+                        (java.lang.String) ref);
         porukaOdgovora_ = b;
         return b;
       } else {
@@ -1512,7 +1512,7 @@ public final class PetFriend {
 
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
+            throws java.io.IOException {
       if (!getPorukaOdgovoraBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 1, porukaOdgovora_);
       }
@@ -1533,7 +1533,7 @@ public final class PetFriend {
       }
       if (odgovor_ != com.example.systemevents.PetFriend.Response.tipOdgovora.USPJESNO.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(2, odgovor_);
+                .computeEnumSize(2, odgovor_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -1543,7 +1543,7 @@ public final class PetFriend {
     @java.lang.Override
     public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
-       return true;
+        return true;
       }
       if (!(obj instanceof com.example.systemevents.PetFriend.Response)) {
         return super.equals(obj);
@@ -1552,7 +1552,7 @@ public final class PetFriend {
 
       boolean result = true;
       result = result && getPorukaOdgovora()
-          .equals(other.getPorukaOdgovora());
+              .equals(other.getPorukaOdgovora());
       result = result && odgovor_ == other.odgovor_;
       result = result && unknownFields.equals(other.unknownFields);
       return result;
@@ -1575,73 +1575,73 @@ public final class PetFriend {
     }
 
     public static com.example.systemevents.PetFriend.Response parseFrom(
-        java.nio.ByteBuffer data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+            java.nio.ByteBuffer data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
     public static com.example.systemevents.PetFriend.Response parseFrom(
-        java.nio.ByteBuffer data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+            java.nio.ByteBuffer data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
     public static com.example.systemevents.PetFriend.Response parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+            com.google.protobuf.ByteString data)
+            throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
     public static com.example.systemevents.PetFriend.Response parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+            com.google.protobuf.ByteString data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
     public static com.example.systemevents.PetFriend.Response parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+            throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data);
     }
     public static com.example.systemevents.PetFriend.Response parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
+            byte[] data,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
       return PARSER.parseFrom(data, extensionRegistry);
     }
     public static com.example.systemevents.PetFriend.Response parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
+            throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+              .parseWithIOException(PARSER, input);
     }
     public static com.example.systemevents.PetFriend.Response parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+              .parseWithIOException(PARSER, input, extensionRegistry);
     }
     public static com.example.systemevents.PetFriend.Response parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
+            throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input);
+              .parseDelimitedWithIOException(PARSER, input);
     }
     public static com.example.systemevents.PetFriend.Response parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
+            java.io.InputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+              .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
     }
     public static com.example.systemevents.PetFriend.Response parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
+            com.google.protobuf.CodedInputStream input)
+            throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input);
+              .parseWithIOException(PARSER, input);
     }
     public static com.example.systemevents.PetFriend.Response parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
       return com.google.protobuf.GeneratedMessageV3
-          .parseWithIOException(PARSER, input, extensionRegistry);
+              .parseWithIOException(PARSER, input, extensionRegistry);
     }
 
     @java.lang.Override
@@ -1655,12 +1655,12 @@ public final class PetFriend {
     @java.lang.Override
     public Builder toBuilder() {
       return this == DEFAULT_INSTANCE
-          ? new Builder() : new Builder().mergeFrom(this);
+              ? new Builder() : new Builder().mergeFrom(this);
     }
 
     @java.lang.Override
     protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+            com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -1668,20 +1668,20 @@ public final class PetFriend {
      * Protobuf type {@code Response}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:Response)
-        com.example.systemevents.PetFriend.ResponseOrBuilder {
+            com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+            // @@protoc_insertion_point(builder_implements:Response)
+            com.example.systemevents.PetFriend.ResponseOrBuilder {
       public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
+      getDescriptor() {
         return com.example.systemevents.PetFriend.internal_static_Response_descriptor;
       }
 
       @java.lang.Override
       protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-          internalGetFieldAccessorTable() {
+      internalGetFieldAccessorTable() {
         return com.example.systemevents.PetFriend.internal_static_Response_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                com.example.systemevents.PetFriend.Response.class, com.example.systemevents.PetFriend.Response.Builder.class);
+                .ensureFieldAccessorsInitialized(
+                        com.example.systemevents.PetFriend.Response.class, com.example.systemevents.PetFriend.Response.Builder.class);
       }
 
       // Construct using com.example.systemevents.PetFriend.Response.newBuilder()
@@ -1690,7 +1690,7 @@ public final class PetFriend {
       }
 
       private Builder(
-          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+              com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -1711,7 +1711,7 @@ public final class PetFriend {
 
       @java.lang.Override
       public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
+      getDescriptorForType() {
         return com.example.systemevents.PetFriend.internal_static_Response_descriptor;
       }
 
@@ -1744,30 +1744,30 @@ public final class PetFriend {
       }
       @java.lang.Override
       public Builder setField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       @java.lang.Override
       public Builder clearField(
-          com.google.protobuf.Descriptors.FieldDescriptor field) {
+              com.google.protobuf.Descriptors.FieldDescriptor field) {
         return (Builder) super.clearField(field);
       }
       @java.lang.Override
       public Builder clearOneof(
-          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+              com.google.protobuf.Descriptors.OneofDescriptor oneof) {
         return (Builder) super.clearOneof(oneof);
       }
       @java.lang.Override
       public Builder setRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, java.lang.Object value) {
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       @java.lang.Override
       public Builder addRepeatedField(
-          com.google.protobuf.Descriptors.FieldDescriptor field,
-          java.lang.Object value) {
+              com.google.protobuf.Descriptors.FieldDescriptor field,
+              java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       @java.lang.Override
@@ -1801,9 +1801,9 @@ public final class PetFriend {
 
       @java.lang.Override
       public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
+              com.google.protobuf.CodedInputStream input,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws java.io.IOException {
         com.example.systemevents.PetFriend.Response parsedMessage = null;
         try {
           parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
@@ -1826,7 +1826,7 @@ public final class PetFriend {
         java.lang.Object ref = porukaOdgovora_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
+                  (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
           porukaOdgovora_ = s;
           return s;
@@ -1838,12 +1838,12 @@ public final class PetFriend {
        * <code>string porukaOdgovora = 1;</code>
        */
       public com.google.protobuf.ByteString
-          getPorukaOdgovoraBytes() {
+      getPorukaOdgovoraBytes() {
         java.lang.Object ref = porukaOdgovora_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
+          com.google.protobuf.ByteString b =
+                  com.google.protobuf.ByteString.copyFromUtf8(
+                          (java.lang.String) ref);
           porukaOdgovora_ = b;
           return b;
         } else {
@@ -1854,11 +1854,11 @@ public final class PetFriend {
        * <code>string porukaOdgovora = 1;</code>
        */
       public Builder setPorukaOdgovora(
-          java.lang.String value) {
+              java.lang.String value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  
+          throw new NullPointerException();
+        }
+
         porukaOdgovora_ = value;
         onChanged();
         return this;
@@ -1867,7 +1867,7 @@ public final class PetFriend {
        * <code>string porukaOdgovora = 1;</code>
        */
       public Builder clearPorukaOdgovora() {
-        
+
         porukaOdgovora_ = getDefaultInstance().getPorukaOdgovora();
         onChanged();
         return this;
@@ -1876,12 +1876,12 @@ public final class PetFriend {
        * <code>string porukaOdgovora = 1;</code>
        */
       public Builder setPorukaOdgovoraBytes(
-          com.google.protobuf.ByteString value) {
+              com.google.protobuf.ByteString value) {
         if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-        
+          throw new NullPointerException();
+        }
+        checkByteStringIsUtf8(value);
+
         porukaOdgovora_ = value;
         onChanged();
         return this;
@@ -1917,7 +1917,7 @@ public final class PetFriend {
         if (value == null) {
           throw new NullPointerException();
         }
-        
+
         odgovor_ = value.getNumber();
         onChanged();
         return this;
@@ -1926,20 +1926,20 @@ public final class PetFriend {
        * <code>.Response.tipOdgovora Odgovor = 2;</code>
        */
       public Builder clearOdgovor() {
-        
+
         odgovor_ = 0;
         onChanged();
         return this;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
+              final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFieldsProto3(unknownFields);
       }
 
       @java.lang.Override
       public final Builder mergeUnknownFields(
-          final com.google.protobuf.UnknownFieldSet unknownFields) {
+              final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.mergeUnknownFields(unknownFields);
       }
 
@@ -1958,12 +1958,12 @@ public final class PetFriend {
     }
 
     private static final com.google.protobuf.Parser<Response>
-        PARSER = new com.google.protobuf.AbstractParser<Response>() {
+            PARSER = new com.google.protobuf.AbstractParser<Response>() {
       @java.lang.Override
       public Response parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
+              com.google.protobuf.CodedInputStream input,
+              com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+              throws com.google.protobuf.InvalidProtocolBufferException {
         return new Response(input, extensionRegistry);
       }
     };
@@ -1985,62 +1985,62 @@ public final class PetFriend {
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Request_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Request_fieldAccessorTable;
+          internal_static_Request_descriptor;
+  private static final
+  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internal_static_Request_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_Response_descriptor;
-  private static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_Response_fieldAccessorTable;
+          internal_static_Response_descriptor;
+  private static final
+  com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internal_static_Response_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
-      getDescriptor() {
+  getDescriptor() {
     return descriptor;
   }
   private static  com.google.protobuf.Descriptors.FileDescriptor
-      descriptor;
+          descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\017petFriend.proto\032\037google/protobuf/times" +
-      "tamp.proto\"\337\001\n\007Request\0223\n\017timeStampAkcij" +
-      "e\030\001 \001(\0132\032.google.protobuf.Timestamp\022\031\n\021n" +
-      "azivMikroservisa\030\002 \001(\t\022\020\n\010Korisnik\030\003 \001(\t" +
-      "\022\"\n\006Akcija\030\004 \001(\0162\022.Request.tipAkcije\022\024\n\014" +
-      "nazivResursa\030\005 \001(\t\"8\n\ttipAkcije\022\n\n\006CREAT" +
-      "E\020\000\022\n\n\006DELETE\020\001\022\007\n\003GET\020\002\022\n\n\006UPDATE\020\003\"s\n\010" +
-      "Response\022\026\n\016porukaOdgovora\030\001 \001(\t\022&\n\007Odgo" +
-      "vor\030\002 \001(\0162\025.Response.tipOdgovora\"\'\n\013tipO" +
-      "dgovora\022\014\n\010USPJESNO\020\000\022\n\n\006GRESKA\020\00120\n\014Sys" +
-      "temEvents\022 \n\tlogAction\022\010.Request\032\t.Respo" +
-      "nseB\032\n\030com.example.systemeventsb\006proto3"
+            "\n\017petFriend.proto\032\037google/protobuf/times" +
+                    "tamp.proto\"\337\001\n\007Request\0223\n\017timeStampAkcij" +
+                    "e\030\001 \001(\0132\032.google.protobuf.Timestamp\022\031\n\021n" +
+                    "azivMikroservisa\030\002 \001(\t\022\020\n\010Korisnik\030\003 \001(\t" +
+                    "\022\"\n\006Akcija\030\004 \001(\0162\022.Request.tipAkcije\022\024\n\014" +
+                    "nazivResursa\030\005 \001(\t\"8\n\ttipAkcije\022\n\n\006CREAT" +
+                    "E\020\000\022\n\n\006DELETE\020\001\022\007\n\003GET\020\002\022\n\n\006UPDATE\020\003\"s\n\010" +
+                    "Response\022\026\n\016porukaOdgovora\030\001 \001(\t\022&\n\007Odgo" +
+                    "vor\030\002 \001(\0162\025.Response.tipOdgovora\"\'\n\013tipO" +
+                    "dgovora\022\014\n\010USPJESNO\020\000\022\n\n\006GRESKA\020\00120\n\014Sys" +
+                    "temEvents\022 \n\tlogAction\022\010.Request\032\t.Respo" +
+                    "nseB\032\n\030com.example.systemeventsb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
-        new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
-          public com.google.protobuf.ExtensionRegistry assignDescriptors(
-              com.google.protobuf.Descriptors.FileDescriptor root) {
-            descriptor = root;
-            return null;
-          }
-        };
+            new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
+              public com.google.protobuf.ExtensionRegistry assignDescriptors(
+                      com.google.protobuf.Descriptors.FileDescriptor root) {
+                descriptor = root;
+                return null;
+              }
+            };
     com.google.protobuf.Descriptors.FileDescriptor
-      .internalBuildGeneratedFileFrom(descriptorData,
-        new com.google.protobuf.Descriptors.FileDescriptor[] {
-          com.google.protobuf.TimestampProto.getDescriptor(),
-        }, assigner);
+            .internalBuildGeneratedFileFrom(descriptorData,
+                    new com.google.protobuf.Descriptors.FileDescriptor[] {
+                            com.google.protobuf.TimestampProto.getDescriptor(),
+                    }, assigner);
     internal_static_Request_descriptor =
-      getDescriptor().getMessageTypes().get(0);
+            getDescriptor().getMessageTypes().get(0);
     internal_static_Request_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Request_descriptor,
-        new java.lang.String[] { "TimeStampAkcije", "NazivMikroservisa", "Korisnik", "Akcija", "NazivResursa", });
+            com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+            internal_static_Request_descriptor,
+            new java.lang.String[] { "TimeStampAkcije", "NazivMikroservisa", "Korisnik", "Akcija", "NazivResursa", });
     internal_static_Response_descriptor =
-      getDescriptor().getMessageTypes().get(1);
+            getDescriptor().getMessageTypes().get(1);
     internal_static_Response_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_Response_descriptor,
-        new java.lang.String[] { "PorukaOdgovora", "Odgovor", });
+            com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+            internal_static_Response_descriptor,
+            new java.lang.String[] { "PorukaOdgovora", "Odgovor", });
     com.google.protobuf.TimestampProto.getDescriptor();
   }
 

@@ -1,5 +1,4 @@
 package com.example.systemevents;
-
 import java.util.Date;
 
 public class grpcAkcija {
