@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import loginSlika from "./login.png"
 import "./style.scss";
+import { toast } from 'react-toastify';
 import axios from 'axios'
 
 export class Register extends Component {
@@ -89,7 +90,7 @@ export class Register extends Component {
 
     userLogin = (event) => {
         event.preventDefault();
-        if (!this.validateForm(this.state.errors)) alert("Unesite vrijednosti")
+        if (!this.validateForm(this.state.errors)) toast.error("Unesite vrijednosti", { position: toast.POSITION.TOP_RIGHT })
         else {
             axios.post('http://localhost:8082/oauth/korisnik', {
                 fullName: this.state.fullName,
@@ -100,6 +101,10 @@ export class Register extends Component {
                 jmbg: this.state.jmbg,
                 gender: this.state.gender,
                 role: this.state.role
+            }).then(response => {
+                if (response.status === 200 || response.status === 201) toast.success('Uspješno kreiran racun', { position: toast.POSITION.TOP_RIGHT })
+            }).catch(err => {
+                toast.error(err.response.data.errors.toString(), { position: toast.POSITION.TOP_RIGHT })
             })
         }
     }

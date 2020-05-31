@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import "./style.scss";
 import axios from 'axios'
+import { toast } from 'react-toastify';
 
 export class ResetPassword extends Component {
     constructor(props) {
@@ -59,6 +60,10 @@ export class ResetPassword extends Component {
                 id: this.state.userId,
                 password: this.state.password,
 
+            }).then(response => {
+                if (response.status === 200) toast.success('Uspjesno promijenjena sifra', { position: toast.POSITION.TOP_RIGHT })
+            }).catch(err => {
+                toast.error(err.response.data.errors.toString(), { position: toast.POSITION.TOP_RIGHT })
             })
         }
     }

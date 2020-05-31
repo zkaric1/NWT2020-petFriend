@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import loginSlika from "./login.png"
 import "./style.scss";
 import axios from 'axios'
+import { toast } from 'react-toastify';
 import { Link, useHistory } from "react-router-dom"
 
 export class Login extends Component {
@@ -57,21 +58,24 @@ export class Login extends Component {
 
     userLogin = (event) => {
         event.preventDefault();
-        if (!this.validateForm(this.state.errors)) alert("Unesite vrijednosti") 
+        if (!this.validateForm(this.state.errors)) alert("Unesite vrijednosti")
         if (this.state.password === "admin") {
             this.props.history.push('/admin')
         }
         else if (this.state.password === "korisnik") {
             this.props.history.push('/korisnik')
         }
-        /*
-        else {
-            axios.post('http://localhost:8082/oauth/korisnik/prijava', {
-                email: this.state.email,
-                password: this.state.password,
+        // else {
+        //     axios.post('http://localhost:8082/oauth/korisnik/prijava', {
+        //         email: this.state.email,
+        //         password: this.state.password,
 
-            })
-        }*/
+        //     }).then(response => {
+        //         if (response.status === 200) toast.success('Uspjesna prijava na sistem', {position: toast.POSITION.TOP_RIGHT})
+        //       }).catch(err => {
+        //         toast.error(err.response.data.errors.toString(), {position: toast.POSITION.TOP_RIGHT})
+        //       })
+        // }
     }
 
     render() {
