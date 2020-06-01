@@ -52,10 +52,10 @@ public class UserService  {
     }
 
     public HashMap<String, String> loginUser(LoginUserDTO user) throws LoginException {
-        User userWithEmail = userRepository.findByEmail(user.getEmail());
+        User userWithEmail = userRepository.findByEmail(user.getUsername());
 
         if (userWithEmail == null) {
-            throw new LoginException("Korisnik s emailom " + user.getEmail() + " ne postoji");
+            throw new LoginException("Korisnik s emailom " + user.getUsername() + " ne postoji");
         } else if (!matchPasswords(user.getPassword(), userWithEmail.getPassword())) {
             throw new LoginException("Pogresna sifra!");
         }

@@ -38,9 +38,8 @@ public class UserServiceApplication {
     public CommandLineRunner addDataToDatabase(UserRepository userRepository, AnimalRepository animalRepository, RoleRepository roleRepository, UserAnimalRepository userAnimalRepository, SurveyRepository surveyRepository, UserSurveyRepository userSurveyRepository) {
         return (args) -> {
             //uloge
-            roleRepository.save(new Role("administrator"));
-            Role u = roleRepository.save(new Role("korisnik"));
-            roleRepository.save(new Role("veterinar"));
+            Role admin = roleRepository.save(new Role("administrator"));
+            Role korisnik = roleRepository.save(new Role("korisnik"));
             log.info("Sve uloge \n");
             for (Role role : roleRepository.findAll()) {
                 log.info(role.getRoleName());
@@ -48,14 +47,20 @@ public class UserServiceApplication {
             log.info(" ");
 
             // korisnici
-            User k1 = userRepository.save(new User("ante antic", "1234567899876", u));
-            k1.setRole(u);
-            User k2 = userRepository.save(new User("amno amnic", "93832979237937", u));
-            User newUser = new User("zlata karic", "34324343434", u);
+            User k1 = userRepository.save(new User("ante antic", "1234567899876", korisnik));
+            k1.setRole(korisnik);
+            User k2 = userRepository.save(new User("amno amnic", "93832979237937", korisnik));
+            User newUser = new User("zlata karic", "34324343434", admin);
             newUser.setEmail("zkaric1@etf.unsa.ba");
+            newUser.setUsername("zkaric1");
             newUser.setHashPassword("novasifra");
             userRepository.save(newUser);
-            userRepository.save(new User("marko marulic", "323343432342424", u));
+            User alma = new User("Alma Ibrasimovic", "827727277", korisnik);
+            alma.setEmail("aibrasimov1@etf.unsa.ba");
+            alma.setUsername("aibrasimov1");
+            alma.setHashPassword("sifra123");
+            userRepository.save(alma);
+            userRepository.save(new User("marko marulic", "323343432342424", korisnik));
             log.info("Svi korisnici \n");
             for (User user : userRepository.findAll()) {
                 log.info(user.getFullName());
@@ -64,11 +69,11 @@ public class UserServiceApplication {
             log.info(" ");
 
             //zivotinje
-            Animal z1 = animalRepository.save(new Animal(1,"mica","macka", "Z"));
-            Animal z2 = animalRepository.save(new Animal(2,"laki","pas", "M"));
-            Animal z3 = animalRepository.save(new Animal(3,"mica1","macka", "Z"));
-            Animal z4 = animalRepository.save(new Animal(4,"mica2","macka", "Z"));
-            Animal z5 = animalRepository.save(new Animal(5,"mica3","macka", "Z"));
+            Animal z1 = animalRepository.save(new Animal(1, "mica", "macka", "Z"));
+            Animal z2 = animalRepository.save(new Animal(2, "laki", "pas", "M"));
+            Animal z3 = animalRepository.save(new Animal(3, "mica1", "macka", "Z"));
+            Animal z4 = animalRepository.save(new Animal(4, "mica2", "macka", "Z"));
+            Animal z5 = animalRepository.save(new Animal(5, "mica3", "macka", "Z"));
             log.info("Sve zivotinje \n");
             for (Animal animal : animalRepository.findAll()) {
                 log.info(animal.toString());
@@ -77,7 +82,7 @@ public class UserServiceApplication {
 
             //korisnik - zivotinja
             userAnimalRepository.save(new UserAnimal(k1, z1));
-            userAnimalRepository.save(new UserAnimal(k1,z2));
+            userAnimalRepository.save(new UserAnimal(k1, z2));
             userAnimalRepository.save(new UserAnimal(k2, z2));
             log.info("Sve korisnik-zivotinja \n");
             for (UserAnimal userAnimal : userAnimalRepository.findAll()) {

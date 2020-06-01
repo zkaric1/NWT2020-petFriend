@@ -9,5 +9,6 @@ public interface UserRepository extends CrudRepository<User, Integer> {
     User findByEmail(String email);
     List<User> findAllBySoftDelete(Boolean value);
     Integer deleteAllBySoftDelete(Boolean value);
+    User findByUsername(String username);
 
 }

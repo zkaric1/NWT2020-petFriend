@@ -37,6 +37,8 @@ public class User {
 
     private String phoneNumber;
 
+    private String username;
+
     @NotBlank(message = "Maticni broj je obavezan")
     private String jmbg;
 
@@ -53,8 +55,9 @@ public class User {
     public User() {
     }
 
-    public User(String fullName, Date dateOfBirth, String email, String password, String address, String phoneNumber, String jmbg, String gender) {
+    public User(String fullName, String username, Date dateOfBirth, String email, String password, String address, String phoneNumber, String jmbg, String gender) {
         this.fullName = fullName;
+        this.username = username;
         this.dateOfBirth = dateOfBirth;
         this.email = email;
         this.password = password;
@@ -65,7 +68,7 @@ public class User {
     }
 
     public static User getDummyUser() {
-        return new User("maja majic",new Date(1997,1,23),"maja@gmail.com","maja123","Velika Aleja","062062062","727323722272828","Z");
+        return new User("maja majic","maja",new Date(1997,1,23),"maja@gmail.com","maja123","Velika Aleja","062062062","727323722272828","Z");
     }
 
     public User(String fullName, String jmbg, Role role) {
@@ -172,6 +175,14 @@ public class User {
         return hashPassword;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -182,9 +193,11 @@ public class User {
                 ", password='" + password + '\'' +
                 ", address='" + address + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
+                ", username='" + username + '\'' +
                 ", jmbg='" + jmbg + '\'' +
                 ", gender='" + gender + '\'' +
-                ", roleId=" + role +
+                ", role=" + role +
+                ", softDelete=" + softDelete +
                 '}';
     }
 }
