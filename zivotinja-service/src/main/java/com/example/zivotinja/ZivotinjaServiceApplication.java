@@ -1,4 +1,5 @@
 package com.example.zivotinja;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,9 +10,14 @@ import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import com.example.zivotinja.repository.*;
 import com.example.zivotinja.model.*;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import java.io.File;
+import java.io.InputStream;
 
 @EnableDiscoveryClient
 @SpringBootApplication
@@ -22,6 +28,8 @@ public class ZivotinjaServiceApplication {
     }
     private static final Logger log = LoggerFactory.getLogger(ZivotinjaServiceApplication.class);
 
+    @Autowired
+    ResourceLoader resourceLoader;
 
     @Bean
     @LoadBalanced
@@ -62,30 +70,36 @@ public class ZivotinjaServiceApplication {
             Korisnik korA = new Korisnik(false);
             kRepo.save(korA);
 
+            // Slika
+            Resource resource = resourceLoader.getResource("classpath:viki.jpg");
+            File file = resource.getFile();
+
             // Kreiranje zivotinje
             Zivotinja cuko = new Zivotinja("Mini", "Pas", "Labrador", "Z", 2, "Mali pas", 10, "Spremna za Vas dom!", false);
-            byte[] slika = cuko.kreirajSliku("C:\\Users\\belma\\Desktop\\ETF\\NWT2020-petFriend\\zivotinja-service\\Slike\\viki.jpg");
+            byte[] slika = cuko.kreirajSliku(file.toString());
             cuko.setSlika(slika);
 
             // Kreiranje ankete
             Anketa anketa = new Anketa();
             anketa.setZivotinjaID(cuko);
 
-
             // Popunjavanje medjutabele
             cuko.getVakcine().add(vak);
-
             cuko.setKorisnikId(kor);
             cuko.setUdomljena(true);
             zRepo.save(cuko);
             aRepo.save(anketa);
-            cuko.preuzmiSliku();
+            //cuko.preuzmiSliku();
+            resource = resourceLoader.getResource("classpath:rex.jpg");
+            file = resource.getFile();
             cuko = new Zivotinja("Rex", "Pas", "Njemacki ovcar", "M", 1, "Veliki pas", 6, "Najbolji pas kojeg cete ikad imati!", false);
-            slika = cuko.kreirajSliku("C:\\Users\\belma\\Desktop\\ETF\\NWT2020-petFriend\\zivotinja-service\\Slike\\rex.jpg");
+            slika = cuko.kreirajSliku(file.toString());
             cuko.setSlika(slika);
             zRepo.save(cuko);
+            resource = resourceLoader.getResource("classpath:mini.jpg");
+            file = resource.getFile();
             Zivotinja maca = (new Zivotinja("Viki", "Macka", "Ruska plava", "Z", 2, "Mali rast", 3, "Preslatka mala maca", false));
-            slika = maca.kreirajSliku("C:\\Users\\belma\\Desktop\\ETF\\NWT2020-petFriend\\zivotinja-service\\Slike\\mini.jpg");
+            slika = maca.kreirajSliku(file.toString());
             maca.setSlika(slika);
             zRepo.save(maca);
         };

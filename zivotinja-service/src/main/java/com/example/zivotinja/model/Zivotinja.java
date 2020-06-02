@@ -261,7 +261,7 @@ public class Zivotinja {
     public void preuzmiSliku() {
         byte[] slika = this.getSlika();
         try {
-            FileOutputStream oStream = new FileOutputStream("C:\\Users\\belma\\Desktop\\NWT2020-petFriend\\zivotinja-service\\Slike iz baze\\test.jpg");
+            FileOutputStream oStream = new FileOutputStream("C:\\Users\\belma\\Desktop\\ETF\\NWT2020-petFriend\\zivotinja-service\\Slike iz baze\\test.jpg");
             oStream.write(slika);
             oStream.close();
         } catch (Exception e) {
