@@ -18,6 +18,7 @@ export class Korisnik extends React.Component {
                     <Route path="/korisnik/userProfile" component={UserProfile}/>
                     <Route path="/register" component={Register}/>
                     <Route path="/resetPassword" component={ResetPassword}/>
+                    <Route path="/popuni-anketu" component={Register}/>
                     <a className = "odjavaLink" href="/">Odjava</a>
                 </div>
             </Router>

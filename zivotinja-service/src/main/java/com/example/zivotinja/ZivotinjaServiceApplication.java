@@ -64,7 +64,7 @@ public class ZivotinjaServiceApplication {
 
             // Kreiranje zivotinje
             Zivotinja cuko = new Zivotinja("Mini", "Pas", "Labrador", "Z", 2, "Mali pas", 10, "Spremna za Vas dom!", false);
-            byte[] slika = cuko.kreirajSliku("C:\\Users\\belma\\Desktop\\NWT2020-petFriend\\zivotinja-service\\Slike\\viki.jpg");
+            byte[] slika = cuko.kreirajSliku("C:\\Users\\belma\\Desktop\\ETF\\NWT2020-petFriend\\zivotinja-service\\Slike\\viki.jpg");
             cuko.setSlika(slika);
 
             // Kreiranje ankete

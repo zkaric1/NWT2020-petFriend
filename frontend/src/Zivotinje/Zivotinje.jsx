@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { Link, useHistory } from "react-router-dom"
 
 export class Zivotinje  extends Component {
     constructor(props) {
@@ -15,9 +16,14 @@ export class Zivotinje  extends Component {
             const Zivotinje = res.data;
             this.setState({ Zivotinje });
         })  
-      }
+    }
+
+    udomiZivotinju = () => { 
+        this.props.history.push('/popuni-anketu')
+    }
     
     render() {
+        
         return(
             <div className="App">
                 <div className="zivotinje">
@@ -38,6 +44,9 @@ export class Zivotinje  extends Component {
                                 <p> Težina: {zivotinja.tezina}</p>                       
                                 <p> Dodatni opis: {zivotinja.dodatniOpis}</p>
                                 <p> Udomljena: {udomljenaTemp}</p>
+                                <div className="udomiZivotinju">
+                                    <button type="button" disabled={zivotinja.udomljena} onClick={(this.udomiZivotinju)}>Udomi</button>  
+                                </div>
                             </div>
                             <div className="slika">                              
                                 <img src={`data:image/jpeg;base64,${zivotinja.slika}`} />

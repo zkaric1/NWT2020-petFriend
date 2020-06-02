@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 import { Zivotinje, KreirajZivotinju } from '../Zivotinje/index'
 import { KreirajVakcinu } from '../Vakcine/index'
 import { KreirajVeterinara } from '../Veterinari/index'
+import {Register} from "../Korisnik/Register"
 import { KreirajBolest } from '../Bolesti/index'
 import './style.scss';
 
@@ -19,6 +20,7 @@ export class Admin extends React.Component {
                     <Route path="/admin/kreiraj-vakcinu" component={KreirajVakcinu} />
                     <Route path="/admin/kreiraj-veterinara" component={KreirajVeterinara} />
                     <Route path="/admin/kreiraj-bolest" component={KreirajBolest} />
+                    <Route path="/popuni-anketu" component={Register}/>
                     <a className = "odjavaLink" href="/">Odjava</a>
                 </div>
             </Router>

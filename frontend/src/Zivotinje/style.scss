@@ -127,6 +127,38 @@
     letter-spacing: 1px;
     margin-bottom: 0.25em;
   }
+
+  .udomiZivotinju {
+    margin-bottom: 9%;
+  }
+
+  .udomiZivotinju button {
+    background-color:white;
+    color: black;
+    border: 1px solid black;
+    width: 30%;
+    border-radius: 8px;
+    margin-top: 1em;
+    padding: 8px 0px;
+    font-size: 1em;
+    font-weight: lighter;
+    letter-spacing: 1px;
+    margin-bottom: 0.25em;
+    position: absolute;
+    right: 5%;
+  
+  }
+
+  .udomiZivotinju button:hover {
+    background-color: rgb(218, 206, 206);
+    cursor: pointer; 
+  }
+
+  .udomiZivotinju button:disabled {
+    background-color: #858683;
+    color: black;
+    cursor:not-allowed;
+  }
   
   .kreirajZivotinju button:hover {
     color: white;
@@ -151,6 +183,7 @@
     color: white;
     flex-basis: width;
     background-color: #21798d;
+  
   }
 
   .zivotinja h3 {
@@ -194,13 +227,16 @@
       width: 100%;
     }
   }
+
   form button:disabled {
     background-color: #858683;
     color: white;
+    cursor:not-allowed;
   }
 
   form button:disabled:hover {
     background-color: #858683;
     color: white;
+    cursor:not-allowed;
   }
 

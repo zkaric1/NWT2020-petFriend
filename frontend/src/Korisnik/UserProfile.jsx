@@ -38,9 +38,6 @@ export class UserProfile extends Component {
             <div className="parentProfile">
                 <img src={avatar} />
                 <div className="desnoDiv">
-                    <Link to="/login">
-                        <li className="linkProfile">Odjavi se</li>
-                    </Link>
                     <Link to="/resetPassword">
                         <li className="linkProfile">Promijeni sifru</li>
                     </Link>
