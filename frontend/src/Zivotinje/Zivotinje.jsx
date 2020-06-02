@@ -6,7 +6,8 @@ export class Zivotinje  extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            Zivotinje: []
+            Zivotinje: [],
+            idOdabraneZivotinje:''
         }
     }
 
@@ -18,17 +19,18 @@ export class Zivotinje  extends Component {
         })  
     }
 
-    udomiZivotinju = () => { 
+    udomiZivotinju = (id) => {
+        this.setState({idOdabraneZivotinje:id})  // Za odgovarajuću anketu
         this.props.history.push('/popuni-anketu')
     }
     
     render() {
-        
         return(
             <div className="App">
                 <div className="zivotinje">
                     {this.state.Zivotinje && this.state.Zivotinje.map((zivotinja, index) => {
                         var spolTemp ="Žensko"
+                        var id = zivotinja.id;
                         var udomljenaTemp = "Nije udomljena"
                         if (zivotinja.spol == 'M') spolTemp = "Muško"
                         if (zivotinja.udomljena) udomljenaTemp = "Udomljena"
@@ -45,7 +47,10 @@ export class Zivotinje  extends Component {
                                 <p> Dodatni opis: {zivotinja.dodatniOpis}</p>
                                 <p> Udomljena: {udomljenaTemp}</p>
                                 <div className="udomiZivotinju">
-                                    <button type="button" disabled={zivotinja.udomljena} onClick={(this.udomiZivotinju)}>Udomi</button>  
+                                    <button type="button" disabled={zivotinja.udomljena} 
+                                            onClick={() => this.udomiZivotinju(zivotinja.id)}>
+                                            Udomi
+                                    </button>  
                                 </div>
                             </div>
                             <div className="slika">                              
