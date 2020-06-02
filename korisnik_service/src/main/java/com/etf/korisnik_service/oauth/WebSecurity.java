@@ -20,6 +20,8 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
 
+import static com.etf.korisnik_service.oauth.SecurityConstants.SWAGGER_URL;
+
 
 @Configuration
 @EnableWebSecurity
@@ -40,7 +42,9 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .antMatchers(SecurityConstants.VALIDATION_URL)
                 .permitAll()
-                .antMatchers("/korisnik","/zivoitnja","/anketa")
+                .antMatchers(SWAGGER_URL)
+                .permitAll()
+                .antMatchers("/korisnik","/zivotinja","/anketa")
                 .hasAnyAuthority("korisnik","administrator")
                 .antMatchers("/**")
                 .hasAuthority("administrator")
@@ -53,15 +57,15 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http .addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
-//
-//    @Override
-//    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
-//    }
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
+
+    @Override
+    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService);
     }
+//    @Autowired
+//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.userDetailsService(userDetailsService);
+//    }
 
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
