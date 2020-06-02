@@ -1,4 +1,4 @@
-package com.etf.korisnik_service.oauth;
+package com.etf.korisnik_service.oauth.service;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;

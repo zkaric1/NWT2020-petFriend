@@ -1,26 +1,22 @@
-package com.etf.korisnik_service.oauth;
+package com.etf.korisnik_service.oauth.controller;
 
 import com.etf.korisnik_service.model.User;
+import com.etf.korisnik_service.oauth.service.JwtService;
+import com.etf.korisnik_service.oauth.service.UserDetailsServiceImpl;
 import com.etf.korisnik_service.oauth.model.AuthenticationRequest;
 import com.etf.korisnik_service.oauth.model.AuthenticationResponse;
 import com.etf.korisnik_service.oauth.model.ValidationRequest;
 import com.etf.korisnik_service.oauth.model.ValidationResponse;
 import com.etf.korisnik_service.repository.UserRepository;
-import com.netflix.discovery.converters.Auto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.lang.reflect.Array;
-import java.util.Collection;
-import java.util.List;
 
 import static com.etf.korisnik_service.oauth.SecurityConstants.AUTH_URL;
 import static com.etf.korisnik_service.oauth.SecurityConstants.VALIDATION_URL;

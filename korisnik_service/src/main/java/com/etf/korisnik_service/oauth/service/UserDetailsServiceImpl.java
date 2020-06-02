@@ -1,4 +1,4 @@
-package com.etf.korisnik_service.oauth;
+package com.etf.korisnik_service.oauth.service;
 
 import com.etf.korisnik_service.model.User;
 import com.etf.korisnik_service.repository.UserRepository;
