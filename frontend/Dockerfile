@@ -1,8 +1,10 @@
-FROM node:13.12.0-alpine
-WORKDIR /usr/src/app
-COPY package.json ./
-COPY package-lock.json ./
-RUN npm install
+FROM node:8 as react-build
+WORKDIR /app
 COPY . ./
-EXPOSE 3000
-CMD ["npm", "start"]
+RUN yarn
+RUN yarn build
+
+FROM nginx:alpine
+COPY --from=react-build /app/build /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]

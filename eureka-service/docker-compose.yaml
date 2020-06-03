@@ -22,3 +22,7 @@ services:
     environment:
       - JAVA_OPTS=
         -DEUREKA_SERVER=http://discovery:8761/eureka
+  frontend:
+    image: frontend-docker
+    ports:
+    - 9002:80
