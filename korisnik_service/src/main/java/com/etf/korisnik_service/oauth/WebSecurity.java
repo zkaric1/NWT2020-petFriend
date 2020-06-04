@@ -30,15 +30,15 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     private UserDetailsService userDetailsService;
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
-//    @Autowired
-//    private JWTAuthorizationFilter jwtAuthorizationFilter;
+    @Autowired
+    private JWTAuthorizationFilter jwtAuthorizationFilter;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors()
                 .and()
                 .csrf().disable()
-                .addFilterBefore(new JWTAuthorizationFilter(),UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(jwtAuthorizationFilter,UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
                 .antMatchers(SecurityConstants.AUTH_URL)
                 .permitAll()
