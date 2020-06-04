@@ -16,7 +16,7 @@ services:
   zivotinja:
     image: zivotinja-service-docker
     ports:
-      - 8090:8080
+      - 8080:8080
     depends_on:
       - discovery
     environment:
