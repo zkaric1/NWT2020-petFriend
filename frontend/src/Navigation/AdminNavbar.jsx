@@ -23,6 +23,9 @@ import { Link } from "react-router-dom"
                     <Link to="/admin/kreiraj-bolest">
                         <li>Kreiraj bolest</li>
                     </Link>
+                    <Link to="/admin/kreiraj-anketu">
+                        <li>Kreiraj anketu</li>
+                    </Link>
                 </ul>
             </nav>
         )

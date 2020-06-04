@@ -12,6 +12,7 @@ import {ResetPassword} from "./Korisnik/ResetPassword"
 import {UserProfile} from "./Korisnik/UserProfile"
 import {Admin} from './Paneli/Admin'
 import {Korisnik} from './Paneli/Korisnik'
+import FillSurvey from './Anketa/FillSurvey'
 
 function App() {
   return (
@@ -22,7 +23,6 @@ function App() {
         <Route path="/korisnik" component={Korisnik} />
         <Route path="/register" component={Register}/>
         <Route path="/resetPassword" component={ResetPassword}/>
-        <Route path="/popuni-anketu" component={Register}/>
       </div>
     </Router>
   );

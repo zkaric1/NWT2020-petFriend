@@ -7,6 +7,7 @@ import { KreirajVakcinu } from '../Vakcine/index'
 import { KreirajVeterinara } from '../Veterinari/index'
 import {Register} from "../Korisnik/Register"
 import { KreirajBolest } from '../Bolesti/index'
+import CreateSurvey from '../Anketa/CreateSurvey';
 import './style.scss';
 
 export class Admin extends React.Component {
@@ -20,7 +21,7 @@ export class Admin extends React.Component {
                     <Route path="/admin/kreiraj-vakcinu" component={KreirajVakcinu} />
                     <Route path="/admin/kreiraj-veterinara" component={KreirajVeterinara} />
                     <Route path="/admin/kreiraj-bolest" component={KreirajBolest} />
-                    <Route path="/popuni-anketu" component={Register}/>
+                    <Route path="/admin/kreiraj-anketu" component={CreateSurvey}/>
                     <a className = "odjavaLink" href="/">Odjava</a>
                 </div>
             </Router>
