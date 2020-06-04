@@ -1,8 +1,8 @@
 package com.etf.korisnik_service.oauth.controller;
 
 import com.etf.korisnik_service.model.User;
-import com.etf.korisnik_service.oauth.service.JwtService;
-import com.etf.korisnik_service.oauth.service.UserDetailsServiceImpl;
+import com.etf.korisnik_service.oauth.JwtService;
+import com.etf.korisnik_service.oauth.UserDetailsServiceImpl;
 import com.etf.korisnik_service.oauth.model.AuthenticationRequest;
 import com.etf.korisnik_service.oauth.model.AuthenticationResponse;
 import com.etf.korisnik_service.oauth.model.ValidationRequest;
