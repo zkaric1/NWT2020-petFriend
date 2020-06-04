@@ -103,13 +103,11 @@
             <artifactId>spring-boot-starter-amqp</artifactId>
             <version>2.3.0.RELEASE</version>
         </dependency>
-
         <dependency>
             <groupId>com.jayway.jsonpath</groupId>
             <artifactId>json-path</artifactId>
             <version>2.4.0</version>
         </dependency>
-
         <dependency>
             <groupId>io.grpc</groupId>
             <artifactId>grpc-netty-shaded</artifactId>
@@ -126,9 +124,7 @@
             <version>2.0.11</version>
         </dependency>
 
-
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
@@ -139,9 +135,16 @@
                     <mainClass>com.example.zivotinja.ZivotinjaServiceApplication</mainClass>
                 </configuration>
             </plugin>
-
         </plugins>
         <finalName>zivotinja-service-jar</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.jpg</include>
+                </includes>
+            </resource>
+        </resources>
     </build>
-
 </project>
