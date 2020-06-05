@@ -73,6 +73,14 @@ export default class CreateSurvey extends React.Component {
                                 </label>
                             </div>
                         </div>
+                        <div className={styles.chooseAnimal}>
+                            <br/>
+                                <label className={styles.chooseLable}>Izaberi životinju</label>
+                            <br/>
+                            <select className={styles.picker}>
+                                <option value="Dejzi">Dejzi</option>
+                            </select>
+                        </div>
                     </form>
                 </div>
             </div>
