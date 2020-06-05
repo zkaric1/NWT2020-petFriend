@@ -71,6 +71,26 @@
                     }
                 }
             }
+
+            .chooseAnimal {
+                display: block;
+                width: 100%;
+                justify-content: center;
+
+                .chooseLabel {
+                    font-size: 0.8em;
+                    margin-bottom: 0.25em;
+                    color: #222;
+                    font-weight: lighter;
+                }
+
+                .picker {
+                    font-size: 0.8em;
+                    width: 80%;
+                    max-width: 380px;
+                    min-height: 30px;
+                }
+            }
         }      
     }
 }
