@@ -1,9 +1,15 @@
 version: '3'
+networks:
+  petfriend:
+    driver: bridge
+
 services:
   discovery:
     image: eureka-docker
     ports:
       - 8761:8761
+    networks:
+      - petfriend
 
 
   korisnik:
@@ -15,6 +21,8 @@ services:
     environment:
       - JAVA_OPTS=
         -DEUREKA_SERVER=http://discovery:8761/eureka
+    networks:
+      - petfriend
 
   zivotinja-db:
     image: "postgres"
@@ -27,11 +35,13 @@ services:
       POSTGRES_DB: zivotinja-service
       POSTEGRES_USER: postgres
       POSTEGRES_PASSWORD: admin
+      POSTGRES_HOST_AUTH_METHOD: "trust"
+    networks:
+      - petfriend
 
 
   zivotinja-service:
     image: zivotinja-service-docker
-    container_name: zivotinja-service
     ports:
       - 8080:8080
     depends_on:
@@ -43,10 +53,15 @@ services:
       - DATABASE_PASSWORD=admin
       - DATABASE_NAME=zivotinja-service
       - DATABASE_PORT=5432
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://zivotinja-db:5432/zivotinja-service
+    networks:
+      - petfriend
 
   frontend:
     image: frontend-docker
     ports:
       - 9002:80
+    networks:
+      - petfriend
 
 
