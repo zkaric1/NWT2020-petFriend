@@ -16,8 +16,10 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 
 @EnableDiscoveryClient
 @SpringBootApplication
@@ -71,13 +73,13 @@ public class ZivotinjaServiceApplication {
             kRepo.save(korA);
 
             // Slika
-            Resource resource = resourceLoader.getResource("classpath:viki.jpg");
-            File file = resource.getFile();
+            /*Resource resource = resourceLoader.getResource("classpath:viki.jpg");
+            File file = resource.getFile();*/
 
             // Kreiranje zivotinje
             Zivotinja cuko = new Zivotinja("Mini", "Pas", "Labrador", "Z", 2, "Mali pas", 10, "Spremna za Vas dom!", false);
-            byte[] slika = cuko.kreirajSliku(file.toString());
-            cuko.setSlika(slika);
+            /*byte[] slika = cuko.kreirajSliku("src/main/java/com/example/zivotinja/viki.jpg");
+            cuko.setSlika(slika);*/
 
             // Kreiranje ankete
             Anketa anketa = new Anketa();
@@ -90,17 +92,18 @@ public class ZivotinjaServiceApplication {
             zRepo.save(cuko);
             aRepo.save(anketa);
             //cuko.preuzmiSliku();
-            resource = resourceLoader.getResource("classpath:rex.jpg");
-            file = resource.getFile();
+           /* resource = resourceLoader.getResource("classpath:rex.jpg");
+            InputStream dbAsStream = resource.getInputStream();
+            file = resource.getFile();*/
             cuko = new Zivotinja("Rex", "Pas", "Njemacki ovcar", "M", 1, "Veliki pas", 6, "Najbolji pas kojeg cete ikad imati!", false);
-            slika = cuko.kreirajSliku(file.toString());
-            cuko.setSlika(slika);
+           /* slika = cuko.kreirajSliku("src/main/java/com/example/zivotinja/rex.jpg");
+            cuko.setSlika(slika);*/
             zRepo.save(cuko);
-            resource = resourceLoader.getResource("classpath:mini.jpg");
-            file = resource.getFile();
+           /* resource = resourceLoader.getResource("classpath:mini.jpg");
+            file = resource.getFile();*/
             Zivotinja maca = (new Zivotinja("Viki", "Macka", "Ruska plava", "Z", 2, "Mali rast", 3, "Preslatka mala maca", false));
-            slika = maca.kreirajSliku(file.toString());
-            maca.setSlika(slika);
+            /*slika = maca.kreirajSliku("src/main/java/com/example/zivotinja/mini.jpg");
+            maca.setSlika(slika);*/
             zRepo.save(maca);
         };
     }

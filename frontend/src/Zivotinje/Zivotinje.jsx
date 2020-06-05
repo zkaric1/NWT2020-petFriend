@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Link, useHistory } from "react-router-dom"
+import viki from "./viki.jpg"
+import mini from "./mini.jpg"
+import rex from "./rex.jpg"
 
 export class Zivotinje  extends Component {
     constructor(props) {
@@ -23,13 +26,33 @@ export class Zivotinje  extends Component {
         this.setState({idOdabraneZivotinje:id})  // Za odgovarajuću anketu
         this.props.history.push('/popuni-anketu')
     }
-    
+
+    renderImage = (ime) => {
+        if (ime === 'Viki') {
+            return (
+                <img src={viki} />
+            );
+        }
+        else if (ime === 'Rex') {
+            return (
+                <img src={rex} />
+            );
+        }
+        else {
+            return (
+                <img src={mini} />
+            );
+        }
+    }
+
     render() {
         return(
             <div className="App">
                 <div className="zivotinje">
                     {this.state.Zivotinje && this.state.Zivotinje.map((zivotinja, index) => {
                         var spolTemp ="Žensko"
+                        var uslov = false;
+                        if (zivotinja.slika === null) uslov = true
                         var id = zivotinja.id;
                         var udomljenaTemp = "Nije udomljena"
                         if (zivotinja.spol == 'M') spolTemp = "Muško"
@@ -53,8 +76,8 @@ export class Zivotinje  extends Component {
                                     </button>  
                                 </div>
                             </div>
-                            <div className="slika">                              
-                                <img src={`data:image/jpeg;base64,${zivotinja.slika}`} />
+                            <div className="slika">
+                                {!uslov ? (<img src={`data:image/jpeg;base64,${zivotinja.slika}`} />) : this.renderImage(zivotinja.ime) }
                             </div>
                         </div>
                         );
@@ -66,3 +89,4 @@ export class Zivotinje  extends Component {
 }
 
 
+//<img src={viki} alt="slika" />
