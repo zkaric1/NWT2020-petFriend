@@ -37,13 +37,41 @@ export default class CreateSurvey extends React.Component {
                     <form className={styles.createSurveyForm}>
                         <div className={styles.desc}>
                             <label className={styles.opisLabel}>Opis</label>
-                            <br></br>
+                            <br/>
                             <textarea
-                            className={styles.decription}
+                            className={styles.description}
                             placeholder="Opis"
                             type="text"
                             name="Opis"             
                             />                  
+                        </div>
+                        <div className={styles.active}>
+                            <br/>
+                            <label className={styles.activeLabel}>Aktivna</label>
+                            <br/>
+                            <div className={styles.radioGroup}>
+                                <label className={styles.radioGroupLabel}>
+                                    <input 
+                                    className={styles.isActive}
+                                    type="radio"
+                                    value="Da"
+                                    name="radioActive"
+                                    label="Da"
+                                    defaultChecked={true}
+                                    />
+                                    Da
+                                </label>
+                                <label className={styles.radioGroupLabel}>
+                                    <input 
+                                    className={styles.isActive}
+                                    type="radio"
+                                    value="Ne"
+                                    name="radioActive"
+                                    label="Ne"
+                                    />
+                                    Ne
+                                </label>
+                            </div>
                         </div>
                     </form>
                 </div>
