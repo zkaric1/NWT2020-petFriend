@@ -23,7 +23,7 @@ public class UserController {
     }
 
     //Registracija korisnika POST
-    @PostMapping("/kreiraj/korisnik")
+    @PostMapping("/oauth/korisnik")
     @ResponseStatus(HttpStatus.CREATED)
     User dodajKorisnika(@RequestBody User noviUser) throws NoSuchAlgorithmException {
         return userService.addUser(noviUser);

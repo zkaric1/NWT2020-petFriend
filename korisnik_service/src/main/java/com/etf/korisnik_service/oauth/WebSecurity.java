@@ -45,7 +45,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .antMatchers(SWAGGER_URL)
                 .permitAll()
-                .antMatchers("/kreiraj/korisnik")
+                .antMatchers("/oauth/korisnik")
                 .permitAll()
                 .antMatchers("/korisnik","/uloga","/zivoitnja","/anketa")
                 .hasAnyAuthority("korisnik","administrator")
