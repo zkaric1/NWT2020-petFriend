@@ -38,13 +38,14 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         http.cors()
                 .and()
                 .csrf().disable()
-                .addFilterBefore(jwtAuthorizationFilter,UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
                 .antMatchers(SecurityConstants.AUTH_URL)
                 .permitAll()
                 .antMatchers(SecurityConstants.VALIDATION_URL)
                 .permitAll()
                 .antMatchers(SWAGGER_URL)
+                .permitAll()
+                .antMatchers("/kreiraj/korisnik")
                 .permitAll()
                 .antMatchers("/korisnik","/uloga","/zivoitnja","/anketa")
                 .hasAnyAuthority("korisnik","administrator")
@@ -56,7 +57,9 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .exceptionHandling()
                 .and()
                 .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .addFilterBefore(jwtAuthorizationFilter,UsernamePasswordAuthenticationFilter.class);
         }
 
     @Override

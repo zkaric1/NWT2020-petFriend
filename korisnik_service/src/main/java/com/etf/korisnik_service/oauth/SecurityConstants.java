@@ -10,5 +10,5 @@ public class SecurityConstants {
     public static final String LOGIN_URL = "/oauth/korisnik/prijava";
     public static final String AUTH_URL = "/authenticate";
     public static final String VALIDATION_URL = "/validate-token";
-    public static final String SWAGGER_URL = "/swagger-ui";
+    public static final String SWAGGER_URL = "/swagger-ui.html";
 }
