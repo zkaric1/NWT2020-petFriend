@@ -27,7 +27,7 @@ services:
     depends_on:
       - discovery
       - korisnik
-      - zivotinja
+      - zivotinja-service
 
   korisnik:
     image: korisnik-service-docker
@@ -89,6 +89,8 @@ services:
       - zuul
       - zivotinja-db
     environment:
+      - JAVA_OPTS=
+        -DEUREKA_SERVER=http://discovery:8761/eureka
       - DATABASE_HOST=zivotinja-db
       - DATABASE_USER=postgres
       - DATABASE_PASSWORD=admin
