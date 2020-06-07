@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="24c0f990-a75f-4833-a252-7210a63f3fae" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/anketa_service/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/anketa_service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/anketa_service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/anketa_service/src/test/java/com/etf/anketa_service/AnimalControllerTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/anketa_service/src/test/java/com/etf/anketa_service/AnimalControllerTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/anketa_service/src/test/java/com/etf/anketa_service/ApplicationUserControllerTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/anketa_service/src/test/java/com/etf/anketa_service/ApplicationUserControllerTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/anketa_service/src/test/java/com/etf/anketa_service/SurveyControllerTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/anketa_service/src/test/java/com/etf/anketa_service/SurveyControllerTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/Anketa/CreateSurvey.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Anketa/CreateSurvey.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/Anketa/styles/CreateSurvey.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Anketa/styles/CreateSurvey.module.scss" afterDir="false" />
     </list>

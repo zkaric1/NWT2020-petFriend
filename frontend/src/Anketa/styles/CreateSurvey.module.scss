@@ -14,6 +14,7 @@
         border-radius: 10px;
         box-shadow: 0px 10px 50px #555;
         background-color: #ffffff;
+        overflow-y: scroll;
 
         .header {
             text-align: center;
@@ -45,7 +46,12 @@
                     margin-right: auto;
                     display: flex;
                     flex-direction: column;
-                }    
+                    resize: vertical;
+                }
+
+                textarea.error {
+                    min-width: 342px;
+                }
             }
 
             .active {
@@ -86,9 +92,111 @@
 
                 .picker {
                     font-size: 0.8em;
+                    width: 342px;
+                    max-width: 380px;
+                    -webkit-appearance: menulist-button;
+                    height: 35px;
+                    border-color: lightgray;
+                    background-color: white;
+                    border-radius: 5px;
+                }
+            }
+
+            .questionNum {
+                display: block;
+                width: 100%;
+                justify-content: center;
+
+                .chooseQuestions {
+                    font-size: 0.8em;
+                    margin-bottom: 0.25em;
+                    color: #222;
+                    font-weight: lighter;
+                }
+
+                .numQuestions {
                     width: 80%;
                     max-width: 380px;
-                    min-height: 30px;
+                    margin-left: auto;
+                    margin-right: auto;
+                    display: flex;
+                    flex-direction: column;
+                }
+            }
+
+            .questions {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                .keyDiv {
+                    border-radius: 5px;
+                    border: 1px solid black;
+                    display: block;
+                    width: 80%;
+                    justify-content: center;    
+                    margin-bottom: 15px;
+
+                    .question {
+                        margin-top: 10px;
+
+                        .questionLabel {
+                            font-size: 1em;
+                            margin-bottom: 0.25em;
+                            color: #222;
+                            font-weight: lighter;
+                        }
+        
+                        .questionTextLabel {
+                            font-size: 0.8em;
+                            margin-bottom: 0.25em;
+                            color: #222;
+                            font-weight: lighter;
+                        }
+                        
+                        .givenAnswer1 {
+
+                        }
+
+                        .givenAnswer2 {
+                            
+                        }
+                    }    
+                }
+            }
+
+            .createSurvey {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                .createSurveyButton {
+                    background-color: #21798d;
+                    color: #fff;
+                    border: 2px solid #fff;
+                    width: 80%;
+                    max-width: 380px;
+                    border-radius: 8px;
+                    margin-top: 1em;
+                    padding: 8px 0px;
+                    font-size: 1em;
+                    font-weight: lighter;
+                    letter-spacing: 1px;
+                    margin-bottom: 0.25em;                
+                }
+
+                .createSurveyButton:hover {
+                    color: white;
+                    background-color: #154f5c;
+                    border: 2px solid white;                
+                }
+
+                .createSurveyButton:disabled {
+                    background-color: #858683;
+                    color: black;
+                    cursor:not-allowed;                
                 }
             }
         }      
