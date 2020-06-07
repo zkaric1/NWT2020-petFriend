@@ -11,4 +11,5 @@ import java.util.Optional;
 public interface SurveyRepository extends JpaRepository<Survey, Long> {
     List<Survey> getAllByActiveEquals(boolean active);
     Optional<Survey> findById(Long id);
+    Survey findByAnimalId(Long animalId);
 }

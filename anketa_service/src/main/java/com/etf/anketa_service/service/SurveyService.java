@@ -23,6 +23,10 @@ public class SurveyService {
         return surveyRepository.save(survey);
     }
 
+    public Survey getSurveyByAnimalId(Long animalId) {
+        return surveyRepository.findByAnimalId(animalId);
+    }
+
     public List<Survey> getAllSurveys() {
         return surveyRepository.findAll();
     }

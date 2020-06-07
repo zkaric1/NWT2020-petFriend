@@ -35,6 +35,11 @@ public class SurveyController {
         return surveyService.getSurveyById(id);
     }
 
+    @GetMapping(path = "/getByAnimalId")
+    Survey getSurveyByAnimalId(Long animalId) {
+        return surveyService.getSurveyByAnimalId(animalId);
+    }
+
     @GetMapping(path = "/getByActiveStatus")
     List<Survey> getActiveSurveys(@RequestParam(name = "active", required = true) boolean active) {
         return surveyService.getByActiveStatus(active);
