@@ -27,9 +27,8 @@ export default class CreateSurvey extends React.Component {
             animal: null,
             numQuestions: 0,
             questionText: [],
-            givenAnswer1: '',
-            givenAnswer2: '',
-            givenAnswers: [],
+            givenAnswer1: [],
+            givenAnswer2: [],
             timer: null,
 
             errors: {
@@ -74,7 +73,6 @@ export default class CreateSurvey extends React.Component {
     updateQuestionText = (text) => {
         let updatedQuestions = this.state.questionText;
         updatedQuestions.push(text);
-        console.log(updatedQuestions);
         this.setState({
             questionText : updatedQuestions
         });
@@ -94,7 +92,11 @@ export default class CreateSurvey extends React.Component {
     }
 
     updateGivenAnswer1 = (text) => {
-
+        let updatedGivenAnswers = this.state.givenAnswer1;
+        updatedGivenAnswers.push(text);
+        this.setState({
+            
+        });
     }
 
     updateGivenAnswer2 = (text) => {
