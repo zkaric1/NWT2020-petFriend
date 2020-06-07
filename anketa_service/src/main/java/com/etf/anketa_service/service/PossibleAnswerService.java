@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -53,6 +54,14 @@ public class PossibleAnswerService {
 
     public PossibleAnswer addPossibleAnswer(PossibleAnswer possibleAnswer) {
         return possibleAnswerRepository.save(possibleAnswer);
+    }
+
+    public List<PossibleAnswer> addPossibleAnswers(List<PossibleAnswer> possibleAnswers) {
+        List<PossibleAnswer> returnValue = new ArrayList<>();
+        for (PossibleAnswer pa: possibleAnswers) {
+            returnValue.add(possibleAnswerRepository.save(pa));
+        }
+        return returnValue;
     }
 
     public PossibleAnswer putPossibleAnswer(PossibleAnswer newPossibleAnswer, Long possibleAnswerId) {

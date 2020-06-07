@@ -55,6 +55,11 @@ public class PossibleAnswerController {
         return possibleAnswerService.addPossibleAnswer(possibleAnswer);
     }
 
+    @PostMapping(path = "/addMultiple")
+    List<PossibleAnswer> addPossibleAnswers(@RequestBody List<PossibleAnswer> possibleAnswers) {
+        return possibleAnswerService.addPossibleAnswers(possibleAnswers);
+    }
+
     @PutMapping
     PossibleAnswer editPossibleAnswer(@Valid @RequestBody PossibleAnswer newPossibleAnswer, @RequestParam(name = "id", required = true) Long possibleAnswerId) {
         return possibleAnswerService.putPossibleAnswer(newPossibleAnswer, possibleAnswerId);

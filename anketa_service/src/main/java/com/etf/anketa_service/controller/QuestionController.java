@@ -50,6 +50,11 @@ public class QuestionController {
         return questionService.addQuestion(question);
     }
 
+    @PostMapping(path = "/addMultiple")
+    List<Question> addQuestions(@RequestBody List<Question> questions) {
+        return questionService.addQuestions(questions);
+    }
+
     @PutMapping
     Question editQuestion(@Valid @RequestBody Question newQuestion, @RequestParam(name = "id", required = true) Long questionId) {
         return questionService.putQuestion(newQuestion, questionId);

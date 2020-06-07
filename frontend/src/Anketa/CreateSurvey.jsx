@@ -1,20 +1,20 @@
 import React from 'react';
 import styles from './styles/CreateSurvey.module.scss';
-import {toast} from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 import axios from 'axios';
 
 toast.configure();
 
-function validate(description, animal, numQuestions, questionText) {
+function validate(description, numQuestions, questionText) {
     let noEmptyStrings = true;
     for(let i = 0; i < questionText.length; i++) {
         if(questionText[i] === '') noEmptyStrings = false;
     }
     return {
         description: description.length === 0,
-        animal: animal === null,
         numQuestions: numQuestions === 0 || numQuestions === '',
-        questionText: questionText.length === 0 && !noEmptyStrings
+        questionText: questionText.length === 0 || !noEmptyStrings
     };
 }
 
@@ -25,6 +25,8 @@ export default class CreateSurvey extends React.Component {
             description: '',
             active: true,
             animal: null,
+            animalOptionsJson: null,
+            animalOptions: [],
             numQuestions: 0,
             questionText: [],
             givenAnswer1: [],
@@ -33,21 +35,88 @@ export default class CreateSurvey extends React.Component {
 
             errors: {
                 description: '',
-                animal: '',
                 numQuestions: ''
             },
 
             touched: {
                 description: false,
-                picker: false,
                 questionText: false
             }
         }
     }
 
+    componentDidMount() {
+        axios.get(process.env.REACT_APP_GET_ANIMALS_API)
+            .then(res => {
+                const animalOptionsJson = res.data;
+                this.setState({ animalOptionsJson });
+                let animals = [];
+                let animalsForSurvey = [];
+                for(let i = 0; i < animalOptionsJson.length; i++) {
+                    animalsForSurvey.push({
+                        "id": animalOptionsJson[i].id
+                    });
+                    if(!animalOptionsJson[i].udomljena) {
+                        animals.push(<option key={animalOptionsJson[i].id} value={animalOptionsJson[i].ime}>{animalOptionsJson[i].ime}</option>)
+                    } else {
+                        animalOptionsJson.splice(i, 1);
+                        i--;
+                    }
+                }
+                this.setState({ animalOptions: animals, animal: animalOptionsJson[0] });
+                axios.post(process.env.REACT_APP_CREATE_ANIMALS_API, animalsForSurvey);
+            }
+        );
+    }
+
     CreateSurvey = () => {  
         console.log(this.state);
-        // treba mandatory postaviti na true
+        let dataSurvey = {
+            "active": this.state.active,
+            "animal": {
+                "id": this.state.animal.id
+            },
+            "description": this.state.description,
+            "surveyQuestions": []
+        }
+        console.log(dataSurvey);
+        axios.post(process.env.REACT_APP_CREATE_SURVEY_API, dataSurvey)
+        .then(responseSurvey => {
+            if (responseSurvey.status === 200 || responseSurvey.status === 201) {
+                let data = [];
+                for(let i = 0; i < this.state.questionText.length; i++) {
+                    data.push({
+                        "mandatory": true,
+                        "possibleAnswers": [],
+                        "questionText": this.state.questionText[i],
+                        "survey": {
+                            "id": responseSurvey.data.id
+                        }
+                    });
+                }
+                axios.post(process.env.REACT_APP_CREATE_QUESTION_API, data)
+                .then(responseQuestion => {
+                    if (responseQuestion.status === 200 || responseQuestion.status === 201) {
+                        console.log(responseQuestion);
+                        toast('Woo', {position: toast.POSITION.TOP_CENTER});
+                        //toast.success('Anketa uspješno kreirana', {position: toast.POSITION.TOP_RIGHT});
+                        /*axios.post(process.env.REACT_APP_CREATE_POSSIBLE_ANSWER_API, {
+                        // parametri
+                        }).then(response => {
+                            if (response.status === 200 || response.status === 201) {
+                                toast.success('Anketa uspješno kreirana', {position: toast.POSITION.TOP_RIGHT})
+                            }
+                        }).catch(err => {
+                            toast.error(err.response.data.errors.toString(), {position: toast.POSITION.TOP_RIGHT})
+                        })*/
+                    }                  
+                }).catch(err => {
+                    toast.error(err.response.data.errors.toString(), {position: toast.POSITION.TOP_RIGHT})
+                });
+            }
+          }).catch(err => {
+            toast.error(err.response.data.errors.toString(), {position: toast.POSITION.TOP_RIGHT})
+          });
     }
 
     handleChange = (e) => {
@@ -64,8 +133,14 @@ export default class CreateSurvey extends React.Component {
 
     handleSelectAnimal = (selectedOption) => {
         if (selectedOption) {
+            let selectedAnimal = null;
+            for(let i = 0; i < this.state.animalOptionsJson.length; i++) {
+                if(selectedOption.target.value == this.state.animalOptionsJson[i].ime) {
+                    selectedAnimal = this.state.animalOptionsJson[i];
+                }
+            }
             this.setState({ 
-                animal : selectedOption.value 
+                animal : selectedAnimal
             });           
         }
     }
@@ -95,12 +170,16 @@ export default class CreateSurvey extends React.Component {
         let updatedGivenAnswers = this.state.givenAnswer1;
         updatedGivenAnswers.push(text);
         this.setState({
-            
+            givenAnswer1: updatedGivenAnswers
         });
     }
 
     updateGivenAnswer2 = (text) => {
-
+        let updatedGivenAnswers = this.state.givenAnswer2;
+        updatedGivenAnswers.push(text);
+        this.setState({
+            givenAnswer2: updatedGivenAnswers
+        });
     }
 
     handleGivenAnswer1Entered = (e) => {
@@ -136,7 +215,7 @@ export default class CreateSurvey extends React.Component {
     };
 
     renderQuestions = (value) => {
-        const errors = validate(this.state.description, this.state.animal, this.state.numQuestions, this.state.questionText);
+        const errors = validate(this.state.description, this.state.numQuestions, this.state.questionText);
         const shouldMarkError = field => {
             const hasError = errors[field];
             const shouldShow = this.state.touched[field];
@@ -191,7 +270,7 @@ export default class CreateSurvey extends React.Component {
     }
 
     render() {
-        const errors = validate(this.state.description, this.state.animal, this.state.numQuestions, this.state.questionText);
+        const errors = validate(this.state.description, this.state.numQuestions, this.state.questionText);
         const isDisabled = Object.keys(errors).some(x => errors[x]);
         const shouldMarkError = field => {
             const hasError = errors[field];
@@ -251,8 +330,7 @@ export default class CreateSurvey extends React.Component {
                             <label className={styles.chooseLabel}>Izaberi životinju</label>
                             <br/>
                             <select 
-                            className={shouldMarkError("picker") ? "error" : styles.picker}
-                            onBlur={this.handleBlur("picker")}
+                            className={styles.picker}
                             name="animal"
                             onChange={
                                 (e) => {
@@ -260,8 +338,7 @@ export default class CreateSurvey extends React.Component {
                                 }
                             }
                             >
-                                <option value="Dejzi">Dejzi</option>
-                                <option value="Stela">Stela</option>
+                                {this.state.animalOptions}
                             </select>
                         </div>
                         <div className={styles.questionNum}>

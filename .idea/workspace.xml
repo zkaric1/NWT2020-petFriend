@@ -3,8 +3,20 @@
   <component name="ChangeListManager">
     <list default="true" id="24c0f990-a75f-4833-a252-7210a63f3fae" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/anketa_service/out/artifacts/anketa_service_jar/anketa_service.jar" beforeDir="false" afterPath="$PROJECT_DIR$/anketa_service/out/artifacts/anketa_service_jar/anketa_service.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/anketa_service/src/main/java/com/etf/anketa_service/AnketaServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/anketa_service/src/main/java/com/etf/anketa_service/AnketaServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/anketa_service/src/main/java/com/etf/anketa_service/controller/AnimalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/anketa_service/src/main/java/com/etf/anketa_service/controller/AnimalController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/anketa_service/src/main/java/com/etf/anketa_service/controller/PossibleAnswerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/anketa_service/src/main/java/com/etf/anketa_service/controller/PossibleAnswerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/anketa_service/src/main/java/com/etf/anketa_service/controller/QuestionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/anketa_service/src/main/java/com/etf/anketa_service/controller/QuestionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/anketa_service/src/main/java/com/etf/anketa_service/model/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/anketa_service/src/main/java/com/etf/anketa_service/model/Animal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/anketa_service/src/main/java/com/etf/anketa_service/service/AnimalService.java" beforeDir="false" afterPath="$PROJECT_DIR$/anketa_service/src/main/java/com/etf/anketa_service/service/AnimalService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/anketa_service/src/main/java/com/etf/anketa_service/service/PossibleAnswerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/anketa_service/src/main/java/com/etf/anketa_service/service/PossibleAnswerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/anketa_service/src/main/java/com/etf/anketa_service/service/QuestionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/anketa_service/src/main/java/com/etf/anketa_service/service/QuestionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/.env" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/Anketa/CreateSurvey.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Anketa/CreateSurvey.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/Anketa/styles/CreateSurvey.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Anketa/styles/CreateSurvey.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/zivotinja-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/zivotinja-service/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

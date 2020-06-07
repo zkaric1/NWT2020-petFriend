@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,6 +50,14 @@ public class QuestionService {
 
     public Question addQuestion(Question question) {
         return questionRepository.save(question);
+    }
+
+    public List<Question> addQuestions(List<Question> questions) {
+        List<Question> returnValue = new ArrayList<>();
+        for (Question q: questions) {
+            returnValue.add(questionRepository.save(q));
+        }
+        return returnValue;
     }
 
     public Question putQuestion(Question newQuestion, Long questionId) {

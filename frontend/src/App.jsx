@@ -13,18 +13,22 @@ import {UserProfile} from "./Korisnik/UserProfile"
 import {Admin} from './Paneli/Admin'
 import {Korisnik} from './Paneli/Korisnik'
 import FillSurvey from './Anketa/FillSurvey'
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Route path="/" exact component={Login}/>
-        <Route path="/admin" component={Admin} />
-        <Route path="/korisnik" component={Korisnik} />
-        <Route path="/register" component={Register}/>
-        <Route path="/resetPassword" component={ResetPassword}/>
-      </div>
-    </Router>
+    <>
+      <Router>
+        <div className="App">
+          <Route path="/" exact component={Login}/>
+          <Route path="/admin" component={Admin} />
+          <Route path="/korisnik" component={Korisnik} />
+          <Route path="/register" component={Register}/>
+          <Route path="/resetPassword" component={ResetPassword}/>
+        </div>
+      </Router>
+      <ToastContainer />
+    </>
   );
 }
 
