@@ -21,11 +21,12 @@ logging.level.com.netflix.discovery=OFF
 Svi mikroservisi i Eureka moraju biti pokrenuti u isto vrijeme da bi se mogla ostvariti komunikacija.
 
 ## Pokretanje projekta
-Da bi se projekat uspješno pokrenuo, potrebno se navigirati u root direktorij `zivotinja-service` (gdje se nalazi `pom.xml` file) i unijeti komandu mvn `spring-boot:run`
-
+Da bi se projekat uspješno pokrenuo, potrebno se navigirati u root 
 ## Pokretanje testova
 Da bi se testovi uspješno pokrenuli, potrebno se navigirati  u root direktorij `zivotinja-service` (gdje se nalazi `pom.xml` file)  i unijeti komandu mvn test `-Dtest=ime fajla sa testovima (npr. mvn test -Dtest=BolestControllerTest)`
 
 ## Pristupanje swaggeru
 Nakon što se projekat pokrene, omogućen je pregleda svih API servisa pomoću Swagger-a na sljedećem linku: http://localhost:8080/swagger-ui.html
 
+## Kreiranje Docker slike
+Prvo je potrebno kreirati `jar` file projekta. To se radi sa naredbom `mvn clean package`. Nakon što se uspješno kreira `jar file`, potrebno je kreirati i Docker sliku. Potrebno je unijeti sljedeću naredbu u terminal `docker build -f Dockerfile -t zivotinja-service-docker .` Slika se može zasebno pokrenuti, bez ostalih projekata, sa naredbom `docker run -p 8080:8080`
