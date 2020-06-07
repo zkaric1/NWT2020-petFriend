@@ -1,4 +1,4 @@
-package com.etf.korisnik_service.oauth.service;
+package com.etf.korisnik_service.oauth;
 
 import com.etf.korisnik_service.model.User;
 import com.etf.korisnik_service.repository.UserRepository;
@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.PostConstruct;
 import java.util.HashSet;
 import java.util.Set;
 

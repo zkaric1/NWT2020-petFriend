@@ -11,6 +11,25 @@ services:
     networks:
       - petfriend
 
+  zuul:
+    image: zuul-docker
+    ports:
+      - 8084:8084
+    depends_on:
+      - discovery
+      - korisnik
+      - zivotinja-service
+    networks:
+      - petfriend
+
+  grpc:
+    image: grpc-docker
+    ports:
+     - 8083:8083
+    depends_on:
+      - discovery
+      - korisnik
+      - zivotinja-service
 
   korisnik:
     image: korisnik-service-docker
@@ -18,9 +37,31 @@ services:
       - 8082:8082
     depends_on:
       - discovery
+      - korisnik-db
     environment:
       - JAVA_OPTS=
         -DEUREKA_SERVER=http://discovery:8761/eureka
+      - DATABASE_HOST=korisnik-db
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=admin
+      - DATABASE_NAME=korisnik_service
+      - DATABASE_PORT=5432
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://korisnik-db:5432/korisnik_service
+    networks:
+      - petfriend
+
+  korisnik-db:
+    image: "postgres"
+    container_name: korisnik-db
+    ports:
+      - 5432
+    expose:
+      - 5432
+    environment:
+      POSTGRES_DB: korisnik_service
+      POSTEGRES_USER: postgres
+      POSTEGRES_PASSWORD: admin
+      POSTGRES_HOST_AUTH_METHOD: "trust"
     networks:
       - petfriend
 
@@ -48,6 +89,8 @@ services:
       - discovery
       - zivotinja-db
     environment:
+      - JAVA_OPTS=
+        -DEUREKA_SERVER=http://discovery:8761/eureka
       - DATABASE_HOST=zivotinja-db
       - DATABASE_USER=postgres
       - DATABASE_PASSWORD=admin

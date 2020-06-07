@@ -37,7 +37,11 @@ public class UserService  {
     private List<User> sviKorisnici;
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-    public User addUser(User noviUser) {
+    public User addUser(User noviUser) throws Exception {
+       User isti = userRepository.findByUsername(noviUser.getUsername());
+       if(isti != null) {
+            throw new Exception("Postoji korisnik sa istim usernameom");
+        }
         noviUser.setPassword(hashPassword(noviUser.getPassword()));
         return userRepository.save(noviUser);
     }
