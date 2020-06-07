@@ -23,8 +23,14 @@ export class Zivotinje  extends Component {
     }
 
     udomiZivotinju = (id) => {
-        this.setState({idOdabraneZivotinje:id})  // Za odgovarajuću anketu
-        this.props.history.push('/popuni-anketu')
+        let animalId = id;
+        this.setState({idOdabraneZivotinje:id});  // Za odgovarajuću anketu
+        this.props.history.push({
+            pathname: '/admin/popuni-anketu',
+            state: {
+                animalId: animalId
+            }
+        });
     }
 
     renderImage = (ime) => {
