@@ -17,6 +17,8 @@ services:
       - 8084:8084
     depends_on:
       - discovery
+      - korisnik
+      - zivotinja-service
     networks:
       - petfriend
 
@@ -35,7 +37,6 @@ services:
       - 8082:8082
     depends_on:
       - discovery
-      - zuul
       - korisnik-db
     environment:
       - JAVA_OPTS=
@@ -86,7 +87,6 @@ services:
       - 8080:8080
     depends_on:
       - discovery
-      - zuul
       - zivotinja-db
     environment:
       - JAVA_OPTS=
