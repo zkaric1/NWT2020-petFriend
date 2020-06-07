@@ -1,12 +1,11 @@
 package com.etf.korisnik_service.oauth;
 
-import com.etf.korisnik_service.oauth.service.JwtService;
-import com.etf.korisnik_service.oauth.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -18,6 +17,7 @@ import java.io.IOException;
 import static com.etf.korisnik_service.oauth.SecurityConstants.HEADER_STRING;
 import static com.etf.korisnik_service.oauth.SecurityConstants.TOKEN_PREFIX;
 
+@Component
 public class JWTAuthorizationFilter extends OncePerRequestFilter {
 
     @Autowired
@@ -30,21 +30,16 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest req,
                                     HttpServletResponse res,
                                     FilterChain chain) throws IOException, ServletException {
+//       jwtService = new JwtService();
+//       userDetailsService = new UserDetailsServiceImpl();
         String header = req.getHeader(HEADER_STRING);
-
+        System.out.println(header);
         if (header == null || !header.startsWith(TOKEN_PREFIX)) {
             chain.doFilter(req, res);
             return;
         }
 
-        UsernamePasswordAuthenticationToken authentication = getAuthentication(req);
-
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        chain.doFilter(req, res);
-    }
-
-    private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request) {
-        String token = request.getHeader(HEADER_STRING).substring(7);
+        String token = header.substring(7);
         System.out.println(token);
         String username = jwtService.extractUsername(token);
 
@@ -55,12 +50,12 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
             if (jwtService.validateToken(token, userDetails)) {
 
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
-                        userDetails, null, userDetails.getAuthorities());
+                        username, null, userDetails.getAuthorities());
                 usernamePasswordAuthenticationToken
-                        .setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                return  usernamePasswordAuthenticationToken;
+                        .setDetails(new WebAuthenticationDetailsSource().buildDetails(req));
+                SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
             }
         }
-        return null;
+        chain.doFilter(req, res);
     }
 }

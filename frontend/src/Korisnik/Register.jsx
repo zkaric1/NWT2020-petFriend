@@ -16,14 +16,19 @@ export class Register extends Component {
             fullName: '',
             dateOfBirth: '',
             email: '',
+            username: '',
             password: '',
             address: '',
             jmbg: '',
-            gender: '',
-            role: '',
+            gender: 'M',
+            role: {
+                "id": 1,
+                "roleName": "administrator"
+            },
             errors: {
                 fullName: '',
                 email: '',
+                username: '',
                 password: ''
             }
         }
@@ -39,17 +44,33 @@ export class Register extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:8082/uloga/lista').then(
+        axios.get('http://localhost:8084/korisnik/uloga/lista').then(
             res => {
                 const uloge = res.data
                 this.setState({ uloge })
+                console.log(uloge);
+
             }
-        )
+        ).catch(err => {
+            toast.error(err.response.data.message.toString(), { position: toast.POSITION.TOP_RIGHT })
+        })
     }
 
     handleChangeSpol = (selectedOption) => {
         if (selectedOption) {
             this.setState({ gender: selectedOption.target.value });
+        }
+    }
+
+    handleChangeUloga = (selectedOption) => {
+        if (selectedOption) {
+            const arrayelemnt = this.state.uloge.filter(function (item) {
+                return item.id == selectedOption.target.value;
+            })
+            this.setState({
+                role: arrayelemnt[0]
+            });
+            console.log(this.state.role);
         }
     }
 
@@ -66,6 +87,12 @@ export class Register extends Component {
                     value.length < 5
                         ? 'Ime i prezime mora imati vise od 5 slova!'
                         : '';
+                break;
+            case 'username':
+                errors.username =
+                    value.length > 5
+                        ? ''
+                        : 'Username je prekratak, mora imati najmanje 5 karaktera';
                 break;
             case 'email':
                 errors.email =
@@ -92,19 +119,24 @@ export class Register extends Component {
         event.preventDefault();
         if (!this.validateForm(this.state.errors)) toast.error("Unesite vrijednosti", { position: toast.POSITION.TOP_RIGHT })
         else {
-            axios.post('http://localhost:8082/oauth/korisnik', {
+            axios.post('http://localhost:8084/korisnik/oauth/korisnik', {
                 fullName: this.state.fullName,
                 dateOfBirth: this.state.dateOfBirth,
                 email: this.state.email,
                 password: this.state.password,
                 address: this.state.address,
+                username: this.state.username,
                 jmbg: this.state.jmbg,
                 gender: this.state.gender,
                 role: this.state.role
             }).then(response => {
-                if (response.status === 200 || response.status === 201) toast.success('Uspješno kreiran racun', { position: toast.POSITION.TOP_RIGHT })
+                if (response.status === 200 || response.status === 201) {
+                    this.props.history.push('/')
+                    toast.success('Uspješno kreiran racun', { position: toast.POSITION.TOP_RIGHT })
+                }
             }).catch(err => {
-                toast.error(err.response.data.errors.toString(), { position: toast.POSITION.TOP_RIGHT })
+                console.log(err.response.data.message.toString())
+                toast.error(err.response.data.message.toString(), { position: toast.POSITION.TOP_RIGHT })
             })
         }
     }
@@ -142,6 +174,16 @@ export class Register extends Component {
                             name="email" />
                         {errors.email.length > 0 &&
                             <span className='error'>{errors.email}</span>}
+                    </div>
+                    <div className="inputGroup">
+                        <input
+                            className="loginInput"
+                            type="text"
+                            onChange={e => this.handleChange(e)}
+                            placeholder="Username"
+                            name="username" />
+                        {errors.username.length > 0 &&
+                            <span className='error'>{errors.username}</span>}
                     </div>
                     <div className="inputGroup">
                         <input
@@ -190,7 +232,7 @@ export class Register extends Component {
                             }}
                             value={this.state.role}
                             name="role">
-                            {this.state.uloge.map(uloga => <option key={uloga.id} value={uloga.id}>{uloga.name}</option>)}
+                            {this.state.uloge.map(uloga => <option key={uloga.id} value={uloga.id}>{uloga.roleName}</option>)}
                         </select>
                     </div>
                     <button

@@ -1,8 +1,8 @@
 package com.etf.korisnik_service.oauth.controller;
 
 import com.etf.korisnik_service.model.User;
-import com.etf.korisnik_service.oauth.service.JwtService;
-import com.etf.korisnik_service.oauth.service.UserDetailsServiceImpl;
+import com.etf.korisnik_service.oauth.JwtService;
+import com.etf.korisnik_service.oauth.UserDetailsServiceImpl;
 import com.etf.korisnik_service.oauth.model.AuthenticationRequest;
 import com.etf.korisnik_service.oauth.model.AuthenticationResponse;
 import com.etf.korisnik_service.oauth.model.ValidationRequest;
@@ -51,8 +51,9 @@ public class AuthenticationController {
         final UserDetails userDetails = userDetailsService.loadUserByUsername(request.getUsername());
 
         final String token = jwtService.generateToken(userDetails);
+        User user = userRepository.findByUsername(request.getUsername());
 
-        return ResponseEntity.ok(new AuthenticationResponse(token));
+        return ResponseEntity.ok(new AuthenticationResponse(token,userDetails.getAuthorities().toArray()[0].toString(),user.getId()));
     }
 
     @PostMapping(VALIDATION_URL)

@@ -23,7 +23,6 @@ import java.util.Arrays;
 import static com.etf.korisnik_service.oauth.SecurityConstants.SWAGGER_URL;
 
 
-@Configuration
 @EnableWebSecurity
 public class WebSecurity extends WebSecurityConfigurerAdapter {
 
@@ -31,6 +30,8 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     private UserDetailsService userDetailsService;
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Autowired
+    private JWTAuthorizationFilter jwtAuthorizationFilter;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -44,7 +45,11 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .antMatchers(SWAGGER_URL)
                 .permitAll()
-                .antMatchers("/korisnik","/zivotinja","/anketa")
+                .antMatchers("/oauth/korisnik", "/uloga/lista")
+                .permitAll()
+                .antMatchers("/korisnik/lista")
+                .hasAuthority("administrator")
+                .antMatchers("/korisnik", "/korisnik/**","/uloga","/zivoitnja","/anketa")
                 .hasAnyAuthority("korisnik","administrator")
                 .antMatchers("/**")
                 .hasAuthority("administrator")
@@ -54,9 +59,10 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .exceptionHandling()
                 .and()
                 .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http .addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
-    }
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .addFilterBefore(jwtAuthorizationFilter,UsernamePasswordAuthenticationFilter.class);
+        }
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {

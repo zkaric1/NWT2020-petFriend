@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import "./style.scss";
 import axios from 'axios'
 import { toast } from 'react-toastify';
+import LocalStorageService from "../LocalStorage.js";
 
 export class ResetPassword extends Component {
     constructor(props) {
@@ -54,16 +55,25 @@ export class ResetPassword extends Component {
 
     resetPassword = (event) => {
         event.preventDefault();
+        const localStorageService = LocalStorageService.getService();
         if (!this.validateForm(this.state.errors)) alert("Unesite vrijednosti")
         else {
-            axios.post('http://localhost:8082/korisnik/sifra', {
-                id: this.state.userId,
-                password: this.state.password,
-
+            const token = localStorageService.getAccessToken()
+            const userId = localStorageService.getUserId()
+            axios.put('http://localhost:8084/korisnik/korisnik/sifra', {
+                id: userId,
+                password: this.state.password
+            }, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
             }).then(response => {
-                if (response.status === 200) toast.success('Uspjesno promijenjena sifra', { position: toast.POSITION.TOP_RIGHT })
+                if (response.status === 200) {
+                    toast.success('Uspjesno promijenjena sifra', { position: toast.POSITION.TOP_RIGHT })
+                    this.props.history.push('/korisnik/userProfile')
+                }
             }).catch(err => {
-                toast.error(err.response.data.errors.toString(), { position: toast.POSITION.TOP_RIGHT })
+                toast.error(err.response.data.message.toString(), { position: toast.POSITION.TOP_RIGHT })
             })
         }
     }
