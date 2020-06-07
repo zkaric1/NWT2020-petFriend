@@ -20,6 +20,14 @@ services:
     networks:
       - petfriend
 
+  grpc:
+    image: grpc-docker
+    ports:
+     - 8083:8083
+    depends_on:
+      - discovery
+      - korisnik
+      - zivotinja
 
   korisnik:
     image: korisnik-service-docker

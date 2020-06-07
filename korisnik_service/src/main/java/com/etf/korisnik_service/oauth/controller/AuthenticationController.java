@@ -51,8 +51,9 @@ public class AuthenticationController {
         final UserDetails userDetails = userDetailsService.loadUserByUsername(request.getUsername());
 
         final String token = jwtService.generateToken(userDetails);
+        User user = userRepository.findByUsername(request.getUsername());
 
-        return ResponseEntity.ok(new AuthenticationResponse(token));
+        return ResponseEntity.ok(new AuthenticationResponse(token,userDetails.getAuthorities().toArray()[0].toString(),user.getId()));
     }
 
     @PostMapping(VALIDATION_URL)

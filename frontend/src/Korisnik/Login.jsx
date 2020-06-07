@@ -4,15 +4,18 @@ import "./style.scss";
 import axios from 'axios'
 import { toast } from 'react-toastify';
 import { Link, useHistory } from "react-router-dom"
+import LocalStorageService from "../LocalStorage.js";
 
 export class Login extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            email: '',
+            username: '',
             password: '',
+            role: '',
+            token: '',
             errors: {
-                email: '',
+                username: '',
                 password: ''
             }
         }
@@ -28,18 +31,16 @@ export class Login extends Component {
     }
 
     handleChange = (event) => {
-        const validEmailRegex =
-            RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
         event.preventDefault();
         const { name, value } = event.target;
         let errors = this.state.errors;
 
         switch (name) {
-            case 'email':
-                errors.email =
-                    validEmailRegex.test(value)
+            case 'username':
+                errors.username =
+                    value.length > 5 
                         ? ''
-                        : 'Email format nije validan';
+                        : 'Username je prekratak, mora imati najmanje 5 karaktera';
                 break;
             case 'password':
                 errors.password =
@@ -58,24 +59,34 @@ export class Login extends Component {
 
     userLogin = (event) => {
         event.preventDefault();
+        const localStorageService = LocalStorageService.getService();
         if (!this.validateForm(this.state.errors)) alert("Unesite vrijednosti")
-        if (this.state.password === "admin") {
-            this.props.history.push('/admin')
-        }
-        else if (this.state.password === "korisnik") {
-            this.props.history.push('/korisnik')
-        }
-        // else {
-        //     axios.post('http://localhost:8082/oauth/korisnik/prijava', {
-        //         email: this.state.email,
-        //         password: this.state.password,
+        else {
+            axios.post('http://localhost:8084/korisnik/authenticate', {
+                username: this.state.username,
+                password: this.state.password,
 
-        //     }).then(response => {
-        //         if (response.status === 200) toast.success('Uspjesna prijava na sistem', {position: toast.POSITION.TOP_RIGHT})
-        //       }).catch(err => {
-        //         toast.error(err.response.data.errors.toString(), {position: toast.POSITION.TOP_RIGHT})
-        //       })
-        // }
+            }).then(response => {
+                if (response.status === 200) {
+                    localStorageService.setToken(response.data)
+                    if (response.data.role === "administrator") {
+                        this.props.history.push('/admin')
+                    }
+                    else if (response.data.role === "korisnik") {
+                        this.props.history.push('/korisnik')
+                    }
+                    this.state.token = response.data.token
+                    toast.success('Uspjesna prijava na sistem', { position: toast.POSITION.TOP_RIGHT })
+                }
+            }).catch(err => {
+                if (err.response.data.message != null) {
+                    toast.error(err.response.data.message.toString(), { position: toast.POSITION.TOP_RIGHT })
+                }
+                else {
+                    toast.error('Ne postoji korisnik', { position: toast.POSITION.TOP_RIGHT })
+                 
+                } })
+        }
     }
 
     render() {
@@ -87,12 +98,12 @@ export class Login extends Component {
                     <div className="inputGroup">
                         <input
                             className="loginInput"
-                            type="email"
+                            type="text"
                             onChange={e => this.handleChange(e)}
-                            placeholder="Email"
-                            name="email" />
-                        {errors.email.length > 0 &&
-                            <span className='error'>{errors.email}</span>}
+                            placeholder="Username"
+                            name="username" />
+                        {errors.username.length > 0 &&
+                            <span className='error'>{errors.username}</span>}
                     </div>
                     <div className="inputGroup">
                         <input
