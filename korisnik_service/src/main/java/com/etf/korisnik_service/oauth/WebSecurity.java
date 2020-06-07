@@ -47,6 +47,8 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .antMatchers("/oauth/korisnik", "/uloga/lista")
                 .permitAll()
+                .antMatchers("/korisnik/lista")
+                .hasAuthority("administrator")
                 .antMatchers("/korisnik", "/korisnik/**","/uloga","/zivoitnja","/anketa")
                 .hasAnyAuthority("korisnik","administrator")
                 .antMatchers("/**")
