@@ -3,6 +3,7 @@ package com.etf.anketa_service.controller;
 import com.etf.anketa_service.model.PossibleAnswer;
 import com.etf.anketa_service.service.PossibleAnswerService;
 import net.minidev.json.JSONObject;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -53,6 +54,12 @@ public class PossibleAnswerController {
     @PostMapping
     PossibleAnswer addPossibleAnswer(@Valid @RequestBody PossibleAnswer possibleAnswer) {
         return possibleAnswerService.addPossibleAnswer(possibleAnswer);
+    }
+
+    @PostMapping(path = "/addMultiple", produces= MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
+    List<PossibleAnswer> addPossibleAnswers(@RequestBody List<PossibleAnswer> possibleAnswers) {
+        System.out.println("Stigne ovdje");
+        return possibleAnswerService.addPossibleAnswers(possibleAnswers);
     }
 
     @PutMapping

@@ -39,7 +39,7 @@ public class AnketaServiceApplication {
     public CommandLineRunner addData(AnimalRepository animalRepository, AnswerRepository answerRepository, ApplicationUserRepository applicationUserRepository, PossibleAnswerRepository possibleAnswerRepository, QuestionRepository questionRepository, SurveyRepository surveyRepository) {
         return (args) -> {
             // Kreiranje zivotinja
-            Animal testAnimal_1 = new Animal();
+            /*Animal testAnimal_1 = new Animal();
             animalRepository.save(testAnimal_1);
             Animal testAnimal_2 = new Animal();
             animalRepository.save(testAnimal_2);
@@ -97,7 +97,7 @@ public class AnketaServiceApplication {
             Answer answer_4 = new Answer(possibleAnswer_3, user_2);
             answerRepository.save(answer_4);
             Answer answer_5 = new Answer(possibleAnswer_7, user_2);
-            answerRepository.save(answer_5);
+            answerRepository.save(answer_5);*/
         };
     }
 }

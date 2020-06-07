@@ -22,7 +22,6 @@ function App() {
         <Route path="/korisnik" component={Korisnik} />
         <Route path="/register" component={Register}/>
         <Route path="/resetPassword" component={ResetPassword}/>
-        <Route path="/popuni-anketu" component={Register}/>
       </div>
     </Router>
   );

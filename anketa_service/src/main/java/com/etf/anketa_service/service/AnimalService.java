@@ -5,6 +5,7 @@ import com.etf.anketa_service.model.Animal;
 import com.etf.anketa_service.repository.AnimalRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -17,6 +18,14 @@ public class AnimalService {
 
     public List<Animal> getAll() {
         return animalRepository.findAll();
+    }
+
+    public List<Animal> addAnimals(List<Animal> animals) {
+        List<Animal> returnValue = new ArrayList<>();
+        for (Animal a: animals) {
+            returnValue.add(animalRepository.save(a));
+        }
+        return returnValue;
     }
 
     public Animal findById(Long id) {

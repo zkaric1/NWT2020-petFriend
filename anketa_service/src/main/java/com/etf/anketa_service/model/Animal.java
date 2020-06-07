@@ -17,7 +17,6 @@ import java.util.List;
 @Table(name = "animal", schema = "public")
 public class Animal {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToMany(mappedBy = "animal", cascade = CascadeType.REMOVE)
@@ -25,7 +24,9 @@ public class Animal {
 
     public Animal() {}
 
-    public Animal(List<Survey> surveys) {
+    public Animal(Long id,
+                  List<Survey> surveys) {
+        this.id = id;
         this.surveys = surveys;
     }
 

@@ -35,6 +35,11 @@ public class QuestionController {
         return questionService.getQuestionById(id);
     }
 
+    @GetMapping(path = "/getBySurvey")
+    List<Question> getQuestionsBySurveyId(Long surveyId) {
+        return questionService.getQuestionsBySurveyId(surveyId);
+    }
+
     @DeleteMapping(path = "deleteAll")
     ResponseEntity<JSONObject> deleteAllQuestions() {
         return questionService.deleteAllQuestions();
@@ -48,6 +53,11 @@ public class QuestionController {
     @PostMapping
     Question addQuestion(@Valid @RequestBody Question question) {
         return questionService.addQuestion(question);
+    }
+
+    @PostMapping(path = "/addMultiple")
+    List<Question> addQuestions(@RequestBody List<Question> questions) {
+        return questionService.addQuestions(questions);
     }
 
     @PutMapping
